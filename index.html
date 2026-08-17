@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madrid Software Trainings</title>
+
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .msw-page {
+      font-family: 'Inter', sans-serif;
+      color: #1c1c2b;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      --msw-primary: #3b2fd4;
+      --msw-orange: #ff5a1f;
+      --msw-pink: #d6249f;
+      --msw-green: #d7f7c2;
+      --msw-dark: #14141f;
+      --msw-cream: #fff9f2;
+    }
+
+    .msw-page,
+    .msw-page *,
+    .msw-page *::before,
+    .msw-page *::after {
+      box-sizing: border-box;
+    }
+
+    .msw-page h1,
+    .msw-page h2,
+    .msw-page h3,
+    .msw-page p,
+    .msw-page ul {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .msw-page ul {
+      list-style: none;
+    }
+
+    .msw-page a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .msw-page img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .msw-page button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    .msw-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===================== IMAGE PLACEHOLDER ===================== */
+    .msw-img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 120px;
+      background: repeating-linear-gradient(45deg, #f1eefc, #f1eefc 10px, #e7e2fb 10px, #e7e2fb 20px);
+      border: 2px dashed #b7aef0;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #6a5fc7;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      gap: 6px;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .msw-img-placeholder span.msw-ph-icon {
+      font-size: 26px;
+    }
+
+    .msw-img-placeholder:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(59, 47, 212, .18);
+    }
+
+    /* ===================== SCROLL REVEAL ===================== */
+    .msw-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .msw-reveal.msw-inview {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    /* ===================== HERO ===================== */
+    .msw-hero {
+      background: var(--msw-cream);
+      padding: 60px 0 50px;
+      position: relative;
+    }
+
+    .msw-hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .msw-hero-eyebrow {
+      font-size: 14px;
+      color: var(--msw-primary);
+      font-weight: 600;
+      letter-spacing: .5px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .msw-hero-title {
+      font-size: 44px;
+      line-height: 1.18;
+      font-weight: 700;
+    }
+
+    .msw-hero-title .msw-blue {
+      color: var(--msw-primary);
+    }
+
+    .msw-hero-title .msw-red {
+      color: #e0263b;
+    }
+
+    .msw-hero-text {
+      margin-top: 18px;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #4a4a5a;
+      max-width: 520px;
+    }
+
+    .msw-hero-text b {
+      color: #1c1c2b;
+    }
+
+    .msw-hero-cta {
+      display: flex;
+      gap: 14px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .msw-btn {
+      padding: 13px 26px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14.5px;
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .msw-btn-primary {
+      background: linear-gradient(135deg, #3b2fd4, #6a3fe0);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(59, 47, 212, .28);
+    }
+
+    .msw-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(59, 47, 212, .4);
+    }
+
+    .msw-btn-outline {
+      background: #fff;
+      color: #1c1c2b;
+      border: 1.5px solid #e2ddf5;
+    }
+
+    .msw-btn-outline:hover {
+      background: #f4f1ff;
+      transform: translateY(-3px);
+    }
+
+    .msw-btn-pill {
+      background: linear-gradient(135deg, #ff6a2c, #ff3d63);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 10px 24px rgba(255, 90, 31, .3);
+      transition: transform .3s ease;
+    }
+
+    .msw-btn-pill:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .msw-hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .msw-avatars {
+      display: flex;
+    }
+
+    .msw-avatars span {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #fff9f2;
+      margin-left: -10px;
+      background: linear-gradient(135deg, #c9c2f7, #a595f0);
+    }
+
+    .msw-avatars span:first-child {
+      margin-left: 0;
+    }
+
+    .msw-meta-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .msw-badges {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .msw-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+    }
+
+    .msw-hero-visual {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .msw-hero-visual .msw-img-placeholder:nth-child(1) {
+      aspect-ratio: 3/4;
+      align-self: start;
+    }
+
+    .msw-hero-visual .msw-img-placeholder:nth-child(2) {
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      align-self: end;
+    }
+
+    .msw-hero-visual .msw-img-placeholder:nth-child(3) {
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+    }
+
+    .msw-hero-visual .msw-img-placeholder:nth-child(4) {
+      aspect-ratio: 3/4;
+    }
+
+    .msw-float {
+      animation: msw-floaty 4s ease-in-out infinite;
+    }
+
+    @keyframes msw-floaty {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    /* ===================== SECTION HEADINGS ===================== */
+    .msw-section {
+      padding: 80px 0;
+    }
+
+    .msw-section-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .msw-section-title {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .msw-section-title .msw-accent {
+      color: var(--msw-primary);
+    }
+
+    .msw-section-sub {
+      margin-top: 12px;
+      color: #6a6a7a;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .msw-pill-heading {
+      text-align: center;
+      margin: 0 auto 34px;
+    }
+
+    /* ===================== PROGRAM CARDS ===================== */
+    .msw-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .msw-cards-grid.msw-two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .msw-course-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 26px rgba(20, 20, 40, .08);
+      transition: transform .35s ease, box-shadow .35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .msw-course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(20, 20, 40, .14);
+    }
+
+    .msw-course-card .msw-img-placeholder {
+      border-radius: 0;
+      min-height: 170px;
+    }
+
+    .msw-course-body {
+      padding: 20px 22px 24px;
+    }
+
+    .msw-course-body h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .msw-course-body p {
+      font-size: 13.5px;
+      color: #6a6a7a;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .msw-course-body ul li {
+      font-size: 13.5px;
+      color: #444;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .msw-course-body ul li::before {
+      content: '•';
+      color: var(--msw-orange);
+      position: absolute;
+      left: 0;
+      font-weight: 900;
+    }
+
+    /* ===================== SUMMIT GALLERY ===================== */
+    .msw-summit {
+      background: var(--msw-cream);
+    }
+
+    .msw-summit-tag {
+      display: inline-block;
+      background: #fdf0b8;
+      color: #7a5b00;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .msw-summit-title {
+      font-size: 28px;
+      font-weight: 700;
+      max-width: 750px;
+      line-height: 1.3;
+    }
+
+    .msw-summit-title .msw-accent {
+      color: var(--msw-primary);
+    }
+
+    .msw-gallery {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .msw-gallery .msw-img-placeholder {
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+    }
+
+    /* ===================== PARTNERS ===================== */
+    .msw-partners-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 40px;
+    }
+
+    .msw-partners-title .msw-accent {
+      color: var(--msw-primary);
+    }
+
+    .msw-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+    }
+
+    .msw-logo-box {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #333;
+      font-size: 14px;
+      transition: box-shadow .3s ease, transform .3s ease;
+    }
+
+    .msw-logo-box:hover {
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .08);
+      transform: translateY(-4px);
+    }
+
+    /* ===================== WHY TRUST ===================== */
+    .msw-trust {
+      background: #fff;
+    }
+
+    .msw-trust-cta {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 22px 0 50px;
+      flex-wrap: wrap;
+    }
+
+    .msw-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+      text-align: center;
+    }
+
+    .msw-feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #efeaff, #f7e9ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: transform .35s ease;
+    }
+
+    .msw-feature-card:hover .msw-feature-icon {
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .msw-feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .msw-feature-card p {
+      font-size: 13.5px;
+      color: #6a6a7a;
+      line-height: 1.6;
+    }
+
+    /* ===================== MEDIA ===================== */
+    .msw-media {
+      background: var(--msw-cream);
+      text-align: center;
+    }
+
+    .msw-media-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 34px;
+    }
+
+    .msw-media-title .msw-accent {
+      color: var(--msw-primary);
+    }
+
+    .msw-media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .msw-media-box {
+      height: 90px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: .5px;
+      color: #fff;
+      transition: transform .3s ease;
+    }
+
+    .msw-media-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .msw-media-box.msw-m1 {
+      background: #d21e2b;
+    }
+
+    .msw-media-box.msw-m2 {
+      background: #e0263b;
+      font-style: italic;
+    }
+
+    .msw-media-box.msw-m3 {
+      background: #182a52;
+      font-size: 14px;
+    }
+
+    /* ===================== TESTIMONIALS ===================== */
+    .msw-testi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .msw-testi-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 22px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .msw-testi-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .08);
+    }
+
+    .msw-testi-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .msw-testi-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9c2f7, #a595f0);
+      flex-shrink: 0;
+    }
+
+    .msw-testi-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .msw-stars {
+      color: #ffb400;
+      font-size: 12px;
+    }
+
+    .msw-testi-text {
+      font-size: 12.8px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ===================== SYSTEM (DARK) ===================== */
+    .msw-system {
+      background: #0f0f18;
+      color: #fff;
+    }
+
+    .msw-system-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .msw-system-left h2 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .msw-system-left .msw-accent {
+      color: #b89bff;
+    }
+
+    .msw-system-left p {
+      margin-top: 14px;
+      color: #b8b8c5;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .msw-system-cards {
+      display: grid;
+      gap: 14px;
+    }
+
+    .msw-sys-card {
+      border-radius: 14px;
+      padding: 18px 20px;
+      transition: transform .3s ease;
+    }
+
+    .msw-sys-card:hover {
+      transform: translateX(6px);
+    }
+
+    .msw-sys-card.msw-sys-dark {
+      background: #1c1c28;
+      color: #fff;
+    }
+
+    .msw-sys-card.msw-sys-light {
+      background: var(--msw-green);
+      color: #10331a;
+    }
+
+    .msw-sys-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .msw-sys-card p {
+      font-size: 12.8px;
+      opacity: .85;
+      line-height: 1.5;
+    }
+
+    /* ===================== JOURNEY ===================== */
+    .msw-journey {
+      background: #fff;
+      text-align: center;
+    }
+
+    .msw-journey-title {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .msw-journey-title .msw-accent {
+      color: var(--msw-primary);
+    }
+
+    .msw-journey-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .msw-journey-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .msw-journey-grid h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .msw-journey-grid p {
+      font-size: 13.5px;
+      color: #6a6a7a;
+      line-height: 1.6;
+    }
+
+    /* ===================== CTA BANNER ===================== */
+    .msw-cta-banner {
+      background: linear-gradient(120deg, #eaf6ff, #f5f0ff);
+      border-radius: 22px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .msw-cta-text {
+      font-size: 20px;
+      font-weight: 600;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .msw-cta-text .msw-accent {
+      color: var(--msw-orange);
+    }
+
+    .msw-cta-badge {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--msw-primary);
+      text-align: center;
+      animation: msw-spin-slow 10s linear infinite;
+    }
+
+    @keyframes msw-spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===================== FLOATING BUTTONS ===================== */
+    .msw-float-btns {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 500;
+    }
+
+    .msw-float-btn {
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+      transition: transform .3s ease;
+    }
+
+    .msw-float-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .msw-float-btn.msw-call {
+      background: #14141f;
+    }
+
+    .msw-float-btn.msw-whatsapp {
+      background: #25d366;
+    }
+
+    /* ===================== FOOTER ===================== */
+    .msw-footer {
+      background: #14141f;
+      color: #9a9aab;
+      padding: 30px 0;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .msw-hero-title {
+        font-size: 34px;
+      }
+
+      .msw-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .msw-logo-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .msw-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .msw-testi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .msw-system-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .msw-nav {
+        display: none;
+      }
+
+      .msw-burger {
+        display: flex;
+      }
+
+      .msw-hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .msw-hero-visual {
+        order: -1;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .msw-hero-title {
+        font-size: 30px;
+      }
+
+      .msw-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .msw-media-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .msw-journey-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .msw-section {
+        padding: 56px 0;
+      }
+
+      .msw-cards-grid,
+      .msw-cards-grid.msw-two {
+        grid-template-columns: 1fr;
+      }
+
+      .msw-logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .msw-features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .msw-testi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .msw-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .msw-cta-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .msw-section-title,
+      .msw-partners-title,
+      .msw-media-title,
+      .msw-journey-title {
+        font-size: 24px;
+      }
+
+      .msw-float-btns {
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .msw-hero-visual {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="msw-page">
+
+    <!-- HEADER -->
+    <header class="header-container">
+      <!-- 1. Logo -->
+      <div class="logo">
+        <a href="#"><img src="img/logo/Madrid logo Final V1.png" alt="Logo"></a>
+      </div>
+
+      <!-- 2. Desktop Curved Center Navigation -->
+      <div class="nav-wrapper">
+        <div class="curved-bg">
+          <ul class="desktop-nav">
+            <li><a href="#">About</a></li>
+            <li class="our_drop_hover">
+
+              <a href="#">Our Programs</a>
+
+              <!-- MAIN DROPDOWN -->
+              <div class="program-dropdown">
+
+                <ul class="program-dropdown-list">
+
+                  <!-- TECH COURSE -->
+                  <li class="program-dropdown-item">
+
+                    <a href="#" class="program-dropdown-link">
+                      Tech Course
+                      <span class="submenu-arrow">›</span>
+                    </a>
+
+                    <!-- TECH SUBMENU -->
+                    <div class="program-submenu">
+
+                      <ul class="program-submenu-list">
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Data Analytics
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Data Science
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Artificial Intelligence
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Fullstack Development
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            DSA With C++
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Generative AI
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Agentic AI
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            DevOps
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            AWS
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Mern Stack
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Power BI
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Business Analytics
+                          </a>
+                        </li>
+
+                      </ul>
+
+                    </div>
+
+                  </li>
+
+
+                  <!-- DESIGN COURSE -->
+                  <li class="program-dropdown-item">
+
+                    <a href="#" class="program-dropdown-link">
+                      Design Course
+                      <span class="submenu-arrow">›</span>
+                    </a>
+
+                    <!-- DESIGN SUBMENU -->
+                    <div class="program-submenu">
+
+                      <ul class="program-submenu-list">
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            UI/UX Design Course
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Graphic Design Course
+                          </a>
+                        </li>
+
+                      </ul>
+
+                    </div>
+
+                  </li>
+
+
+                  <!-- MANAGEMENT & MARKETING -->
+                  <li class="program-dropdown-item">
+
+                    <a href="#" class="program-dropdown-link">
+                      Management & Marketing Course
+                      <span class="submenu-arrow">›</span>
+                    </a>
+
+                    <!-- MANAGEMENT SUBMENU -->
+                    <div class="program-submenu">
+
+                      <ul class="program-submenu-list">
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Product Management
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Digital Marketing
+                          </a>
+                        </li>
+
+                      </ul>
+
+                    </div>
+
+                  </li>
+
+
+                  <!-- TRENDING -->
+                  <li class="program-dropdown-item">
+
+                    <a href="#" class="program-dropdown-link">
+                      Trending
+                      <span class="submenu-arrow">›</span>
+                    </a>
+
+                    <!-- TRENDING SUBMENU -->
+                    <div class="program-submenu">
+
+                      <ul class="program-submenu-list">
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Data Analytics with Generative AI
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Data Science with Generative AI
+                          </a>
+                        </li>
+
+                      </ul>
+
+                    </div>
+
+                  </li>
+
+                </ul>
+
+              </div>
+
+            </li>
+            <li><a href="#">Testimonials</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. Social Icons & Hamburger Icon -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- 4. Mobile Dropdown Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+
+        <a href="#">About</a>
+
+
+        <!-- ================================
+         OUR PROGRAMS
+    ================================= -->
+
+        <div class="mobile-program-wrapper">
+
+          <button class="mobile-program-button" type="button">
+            <span>Our Programs</span>
+            <span class="mobile-program-icon">+</span>
+          </button>
+
+
+          <!-- MAIN PROGRAM DROPDOWN -->
+
+          <div class="mobile-program-dropdown">
+
+
+            <!-- TECH COURSE -->
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button" type="button">
+
+                <span>Tech Course</span>
+
+                <span class="mobile-course-icon">+</span>
+
+              </button>
+
+
+              <div class="mobile-course-dropdown">
+
+                <a href="#">Data Analytics</a>
+                <a href="#">Data Science</a>
+                <a href="#">Artificial Intelligence</a>
+                <a href="#">Fullstack Development</a>
+                <a href="#">DSA With C++</a>
+                <a href="#">Generative AI</a>
+                <a href="#">Agentic AI</a>
+                <a href="#">DevOps</a>
+                <a href="#">AWS</a>
+                <a href="#">Mern Stack</a>
+                <a href="#">Power BI</a>
+                <a href="#">Business Analytics</a>
+
+              </div>
+
+            </div>
+
+
+            <!-- DESIGN COURSE -->
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button" type="button">
+
+                <span>Design Course</span>
+
+                <span class="mobile-course-icon">+</span>
+
+              </button>
+
+
+              <div class="mobile-course-dropdown">
+
+                <a href="#">UI/UX Design Course</a>
+                <a href="#">Graphic Design Course</a>
+
+              </div>
+
+            </div>
+
+
+            <!-- MANAGEMENT & MARKETING -->
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button" type="button">
+
+                <span>Management &amp; Marketing Course</span>
+
+                <span class="mobile-course-icon">+</span>
+
+              </button>
+
+
+              <div class="mobile-course-dropdown">
+
+                <a href="#">Product Management</a>
+                <a href="#">Digital Marketing</a>
+
+              </div>
+
+            </div>
+
+
+            <!-- TRENDING -->
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button" type="button">
+
+                <span>Trending</span>
+
+                <span class="mobile-course-icon">+</span>
+
+              </button>
+
+
+              <div class="mobile-course-dropdown">
+
+                <a href="#">Data Analytics with Generative AI</a>
+                <a href="#">Data Science with Generative AI</a>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <a href="#">Testimonials</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+
+      </div>
+    </header>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+
+        /* =========================================
+           MOBILE HAMBURGER
+        ========================================= */
+
+        const hamburger =
+          document.getElementById("hamburger");
+
+        const mobileMenu =
+          document.getElementById("mobileMenu");
+
+
+        hamburger.addEventListener("click", function () {
+
+          mobileMenu.classList.toggle("active");
+          hamburger.classList.toggle("active");
+
+        });
+
+
+
+        /* =========================================
+           OUR PROGRAMS
+        ========================================= */
+
+        const programButton =
+          document.querySelector(
+            ".mobile-program-button"
+          );
+
+        const programWrapper =
+          document.querySelector(
+            ".mobile-program-wrapper"
+          );
+
+
+        programButton.addEventListener("click", function () {
+
+          programWrapper.classList.toggle("active");
+
+        });
+
+
+
+        /* =========================================
+           COURSE DROPDOWNS
+        ========================================= */
+
+        const courseButtons =
+          document.querySelectorAll(
+            ".mobile-course-button"
+          );
+
+
+        courseButtons.forEach(function (button) {
+
+          button.addEventListener("click", function () {
+
+            const currentWrapper =
+              button.closest(
+                ".mobile-course-wrapper"
+              );
+
+
+            /* Close other course menus */
+
+            document
+              .querySelectorAll(
+                ".mobile-course-wrapper"
+              )
+              .forEach(function (wrapper) {
+
+                if (wrapper !== currentWrapper) {
+
+                  wrapper.classList.remove(
+                    "active"
+                  );
+
+                }
+
+              });
+
+
+            /* Open / close current */
+
+            currentWrapper.classList.toggle(
+              "active"
+            );
+
+          });
+
+        });
+
+      });
+    </script>
+
+    <!-- HERO -->
+    <section class="msw-hero">
+      <div class="msw-container msw-hero-inner">
+        <div class="msw-hero-content msw-reveal">
+          <span class="msw-hero-eyebrow">| Your Launchpad to a</span>
+          <h1 class="msw-hero-title">
+            <span class="msw-blue">Your Launchpad</span> to a High-Growth<br>
+            <span class="msw-red">Tech Career Starts Here</span> 🚀
+          </h1>
+          <p class="msw-hero-text">
+            Learn next-gen skills in <b>AI</b>, <b>Data Science</b>, <b>Marketing</b> &amp; more through
+            Madrid Software's expert mentorship and real-world exposure.
+          </p>
+          <div class="msw-hero-cta">
+            <a class="msw-btn msw-btn-primary" href="#msw-programs">Explore Programs ✓</a>
+            <a class="msw-btn msw-btn-outline" href="#msw-contact">Book A Free Consultation</a>
+          </div>
+          <div class="msw-hero-meta">
+            <div class="msw-avatars"><span></span><span></span><span></span><span></span></div>
+            <span class="msw-meta-text">Students Enrolled</span>
+          </div>
+          <div class="msw-badges">
+            <div class="msw-badge">⭐ Trustpilot</div>
+            <div class="msw-badge">G 4.7 Rating</div>
+          </div>
+        </div>
+        <div class="msw-hero-visual msw-reveal" style="display: block;">
+          <!-- <div class="msw-img-placeholder msw-float"><span class="msw-ph-icon">🖼️</span>Add Photo</div>
+          <div class="msw-img-placeholder msw-float" style="animation-delay:.5s"><span class="msw-ph-icon">🖼️</span>Add
+            Photo</div>
+          <div class="msw-img-placeholder msw-float" style="animation-delay:1s"><span class="msw-ph-icon">🖼️</span>Add
+            Photo</div>
+          <div class="msw-img-placeholder msw-float" style="animation-delay:1.5s"><span
+              class="msw-ph-icon">🖼️</span>Add Photo</div> -->
+
+              <div style="padding-top:15px ;">
+                <img src="img/home-hero-section.png" alt="">
+              </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    <!-- PROGRAMS -->
+    <section class="msw-section" id="msw-programs">
+      <div class="msw-container">
+        <div class="msw-section-head msw-reveal">
+          <h2 class="msw-section-title">Programs <span class="msw-accent">That Go Beyond the</span> Syllabus</h2>
+          <p class="msw-section-sub">Each course comes with its own Success Blueprint — skill journey, mentor guidance,
+            and job-aligned outcomes.</p>
+        </div>
+
+        <div class="msw-pill-heading msw-reveal">
+          <a class="msw-btn-pill" href="#">Tech Courses</a>
+          <p class="msw-section-sub" style="margin-top:14px;">Build what powers the world — from algorithms to AI
+            agents.</p>
+        </div>
+
+        <div class="msw-cards-grid msw-reveal">
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>Data Science</h3>
+              <p>Transform raw data into real-world impact using machine learning and statistics.</p>
+              <ul>
+                <li>Work with Python, Pandas, NumPy, and Scikit-Learn.</li>
+                <li>Command data cleaning, feature engineering, un-supervised ML models, and model evaluation.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>Data Analytics</h3>
+              <p>Decode patterns, predict outcomes, and drive smart business decisions.</p>
+              <ul>
+                <li>Pick up SQL, Excel, Power BI, Tableau, and data storytelling.</li>
+                <li>Gain business context, work on case studies, and form dashboards that find impact.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>AI &amp; Machine Learning</h3>
+              <p>Master the tools driving the next generation of intelligent products.</p>
+              <ul>
+                <li>Deep dive into Generative AI, LLMs, and ChatGPT-based tools.</li>
+                <li>Build real capstone projects mentored by industry experts.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
+          <a class="msw-btn-pill" href="#">Design Courses</a>
+          <p class="msw-section-sub" style="margin-top:14px;">Shape the future of user experience and brand identity.
+          </p>
+        </div>
+
+        <div class="msw-cards-grid msw-two msw-reveal">
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>UI/UX Design</h3>
+              <p>Formulate intuitive, beautiful digital experiences that users love.</p>
+              <ul>
+                <li>Cover design thinking, user research, wireframing, and prototyping.</li>
+                <li>Explore tools like Figma and craft real product journeys.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>Graphic Design</h3>
+              <p>Craft visual identities that turn heads and tell stories.</p>
+              <ul>
+                <li>Get the hang of visual hierarchy, typography, brand systems, and Adobe Creative Suite.</li>
+                <li>Become skilled in design systems, create campaigns, and style a polished portfolio.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
+          <a class="msw-btn-pill" href="#">Marketing &amp; Management Course</a>
+          <p class="msw-section-sub" style="margin-top:14px;">Grow brands and lead campaigns with measurable impact.</p>
+        </div>
+
+        <div class="msw-cards-grid msw-two msw-reveal">
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>Digital Marketing</h3>
+              <p>Drive traffic, convert leads, and optimize marketing with data-driven strategies.</p>
+              <ul>
+                <li>Nail SEO, Google Ads, Meta Ads, and marketing funnels, and analytics tools.</li>
+                <li>Launch real campaigns and measure ROI.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="msw-course-card">
+            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+            <div class="msw-course-body">
+              <h3>Product Management</h3>
+              <p>Build and launch products that solve real problems and drive business growth.</p>
+              <ul>
+                <li>Master product roadmapping, Agile methodologies, and stakeholder management.</li>
+                <li>Work on real-world product specs and prioritize features for impact.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMIT GALLERY -->
+    <section class="msw-section msw-summit" id="msw-about">
+      <div class="msw-container">
+        <div class="msw-summit-tag msw-reveal">✨ Glimpse from Rising Bharat Summit</div>
+        <h2 class="msw-summit-title msw-reveal"><b>Madrid Software</b> Team at Rising <span class="msw-accent">Bharat
+            Summit</span> at Bharat Mandapam ——</h2>
+        <div class="msw-gallery msw-reveal">
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="msw-section">
+      <div class="msw-container">
+        <h2 class="msw-partners-title msw-reveal"><span class="msw-accent">300 +</span> Hiring Partners</h2>
+        <div class="msw-logo-grid msw-reveal">
+          <div class="msw-logo-box">Cognizant</div>
+          <div class="msw-logo-box">RBS</div>
+          <div class="msw-logo-box">Sapient</div>
+          <div class="msw-logo-box">Infosys</div>
+          <div class="msw-logo-box">wipro</div>
+          <div class="msw-logo-box">Indiabulls</div>
+          <div class="msw-logo-box">genpact</div>
+          <div class="msw-logo-box">amdocs</div>
+          <div class="msw-logo-box">DELL</div>
+          <div class="msw-logo-box">Airtel</div>
+          <div class="msw-logo-box">HCL</div>
+          <div class="msw-logo-box">hp</div>
+          <div class="msw-logo-box">Paytm</div>
+          <div class="msw-logo-box">Google</div>
+          <div class="msw-logo-box">accenture</div>
+          <div class="msw-logo-box">Standard Chartered</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY TRUST -->
+    <section class="msw-section msw-trust">
+      <div class="msw-container">
+        <div class="msw-section-head msw-reveal">
+          <h2 class="msw-section-title">Why Learners Trust <span class="msw-accent">Madrid</span> with Their Future</h2>
+          <p class="msw-section-sub">Building Careers That Not Only Pay But Builds Impact</p>
+        </div>
+        <div class="msw-trust-cta msw-reveal">
+          <a class="msw-btn msw-btn-primary" href="#msw-programs">Explore Programs</a>
+          <a class="msw-btn msw-btn-outline" href="#msw-contact">Talk To Our Expert</a>
+        </div>
+        <div class="msw-features-grid msw-reveal">
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">🎯</div>
+            <h3>Outcome-Oriented Approach</h3>
+            <p>Indulge into career-aligned learning paths built by ex-Cognizant professionals. We offer dedicated
+              capstone projects and role-based simulations to let you ace in your domain.</p>
+          </div>
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">⚡</div>
+            <h3>Real-Time Expertise</h3>
+            <p>We move above the pre-recorded monotony. We live mentor sessions, we ensure to resolve all your queries
+              and break down real-world case studies.</p>
+          </div>
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">🧩</div>
+            <h3>Built-in Practice Layer</h3>
+            <p>Master Data Science, AI, Machine Learning, Deep Learning, and ChatGPT with the latest tools by enrolling
+              in the AI course in Delhi.</p>
+          </div>
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">📄</div>
+            <h3>Beyond Certification</h3>
+            <p>Resume and LinkedIn optimization and assist in profoundly. Get expert help with interview readiness
+              drills, mock rounds, and hiring partner accessibility.</p>
+          </div>
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">🎤</div>
+            <h3>Mock Interviews with Real Feedback</h3>
+            <p>Our seasoned industry mentors conduct simulations and share detailed feedback to improve your performance
+              and reach your goal one step at a time.</p>
+          </div>
+          <div class="msw-feature-card">
+            <div class="msw-feature-icon">🤝</div>
+            <h3>Hiring Network Access</h3>
+            <p>We have a rich network of professionals spread over leading MNCs. Get referred to top companies through
+              our growing pool of hiring partners.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIA -->
+    <section class="msw-section msw-media">
+      <div class="msw-container">
+        <h2 class="msw-media-title msw-reveal">In the <span class="msw-accent">Media</span></h2>
+        <div class="msw-media-grid msw-reveal">
+          <div class="msw-media-box msw-m1">INDIA<br>TODAY</div>
+          <div class="msw-media-box msw-m2">mid-day</div>
+          <div class="msw-media-box msw-m3">FINANCIAL EXPRESS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="msw-section" id="msw-testimonials">
+      <div class="msw-container">
+        <div class="msw-section-head msw-reveal">
+          <h2 class="msw-section-title">Stories of Skills Turned into <span class="msw-accent">Success</span></h2>
+        </div>
+        <div class="msw-testi-grid msw-reveal">
+          <div class="msw-testi-card">
+            <div class="msw-testi-top">
+              <div class="msw-testi-avatar"></div>
+              <div>
+                <div class="msw-testi-name">Aman kukerja</div>
+                <div class="msw-stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="msw-testi-text">I am who is always eager to learn and skill set. I've embarked on a journey into
+              the world of AI with generative AI. This field offers insights with the new lookup to applying and
+              expanding my more in this field.Al thanks to affordable teens!</p>
+          </div>
+          <div class="msw-testi-card">
+            <div class="msw-testi-top">
+              <div class="msw-testi-avatar"></div>
+              <div>
+                <div class="msw-testi-name">Akshita Jain</div>
+                <div class="msw-stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="msw-testi-text">As a student, I found Madrid Software's Artificial Intelligence course incredibly
+              rewarding. The training is detailed and hands on, covering Python, Machine Learning, Deep Learning, and
+              even Generative AI. What impressed me most was the placement support — they mentors are industry expert.
+            </p>
+          </div>
+          <div class="msw-testi-card">
+            <div class="msw-testi-top">
+              <div class="msw-testi-avatar"></div>
+              <div>
+                <div class="msw-testi-name">Rahul</div>
+                <div class="msw-stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="msw-testi-text">I am writing to share my appreciation for the outstanding learning experience I
+              had with Madrid Software. The mall and engaging course content combined with an intuitive user interface,
+              made learning genuinely enjoyable.</p>
+          </div>
+          <div class="msw-testi-card">
+            <div class="msw-testi-top">
+              <div class="msw-testi-avatar"></div>
+              <div>
+                <div class="msw-testi-name">Prince</div>
+                <div class="msw-stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="msw-testi-text">This coaching centre offers excellent guidance with knowledgeable faculty and a
+              supportive learning environment. The study material is well-structured, and the personalized attention
+              really helps students succeed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEM DARK -->
+    <section class="msw-section msw-system">
+      <div class="msw-container msw-system-inner">
+        <div class="msw-system-left msw-reveal">
+          <h2>Madrid Software :<br><span class="msw-accent">System Behind Success</span></h2>
+          <p>Experience a complete ecosystem curated to move your career faster. 🚀</p>
+          <a class="msw-btn msw-btn-primary" style="margin-top:22px;" href="#msw-programs">Explore Career Paths</a>
+        </div>
+        <div class="msw-system-cards msw-reveal">
+          <div class="msw-sys-card msw-sys-dark">
+            <h4>Skill Acceleration Sprints 🚀</h4>
+            <p>Rapid 4-6 week deep-dives designed to plug real-world skill gaps.</p>
+          </div>
+          <div class="msw-sys-card msw-sys-light">
+            <h4>Hiring Partner Connects 💼</h4>
+            <p>Exclusive access to pre-placement drives and company-sponsored tasks.</p>
+          </div>
+          <div class="msw-sys-card msw-sys-dark">
+            <h4>Portfolio That Speaks 📁</h4>
+            <p>Build GitHub repos, Behance cases, or campaign decks that actually get recruiters calling.</p>
+          </div>
+          <div class="msw-sys-card msw-sys-light">
+            <h4>One-to-One Roadmapping 🗺️</h4>
+            <p>Get personalized goal-mapping and pivot plans with senior mentors.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="msw-section msw-journey">
+      <div class="msw-container">
+        <h2 class="msw-journey-title msw-reveal">Inside Madrid: What Learners Really <span
+            class="msw-accent">Experience</span></h2>
+        <p class="msw-section-sub msw-reveal">A peek into the real journey — from day one to offer letters.</p>
+        <div class="msw-journey-grid msw-reveal">
+          <div>
+            <div class="msw-journey-icon">🗓️</div>
+            <h3>Your First 30 Days</h3>
+            <p>Tool rotation kickoff, project preview, mentor intros &amp; your first sprint challenge.</p>
+          </div>
+          <div>
+            <div class="msw-journey-icon">📈</div>
+            <h3>The Midway Momentum</h3>
+            <p>Case studies, client-styled feedback, and peer reviews amp up your growth.</p>
+          </div>
+          <div>
+            <div class="msw-journey-icon">🎯</div>
+            <h3>The Placement Zone</h3>
+            <p>Resume teardown, recruiter AMAs, and mock drills led by hiring managers.</p>
+          </div>
+        </div>
+
+        <div class="msw-cta-banner msw-reveal" id="msw-contact">
+          <div class="msw-cta-text">
+            This isn't the end But your <span class="msw-accent">starting line</span>. Careers don't change with
+            information.
+            They change with action. <b>demand.</b> 🙌<br><br>
+            Take the first step toward a future you've imagined — one where you're
+            <b>skilled, confident,</b> and in <b>demand.</b>
+          </div>
+          <div class="msw-cta-badge">100%<br>Placement 🏆</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="msw-footer" id="msw-blog">
+      <div class="msw-container">
+        © 2026 Madrid Software Trainings. All rights reserved.
+      </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="msw-float-btns">
+      <a class="msw-float-btn msw-call" href="#">📞 Call Us</a>
+      <a class="msw-float-btn msw-whatsapp" href="#">💬 WhatsApp Us</a>
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+      var burger = document.getElementById('mswBurger');
+      var nav = document.querySelector('.msw-nav');
+      if (burger) {
+        burger.addEventListener('click', function () {
+          var open = nav.style.display === 'flex';
+          nav.style.display = open ? 'none' : 'flex';
+          nav.style.flexDirection = 'column';
+          nav.style.position = 'absolute';
+          nav.style.top = '58px';
+          nav.style.right = '20px';
+          nav.style.background = '#14141f';
+          nav.style.padding = '18px 26px';
+          nav.style.borderRadius = '12px';
+          nav.style.gap = '16px';
+        });
+      }
+
+      var mswObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('msw-inview');
+            mswObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.msw-reveal').forEach(function (el) {
+        mswObserver.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
