@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Madrid Software Trainings</title>
+  <link rel="icon" type="image/x-icon" href="img/logo/facion.png">
+  <title>EagletFly </title>
 
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
@@ -76,10 +77,10 @@
     /* ===================== IMAGE PLACEHOLDER ===================== */
     .msw-img-placeholder {
       width: 100%;
-      height: 100%;
+      /* height: 100%; */
       min-height: 120px;
-      background: repeating-linear-gradient(45deg, #f1eefc, #f1eefc 10px, #e7e2fb 10px, #e7e2fb 20px);
-      border: 2px dashed #b7aef0;
+      /* background: repeating-linear-gradient(45deg, #f1eefc, #f1eefc 10px, #e7e2fb 10px, #e7e2fb 20px); */
+      /* border: 2px dashed #b7aef0; */
       border-radius: 14px;
       display: flex;
       align-items: center;
@@ -118,9 +119,17 @@
 
     /* ===================== HERO ===================== */
     .msw-hero {
-      background: var(--msw-cream);
-      padding: 60px 0 50px;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.295)),
+        url("img/eaglet-fly-training-center-delhi-vision-1024x681.jpg");
+
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center 0%;
+      width: 100%;
+      padding: 120px 0 50px;
       position: relative;
+
     }
 
     .msw-hero-inner {
@@ -639,6 +648,11 @@
       font-size: 12.8px;
       color: #666;
       line-height: 1.6;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     /* ===================== SYSTEM (DARK) ===================== */
@@ -950,17 +964,403 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+
+    /* all btn color grids */
+
+    .primary_btns-without-shado {
+      background: #F5820B;
+      color: #FFFFFF;
+    }
+
+    .primary_btns {
+      background: #F5820B;
+      color: #FFFFFF;
+      color: #F5820B;
+      border: 2px solid #F5820B;
+      box-shadow: none;
+    }
+
+    .primary_btns:hover {
+
+      box-shadow: 0 10px 24px #D96E00;
+      background: #D96E00;
+      color: #FFFFFF;
+    }
+
+    .primary_dark_btns {
+      background: #30383D;
+      color: #FFFFFF;
+    }
+
+    .primary_dark_btns:hover {
+      background: #46545E;
+      color: #FFFFFF;
+    }
+
+
+    /* 1. 🟠 Brand Orange Gradient — Without Animation */
+    .orange-gradient {
+      background: linear-gradient(135deg,
+          #F5A900 0%,
+          #F5820B 50%,
+          #D96E00 100%);
+    }
+
+    /* 2. 🟠 Brand Orange Gradient — Animate */
+    .orange-gradient-animated {
+      background: linear-gradient(90deg,
+          #D96E00,
+          #F5820B,
+          #F5A900,
+          #F5820B,
+          #D96E00);
+
+      background-size: 300% 100%;
+      animation: orangeFlow 4s ease infinite;
+    }
+
+    @keyframes orangeFlow {
+      0% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
+
+      100% {
+        background-position: 0% center;
+      }
+    }
+
+
+    /* 3. 🔵 Dark Brand Gradient — Without Animation */
+    .dark-gradient {
+      background: linear-gradient(135deg,
+          #20272B 0%,
+          #30383D 50%,
+          #46545E 100%);
+    }
+
+    /* 4. 🔵 Dark Brand Gradient — Animated */
+    .dark-gradient-animated {
+      background: linear-gradient(90deg,
+          #20272B,
+          #30383D,
+          #46545E,
+          #30383D,
+          #20272B);
+
+      background-size: 300% 100%;
+      animation: darkFlow 6s ease infinite;
+    }
+
+    @keyframes darkFlow {
+      0% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
+
+      100% {
+        background-position: 0% center;
+      }
+    }
+
+
+    /* 5. 🔥 Orange + Dark Premium Gradient */
+    .brand-gradient {
+      background: linear-gradient(135deg,
+          #30383D 0%,
+          #46545E 45%,
+          #F5820B 75%,
+          #F5A900 100%);
+    }
+
+    /* 5. 🔥 Orange + Dark Premium Gradient without Animated*/
+    .brand-gradient-animated {
+      background: linear-gradient(120deg,
+          #30383D,
+          #46545E,
+          #F5820B,
+          #F5A900,
+          #F5820B,
+          #46545E,
+          #30383D);
+
+      background-size: 300% 300%;
+      animation: brandGradient 6s ease infinite;
+    }
+
+    @keyframes brandGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   </style>
 </head>
 
 <body>
+  <!-- PAGE LOADER -->
+  <style>
+    /* ==============================
+   PAGE LOADER
+============================== */
+
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+
+      background: #ffffff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 999999;
+
+      transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+    }
+
+
+    /* Loader hide */
+
+    .page-loader.loader-hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+
+    /* Main loader */
+
+    .loader-box {
+      width: 180px;
+      height: 180px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    /* ==============================
+   ROTATING RING
+============================== */
+
+    .loader-ring {
+      position: absolute;
+
+      width: 170px;
+      height: 170px;
+
+      border-radius: 50%;
+
+      background: conic-gradient(from 0deg,
+          transparent 0deg,
+          transparent 35deg,
+          #F5820B 80deg,
+          #F5A900 140deg,
+          #F5820B 200deg,
+          transparent 250deg,
+          transparent 360deg);
+
+      animation: loaderRotate 1.4s linear infinite;
+
+      /* Ring thickness */
+      -webkit-mask: radial-gradient(farthest-side,
+          transparent calc(100% - 4px),
+          #000 calc(100% - 3px));
+
+      mask: radial-gradient(farthest-side,
+          transparent calc(100% - 4px),
+          #000 calc(100% - 3px));
+    }
+
+
+    /* Rotation */
+
+    @keyframes loaderRotate {
+
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    /* ==============================
+   CENTER LOGO
+============================== */
+
+    .loader-logo {
+      width: 158px;
+      height: 158px;
+
+      background: #ffffff;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      z-index: 2;
+
+      box-shadow:
+        0 5px 25px rgba(48, 56, 61, 0.12);
+      margin-top: 8px;
+    }
+
+
+    .loader-logo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+    }
+
+    .loader-ring {
+      position: absolute;
+
+      width: 170px;
+      height: 170px;
+
+      border-radius: 50%;
+
+    }
+
+    /* ==============================
+   MOBILE
+============================== */
+
+    @media (max-width: 600px) {
+
+      .loader-box {
+        width: 145px;
+        height: 145px;
+      }
+
+      .loader-ring {
+        width: 140px;
+        height: 140px;
+      }
+
+      .loader-logo {
+        width: 105px;
+        height: 105px;
+      }
+
+    }
+
+
+     .rainbow-animated {
+          background: linear-gradient(90deg,
+              #ff0000,
+              #ff7f00,
+              #ffff00,
+              #00ff00,
+              #00ffff,
+              #0000ff,
+              #8b00ff,
+              #ff0000);
+          background-size: 200% auto;
+
+          /* Text ke andar color laane ke liye ye properties zaroori hain */
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+
+          animation: rainbow-slide 3s linear infinite;
+          display: inline-block;
+          /* Smooth render ke liye */
+        }
+
+        @keyframes rainbow-slide {
+          0% {
+            background-position: 0% center;
+          }
+
+          100% {
+            background-position: -200% center;
+          }
+        }
+
+        .sole_1 {
+          color: white;
+        }
+
+        .sole_2 {
+          color: #30383D;
+          /* color: #F5820B; */
+        }
+
+        .sole_3 {
+          /* color: #30383D; */
+          color: #F5820B;
+        }
+  </style>
+  <div class="page-loader" id="pageLoader">
+
+    <div class="loader-box">
+
+      <!-- Rotating Orange Circle -->
+      <div class="loader-ring"></div>
+      <!-- <div class="loader-ring-2"></div> -->
+
+      <!-- Center Image -->
+      <div class="loader-logo">
+        <img src="img/logo/lOGO-B-e1561700484623.png" alt="Eagletely Solutions">
+      </div>
+
+    </div>
+
+  </div>
+  <script>
+    window.addEventListener("load", function () {
+
+      const loader = document.getElementById("pageLoader");
+
+      setTimeout(() => {
+        loader.classList.add("loader-hide");
+      }, 0);
+
+    });
+  </script>
+
+  <!-- website content -->
   <div class="msw-page">
 
     <!-- HEADER -->
     <header class="header-container">
       <!-- 1. Logo -->
       <div class="logo">
-        <a href="#"><img src="img/logo/Madrid logo Final V1.png" alt="Logo"></a>
+        <a href="#"><img src="img/logo/lOGO-B-e1561700484623.png" alt="Logo"></a>
       </div>
 
       <!-- 2. Desktop Curved Center Navigation -->
@@ -981,12 +1381,12 @@
                   <li class="program-dropdown-item">
 
                     <a href="#" class="program-dropdown-link">
-                      Tech Course
-                      <span class="submenu-arrow">›</span>
+                      Machine Learning & Ai
+                      <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
                     <!-- TECH SUBMENU -->
-                    <div class="program-submenu">
+                    <!-- <div class="program-submenu">
 
                       <ul class="program-submenu-list">
 
@@ -1064,7 +1464,7 @@
 
                       </ul>
 
-                    </div>
+                    </div> -->
 
                   </li>
 
@@ -1073,12 +1473,12 @@
                   <li class="program-dropdown-item">
 
                     <a href="#" class="program-dropdown-link">
-                      Design Course
-                      <span class="submenu-arrow">›</span>
+                      Data Analytics with Python
+                      <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
                     <!-- DESIGN SUBMENU -->
-                    <div class="program-submenu">
+                    <!-- <div class="program-submenu">
 
                       <ul class="program-submenu-list">
 
@@ -1096,39 +1496,7 @@
 
                       </ul>
 
-                    </div>
-
-                  </li>
-
-
-                  <!-- MANAGEMENT & MARKETING -->
-                  <li class="program-dropdown-item">
-
-                    <a href="#" class="program-dropdown-link">
-                      Management & Marketing Course
-                      <span class="submenu-arrow">›</span>
-                    </a>
-
-                    <!-- MANAGEMENT SUBMENU -->
-                    <div class="program-submenu">
-
-                      <ul class="program-submenu-list">
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Product Management
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Digital Marketing
-                          </a>
-                        </li>
-
-                      </ul>
-
-                    </div>
+                    </div> -->
 
                   </li>
 
@@ -1137,12 +1505,12 @@
                   <li class="program-dropdown-item">
 
                     <a href="#" class="program-dropdown-link">
-                      Trending
-                      <span class="submenu-arrow">›</span>
+                      Data Science with Python
+                      <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
                     <!-- TRENDING SUBMENU -->
-                    <div class="program-submenu">
+                    <!-- <div class="program-submenu">
 
                       <ul class="program-submenu-list">
 
@@ -1160,8 +1528,52 @@
 
                       </ul>
 
-                    </div>
+                    </div> -->
 
+                  </li>
+
+                  <li class="program-dropdown-item">
+                    <a href="#" class="program-dropdown-link">
+                      Digital Marketing
+                    </a>
+                  </li>
+
+
+                  <!-- MANAGEMENT & MARKETING -->
+                  <li class="program-dropdown-item">
+
+                    <a href="#" class="program-dropdown-link">
+                      Python
+                      <!-- <span class="submenu-arrow">›</span> -->
+                    </a>
+
+                    <!-- MANAGEMENT SUBMENU -->
+                    <!-- <div class="program-submenu">
+
+                      <ul class="program-submenu-list">
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Product Management
+                          </a>
+                        </li>
+
+                        <li class="program-submenu-item">
+                          <a href="#" class="program-submenu-link">
+                            Digital Marketing
+                          </a>
+                        </li>
+
+                      </ul>
+
+                    </div> -->
+
+                  </li>
+
+                  <li class="program-dropdown-item">
+                    <a href="#" class="program-dropdown-link">
+                      Java
+                    </a>
                   </li>
 
                 </ul>
@@ -1331,7 +1743,7 @@
       document.addEventListener("DOMContentLoaded", function () {
 
         /* =========================================
-           MOBILE HAMBURGER
+          MOBILE HAMBURGER
         ========================================= */
 
         const hamburger =
@@ -1351,7 +1763,7 @@
 
 
         /* =========================================
-           OUR PROGRAMS
+          OUR PROGRAMS
         ========================================= */
 
         const programButton =
@@ -1374,7 +1786,7 @@
 
 
         /* =========================================
-           COURSE DROPDOWNS
+          COURSE DROPDOWNS
         ========================================= */
 
         const courseButtons =
@@ -1395,10 +1807,9 @@
 
             /* Close other course menus */
 
-            document
-              .querySelectorAll(
-                ".mobile-course-wrapper"
-              )
+            document.querySelectorAll(
+              ".mobile-course-wrapper"
+            )
               .forEach(function (wrapper) {
 
                 if (wrapper !== currentWrapper) {
@@ -1412,7 +1823,7 @@
               });
 
 
-            /* Open / close current */
+
 
             currentWrapper.classList.toggle(
               "active"
@@ -1423,426 +1834,1590 @@
         });
 
       });
+
+
+
+      window.addEventListener("scroll", function () {
+
+        const header = document.querySelector(".header-container");
+
+        if (window.scrollY > 500) {
+          header.classList.add("header-scroll");
+        } else {
+          header.classList.remove("header-scroll");
+        }
+
+      });
+
+
     </script>
 
-    <!-- HERO -->
-    <section class="msw-hero">
-      <div class="msw-container msw-hero-inner">
-        <div class="msw-hero-content msw-reveal">
-          <span class="msw-hero-eyebrow">| Your Launchpad to a</span>
-          <h1 class="msw-hero-title">
-            <span class="msw-blue">Your Launchpad</span> to a High-Growth<br>
-            <span class="msw-red">Tech Career Starts Here</span> 🚀
+    <main>
+
+
+     
+      <!-- hero  -->
+      <style>
+        #canvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;z-index: 0;
+          /* height: 100%; */
+          /* max-height: 578px; */
+          pointer-events: none;
+        }
+
+        .hero-sec-container {
+          width: 100%;
+          height: 100vh;
+          padding: 80px 20px;
+          background-color: #f7f9fc;
+          /* Graph Paper Background Effect */
+          /* background-image:
+            linear-gradient(to right, rgba(200, 210, 225, 0.3) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(200, 210, 225, 0.3) 1px, transparent 1px); */
+          background-size: 32px 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .hero-sec-header {
+          margin-bottom: 36px;
+        }
+
+        .hero-sec-main-title {
+          font-size: 52px;
+          font-weight: 800;
+          color: #1e2022;
+          line-height: 1.2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+
+        .hero-sec-dynamic-text {
+          /* color: #2e3077; */
+        }
+
+        /* Vertical Cursor Indicator */
+        .hero-sec-cursor {
+          display: inline-block;
+          width: 3px;
+          height: 1.1em;
+          background-color: #2e3077;
+          margin-left: 2px;
+          animation: heroSecBlink 0.8s infinite;
+        }
+
+        @keyframes heroSecBlink {
+
+          0%,
+          100% {
+            opacity: 1;
+          }
+
+          50% {
+            opacity: 0;
+          }
+        }
+
+        .hero-sec-sub-title {
+          font-size: 42px;
+          font-weight: 800;
+          color: #1e2022;
+          margin-top: 6px;
+        }
+
+        /* Features List Styles */
+        .hero-sec-features {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-bottom: 40px;
+          max-width: 1000px;
+        }
+
+        .hero-sec-feature-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .hero-sec-feature-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 15px;
+          font-weight: 600;
+          color: #2c3e50;
+        }
+
+        .hero-sec-check-icon {
+          width: 20px;
+          height: 20px;
+          background-color: #4caf50;
+          color: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: bold;
+          flex-shrink: 0;
+        }
+
+        /* Buttons Section */
+        .hero-sec-actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+          flex-wrap: wrap;
+        }
+
+        .hero-sec-btn-primary {
+          background-color: #2b2d7c;
+          color: #ffffff;
+          border: 2px solid #2b2d7c;
+          padding: 14px 28px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(43, 45, 124, 0.2);
+          z-index: 2;
+        }
+
+        .hero-sec-btn-primary:hover {
+          background-color: #212363;
+          border-color: #212363;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(43, 45, 124, 0.3);
+        }
+
+        .hero-sec-btn-secondary {
+          background-color: #ffffff;
+          color: #2b2d7c;
+          border: 1.5px solid #2b2d7c;
+          padding: 14px 28px;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.3s ease;
+          z-index: 2;
+        }
+
+        .hero-sec-btn-secondary:hover {
+          background-color: #f0f2f9;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .hero-sec-btn-icon {
+          width: 18px;
+          height: 18px;
+        }
+
+        /* Responsiveness for Tablets and Mobile */
+        @media (max-width: 992px) {
+          .hero-sec-main-title {
+            font-size: 40px;
+          }
+
+          .hero-sec-sub-title {
+            font-size: 32px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-sec-container {
+            padding: 50px 16px;
+          }
+
+          .hero-sec-main-title {
+            font-size: 32px;
+          }
+
+          .hero-sec-sub-title {
+            font-size: 26px;
+          }
+
+          .hero-sec-feature-row {
+            gap: 14px;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .hero-sec-features {
+            align-items: flex-start;
+            text-align: left;
+          }
+
+          .hero-sec-actions {
+            width: 100%;
+            flex-direction: column;
+          }
+
+          .hero-sec-btn-primary,
+          .hero-sec-btn-secondary {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      </style>
+
+      <section class="hero-sec-container">
+        <canvas id="canvas"></canvas>
+        <!-- Heading Section -->
+        <div class="hero-sec-header">
+          <h1 class="hero-sec-main-title">
+            Learn <span class="hero-sec-dynamic-text sole_3"></span><span class="hero-sec-cursor"></span>
           </h1>
-          <p class="msw-hero-text">
-            Learn next-gen skills in <b>AI</b>, <b>Data Science</b>, <b>Marketing</b> &amp; more through
-            Madrid Software's expert mentorship and real-world exposure.
-          </p>
-          <div class="msw-hero-cta">
-            <a class="msw-btn msw-btn-primary" href="#msw-programs">Explore Programs ✓</a>
-            <a class="msw-btn msw-btn-outline" href="#msw-contact">Book A Free Consultation</a>
-          </div>
-          <div class="msw-hero-meta">
-            <div class="msw-avatars"><span></span><span></span><span></span><span></span></div>
-            <span class="msw-meta-text">Students Enrolled</span>
-          </div>
-          <div class="msw-badges">
-            <div class="msw-badge">⭐ Trustpilot</div>
-            <div class="msw-badge">G 4.7 Rating</div>
-          </div>
-        </div>
-        <div class="msw-hero-visual msw-reveal" style="display: block;">
-          <!-- <div class="msw-img-placeholder msw-float"><span class="msw-ph-icon">🖼️</span>Add Photo</div>
-          <div class="msw-img-placeholder msw-float" style="animation-delay:.5s"><span class="msw-ph-icon">🖼️</span>Add
-            Photo</div>
-          <div class="msw-img-placeholder msw-float" style="animation-delay:1s"><span class="msw-ph-icon">🖼️</span>Add
-            Photo</div>
-          <div class="msw-img-placeholder msw-float" style="animation-delay:1.5s"><span
-              class="msw-ph-icon">🖼️</span>Add Photo</div> -->
-
-              <div style="padding-top:15px ;">
-                <img src="img/home-hero-section.png" alt="">
-              </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    <!-- PROGRAMS -->
-    <section class="msw-section" id="msw-programs">
-      <div class="msw-container">
-        <div class="msw-section-head msw-reveal">
-          <h2 class="msw-section-title">Programs <span class="msw-accent">That Go Beyond the</span> Syllabus</h2>
-          <p class="msw-section-sub">Each course comes with its own Success Blueprint — skill journey, mentor guidance,
-            and job-aligned outcomes.</p>
+          <h2 class="hero-sec-sub-title">From Industry Experts</h2>
         </div>
 
-        <div class="msw-pill-heading msw-reveal">
-          <a class="msw-btn-pill" href="#">Tech Courses</a>
-          <p class="msw-section-sub" style="margin-top:14px;">Build what powers the world — from algorithms to AI
-            agents.</p>
-        </div>
-
-        <div class="msw-cards-grid msw-reveal">
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>Data Science</h3>
-              <p>Transform raw data into real-world impact using machine learning and statistics.</p>
-              <ul>
-                <li>Work with Python, Pandas, NumPy, and Scikit-Learn.</li>
-                <li>Command data cleaning, feature engineering, un-supervised ML models, and model evaluation.</li>
-              </ul>
+        <!-- Features Badges Grid -->
+        <div class="hero-sec-features">
+          <!-- Row 1 -->
+          <div class="hero-sec-feature-row">
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>Online/Offline Classes</span>
+            </div>
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>100% Job Assistance</span>
+            </div>
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>Real-World Projects</span>
             </div>
           </div>
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>Data Analytics</h3>
-              <p>Decode patterns, predict outcomes, and drive smart business decisions.</p>
-              <ul>
-                <li>Pick up SQL, Excel, Power BI, Tableau, and data storytelling.</li>
-                <li>Gain business context, work on case studies, and form dashboards that find impact.</li>
-              </ul>
+
+          <!-- Row 2 -->
+          <div class="hero-sec-feature-row">
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>No Prior Math/Coding Experience Needed</span>
             </div>
-          </div>
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>AI &amp; Machine Learning</h3>
-              <p>Master the tools driving the next generation of intelligent products.</p>
-              <ul>
-                <li>Deep dive into Generative AI, LLMs, and ChatGPT-based tools.</li>
-                <li>Build real capstone projects mentored by industry experts.</li>
-              </ul>
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>10+ Years of Experience</span>
+            </div>
+            <div class="hero-sec-feature-item">
+              <span class="hero-sec-check-icon">✓</span>
+              <span>Pay 50% Fee After Job Placement*</span>
             </div>
           </div>
         </div>
 
-        <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
-          <a class="msw-btn-pill" href="#">Design Courses</a>
-          <p class="msw-section-sub" style="margin-top:14px;">Shape the future of user experience and brand identity.
-          </p>
-        </div>
+        <!-- Call to Action Buttons -->
+        <div class="hero-sec-actions">
+          <button class="hero-sec-btn-primary brand-gradient-animated">
+            <span>DOWNLOAD BROCHURE</span>
+            <svg class="hero-sec-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </button>
 
-        <div class="msw-cards-grid msw-two msw-reveal">
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>UI/UX Design</h3>
-              <p>Formulate intuitive, beautiful digital experiences that users love.</p>
-              <ul>
-                <li>Cover design thinking, user research, wireframing, and prototyping.</li>
-                <li>Explore tools like Figma and craft real product journeys.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>Graphic Design</h3>
-              <p>Craft visual identities that turn heads and tell stories.</p>
-              <ul>
-                <li>Get the hang of visual hierarchy, typography, brand systems, and Adobe Creative Suite.</li>
-                <li>Become skilled in design systems, create campaigns, and style a polished portfolio.</li>
-              </ul>
-            </div>
-          </div>
+          <button class="hero-sec-btn-secondary dark-gradient-animated">
+            <span class="sole_1">BOOK A FREE DEMO CLASS</span>
+            <svg class="hero-sec-btn-icon sole_1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </button>
         </div>
+      </section>
 
-        <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
-          <a class="msw-btn-pill" href="#">Marketing &amp; Management Course</a>
-          <p class="msw-section-sub" style="margin-top:14px;">Grow brands and lead campaigns with measurable impact.</p>
-        </div>
+      <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const hero = document.querySelector('.hero-sec-container');
 
-        <div class="msw-cards-grid msw-two msw-reveal">
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>Digital Marketing</h3>
-              <p>Drive traffic, convert leads, and optimize marketing with data-driven strategies.</p>
-              <ul>
-                <li>Nail SEO, Google Ads, Meta Ads, and marketing funnels, and analytics tools.</li>
-                <li>Launch real campaigns and measure ROI.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="msw-course-card">
-            <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-            <div class="msw-course-body">
-              <h3>Product Management</h3>
-              <p>Build and launch products that solve real problems and drive business growth.</p>
-              <ul>
-                <li>Master product roadmapping, Agile methodologies, and stakeholder management.</li>
-                <li>Work on real-world product specs and prioritize features for impact.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        let width, height;
 
-    <!-- SUMMIT GALLERY -->
-    <section class="msw-section msw-summit" id="msw-about">
-      <div class="msw-container">
-        <div class="msw-summit-tag msw-reveal">✨ Glimpse from Rising Bharat Summit</div>
-        <h2 class="msw-summit-title msw-reveal"><b>Madrid Software</b> Team at Rising <span class="msw-accent">Bharat
-            Summit</span> at Bharat Mandapam ——</h2>
-        <div class="msw-gallery msw-reveal">
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-          <div class="msw-img-placeholder"><span class="msw-ph-icon">🖼️</span>Add Image</div>
-        </div>
-      </div>
-    </section>
+        function resize() {
+          width = canvas.width = hero.offsetWidth;
+          height = canvas.height = hero.offsetHeight;
+        }
+        resize();
+        window.addEventListener('resize', () => {
+          resize();
+          initDots();
+        });
 
-    <!-- PARTNERS -->
-    <section class="msw-section">
-      <div class="msw-container">
-        <h2 class="msw-partners-title msw-reveal"><span class="msw-accent">300 +</span> Hiring Partners</h2>
-        <div class="msw-logo-grid msw-reveal">
-          <div class="msw-logo-box">Cognizant</div>
-          <div class="msw-logo-box">RBS</div>
-          <div class="msw-logo-box">Sapient</div>
-          <div class="msw-logo-box">Infosys</div>
-          <div class="msw-logo-box">wipro</div>
-          <div class="msw-logo-box">Indiabulls</div>
-          <div class="msw-logo-box">genpact</div>
-          <div class="msw-logo-box">amdocs</div>
-          <div class="msw-logo-box">DELL</div>
-          <div class="msw-logo-box">Airtel</div>
-          <div class="msw-logo-box">HCL</div>
-          <div class="msw-logo-box">hp</div>
-          <div class="msw-logo-box">Paytm</div>
-          <div class="msw-logo-box">Google</div>
-          <div class="msw-logo-box">accenture</div>
-          <div class="msw-logo-box">Standard Chartered</div>
-        </div>
-      </div>
-    </section>
+        const SPACING = 27,
+          BASE_RADIUS = 1.5,
+          REPEL_RADIUS = 120,
+          REPEL_STRENGTH = 40,
+          EASE = 0.12;
+        let dots = [];
 
-    <!-- WHY TRUST -->
-    <section class="msw-section msw-trust">
-      <div class="msw-container">
-        <div class="msw-section-head msw-reveal">
-          <h2 class="msw-section-title">Why Learners Trust <span class="msw-accent">Madrid</span> with Their Future</h2>
-          <p class="msw-section-sub">Building Careers That Not Only Pay But Builds Impact</p>
-        </div>
-        <div class="msw-trust-cta msw-reveal">
-          <a class="msw-btn msw-btn-primary" href="#msw-programs">Explore Programs</a>
-          <a class="msw-btn msw-btn-outline" href="#msw-contact">Talk To Our Expert</a>
-        </div>
-        <div class="msw-features-grid msw-reveal">
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">🎯</div>
-            <h3>Outcome-Oriented Approach</h3>
-            <p>Indulge into career-aligned learning paths built by ex-Cognizant professionals. We offer dedicated
-              capstone projects and role-based simulations to let you ace in your domain.</p>
-          </div>
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">⚡</div>
-            <h3>Real-Time Expertise</h3>
-            <p>We move above the pre-recorded monotony. We live mentor sessions, we ensure to resolve all your queries
-              and break down real-world case studies.</p>
-          </div>
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">🧩</div>
-            <h3>Built-in Practice Layer</h3>
-            <p>Master Data Science, AI, Machine Learning, Deep Learning, and ChatGPT with the latest tools by enrolling
-              in the AI course in Delhi.</p>
-          </div>
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">📄</div>
-            <h3>Beyond Certification</h3>
-            <p>Resume and LinkedIn optimization and assist in profoundly. Get expert help with interview readiness
-              drills, mock rounds, and hiring partner accessibility.</p>
-          </div>
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">🎤</div>
-            <h3>Mock Interviews with Real Feedback</h3>
-            <p>Our seasoned industry mentors conduct simulations and share detailed feedback to improve your performance
-              and reach your goal one step at a time.</p>
-          </div>
-          <div class="msw-feature-card">
-            <div class="msw-feature-icon">🤝</div>
-            <h3>Hiring Network Access</h3>
-            <p>We have a rich network of professionals spread over leading MNCs. Get referred to top companies through
-              our growing pool of hiring partners.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        function initDots() {
+          dots = [];
+          const cols = Math.ceil(width / SPACING) + 1;
+          const rows = Math.ceil(height / SPACING) + 1;
+          for (let i = 0; i < cols; i++)
+            for (let j = 0; j < rows; j++)
+              dots.push({
+                baseX: i * SPACING,
+                baseY: j * SPACING,
+                x: i * SPACING,
+                y: j * SPACING
+              });
+        }
+        initDots();
 
-    <!-- MEDIA -->
-    <section class="msw-section msw-media">
-      <div class="msw-container">
-        <h2 class="msw-media-title msw-reveal">In the <span class="msw-accent">Media</span></h2>
-        <div class="msw-media-grid msw-reveal">
-          <div class="msw-media-box msw-m1">INDIA<br>TODAY</div>
-          <div class="msw-media-box msw-m2">mid-day</div>
-          <div class="msw-media-box msw-m3">FINANCIAL EXPRESS</div>
-        </div>
-      </div>
-    </section>
+        const mouse = {
+          x: -9999,
+          y: -9999
+        };
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+        });
+        hero.addEventListener('mouseleave', () => {
+          mouse.x = -9999;
+          mouse.y = -9999;
+        });
 
-    <!-- TESTIMONIALS -->
-    <section class="msw-section" id="msw-testimonials">
-      <div class="msw-container">
-        <div class="msw-section-head msw-reveal">
-          <h2 class="msw-section-title">Stories of Skills Turned into <span class="msw-accent">Success</span></h2>
-        </div>
-        <div class="msw-testi-grid msw-reveal">
-          <div class="msw-testi-card">
-            <div class="msw-testi-top">
-              <div class="msw-testi-avatar"></div>
-              <div>
-                <div class="msw-testi-name">Aman kukerja</div>
-                <div class="msw-stars">★★★★★</div>
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+          for (const dot of dots) {
+            const dx = dot.baseX - mouse.x,
+              dy = dot.baseY - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            let targetX = dot.baseX,
+              targetY = dot.baseY;
+            if (dist < REPEL_RADIUS) {
+              const force = 1 - dist / REPEL_RADIUS;
+              const angle = Math.atan2(dy, dx);
+              targetX += Math.cos(angle) * force * REPEL_STRENGTH;
+              targetY += Math.sin(angle) * force * REPEL_STRENGTH;
+            }
+            dot.x += (targetX - dot.x) * EASE;
+            dot.y += (targetY - dot.y) * EASE;
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, BASE_RADIUS, 0, Math.PI * 2);
+            ctx.fillStyle = '#6666';
+            // ctx.fillStyle = '#8f8f8ff7';
+            // ctx.fillStyle = '#CF7103';
+            ctx.fill();
+          }
+          requestAnimationFrame(animate);
+        }
+        animate();
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const dynamicTextElement = document.querySelector('.hero-sec-dynamic-text');
+
+          const courses = [
+            'Data Science',
+            'Data Analytics',
+            'Python',
+            'Java',
+            'Digital Marketing',
+            'Machine Learning & AI'
+          ];
+
+          let courseIndex = 0;
+          let charIndex = 0;
+          let isDeleting = false;
+          const typingSpeed = 100;
+          const deletingSpeed = 50;
+          const delayBetweenWords = 2000;
+
+          function typeEffect() {
+            const currentCourse = courses[courseIndex];
+
+            if (isDeleting) {
+              dynamicTextElement.textContent = currentCourse.substring(0, charIndex - 1);
+              charIndex--;
+            } else {
+              dynamicTextElement.textContent = currentCourse.substring(0, charIndex + 1);
+              charIndex++;
+            }
+
+            let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentCourse.length) {
+              currentSpeed = delayBetweenWords;
+              isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+              isDeleting = false;
+              courseIndex = (courseIndex + 1) % courses.length;
+              currentSpeed = 400;
+            }
+
+            setTimeout(typeEffect, currentSpeed);
+          }
+
+          if (dynamicTextElement) {
+            typeEffect();
+          }
+        });
+      </script>
+
+
+      <!-- PROGRAMS -->
+      <style>
+        .msw-img-placeholder12 {
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          /* height: 100%; */
+          /* min-height: 120px; */
+          /* background: repeating-linear-gradient(45deg, #f1eefc, #f1eefc 10px, #e7e2fb 10px, #e7e2fb 20px); */
+          /* border: 2px dashed #b7aef0; */
+          /* border-radius: 14px; */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          color: #6a5fc7;
+          font-size: 13px;
+          font-weight: 600;
+          text-align: center;
+          gap: 6px;
+          transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .msw-img-placeholder12 img {
+          width: 100%;
+          object-fit: cover;
+          transition: .25s ease;
+          /* object-position: center center; */
+        }
+
+        .msw-img-placeholder12:hover img {
+          transition: .25s ease;
+          transform: scale(1.1);
+        }
+      </style>
+      <section class="msw-section" id="msw-programs">
+        <div class="msw-container">
+          <div class="msw-section-head msw-reveal">
+
+            <h2 class="msw-section-title sol"> Don’t <span class="sole_3">Just Learn. Build Your Future.</span></h2>
+            <p class="msw-section-sub sol">Master in-demand skills, work on real projects, and prepare yourself for the
+              opportunities that matter.</p>
+          </div>
+
+          <div class="msw-pill-heading msw-reveal">
+            <a class="msw-btn-pill brand-gradient-animated sole_1" style="color: white;" href="#">Tech Courses</a>
+            <p class="msw-section-sub" style="margin-top:14px;">Build what powers the world — from algorithms to AI
+              agents.</p>
+          </div>
+
+          <div class="msw-cards-grid msw-reveal">
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/Data Science.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Data Science</h3>
+                <p>Transform raw data into real-world impact using machine learning and statistics.</p>
+                <ul>
+                  <li>Work with Python, Pandas, NumPy, and Scikit-Learn.</li>
+                  <li>Command data cleaning, feature engineering, un-supervised ML models, and model evaluation.</li>
+                </ul>
               </div>
             </div>
-            <p class="msw-testi-text">I am who is always eager to learn and skill set. I've embarked on a journey into
-              the world of AI with generative AI. This field offers insights with the new lookup to applying and
-              expanding my more in this field.Al thanks to affordable teens!</p>
-          </div>
-          <div class="msw-testi-card">
-            <div class="msw-testi-top">
-              <div class="msw-testi-avatar"></div>
-              <div>
-                <div class="msw-testi-name">Akshita Jain</div>
-                <div class="msw-stars">★★★★★</div>
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/Data Analytics.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Data Analytics</h3>
+                <p>Decode patterns, predict outcomes, and drive smart business decisions.</p>
+                <ul>
+                  <li>Pick up SQL, Excel, Power BI, Tableau, and data storytelling.</li>
+                  <li>Gain business context, work on case studies, and form dashboards that find impact.</li>
+                </ul>
               </div>
             </div>
-            <p class="msw-testi-text">As a student, I found Madrid Software's Artificial Intelligence course incredibly
-              rewarding. The training is detailed and hands on, covering Python, Machine Learning, Deep Learning, and
-              even Generative AI. What impressed me most was the placement support — they mentors are industry expert.
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/ai_img.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>AI &amp; Machine Learning</h3>
+                <p>Master the tools driving the next generation of intelligent products.</p>
+                <ul>
+                  <li>Deep dive into Generative AI, LLMs, and ChatGPT-based tools.</li>
+                  <li>Build real capstone projects mentored by industry experts.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
+            <a class="msw-btn-pill brand-gradient-animated sole_1" style="color: white;" href="#">High Language
+              Courses</a>
+            <p class="msw-section-sub" style="margin-top:14px;">Shape the future of user experience and brand identity.
             </p>
           </div>
-          <div class="msw-testi-card">
-            <div class="msw-testi-top">
-              <div class="msw-testi-avatar"></div>
-              <div>
-                <div class="msw-testi-name">Rahul</div>
-                <div class="msw-stars">★★★★★</div>
+
+          <div class="msw-cards-grid msw-two msw-reveal">
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/Python logo.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Python</h3>
+                <p>Formulate intuitive, beautiful digital experiences that users love.</p>
+                <ul>
+                  <li>Cover design thinking, user research, wireframing, and prototyping.</li>
+                  <li>Explore tools like Figma and craft real product journeys.</li>
+                </ul>
               </div>
             </div>
-            <p class="msw-testi-text">I am writing to share my appreciation for the outstanding learning experience I
-              had with Madrid Software. The mall and engaging course content combined with an intuitive user interface,
-              made learning genuinely enjoyable.</p>
-          </div>
-          <div class="msw-testi-card">
-            <div class="msw-testi-top">
-              <div class="msw-testi-avatar"></div>
-              <div>
-                <div class="msw-testi-name">Prince</div>
-                <div class="msw-stars">★★★★★</div>
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/java.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Java</h3>
+                <p>Craft visual identities that turn heads and tell stories.</p>
+                <ul>
+                  <li>Get the hang of visual hierarchy, typography, brand systems, and Adobe Creative Suite.</li>
+                  <li>Become skilled in design systems, create campaigns, and style a polished portfolio.</li>
+                </ul>
               </div>
             </div>
-            <p class="msw-testi-text">This coaching centre offers excellent guidance with knowledgeable faculty and a
-              supportive learning environment. The study material is well-structured, and the personalized attention
-              really helps students succeed.</p>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- SYSTEM DARK -->
-    <section class="msw-section msw-system">
-      <div class="msw-container msw-system-inner">
-        <div class="msw-system-left msw-reveal">
-          <h2>Madrid Software :<br><span class="msw-accent">System Behind Success</span></h2>
-          <p>Experience a complete ecosystem curated to move your career faster. 🚀</p>
-          <a class="msw-btn msw-btn-primary" style="margin-top:22px;" href="#msw-programs">Explore Career Paths</a>
-        </div>
-        <div class="msw-system-cards msw-reveal">
-          <div class="msw-sys-card msw-sys-dark">
-            <h4>Skill Acceleration Sprints 🚀</h4>
-            <p>Rapid 4-6 week deep-dives designed to plug real-world skill gaps.</p>
+          <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
+            <a class="msw-btn-pill brand-gradient-animated sole_1" style="color: white;" href="#">Marketing &amp;
+              Management Course</a>
+            <p class="msw-section-sub" style="margin-top:14px;">Grow brands and lead campaigns with measurable impact.
+            </p>
           </div>
-          <div class="msw-sys-card msw-sys-light">
-            <h4>Hiring Partner Connects 💼</h4>
-            <p>Exclusive access to pre-placement drives and company-sponsored tasks.</p>
-          </div>
-          <div class="msw-sys-card msw-sys-dark">
-            <h4>Portfolio That Speaks 📁</h4>
-            <p>Build GitHub repos, Behance cases, or campaign decks that actually get recruiters calling.</p>
-          </div>
-          <div class="msw-sys-card msw-sys-light">
-            <h4>One-to-One Roadmapping 🗺️</h4>
-            <p>Get personalized goal-mapping and pivot plans with senior mentors.</p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- JOURNEY -->
-    <section class="msw-section msw-journey">
-      <div class="msw-container">
-        <h2 class="msw-journey-title msw-reveal">Inside Madrid: What Learners Really <span
-            class="msw-accent">Experience</span></h2>
-        <p class="msw-section-sub msw-reveal">A peek into the real journey — from day one to offer letters.</p>
-        <div class="msw-journey-grid msw-reveal">
-          <div>
-            <div class="msw-journey-icon">🗓️</div>
-            <h3>Your First 30 Days</h3>
-            <p>Tool rotation kickoff, project preview, mentor intros &amp; your first sprint challenge.</p>
-          </div>
-          <div>
-            <div class="msw-journey-icon">📈</div>
-            <h3>The Midway Momentum</h3>
-            <p>Case studies, client-styled feedback, and peer reviews amp up your growth.</p>
-          </div>
-          <div>
-            <div class="msw-journey-icon">🎯</div>
-            <h3>The Placement Zone</h3>
-            <p>Resume teardown, recruiter AMAs, and mock drills led by hiring managers.</p>
+          <div class="msw-cards-grid msw-two msw-reveal">
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/digital markting.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Digital Marketing</h3>
+                <p>Drive traffic, convert leads, and optimize marketing with data-driven strategies.</p>
+                <ul>
+                  <li>Nail SEO, Google Ads, Meta Ads, and marketing funnels, and analytics tools.</li>
+                  <li>Launch real campaigns and measure ROI.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="msw-course-card">
+              <div class="msw-img-placeholder12"><img src="img/Product Management.jpg" alt=""></div>
+              <div class="msw-course-body">
+                <h3>Product Management</h3>
+                <p>Build and launch products that solve real problems and drive business growth.</p>
+                <ul>
+                  <li>Master product roadmapping, Agile methodologies, and stakeholder management.</li>
+                  <li>Work on real-world product specs and prioritize features for impact.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="msw-cta-banner msw-reveal" id="msw-contact">
-          <div class="msw-cta-text">
-            This isn't the end But your <span class="msw-accent">starting line</span>. Careers don't change with
-            information.
-            They change with action. <b>demand.</b> 🙌<br><br>
-            Take the first step toward a future you've imagined — one where you're
-            <b>skilled, confident,</b> and in <b>demand.</b>
+
+      <!-- SUMMIT GALLERY -->
+      <style>
+        .reative_box {
+          position: relative;
+        }
+
+        .reative_box:hover .msw-ph-icon974 {
+          bottom: 0;
+          transition: .25s ease;
+        }
+
+        .msw-ph-icon974 {
+          transition: .25s ease;
+          position: absolute;
+          bottom: -200px;
+          left: 0;
+          width: 100%;
+          /* height: 100%; */
+          display: flex;
+          justify-content: center;
+          align-items: end;
+          padding: 4px 25px 9px;
+          background-color: #0f0f1857;
+          backdrop-filter: blur(6px);
+
+        }
+
+
+
+        .msw-ph-icon974 h5 {
+          font-size: 18px;
+          font-weight: 800;
+        }
+      </style>
+      <section class="msw-section msw-summit" id="msw-about">
+        <div class="msw-container">
+          <div class="msw-summit-tag msw-reveal sole_2">✨ Glimpse from Rising Bharat Summit</div>
+          <h2 class="msw-summit-title msw-reveal"><b>EagletFly Solutions :</b> Great Ideas Start With <span
+              class="sole_3">Great People</span> </h2>
+          <div class="msw-gallery msw-reveal">
+
+            <!-- card 1 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/teachers-1.jpg" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Great minds don’t just teach, they inspire.</h5>
+              </span>
+            </div>
+
+            <!-- card 2 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/teachers-2.jpg" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Knowledge becomes powerful when it is shared. </h5>
+              </span>
+            </div>
+
+            <!-- card 3 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/teachers-3.jpg" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Success starts with the courage to keep learning. </h5>
+              </span>
+            </div>
+
+            <!-- card 4 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/teachers-4.jpg" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Learn with purpose. Grow with confidence. </h5>
+              </span>
+            </div>
+
+            <!-- card 5 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/teachers-5.jpg" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Your potential is greater than your current skills. </h5>
+              </span>
+            </div>
+
+            <!-- card 6 -->
+            <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+              <img src="img/bacck_1.png" alt="">
+              <span class="msw-ph-icon974">
+                <h5 class="sole_1">Ideas grow when great minds come together. </h5>
+              </span>
+            </div>
+
           </div>
-          <div class="msw-cta-badge">100%<br>Placement 🏆</div>
         </div>
-      </div>
-    </section>
+      </section>
+
+
+      <!-- PARTNERS -->
+      <style>
+        .componys_hover {
+          position: relative;
+          overflow: hidden;
+          z-index: 0;
+        }
+
+        .componys_hover::after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          background-color: #F5820B;
+          position: absolute;
+          right: -100%;
+          top: 0;
+          z-index: -1;
+          transition: right 0.6s ease;
+        }
+
+        .componys_hover:hover::after {
+          right: 0;
+        }
+
+        .componys_hover:hover {
+          color: aliceblue;
+
+        }
+      </style>
+      <section class="msw-section">
+        <div class="msw-container">
+          <h2 class="msw-partners-title msw-reveal"><span class="sole_3">300 +</span> Hiring Partners</h2>
+          <div class="msw-logo-grid msw-reveal">
+            <div class="msw-logo-box componys_hover">Cognizant</div>
+            <div class="msw-logo-box componys_hover">RBS</div>
+            <div class="msw-logo-box componys_hover">Sapient</div>
+            <div class="msw-logo-box componys_hover">Infosys</div>
+            <div class="msw-logo-box componys_hover">wipro</div>
+            <div class="msw-logo-box componys_hover">Indiabulls</div>
+            <div class="msw-logo-box componys_hover">genpact</div>
+            <div class="msw-logo-box componys_hover">amdocs</div>
+            <div class="msw-logo-box componys_hover">DELL</div>
+            <div class="msw-logo-box componys_hover">Airtel</div>
+            <div class="msw-logo-box componys_hover">HCL</div>
+            <div class="msw-logo-box componys_hover">hp</div>
+            <div class="msw-logo-box componys_hover">Paytm</div>
+            <div class="msw-logo-box componys_hover">Google</div>
+            <div class="msw-logo-box componys_hover">accenture</div>
+            <div class="msw-logo-box componys_hover">Standard Chartered</div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Old web section -->
+      <style>
+        :root {
+
+          /* ========================================
+       BRAND COLORS
+         ======================================== */
+
+          --color-primary: #F47B20;
+          --color-primary-light: #FF9A4A;
+          --color-primary-dark: #D85F0B;
+
+          --color-secondary: #4F7FF7;
+          --color-secondary-light: #7FA3FF;
+          --color-secondary-dark: #315FCC;
+
+
+          /* ========================================
+       BACKGROUNDS
+        ======================================== */
+
+          --color-bg: #FFFFFF;
+          --color-bg-soft: #F7F8FA;
+          --color-bg-muted: #EEF1F5;
+
+          --color-bg-dark: #1C3D7B;
+          --color-bg-dark-soft: #1A2233;
+
+
+          /* ========================================
+       TEXT
+        ======================================== */
+
+          --color-text: #171B26;
+          --color-text-secondary: #5F6673;
+          --color-text-muted: #8A919D;
+
+          --color-text-light: #FFFFFF;
+          --color-text-light-secondary: #C4C9D2;
+
+
+          /* ========================================
+       BORDERS
+        ======================================== */
+
+          --color-border: #E3E7ED;
+          --color-border-dark: #30394A;
+
+
+          /* ========================================
+       PRIMARY GRADIENTS
+    ======================================== */
+
+          --gradient-primary:
+            linear-gradient(135deg,
+              #F47B20 0%,
+              #FF9A4A 100%);
+
+          --gradient-primary-dark:
+            linear-gradient(135deg,
+              #D85F0B 0%,
+              #F47B20 100%);
+
+
+          /* ========================================
+       SECONDARY GRADIENTS
+    ======================================== */
+
+          --gradient-secondary:
+            linear-gradient(135deg,
+              #315FCC 0%,
+              #4F7FF7 50%,
+              #7FA3FF 100%);
+
+          --gradient-secondary-dark:
+            linear-gradient(135deg,
+              #244BA5 0%,
+              #315FCC 100%);
+
+
+          /* ========================================
+       BRAND GRADIENTS
+    ======================================== */
+
+          --gradient-brand:
+            linear-gradient(135deg,
+              #F47B20 0%,
+              #FF9A4A 45%,
+              #4F7FF7 100%);
+
+          --gradient-brand-reverse:
+            linear-gradient(135deg,
+              #4F7FF7 0%,
+              #7FA3FF 55%,
+              #F47B20 100%);
+
+
+          /* ========================================
+       DARK GRADIENTS
+    ======================================== */
+
+          --gradient-dark:
+            linear-gradient(135deg,
+              #111827 0%,
+              #1A2233 100%);
+
+
+          /* ========================================
+       GLOW
+    ======================================== */
+
+          --gradient-glow:
+            radial-gradient(circle,
+              rgba(244, 123, 32, 0.16) 0%,
+              rgba(244, 123, 32, 0) 70%);
+
+          --gradient-glow-secondary:
+            radial-gradient(circle,
+              rgba(79, 127, 247, 0.18) 0%,
+              rgba(79, 127, 247, 0) 70%);
+
+
+          /* ========================================
+       STATUS COLORS
+    ======================================== */
+
+          --color-success: #16A34A;
+          --color-warning: #D99100;
+          --color-danger: #DC2626;
+          --color-info: #4F7FF7;
+
+
+          /* ========================================
+       SHADOWS
+    ======================================== */
+
+          --shadow-sm:
+            0 2px 8px rgba(15, 23, 42, 0.06);
+
+          --shadow-md:
+            0 8px 24px rgba(15, 23, 42, 0.10);
+
+          --shadow-lg:
+            0 16px 40px rgba(15, 23, 42, 0.14);
+
+          --shadow-orange:
+            0 10px 30px rgba(244, 123, 32, 0.18);
+
+          --shadow-blue:
+            0 10px 30px rgba(79, 127, 247, 0.18);
+
+
+          /* ========================================
+       RADIUS
+    ======================================== */
+
+          --radius-sm: 6px;
+          --radius-md: 10px;
+          --radius-lg: 16px;
+          --radius-xl: 24px;
+          --radius-full: 999px;
+
+
+          /* ========================================
+       TRANSITIONS
+    ======================================== */
+
+          --transition-fast: 150ms ease;
+          --transition-normal: 250ms ease;
+          --transition-slow: 400ms ease;
+        }
+
+        .about-why {
+          background: #FFF9F2;
+          /* background: var(--color-bg-muted); */
+          padding: 100px 40px;
+          overflow: hidden;
+        }
+
+        .about-why_heading {
+          max-width: 700px;
+          margin: 0 auto 60px;
+          text-align: center;
+        }
+
+        .about-why_heading span {
+          display: inline-block;
+          padding: 6px 18px;
+          margin-bottom: 16px;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          color: var(--color-primary-dark);
+          background: rgba(244, 123, 32, 0.1);
+          border-radius: var(--radius-full);
+        }
+
+        .about-why_heading span::before {
+          content: "KingDigital";
+        }
+
+        .about-why_heading h1 {
+          font-size: 42px;
+          font-weight: 700;
+          margin: 0 0 10px;
+          line-height: 1.2;
+          background: var(--gradient-brand-reverse);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+
+        .about-why_content {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 70px;
+          align-items: center;
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
+
+        .about-why_content.in-view {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .about-why_content-visual {
+          position: relative;
+        }
+
+        .about-why_content-visual::before {
+          content: "";
+          position: absolute;
+          inset: -20px;
+          /* background: var(--gradient-glow);? */
+          /* border-radius: var(--radius-xl); */
+          z-index: 0;
+        }
+
+        .about-why_content-visual-img {
+          position: relative;
+          z-index: 1;
+          /* border-radius: var(--radius-lg); */
+          overflow: hidden;
+          /* box-shadow: var(--shadow-lg); */
+        }
+
+        .about-why_content-visual-img img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .about-why_content-text h2 {
+          font-size: 30px;
+          font-weight: 800;
+          color: var(--color-text);
+          margin: 0 0 20px;
+          line-height: 1.3;
+        }
+
+        .about-why_content-text h2 span {
+          background: var(--gradient-brand);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .about-why_content-text p {
+          font-size: 16px;
+          line-height: 1.75;
+          color: var(--color-text-secondary);
+          margin: 0;
+        }
+
+        @media (max-width: 900px) {
+          .about-why {
+            padding: 70px 24px;
+          }
+
+          .about-why_heading h1 {
+            font-size: 32px;
+          }
+
+          .about-why_content {
+            grid-template-columns: 1fr;
+            gap: 36px;
+          }
+        }
+      </style>
+      <section class="about-why">
+        <div class="about-why_headin" style="margin: auto;text-align: center;
+    padding-bottom: 56px;">
+
+          <h1 class="sole_3">Key Features of EagletFly Solutions </h1>
+        </div>
+        <div class="about-why_content in-view">
+          <div class="about-why_content-visual in-view">
+            <div class="about-why_content-visual-img">
+              <img src="img/Infographic-News.png" alt="">
+            </div>
+          </div>
+          <div class="about-why_content-text in-view">
+
+            <p style="font-size: 12.5px;">“Eagletfly Solutions contribute broadly recognized information by teaching,
+              learning and the evaluation
+              of instructive results over the life outlook through its training curriculum. We intend to give the best
+              planning for all of our learners and give Placement helps too.
+
+              Here, the course construction is designed so as to put the right weight on Theory and Guidance on. Our
+              Learning methodologies assure that you easily understand both the Basic and Advanced technical theories.
+            </p><br>
+            <p style="font-size: 12.5px;">The emphasis is given to experiential learning wherein you study from real
+              Case subjects and Live
+              projects. Regular workshops and appropriate evaluations are other trademarks of our course construction.
+
+              As the role of our job willingness program, we guide you through a set of Mock interviews accompanied by
+              business veterans. Our purpose is not merely to land our learners in better jobs but to guarantee that
+              they are qualified to become the greatest programmers in the world.</p>
+          </div>
+        </div>
+      </section>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const aboutContent1 = document.querySelector('.about-why_content-visual');
+          const aboutContent2 = document.querySelector('.about-why_content-text');
+          const aboutWhyContent = document.querySelector('.about-why_content');
+
+          if (aboutContent1 || aboutContent2 || aboutWhyContent) {
+            const revealObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                entry.target.classList.toggle('in-view', entry.isIntersecting);
+              });
+            }, {
+              threshold: 0.2,
+              rootMargin: '0px 0px -10% 0px'
+            });
+
+            if (aboutContent1) revealObserver.observe(aboutContent1);
+            if (aboutContent2) revealObserver.observe(aboutContent2);
+            if (aboutWhyContent) revealObserver.observe(aboutWhyContent);
+          }
+        });
+      </script>
+
+
+      <!-- WHY TRUST -->
+      <section class="msw-section msw-trust">
+        <div class="msw-container">
+          <div class="msw-section-head msw-reveal">
+            <h2 class="msw-section-title">Why Learners Trust <span class="sole_3">EagletFly</span> with Their Future
+            </h2>
+            <p class="msw-section-sub">Building Careers That Not Only Pay But Builds Impact</p>
+          </div>
+          <div class="msw-trust-cta msw-reveal">
+            <a class="msw-btn msw-btn-primary primary_btns" style="color: white;" href="#msw-programs">Explore
+              Programs</a>
+            <a class="msw-btn msw-btn-outline" href="#msw-contact">Talk To Our Expert</a>
+          </div>
+          <div class="msw-features-grid msw-reveal">
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">🎯</div>
+              <h3>Outcome-Oriented Approach</h3>
+              <p>Indulge into career-aligned learning paths built by ex-Cognizant professionals. We offer dedicated
+                capstone projects and role-based simulations to let you ace in your domain.</p>
+            </div>
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">⚡</div>
+              <h3>Real-Time Expertise</h3>
+              <p>We move above the pre-recorded monotony. We live mentor sessions, we ensure to resolve all your queries
+                and break down real-world case studies.</p>
+            </div>
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">🧩</div>
+              <h3>Built-in Practice Layer</h3>
+              <p>Master Data Science, AI, Machine Learning, Deep Learning, and ChatGPT with the latest tools by
+                enrolling
+                in the AI course in Delhi.</p>
+            </div>
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">📄</div>
+              <h3>Beyond Certification</h3>
+              <p>Resume and LinkedIn optimization and assist in profoundly. Get expert help with interview readiness
+                drills, mock rounds, and hiring partner accessibility.</p>
+            </div>
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">🎤</div>
+              <h3>Mock Interviews with Real Feedback</h3>
+              <p>Our seasoned industry mentors conduct simulations and share detailed feedback to improve your
+                performance
+                and reach your goal one step at a time.</p>
+            </div>
+            <div class="msw-feature-card">
+              <div class="msw-feature-icon">🤝</div>
+              <h3>Hiring Network Access</h3>
+              <p>We have a rich network of professionals spread over leading MNCs. Get referred to top companies through
+                our growing pool of hiring partners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- TESTIMONIALS -->
+      <section class="msw-section" id="msw-testimonials" style="background: #FFF9F2;">
+        <div class="msw-container">
+          <div class="msw-section-head msw-reveal">
+            <h2 class="msw-section-title">Stories of Skills Turned into <span class="sole_3">Success</span></h2>
+          </div>
+          <div class="msw-testi-grid msw-reveal">
+
+            <!-- student card 1 -->
+            <div class="msw-testi-card">
+              <div class="msw-testi-top">
+                <div class="msw-testi-avatar" style="overflow: hidden;"><img src="img/students-1.jpg" alt=""></div>
+                <div>
+                  <div class="msw-testi-name">Shivani Rakhroan</div>
+                  <div class="msw-stars">★★★★★</div>
+                </div>
+              </div>
+              <p class="msw-testi-text">"I have enrolled in a Data Scientist AI course, and based on my experience,
+                Eagletfly Solutions stands out as the premier institute. The faculty exhibits extensive expertise in
+                their respective fields, teachers are exceedingly cooperative, and the overall environment of the
+                institute is exceptional."</p>
+            </div>
+
+            <div class="msw-testi-card">
+              <div class="msw-testi-top">
+                <div class="msw-testi-avatar" style="overflow: hidden;"><img src="img/students-3.jpg" alt=""></div>
+                <div>
+                  <div class="msw-testi-name">Chetna Saini</div>
+                  <div class="msw-stars">★★★★★</div>
+                </div>
+              </div>
+              <p class="msw-testi-text">Best institute in Patel Nagar where the teachers are very cooperative and the
+                learning skills are top - notch.
+              </p>
+            </div>
+
+            <div class="msw-testi-card">
+              <div class="msw-testi-top">
+                <div class="msw-testi-avatar" style="overflow: hidden;"><img src="img/students-2.jpeg" alt=""></div>
+                <div>
+                  <div class="msw-testi-name">Tanya Bansal</div>
+                  <div class="msw-stars">★★★★★</div>
+                </div>
+              </div>
+              <p class="msw-testi-text">My experience with Eagletfly Solutions about data analytics with python is much
+                impressed, with such quality of the training. All the concepts was covered with no compromise.
+                Instructor was very well determined and focused with examples. Now i am placed in SI2 (Singapore) based
+                company.</p>
+            </div>
+
+            <div class="msw-testi-card">
+              <div class="msw-testi-top">
+                <div class="msw-testi-avatar" style="overflow: hidden;"><img src="img/teachers-1.jpg" alt=""></div>
+                <div>
+                  <div class="msw-testi-name">Diana</div>
+                  <div class="msw-stars">★★★★★</div>
+                </div>
+              </div>
+              <p class="msw-testi-text">This coaching centre offers excellent guidance with knowledgeable faculty and a
+                supportive learning environment. The study material is well-structured, and the personalized attention
+                really helps students succeed.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SYSTEM DARK -->
+      <section class="msw-section msw-system">
+        <div class="msw-container msw-system-inner">
+          <div class="msw-system-left msw-reveal">
+            <h2>EagletFly Solutions :<br><span class="sole_3">System Behind Success</span></h2>
+            <p>Experience a complete ecosystem curated to move your career faster. 🚀</p>
+            <a class="msw-btn msw-btn-primar brand-gradient-animated" style="margin-top:22px;"
+              href="#msw-programs">Explore Career Paths</a>
+          </div>
+          <div class="msw-system-cards msw-reveal">
+            <div class="msw-sys-card msw-sys-dark">
+              <h4>Skill Acceleration Sprints 🚀</h4>
+              <p>Rapid 4-6 week deep-dives designed to plug real-world skill gaps.</p>
+            </div>
+            <div class="msw-sys-card msw-sys-ligh primary_btns-without-shado">
+              <h4>Hiring Partner Connects 💼</h4>
+              <p>Exclusive access to pre-placement drives and company-sponsored tasks.</p>
+            </div>
+            <div class="msw-sys-card msw-sys-dark">
+              <h4>Portfolio That Speaks 📁</h4>
+              <p>Build GitHub repos, Behance cases, or campaign decks that actually get recruiters calling.</p>
+            </div>
+            <div class="msw-sys-card msw-sys-ligh primary_btns-without-shado">
+              <h4>One-to-One Roadmapping 🗺️</h4>
+              <p>Get personalized goal-mapping and pivot plans with senior mentors.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY -->
+      <!-- <section class="msw-section msw-journey" style="display: none;">
+        <div class="msw-container">
+          <h2 class="msw-journey-title msw-reveal">Inside EagletFly : What Learners Really <span
+              class="sole_3">Experience</span></h2>
+          <p class="msw-section-sub msw-reveal">A peek into the real journey — from day one to offer letters.</p>
+          <div class="msw-journey-grid msw-reveal">
+            <div>
+              <div class="msw-journey-icon">🗓️</div>
+              <h3>Your First 30 Days</h3>
+              <p>Tool rotation kickoff, project preview, mentor intros &amp; your first sprint challenge.</p>
+            </div>
+            <div>
+              <div class="msw-journey-icon">📈</div>
+              <h3>The Midway Momentum</h3>
+              <p>Case studies, client-styled feedback, and peer reviews amp up your growth.</p>
+            </div>
+            <div>
+              <div class="msw-journey-icon">🎯</div>
+              <h3>The Placement Zone</h3>
+              <p>Resume teardown, recruiter AMAs, and mock drills led by hiring managers.</p>
+            </div>
+          </div>
+
+          <div class="msw-cta-banner msw-reveal" id="msw-contact">
+            <div class="msw-cta-text">
+              This isn't the end But your <span class="msw-accent">starting line</span>. Careers don't change with
+              information.
+              They change with action. <b>demand.</b> 🙌<br><br>
+              Take the first step toward a future you've imagined — one where you're
+              <b>skilled, confident,</b> and in <b>demand.</b>
+            </div>
+            <div class="msw-cta-badge">100%<br>Placement 🏆</div>
+          </div>
+        </div>
+      </section> -->
+
+    </main>
 
     <!-- FOOTER -->
-    <footer class="msw-footer" id="msw-blog">
-      <div class="msw-container">
-        © 2026 Madrid Software Trainings. All rights reserved.
+    <style>
+      .ftrsec-section {
+        width: 100%;
+        background-color: #000000;
+        color: #ffffff;
+        padding: 60px 20px;
+      }
+
+      .ftrsec-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 0.9fr 0.9fr 1fr;
+        gap: 40px;
+      }
+
+      .ftrsec-col {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+
+      .ftrsec-col.ftrsec-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .ftrsec-heading {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 12px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .ftrsec-heading::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 45px;
+        height: 2px;
+        background-color: #ffffff;
+      }
+
+      .ftrsec-contact-list {
+        list-style: none;
+        margin-top: 20px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .ftrsec-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        color: #e0e0e0;
+      }
+
+      .ftrsec-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .ftrsec-icon-red {
+        color: #ff4d4d;
+      }
+
+      .ftrsec-icon-pink {
+        color: #e91e63;
+      }
+
+      .ftrsec-icon-cyan {
+        color: #00bcd4;
+      }
+
+      .ftrsec-links-list {
+        list-style: none;
+        margin-top: 20px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ftrsec-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: color 0.3s ease, transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .ftrsec-link:hover {
+        color: #3baf75;
+        transform: translateX(4px);
+      }
+
+      .ftrsec-socials {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .ftrsec-social-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        text-decoration: none;
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .ftrsec-social-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .ftrsec-insta {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      }
+
+      .ftrsec-whatsapp {
+        background-color: #25d366;
+      }
+
+      .ftrsec-youtube {
+        background-color: #ff0000;
+      }
+
+      .ftrsec-linkedin {
+        background-color: #0077b5;
+      }
+
+      .ftrsec-social-btn:hover {
+        transform: translateY(-4px) scale(1.08);
+        filter: brightness(1.15);
+      }
+
+      /* Responsiveness */
+      @media (max-width: 992px) {
+        .ftrsec-container {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 32px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .ftrsec-container {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .ftrsec-section {
+          padding: 40px 16px;
+        }
+      }
+    </style>
+    <footer class="ftrsec-section">
+      <div class="ftrsec-container">
+
+        <!-- Column 1: Contact Us -->
+        <div class="ftrsec-col">
+          <h3 class="ftrsec-heading">Contact Us</h3>
+          <ul class="ftrsec-contact-list">
+            <li class="ftrsec-contact-item">
+              <svg class="ftrsec-icon ftrsec-icon-red" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+              <span>10A/25-26, Lower Ground Floor, Backside, East Patel Nagar, New Delhi - 110008</span>
+            </li>
+            <li class="ftrsec-contact-item">
+              <svg class="ftrsec-icon ftrsec-icon-pink" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+              <span>+91 98114 34634 | +91 98114 34638</span>
+            </li>
+            <li class="ftrsec-contact-item">
+              <svg class="ftrsec-icon ftrsec-icon-cyan" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+              <span>info@eagletflysolutions.com / eagletflysolutions@gmail.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="ftrsec-col">
+          <h3 class="ftrsec-heading">Quick Links</h3>
+          <ul class="ftrsec-links-list">
+            <li><a href="#" class="ftrsec-link">About Us</a></li>
+            <li><a href="#" class="ftrsec-link">Blog</a></li>
+            <li><a href="#" class="ftrsec-link">Contact</a></li>
+            <li><a href="#" class="ftrsec-link">Sitemap</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Legal -->
+        <div class="ftrsec-col">
+          <h3 class="ftrsec-heading">Legal</h3>
+          <ul class="ftrsec-links-list">
+            <li><a href="#" class="ftrsec-link">Terms & Conditions</a></li>
+            <li><a href="#" class="ftrsec-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Like us on -->
+        <div class="ftrsec-col">
+          <h3 class="ftrsec-heading">Like us on</h3>
+          <div class="ftrsec-socials">
+            <!-- Instagram -->
+            <a href="#" class="ftrsec-social-btn ftrsec-insta" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="#" class="ftrsec-social-btn ftrsec-whatsapp" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" class="ftrsec-social-btn ftrsec-youtube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="ftrsec-social-btn ftrsec-linkedin" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const ftrCols = document.querySelectorAll('.ftrsec-col');
+
+        const ftrObserverOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -20px 0px'
+        };
+
+        const ftrObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = Array.from(ftrCols).indexOf(entry.target);
+              setTimeout(() => {
+                entry.target.classList.add('ftrsec-visible');
+              }, index * 100);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, ftrObserverOptions);
+
+        ftrCols.forEach(col => ftrObserver.observe(col));
+      });
+    </script>
+
+    <div class="msw-footer" style="background: #000;" id="msw-blog">
+      <div class="msw-container" style="width: max-content;
+    border-top: 1px solid white;
+    padding-top: 15px;">
+        © 2026 EagletFly Solutions Trainings. All rights reserved.
+      </div>
+    </div>
 
     <!-- FLOATING BUTTONS -->
     <div class="msw-float-btns">
-      <a class="msw-float-btn msw-call" href="#">📞 Call Us</a>
-      <a class="msw-float-btn msw-whatsapp" href="#">💬 WhatsApp Us</a>
+      <a class="msw-float-btn msw-cal brand-gradient-animated" style="color: white;" href="#">📞 Call Us</a>
+      <a class="msw-float-btn msw-whatsapp" style="color: white;" href="#">💬 WhatsApp Us</a>
     </div>
 
   </div>
