@@ -1279,51 +1279,58 @@
     }
 
 
-     .rainbow-animated {
-          background: linear-gradient(90deg,
-              #ff0000,
-              #ff7f00,
-              #ffff00,
-              #00ff00,
-              #00ffff,
-              #0000ff,
-              #8b00ff,
-              #ff0000);
-          background-size: 200% auto;
+    .rainbow-animated {
+      background: linear-gradient(90deg,
+          #ff0000,
+          #ff7f00,
+          #ffff00,
+          #00ff00,
+          #00ffff,
+          #0000ff,
+          #8b00ff,
+          #ff0000);
+      background-size: 200% auto;
 
-          /* Text ke andar color laane ke liye ye properties zaroori hain */
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
+      /* Text ke andar color laane ke liye ye properties zaroori hain */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
 
-          animation: rainbow-slide 3s linear infinite;
-          display: inline-block;
-          /* Smooth render ke liye */
-        }
+      animation: rainbow-slide 3s linear infinite;
+      display: inline-block;
+      /* Smooth render ke liye */
+    }
 
-        @keyframes rainbow-slide {
-          0% {
-            background-position: 0% center;
-          }
+    @keyframes rainbow-slide {
+      0% {
+        background-position: 0% center;
+      }
 
-          100% {
-            background-position: -200% center;
-          }
-        }
+      100% {
+        background-position: -200% center;
+      }
+    }
 
-        .sole_1 {
-          color: white;
-        }
+    .sole_1 {
+      color: white;
+    }
 
-        .sole_2 {
-          color: #30383D;
-          /* color: #F5820B; */
-        }
+    .sole_2 {
+      color: #30383D;
+      /* color: #F5820B; */
+    }
 
-        .sole_3 {
-          /* color: #30383D; */
-          color: #F5820B;
-        }
+    .sole_3 {
+      /* color: #30383D; */
+      color: #F5820B;
+    }
+
+
+    .itne78 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
   <div class="page-loader" id="pageLoader">
 
@@ -1623,23 +1630,25 @@
 
           <!-- MAIN PROGRAM DROPDOWN -->
 
-          <div class="mobile-program-dropdown">
+          <div class="mobile-program-dropdown" style="text-align: end;">
 
 
             <!-- TECH COURSE -->
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button" type="button">
+              <button class="mobile-course-button itne78" type="button">
 
-                <span>Tech Course</span>
+                <span>
+                  Machine Learning & Ai
+                </span>
 
-                <span class="mobile-course-icon">+</span>
+                <!-- <span class="mobile-course-icon">+</span> -->
 
               </button>
 
 
-              <div class="mobile-course-dropdown">
+              <!-- <div class="mobile-course-dropdown">
 
                 <a href="#">Data Analytics</a>
                 <a href="#">Data Science</a>
@@ -1654,7 +1663,7 @@
                 <a href="#">Power BI</a>
                 <a href="#">Business Analytics</a>
 
-              </div>
+              </div> -->
 
             </div>
 
@@ -1663,21 +1672,23 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button" type="button">
+              <button class="mobile-course-button itne78" type="button">
 
-                <span>Design Course</span>
+                <span>
+                  Data Analytics with Python
+                </span>
 
-                <span class="mobile-course-icon">+</span>
+                <!-- <span class="mobile-course-icon">+</span> -->
 
               </button>
 
 
-              <div class="mobile-course-dropdown">
+              <!-- <div class="mobile-course-dropdown">
 
                 <a href="#">UI/UX Design Course</a>
                 <a href="#">Graphic Design Course</a>
 
-              </div>
+              </div> -->
 
             </div>
 
@@ -1686,21 +1697,23 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button" type="button">
+              <button class="mobile-course-button itne78" type="button">
 
-                <span>Management &amp; Marketing Course</span>
+                <span>
+                  Data Science with Python
+                </span>
 
-                <span class="mobile-course-icon">+</span>
+                <!-- <span class="mobile-course-icon">+</span> -->
 
               </button>
 
 
-              <div class="mobile-course-dropdown">
+              <!-- <div class="mobile-course-dropdown">
 
                 <a href="#">Product Management</a>
                 <a href="#">Digital Marketing</a>
 
-              </div>
+              </div> -->
 
             </div>
 
@@ -1709,21 +1722,41 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button" type="button">
+              <button class="mobile-course-button itne78" type="button">
 
-                <span>Trending</span>
+                <span>
+                  Digital Marketing
+                </span>
 
-                <span class="mobile-course-icon">+</span>
+                <!-- <span class="mobile-course-icon">+</span> -->
 
               </button>
 
 
-              <div class="mobile-course-dropdown">
+              <!-- <div class="mobile-course-dropdown">
 
                 <a href="#">Data Analytics with Generative AI</a>
                 <a href="#">Data Science with Generative AI</a>
 
-              </div>
+              </div> -->
+
+            </div>
+
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button itne78" type="button">
+
+                <span>Python</span>
+              </button>
+
+            </div>
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button itne78" type="button">
+
+                <span>Java</span>
+              </button>
 
             </div>
 
@@ -1855,14 +1888,15 @@
     <main>
 
 
-     
+
       <!-- hero  -->
       <style>
         #canvas {
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;z-index: 0;
+          width: 100%;
+          z-index: 0;
           /* height: 100%; */
           /* max-height: 578px; */
           pointer-events: none;
@@ -2142,7 +2176,8 @@
 
           <button class="hero-sec-btn-secondary dark-gradient-animated">
             <span class="sole_1">BOOK A FREE DEMO CLASS</span>
-            <svg class="hero-sec-btn-icon sole_1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="hero-sec-btn-icon sole_1" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
