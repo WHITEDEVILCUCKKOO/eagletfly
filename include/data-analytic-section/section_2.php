@@ -550,7 +550,7 @@
             </div>
 
             <div class="dgfr-viewmore-row">
-                <button class="dgfr-viewmore-btn">View More &#8594;</button>
+                <button class="dgfr-viewmore-btn" style="color: white;">View More &#8594;</button>
             </div>
         </div>
 
@@ -665,7 +665,7 @@
             </div>
 
             <div class="dgfr-viewmore-row">
-                <button class="dgfr-viewmore-btn">View More &#8594;</button>
+                <button class="dgfr-viewmore-btn" style="color: white;">View More &#8594;</button>
             </div>
         </div>
 
@@ -784,7 +784,7 @@
             </div>
 
             <div class="dgfr-viewmore-row">
-                <button class="dgfr-viewmore-btn">View More &#8594;</button>
+                <button class="dgfr-viewmore-btn" style="color: white;">View More &#8594;</button>
             </div>
         </div>
 

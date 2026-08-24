@@ -3,7 +3,7 @@
     <style>
         .dgfw-section {
             /* font-family: 'Segoe UI', Arial, sans-serif; */
-            background: #ffffff;
+            background: #FFF9F2;
             padding: 50px 20px 70px;
             position: relative;
             overflow: hidden;
@@ -38,7 +38,7 @@
 
         .dgfw-heading {
             text-align: center;
-            font-size: 24px;
+            font-size: 35px;
             font-weight: 800;
             margin: 0 0 8px 0;
             color: #1a1a1a;
@@ -202,9 +202,10 @@
 
         <div class="dgfw-container">
 
-            <h2 class="dgfw-heading">Why Choose <span class="dgfw-heading-brand">Digifine</span> Data Analytics</h2>
+            <h2 class="dgfw-heading">Why Choose <span class="dgfw-heading-brand">Eagletfly</span> Data Analytics</h2>
             <p class="dgfw-subtext">Empowering Careers with Industry-Ready Skills.</p>
 
+            <br><br>
             <div class="dgfw-grid">
 
                 <!-- Column 1 -->
@@ -218,18 +219,18 @@
                     <div class="dgfw-item"><span class="dgfw-icon">&#129309;</span><span
                             class="dgfw-item-text">Corporate
                             Soft-skills &amp; Personality Building Sessions</span></div>
-                    <div class="dgfw-item"><span class="dgfw-icon">&#128225;</span><span class="dgfw-item-text">Digital
+                    <!-- <div class="dgfw-item"><span class="dgfw-icon">&#128225;</span><span class="dgfw-item-text">Digital
                             Online,
                             Classroom, Hybrid Batches</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#128222;</span><span
                             class="dgfw-item-text">Interview Calls
-                            Assistance &amp; Mock Sessions</span></div>
+                            Assistance &amp; Mock Sessions</span></div> -->
                     <div class="dgfw-item"><span class="dgfw-icon">&#128101;</span><span class="dgfw-item-text">1:1
                             Mentorship
                             when required</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#127891;</span><span class="dgfw-item-text">Industry
                             Experienced Trainers</span></div>
-                    <div class="dgfw-item"><span class="dgfw-icon">&#127909;</span><span class="dgfw-item-text">Class
+                    <!-- <div class="dgfw-item"><span class="dgfw-icon">&#127909;</span><span class="dgfw-item-text">Class
                             Recordings
                             for Missed Classes</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#128260;</span><span class="dgfw-item-text">1 Year
@@ -239,7 +240,7 @@
                             Resources</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#9889;</span><span class="dgfw-item-text">Fastest
                             1:1 doubt
-                            support</span></div>
+                            support</span></div> -->
                 </div>
 
                 <!-- Column 2 -->
@@ -257,7 +258,7 @@
                     <div class="dgfw-item"><span class="dgfw-icon">&#128200;</span><span class="dgfw-item-text">Ongoing
                             Career
                             Support</span></div>
-                    <div class="dgfw-item"><span class="dgfw-icon">&#128188;</span><span
+                    <!-- <div class="dgfw-item"><span class="dgfw-icon">&#128188;</span><span
                             class="dgfw-item-text">Placement
                             Drives</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#128187;</span><span class="dgfw-item-text">GitHub
@@ -268,7 +269,7 @@
                             Topics</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#11088;</span><span class="dgfw-item-text">5/5
                             rating for 99%
-                            doubt solutions</span></div>
+                            doubt solutions</span></div> -->
                 </div>
 
                 <!-- Column 3 -->
@@ -279,12 +280,12 @@
                     <div class="dgfw-item"><span class="dgfw-icon">&#128225;</span><span class="dgfw-item-text">Latest
                             Market
                             Technology &amp; Practical Training</span></div>
-                    <div class="dgfw-item"><span class="dgfw-icon">&#128196;</span><span class="dgfw-item-text">Resume
+                    <!-- <div class="dgfw-item"><span class="dgfw-icon">&#128196;</span><span class="dgfw-item-text">Resume
                             Building
                             Session &amp; Job Portals Training</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#128194;</span><span class="dgfw-item-text">Enhanced
                             Capstone
-                            Projects for learning</span></div>
+                            Projects for learning</span></div> -->
                     <div class="dgfw-item"><span class="dgfw-icon">&#127891;</span><span class="dgfw-item-text">Stand
                             Out with an
                             Impressive Certificate</span></div>
@@ -294,7 +295,7 @@
                     <div class="dgfw-item"><span class="dgfw-icon">&#127891;</span><span
                             class="dgfw-item-text">Workshops &amp;
                             Seminars with Industry Experts</span></div>
-                    <div class="dgfw-item"><span class="dgfw-icon">&#128222;</span><span
+                    <!-- <div class="dgfw-item"><span class="dgfw-icon">&#128222;</span><span
                             class="dgfw-item-text">Unlimited
                             Interview Calls</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#9729;</span><span class="dgfw-item-text">AWS Cloud
@@ -304,7 +305,7 @@
                             Quizzes</span></div>
                     <div class="dgfw-item"><span class="dgfw-icon">&#128172;</span><span class="dgfw-item-text">Resolve
                             doubts any
-                            time through chat, voice notes, calling or meeting with instructors.</span></div>
+                            time through chat, voice notes, calling or meeting with instructors.</span></div> -->
                 </div>
 
             </div>

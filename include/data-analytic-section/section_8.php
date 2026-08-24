@@ -46,7 +46,7 @@
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 2px;
-            color: #f5a623;
+            color: #F5751E;
             margin: 0 0 14px 0;
             opacity: 0;
             animation: dgfc2-fade-up 0.6s ease forwards;
@@ -64,7 +64,7 @@
 
         .dgfc2-heading-line2 {
             display: block;
-            color: #f5a623;
+            color: #F5751E;
             position: relative;
         }
 
@@ -76,7 +76,7 @@
             transform: translateX(-50%);
             width: 0%;
             height: 3px;
-            background: #f5a623;
+            background: #F5751E;
             border-radius: 2px;
             animation: dgfc2-underline-grow 0.8s ease 0.5s forwards;
         }
@@ -201,6 +201,8 @@
                 Your First Job Experience
                 <span class="dgfc2-heading-line2">Starts Here</span>
             </h2>
+            <br>
+            <br>
             <p class="dgfc2-subtext">Don't wait for your first job to get real data experience. Start building
                 dashboards and analysing real datasets today.</p>
 

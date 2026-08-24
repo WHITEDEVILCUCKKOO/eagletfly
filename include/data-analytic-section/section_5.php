@@ -87,9 +87,9 @@
         }
 
         .dgfo-pill.dgfo-pill-active {
-            border-color: #f5a623;
-            background: #fff9ec;
-            color: #b3760f;
+            border-color: #fcfcfc;
+            background: #F5820B;
+            color: #fffefb;
             box-shadow: 0 8px 18px rgba(245, 166, 35, 0.22);
         }
 
@@ -177,13 +177,16 @@
             }
         }
     </style>
-    <section class="dgfo-section">
+    <section class="dgfo-section ">
 
-        <p class="dgfo-eyebrow">CAREER OUTCOMES</p>
-        <h2 class="dgfo-heading">Roles You Can Apply For <span class="dgfo-heading-accent">After This Program</span>
+        <p class="dgfo-eyebrow  sole_3_background ">CAREER OUTCOMES</p>
+        <h2 class="dgfo-heading">Roles You Can Apply For <span class="dgfo-heading-accent  sole_3_background ">After This Program</span>
         </h2>
+        <br>
+        <br>
         <p class="dgfo-subtext">Graduate job-ready for the most in-demand data roles in business and tech — with a
             portfolio and real project experience to back it up.</p>
+            <br>
 
         <div class="dgfo-pill-wrap" id="dgfoPillWrap">
             <button class="dgfo-pill dgfo-pill-active"><span class="dgfo-pill-dot"></span>Data Analyst</button>

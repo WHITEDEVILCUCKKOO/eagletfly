@@ -1,5 +1,10 @@
   <!-- section 4 -->
     <style>
+.asdhi979{
+
+    background-color: #FFF9F2;
+}
+
         .dgf-syllabus-wrapper {
             max-width: 1100px;
             margin: 0 auto;
@@ -23,8 +28,9 @@
         }
 
         .dgf-heading-line2 {
-            color: #2f6df3;
+            /* color: #2f6df3; */
             display: block;
+            margin-bottom: 15px;
         }
 
         /* ---------- Tabs Row ---------- */
@@ -41,7 +47,7 @@
             height: 44px;
             border-radius: 8px;
             border: none;
-            background: #2f6df3;
+            /* background: #2f6df3; */
             color: #fff;
             font-size: 18px;
             cursor: pointer;
@@ -52,7 +58,7 @@
         }
 
         .dgf-arrow-btn:hover {
-            background: #1d54d1;
+            /* background: #1d54d1; */
             transform: scale(1.06);
         }
 
@@ -78,11 +84,12 @@
             padding: 14px 20px;
             text-align: center;
             background: #fff;
-            border: 1.5px solid #e2e5ea;
+            /* background: #f3972f; */
+            border: 1.5px solid #f3972f !important;
             border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
-            color: #2f6df3;
+            color: #161616;
             cursor: pointer;
             position: relative;
             transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
@@ -94,8 +101,8 @@
         }
 
         .dgf-tab-btn.dgf-active {
-            border-color: #2f6df3;
-            box-shadow: 0 6px 14px rgba(47, 109, 243, 0.15);
+            border-color: #f3972f;
+            box-shadow: 0 6px 14px rgba(243, 165, 47, 0.15);
         }
 
         .dgf-tab-btn.dgf-active::after {
@@ -105,7 +112,7 @@
             right: 10%;
             bottom: -3px;
             height: 3px;
-            background: #2f6df3;
+            background: #f38e2f;
             border-radius: 3px;
             animation: dgf-underline-grow 0.3s ease;
         }
@@ -337,17 +344,17 @@
             }
         }
     </style>
-    <section>
+    <section class="asdhi979">
         <div class="dgf-syllabus-wrapper">
 
-            <div class="dgf-eyebrow">Syllabus</div>
+            <!-- <div class="dgf-eyebrow">Syllabus</div> -->
             <h1 class="dgf-heading">
                 Digifine Data Analytics Course
-                <span class="dgf-heading-line2">in Mumbai Syllabus</span>
+                <span class="dgf-heading-line2 sole_3">in Mumbai Syllabus</span>
             </h1>
 
             <div class="dgf-tabs-row">
-                <button class="dgf-arrow-btn" id="dgfArrowLeft" aria-label="Previous">&#8249;</button>
+                <button class="dgf-arrow-btn dark-gradient-animated" id="dgfArrowLeft" aria-label="Previous">&#8249;</button>
 
                 <div class="dgf-tabs-scroll-area">
                     <div class="dgf-tabs-track" id="dgfTabsTrack">
@@ -359,7 +366,7 @@
                     </div>
                 </div>
 
-                <button class="dgf-arrow-btn" id="dgfArrowRight" aria-label="Next">&#8250;</button>
+                <button class="dgf-arrow-btn dark-gradient-animated" id="dgfArrowRight" aria-label="Next">&#8250;</button>
             </div>
 
             <div class="dgf-content-card">
@@ -386,7 +393,7 @@
                             </ul>
                         </div>
                         <!-- Yahan apni khud ki image add karein -->
-                        <div class="dgf-panel-image">Apni image yahan add karein<br>(Excel)</div>
+                        <!-- <div class="dgf-panel-image">Apni image yahan add karein<br>(Excel)</div> -->
                     </div>
                 </div>
 
@@ -408,7 +415,7 @@
                                 <li>Modules &amp; Libraries Overview</li>
                             </ul>
                         </div>
-                        <div class="dgf-panel-image">Apni image yahan add karein<br>(Python)</div>
+                        <!-- <div class="dgf-panel-image">Apni image yahan add karein<br>(Python)</div> -->
                     </div>
                 </div>
 
@@ -430,7 +437,7 @@
                                 <li>Case Studies &amp; Real Time Queries</li>
                             </ul>
                         </div>
-                        <div class="dgf-panel-image">Apni image yahan add karein<br>(MySQL)</div>
+                        <!-- <div class="dgf-panel-image">Apni image yahan add karein<br>(MySQL)</div> -->
                     </div>
                 </div>
 
@@ -450,7 +457,7 @@
                                 <li>Linear Algebra with Numpy</li>
                             </ul>
                         </div>
-                        <div class="dgf-panel-image">Apni image yahan add karein<br>(Numpy)</div>
+                        <!-- <div class="dgf-panel-image">Apni image yahan add karein<br>(Numpy)</div> -->
                     </div>
                 </div>
 
@@ -472,7 +479,7 @@
                                 <li>Real Time Case Studies</li>
                             </ul>
                         </div>
-                        <div class="dgf-panel-image">Apni image yahan add karein<br>(Pandas)</div>
+                        <!-- <div class="dgf-panel-image">Apni image yahan add karein<br>(Pandas)</div> -->
                     </div>
                 </div>
 

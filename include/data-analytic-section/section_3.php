@@ -63,10 +63,10 @@
         position: relative;
         flex: 0 0 auto;
         width: 220px;
-        /* height: 400px; */
+        height: 275px;
         border-radius: 12px;
         overflow: hidden;
-        background: linear-gradient(160deg, #123a9c, #06132f);
+        /* background: linear-gradient(160deg, #123a9c, #06132f); */
         box-shadow: 0 14px 30px rgba(10, 20, 60, 0.22);
         color: #fff;
         transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -221,7 +221,7 @@
 
     .dgfs-cta-btn {
         padding: 14px 32px;
-        background: #123a9c;
+        /* background: #123a9c; */
         color: #fff;
         border: none;
         border-radius: 8px;
@@ -232,7 +232,7 @@
     }
 
     .dgfs-cta-btn:hover {
-        background: #0d2c78;
+        background: #2d2e2e;
         transform: translateY(-2px);
         box-shadow: 0 12px 26px rgba(18, 58, 156, 0.30);
     }
@@ -289,7 +289,7 @@
 
             <!-- set 1 -->
 
-            <div class="dgfs-card sole">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
@@ -301,7 +301,7 @@
                 </div>
             </div>
 
-            <div class="dgfs-card">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-5.jpg" alt=""></span></div>
@@ -316,7 +316,7 @@
 
 
 
-            <div class="dgfs-card">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
@@ -330,7 +330,7 @@
 
             <!-- set 2 (duplicate for seamless infinite loop) -->
 
-            <div class="dgfs-card">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
@@ -342,10 +342,10 @@
                 </div>
             </div>
 
-            <div class="dgfs-card">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-8.jpg" alt=""></span></div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
                 <span class="dgfs-play-btn">&#9658;</span>
                 <div class="dgfs-card-footer">
                     <p class="dgfs-card-name">Prince Kumar Singh</p>
@@ -354,33 +354,41 @@
                 </div>
             </div>
 
-            <div class="dgfs-card dgfs-collage-card">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <p class="dgfs-card-caption">Croma Campus Participated</p>
-                <p class="dgfs-collage-title">PATHFINDER 4.0<br>MEGA JOB FAIR</p>
-                <span class="dgfs-collage-tag">Successfully Done</span>
-                <div class="dgfs-card-photo" style="height:120px; margin-top:0;"><span class="img_wn874178"><img src="img/events-1.jpg" alt=""></span>
-                </div>
-                <span class="dgfs-play-btn">&#9658;</span>
-            </div>
 
-            <div class="dgfs-card">
+            
+            <!-- set 1 -->
+
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
-                <p class="dgfs-card-caption" style="color:#2fd6c0;">Success Speaks Here</p>
-                <div class="dgfs-card-photo" style="margin-top:2px;"><span class="img_wn874178"><img src="img/teachers-9.jpg" alt=""></span></div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
                 <span class="dgfs-play-btn">&#9658;</span>
                 <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Anurag Poddar</p>
-                    <p class="dgfs-card-course">Position: PowerBI Developer at Glorious Insight</p>
+                    <p class="dgfs-card-name">Amit Ura</p>
+                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
+                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
             </div>
 
-            <div class="dgfs-card">
+            <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-10.jpg" alt=""></span></div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-5.jpg" alt=""></span></div>
+                <span class="dgfs-play-btn">&#9658;</span>
+                <div class="dgfs-card-footer">
+                    <p class="dgfs-card-name">Prince Kumar Singh</p>
+                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
+                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+
+
+
+
+            <div class="dgfs-card primary_btns">
+                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
+                </div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
                 <span class="dgfs-play-btn">&#9658;</span>
                 <div class="dgfs-card-footer">
                     <p class="dgfs-card-name">Anushka Srivastava</p>
@@ -389,11 +397,39 @@
                 </div>
             </div>
 
+            <!-- set 2 (duplicate for seamless infinite loop) -->
+
+            <div class="dgfs-card primary_btns">
+                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
+                </div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
+                <span class="dgfs-play-btn">&#9658;</span>
+                <div class="dgfs-card-footer">
+                    <p class="dgfs-card-name">Amit Ura</p>
+                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
+                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+
+            <div class="dgfs-card primary_btns">
+                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
+                </div>
+                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
+                <span class="dgfs-play-btn">&#9658;</span>
+                <div class="dgfs-card-footer">
+                    <p class="dgfs-card-name">Prince Kumar Singh</p>
+                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
+                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                </div>
+            </div>
+        
+            
+
         </div>
     </div>
 
-    <div class="dgfs-cta-row">
-        <button class="dgfs-cta-btn">Hear More Stories</button>
+    <div class="dgfs-cta-row ">
+        <button class="dgfs-cta-btn primary_btns" >Hear More Stories</button>
     </div>
 
 </section>

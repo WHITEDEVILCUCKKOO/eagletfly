@@ -15,7 +15,7 @@
         .dgfc-blob {
             position: absolute;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(120, 110, 230, 0.16), rgba(90, 140, 240, 0.10));
+            background: linear-gradient(135deg, #f5741e73, rgba(240, 157, 90, 0.1));
             z-index: 0;
             pointer-events: none;
             animation: dgfc-float 9s ease-in-out infinite;
@@ -76,13 +76,13 @@
 
         .dgfc-eyebrow {
             font-size: 15px;
-            color: #2f6df3;
+            color: #F5751E;
             font-weight: 600;
             margin-bottom: 8px;
         }
 
         .dgfc-heading {
-            font-size: 32px;
+            font-size: 44px;
             font-weight: 800;
             line-height: 1.3;
             margin: 0 0 40px 0;
@@ -90,7 +90,7 @@
         }
 
         .dgfc-heading-accent {
-            color: #2f6df3;
+            color: #F5751E;
         }
 
         /* ---------- comparison grid ---------- */
@@ -115,7 +115,7 @@
             padding: 20px 20px 16px;
             font-size: 19px;
             font-weight: 800;
-            color: #2f6df3;
+            color: #F5751E;
             letter-spacing: 0.5px;
         }
 
@@ -237,19 +237,19 @@
 
         .dgfc-btn-outline:hover {
             border-color: #2f6df3;
-            color: #2f6df3;
+            color: #F5751E;
             transform: translateY(-2px);
         }
 
         .dgfc-btn-solid {
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            /* background: linear-gradient(90deg, #4f46e5, #7c3aed); */
             color: #fff;
             box-shadow: 0 10px 24px rgba(99, 70, 230, 0.30);
         }
 
         .dgfc-btn-solid:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(99, 70, 230, 0.40);
+            /* box-shadow: 0 14px 30px rgba(99, 70, 230, 0.40); */
         }
 
         .dgfc-btn-solid:active,
@@ -319,7 +319,7 @@
             <h2 class="dgfc-heading">
                 Why is Digifine's Data Analytics <span class="dgfc-heading-accent">Course the Best?</span>
             </h2>
-
+<br><br>
             <div class="dgfc-compare-grid">
 
                 <div class="dgfc-col-digifine">
@@ -364,7 +364,7 @@
 
             <div class="dgfc-cta-row">
                 <button class="dgfc-btn dgfc-btn-outline">Download Syllabus</button>
-                <button class="dgfc-btn dgfc-btn-solid">Apply Now</button>
+                <button class="dgfc-btn dgfc-btn-solid brand-gradient-animated">Apply Now</button>
             </div>
 
         </div>
