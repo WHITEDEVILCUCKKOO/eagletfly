@@ -1594,7 +1594,7 @@
             </li>
             <li><a href="#">Testimonials</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="contect.php">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -1772,7 +1772,7 @@
 
         <a href="#">Testimonials</a>
         <a href="#">Blog</a>
-        <a href="#">Contact</a>
+        <a href="contect.php">Contact</a>
 
       </div>
     </header>
