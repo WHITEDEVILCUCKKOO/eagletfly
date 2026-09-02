@@ -429,7 +429,7 @@
     </div>
 
     <div class="dgfs-cta-row ">
-        <button class="dgfs-cta-btn primary_btns" >Hear More Stories</button>
+        <button class="dgfs-cta-btn dark-gradient-animated" >Hear More Stories</button>
     </div>
 
 </section>

@@ -392,8 +392,8 @@
         }
     }
 </style>
-<section>
-    <div class="dgfm-wrapper">
+<section style="display: none;">
+    <div class="dgfm-wrapper" >
 
         <!-- ================= LEFT SIDEBAR ================= -->
         <div class="dgfm-sidebar">

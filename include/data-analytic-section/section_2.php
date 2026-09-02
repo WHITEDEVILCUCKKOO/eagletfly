@@ -473,7 +473,7 @@
             <div class="dgfr-tabbar-inner">
                 <button class="dgfr-tab-btn  dgfr-tab-active" data-target="dgfr-panel-video">Video Reviews</button>
                 <button class="dgfr-tab-btn" data-target="dgfr-panel-placements">Placements</button>
-                <button class="dgfr-tab-btn" data-target="dgfr-panel-voice">Voice Reviews</button>
+                <button class="dgfr-tab-btn" data-target="dgfr-panel-voice" style="display: none;">Voice Reviews</button>
             </div>
         </div>
 
@@ -549,8 +549,8 @@
 
             </div>
 
-            <div class="dgfr-viewmore-row">
-                <button class="dgfr-viewmore-btn" style="color: white;">View More &#8594;</button>
+            <div class="dgfr-viewmore-row ">
+                <button class="dgfr-viewmore-btn dark-gradient-animated" style="color: white;">View More &#8594;</button>
             </div>
         </div>
 
@@ -665,7 +665,7 @@
             </div>
 
             <div class="dgfr-viewmore-row">
-                <button class="dgfr-viewmore-btn" style="color: white;">View More &#8594;</button>
+                <button class="dgfr-viewmore-btn dark-gradient-animated" style="color: white;">View More &#8594;</button>
             </div>
         </div>
 

@@ -132,8 +132,42 @@ html {
 
 
 .desktop-nav a:hover {
-  color: #00a8ff;
+  color: #f7f8f8;
 }
+
+
+
+/* 
+.desktop-nav a {
+  position: relative;
+  text-decoration: none;
+  /* color: #20251f; *
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  /* padding-bottom: 5px; *
+  padding: 1px 3px 5px 5px;
+}
+
+.desktop-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 112%;
+  width: 0;
+  background: #ffffff;
+  transition: width 0.35s ease;
+  color: black;
+  z-index: -1;
+  border-radius: 2px;
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
+}
+
+ */
 
 
 /* dropdown  */
@@ -332,7 +366,8 @@ html {
 
   padding-left: 20px !important;
 
-  color: #00a8ff !important;
+  color: #f4f6f7 !important;
+  /* color: #00a8ff !important; */
 }
 
 
