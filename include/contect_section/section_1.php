@@ -89,7 +89,7 @@
     /* ---------- Left panel ---------- */
 
     .qcontact-panel {
-        background: #1C3D7B;
+        background: #ecfeff ;
         border-radius: 22px;
         padding: 34px 30px;
         opacity: 0;
@@ -100,14 +100,14 @@
     .qcontact-panel-title {
         font-size: 21px;
         font-weight: 700;
-        color: #f3f4f5;
+        color: #0d0d0e;
         margin: 0 0 12px;
     }
 
     .qcontact-panel-desc {
         font-size: 13.8px;
         line-height: 1.7;
-        color: #cacbce;
+        color: #383838;
         margin: 0 0 24px;
     }
 
@@ -322,7 +322,7 @@
         font-size: 15px;
         font-weight: 700;
         color: #ffffff;
-        background: linear-gradient(100deg, #db681b, #c46914);
+       background: linear-gradient(90deg, #00A878 0%, #1696B5 100%);
         border: none;
         border-radius: 12px;
         padding: 15px 20px;

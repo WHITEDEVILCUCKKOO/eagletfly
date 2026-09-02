@@ -2,7 +2,7 @@
 
 <style>
     .msw-page {
-        font-family: outfit;
+        /* font-family: outfit; */
         color: #1c1c2b;
         background: #ffffff;
         margin: 0;
@@ -31,7 +31,8 @@
     .msw-page ul {
         margin: 0;
         padding: 0;
-        font-family: 'Poppins', sans-serif;
+        /* font-family: 'Poppins', sans-serif; */
+        font-family: 'Segoe UI', Roboto, Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .msw-page ul {
@@ -129,7 +130,7 @@
     .msw-hero-title {
         font-size: 30px;
         /* line-height: 1.18; */
-        font-weight: 700;
+        font-weight: 800;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -179,7 +180,7 @@
     }
 
     .msw-btn {
-        padding: 13px 26px;
+        padding: 6px 23px;
         border-radius: 30px;
         font-weight: 600;
         font-size: 14.5px;
@@ -279,7 +280,10 @@
         display: flex;
         color: white;
         flex-direction: column !important;
-    align-items: self-start !important;
+        align-items: self-start !important;
+        padding: 10px 33px !important;
+           box-shadow: 0 4px 14px rgb(0 0 0 / 20%) !important;
+
     }
 
     .ashdi4star {
@@ -290,35 +294,40 @@
     }
 
 
-    .ijhni96541{
-            align-items: center;
-    text-align: center;
-    display: flex;
-    gap: 10px;
+    .ijhni96541 {
+        align-items: center;
+        text-align: center;
+        display: flex;
+        gap: 10px;
 
     }
 
     .smoll_boxs_stars {
         display: flex;
-        
+
     }
 
     .smoll_boxs {
         display: flex;
         width: 20px;
-        gap: 5px;
-        padding: 2px;
-        
-        svg{
-            background:#1EAF77 ;
-            width: 13px;
+        /* gap: 2px; */
+
+        svg {
+            background: #1EAF77;
+            padding: 2px;
+            width: 16px;
             fill: white;
         }
     }
 
-.smoll_boxs:nth-child(5) svg{
-    background: linear-gradient(to right ,#1EAF77 , white  );
+    .smoll_boxs:nth-child(5) svg {
+        background: linear-gradient(to right, #1EAF77, white);
+    }
+
+.erui974{
+     border: 1px solid #000541;
 }
+
 
     .msw-badge {
         display: flex;
@@ -379,6 +388,8 @@
     .ihiahdfsk {
         position: relative;
         z-index: 1;
+        width: max-content;
+        padding-right: 5px;
     }
 
     .ihiahdfsk::after {
@@ -411,6 +422,7 @@
         /* position: absolute; */
         right: -10px;
         top: 3px;
+        margin: 0 0 0 5px;
         padding: 0 2.5px;
         /* display: block; */
     }
@@ -431,7 +443,7 @@
         width: 100%;
         z-index: -1;
         height: 100%;
-        right: -10px;
+        right: 0px;
         top: 0;
     }
 
@@ -453,7 +465,7 @@
             <!-- <span class="msw-hero-eyebrow">| Your Launchpad to a</span> -->
             <h1 class="msw-hero-title">
                 <span class="ihiahdfsk"><span class="msw-blue1">Your <em>Launchpad</em></span> to a High-Growth</span>
-                <span class="msw-red"><em>Tech</em><span class="msw-redqw">Career Starts Here <span class="sdasdjoaq"></span></span></span>
+                <span class="msw-red"><em>Tech </em><span class="msw-redqw">Career Starts Here <span class="sdasdjoaq"></span></span></span>
             </h1>
             <br>
             <p class="msw-hero-text">
@@ -498,8 +510,8 @@
                             </svg></span>
                     </div>
                 </div>
-                <div class="msw-badge">
-                    <span style="width: 20px;">
+                <div class="msw-badge erui974" style="color: #4a5ce4;">
+                    <span style="width: 28px; ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 262" preserveAspectRatio="xMidYMid" crxlauncher-bridged="" crxlauncher="">
                             <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"></path>
                             <path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"></path>

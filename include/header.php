@@ -7,6 +7,7 @@
   <link rel="icon" type="image/x-icon" href="img/logo/facion.png">
   <title>EagletFly </title>
 
+  <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -215,7 +216,7 @@
     }
 
     .msw-btn-pill {
-      background: linear-gradient(135deg, #ff6a2c, #ff3d63);
+      /* background: linear-gradient(135deg, #ff6a2c, #ff3d63); */
       color: #fff;
       padding: 12px 30px;
       border-radius: 30px;
@@ -335,7 +336,7 @@
 
     .msw-section-title {
       font-size: 32px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .msw-section-title .msw-accent {
@@ -357,7 +358,7 @@
     /* ===================== PROGRAM CARDS ===================== */
     .msw-cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
 
@@ -436,7 +437,7 @@
     }
 
     .msw-summit-title {
-      font-size: 28px;
+      font-size: 35px;
       font-weight: 700;
       max-width: 750px;
       line-height: 1.3;
@@ -861,7 +862,7 @@
       }
 
       .msw-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .msw-logo-grid {
@@ -884,6 +885,9 @@
     @media (max-width: 860px) {
       .msw-nav {
         display: none;
+      }
+      .msw-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .msw-burger {
@@ -920,6 +924,9 @@
     @media (max-width: 600px) {
       .msw-section {
         padding: 56px 0;
+      }
+      .msw-cards-grid {
+        grid-template-columns: repeat(1, 1fr);
       }
 
       .msw-cards-grid,
@@ -1050,10 +1057,10 @@
           #30383D,
           #46545E,
           #30383D,
-          #20272B);
+          #20272B) !important;
 
-      background-size: 300% 100%;
-      animation: darkFlow 6s ease infinite;
+      background-size: 300% 100% !important;
+      animation: darkFlow 6s ease infinite !important;
     }
 
     @keyframes darkFlow {
@@ -1279,6 +1286,27 @@
     }
 
 
+    .rainbow-animated_without_animtion {
+      background: linear-gradient(90deg,
+          #ff0000,
+         
+          
+
+          #0000ff,
+          #8b00ff,
+          #ff0000);
+      background-size: 200% auto;
+
+      /* Text ke andar color laane ke liye ye properties zaroori hain */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      animation: rainbow-slide 3s linear infinite;
+      display: inline-block;
+      /* Smooth render ke liye */
+    }
+
     .rainbow-animated {
       background: linear-gradient(90deg,
           #ff0000,
@@ -1378,7 +1406,7 @@
       <div class="nav-wrapper">
         <div class="curved-bg">
           <ul class="desktop-nav">
-            <li><a href="#">About</a></li>
+            <li><a href="about.php">About</a></li>
             <li class="our_drop_hover">
 
               <a href="#">Our Programs</a>
@@ -1617,7 +1645,7 @@
       <!-- 4. Mobile Dropdown Menu -->
       <div class="mobile-menu" id="mobileMenu">
 
-        <a href="#">About</a>
+        <a href="about.php">About</a>
 
 
         <!-- ================================
