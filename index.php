@@ -1,10 +1,9 @@
-
-<?php include'include/header.php' ?>
+<?php include 'include/header.php' ?>
 
 
 <main>
 
-
+  
 
   <!-- hero  -->
   <style>
@@ -267,16 +266,16 @@
       <div class="hero-sec-feature-row">
         <div class="hero-sec-feature-item">
           <span class="hero-sec-check-icon">✓</span>
-          <span>No Prior Math/Coding Experience Needed</span>
+          <span> Prior Math/Coding Experience Needed</span>
         </div>
         <div class="hero-sec-feature-item">
           <span class="hero-sec-check-icon">✓</span>
           <span>10+ Years of Experience</span>
         </div>
-        <div class="hero-sec-feature-item">
+        <!-- <div class="hero-sec-feature-item">
           <span class="hero-sec-check-icon">✓</span>
           <span>Pay 50% Fee After Job Placement*</span>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -432,6 +431,9 @@
       }
     });
   </script>
+
+
+<?php require_once __DIR__ . '/include/home-section/section_1.php' ?>
 
 
   <!-- PROGRAMS -->
@@ -1278,4 +1280,4 @@
 
 </main>
 
-<?php include'include/footer.php' ?>
+<?php include 'include/footer.php' ?>
