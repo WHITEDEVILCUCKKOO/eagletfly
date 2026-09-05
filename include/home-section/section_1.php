@@ -459,7 +459,7 @@
         color: white;
     }
 </style>
-<section class="msw-hero">
+<section class="msw-hero" style="display: none;">
     <div class="msw-container msw-hero-inner">
         <div class="msw-hero-content msw-reveal">
             <!-- <span class="msw-hero-eyebrow">| Your Launchpad to a</span> -->

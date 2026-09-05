@@ -7,7 +7,8 @@
 
     .colab_brand_a3e55 {
         width: 100%;
-        background: linear-gradient(356deg, #b9c3e726, #535c7429);
+        padding: 40px 0;
+        /* background: linear-gradient(356deg, #b9c3e726, #535c7429); */
         /* margin-top: 5rem; */
     }
 
@@ -19,7 +20,7 @@
         /* box-shadow: 0 10px 30px rgba(20, 25, 40, 0.08); */
         /* background: rgba(255, 255, 255, .36); */
         /* border: 1px solid rgba(239, 86, 13, .12); */
-        background: linear-gradient(356deg, #b9c3e726, #535c7429);
+        /* background: linear-gradient(356deg, #b9c3e726, #535c7429); */
         position: relative;
         overflow: hidden;
         margin: auto;
@@ -53,6 +54,22 @@
                 transparent 100%);
     }
 
+    .title_wa85::before {
+        left: 0;
+        background: linear-gradient(to right,
+                #E8E9ED 0%,
+                rgba(232, 233, 237, 0.9) 50%,
+                transparent 100%);
+    }
+
+    .title_wa85::after {
+        right: 0;
+        background: linear-gradient(to left,
+                #E8E9ED 0%,
+                rgba(232, 233, 237, 0.9) 50%,
+                transparent 100%);
+    }
+
     .track {
         display: flex;
         width: max-content;
@@ -77,8 +94,8 @@
     .logo-card {
         flex: 0 0 auto;
         width: 100px;
-        height: 57px;
-        margin: 0 9px;
+        height: 70px;
+        margin: 0 15px;
         border-radius: 14px;
         display: flex;
         align-items: center;
@@ -91,21 +108,93 @@
 
     .logo-card img {
         max-width: 100%;
-        max-height: 100%;
+        /* max-height: 100%; */
+        height: 100px ;
         object-fit: contain;
     }
 </style>
 
-<div class="colab_brand_a3e55">
+<div class="colab_brand_a3e55" style="background: linear-gradient(356deg, #b9c3e726, #535c7429);">
 
-    <div class="slider-wrap">
+    <div class="title_wa85" style="    font-family: 'Sora', inter;  font-weight:800;font-size:35px;text-align: center;
+    padding: 20px;">
+        Hiring <em class="rainbow-animated_without_animtion" style="    padding: 0 19px 0px 0;
+    font-style: normal;">Partner</em>
+    </div>
+
+
+    <div class="slider-wrap" style="  ">
         <div class="track" id="track">
             <!-- logos rendered by JS, duplicated for seamless loop -->
-           
+
+            <div class="logo-card"><img src="assets/brands/accenture.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Airtel.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/amdocs.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Cognizant.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/DELL.png" style="height: 50px;"   alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/genpact.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Google.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/HCL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/hp.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Indiabulls.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/INFY_BIG.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Paytm.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/RBS.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Sapient.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Standard_Chartered.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Wipro-logo.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/accenture.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Airtel.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/amdocs.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Cognizant.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/DELL.png" style="height: 50px;"   alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/genpact.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Google.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/HCL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/hp.png" style="height: 50px;" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Indiabulls.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/INFY_BIG.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Paytm.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/RBS.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Sapient.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Standard_Chartered.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Wipro-logo.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/accenture.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Airtel.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/amdocs.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Cognizant.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/DELL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/genpact.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Google.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/HCL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/hp.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Indiabulls.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/INFY_BIG.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Paytm.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/RBS.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Sapient.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Standard_Chartered.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Wipro-logo.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/accenture.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Airtel.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/amdocs.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Cognizant.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/DELL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/genpact.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Google.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/HCL.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/hp.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Indiabulls.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/INFY_BIG.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Paytm.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/RBS.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Sapient.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Standard_Chartered.png" alt="client logo"></div>
+            <div class="logo-card"><img src="assets/brands/Wipro-logo.png" alt="client logo"></div>
         </div>
     </div>
 </div>
-<script>
+<!-- <script>
     const logos = [
         "assets/brands/accenture.png",
         "assets/brands/Airtel.png",
@@ -160,4 +249,4 @@
     // duplicate the set so the loop is seamless
     renderSet();
     renderSet();
-</script>
+</script> -->

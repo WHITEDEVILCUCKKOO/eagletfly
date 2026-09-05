@@ -199,7 +199,7 @@
     <div class="msw-container">
       <div class="msw-section-head msw-reveal">
 
-        <h2 class="msw-section-title sol"> Don’t <span class="rainbow-animated_without_animtion">Just Learn. Build Your Future.</span></h2>
+        <h2 class="msw-section-title sol" style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;"> Don’t <span class="rainbow-animated_without_animtion">Just Learn. Build Your Future.</span></h2>
         <p class="msw-section-sub sol">Master in-demand skills, work on real projects, and prepare yourself for the
           opportunities that matter.</p>
       </div>
@@ -413,7 +413,7 @@
   <section class="msw-section msw-summit" id="msw-about">
     <div class="msw-container">
       <div class="msw-summit-tag msw-reveal sole_2" style="display: none;">✨ Glimpse from Rising Bharat Summit</div>
-      <h2 class="msw-summit-title msw-reveal"><b>EagletFly Solutions :</b> Great Ideas Start With <span
+      <h2 class="msw-summit-title msw-reveal" style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;"><b>EagletFly Solutions :</b> Great Ideas Start With <span
           class="rainbow-animated_without_animtion">Great People</span> </h2>
       <div class="msw-gallery msw-reveal">
 
@@ -821,7 +821,7 @@
     <div class="about-why_headin" style="margin: auto;text-align: center;
     padding-bottom: 56px;">
 
-      <h1 style="font-size: 35px;color:#111827; font-weight:800;">Key Features of <em style="font-style: normal;" class="rainbow-animated_without_animtion">EagletFly Solutions</em> </h1>
+      <h1 style="font-size: 35px;color:#111827; font-weight:800;" style=" font-family: 'Sora', inter;  font-weight:800;">Key Features of <em style="font-style: normal;" class="rainbow-animated_without_animtion">EagletFly Solutions</em> </h1>
     </div>
     <div class="about-why_content in-view">
       <div class="about-why_content-visual in-view">
@@ -885,7 +885,7 @@
   <section class="msw-section msw-trust">
     <div class="msw-container">
       <div class="msw-section-head msw-reveal">
-        <h2 class="msw-section-title">Why Learners Trust <span class="rainbow-animated_without_animtion">EagletFly</span> with Their Future
+        <h2 class="msw-section-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">Why Learners Trust <span class="rainbow-animated_without_animtion">EagletFly</span> with Their Future
         </h2>
         <p class="msw-section-sub">Building Careers That Not Only Pay But Builds Impact</p>
       </div>
@@ -942,7 +942,7 @@
   <section class="msw-section" id="msw-testimonials" style="background: #FFF9F2;">
     <div class="msw-container">
       <div class="msw-section-head msw-reveal">
-        <h2 class="msw-section-title">Stories of Skills Turned into <span class="sole_3">Success</span></h2>
+        <h2 class="msw-section-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">Stories of Skills Turned into <span style="font-style: normal;" class="rainbow-animated_without_animtion">Success</span></h2>
       </div>
       <div class="msw-testi-grid msw-reveal">
 
@@ -1010,9 +1010,9 @@
   <section class="msw-section msw-system">
     <div class="msw-container msw-system-inner">
       <div class="msw-system-left msw-reveal">
-        <h2>EagletFly Solutions :<br><span class="sole_3">System Behind Success</span></h2>
+        <h2>EagletFly Solutions :<br><span class="rainbow-animated_without_animtion">System Behind Success</span></h2>
         <p>Experience a complete ecosystem curated to move your career faster. 🚀</p>
-        <a class="msw-btn msw-btn-primar brand-gradient-animated" style="margin-top:22px;"
+        <a class="msw-btn msw-btn-primar dark-gradient-animated" style="margin-top:22px;"
           href="#msw-programs">Explore Career Paths</a>
       </div>
       <div class="msw-system-cards msw-reveal">

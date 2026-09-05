@@ -466,7 +466,7 @@
 <section class="dgfr-section">
     <div class="dgfr-container">
 
-        <h2 class="dgfr-heading">STUDENTS PLACEMENTS &amp; REVIEWS</h2>
+        <h2 class="dgfr-heading "  style=" font-family: 'Sora', inter;  font-weight:700;font-size:35px;">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
         <div class="dgfr-heading-underline"></div>
 
         <div class="dgfr-tabbar">
