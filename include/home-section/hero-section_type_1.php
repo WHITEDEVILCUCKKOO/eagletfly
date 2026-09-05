@@ -417,7 +417,7 @@
 <section class="hero-sec-container">
 
     <!-- Existing decorative elements -->
-    <div class="decor-hero-ring"></div>
+    <!-- <div class="decor-hero-ring"></div> -->
     <div class="decor-hero-glow1"></div>
     <div class="decor-hero-glow2"></div>
 
@@ -431,15 +431,15 @@
         <!-- ================= LEFT ================= -->
         <div class="hero-sec-left">
 
-            <div class="hero-sec-header">
+            <div class="hero-sec-header" >
 
-                <h1 class="hero-sec-main-title">
+                <h1 class="hero-sec-main-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;">
                     Learn
                     <span class="hero-sec-dynamic-text rainbow-animated_without_animtion"></span>
                     <span class="hero-sec-cursor"></span>
                 </h1>
 
-                <h2 class="hero-sec-sub-title">
+                <h2 class="hero-sec-sub-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;"    >
                     From Industry Experts
                 </h2>
 

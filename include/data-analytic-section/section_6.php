@@ -202,8 +202,8 @@
 
         <div class="dgfw-container">
 
-            <h2 class="dgfw-heading">Why Choose <span class="dgfw-heading-brand">Eagletfly</span> Data Analytics</h2>
-            <p class="dgfw-subtext">Empowering Careers with Industry-Ready Skills.</p>
+            <h2 class="dgfw-heading"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">Why Choose <span class=" rainbow-animated_without_animtion dgfw-heading-brand">Eagletfly</span> Data Analytics</h2>
+            <p class="dgfw-subtext ">Empowering Careers with Industry-Ready Skills.</p>
 
             <br><br>
             <div class="dgfw-grid">

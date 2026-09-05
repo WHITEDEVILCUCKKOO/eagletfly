@@ -282,7 +282,7 @@
 </style>
 <section class="dgfs-section">
 
-    <h2 class="dgfs-heading dgfs-subgap">What Our <span>Students</span> Say</h2>
+    <h2 class="dgfs-heading dgfs-subgap"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">What Our <span style="font-style: normal;" class="rainbow-animated_without_animtion">Students</span> Say</h2>
 
     <div class="dgfs-slider-viewport">
         <div class="dgfs-slider-track" id="dgfsTrack">

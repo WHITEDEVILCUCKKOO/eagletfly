@@ -581,7 +581,7 @@
 
              <div class="dgfh-breadcrumb0" style="display: none;">Home / Data Analytics &amp; BI / Data Analytics Training Program</div>
 
-             <h1 class="dgfh-heading" style=" font-family: 'Sora', inter;  font-weight:700;font-size:44px;">Data Analytics Course <br> <em style="color: #373ACF;font-style:normal;"> in Delhi </em></h1>
+             <h1 class="dgfh-heading" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;">Data Analytics Course <br> <em style="color: #373ACF;font-style:normal;"> in Delhi </em></h1>
 
              <p class="dgfh-subtext" style="color:#666666;">Uncover the methods to extract data for analytical purposes. Join us now and
                  study under a skilled data analyst.</p>

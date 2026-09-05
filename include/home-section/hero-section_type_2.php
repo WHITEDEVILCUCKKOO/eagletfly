@@ -226,7 +226,7 @@
     }
   </style>
 
-  <section class="hero-sec-container ljisfiah6">
+  <section class="hero-sec-container ljisfiah6" style="display: none;">
     <canvas id="canvas" style="display: none;"></canvas>
 
     <div class="decor-hero-ring"></div>

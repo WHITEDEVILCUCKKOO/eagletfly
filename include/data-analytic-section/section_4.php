@@ -348,9 +348,9 @@
         <div class="dgf-syllabus-wrapper">
 
             <!-- <div class="dgf-eyebrow">Syllabus</div> -->
-            <h1 class="dgf-heading">
+            <h1 class="dgf-heading"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">
                 Digifine Data Analytics Course
-                <span class="dgf-heading-line2 sole_3">in Mumbai Syllabus</span>
+                <span class="dgf-heading-line2 rainbow-animated_without_animtion" style="font-style: normal;">in Mumbai Syllabus</span>
             </h1>
 
             <div class="dgf-tabs-row">

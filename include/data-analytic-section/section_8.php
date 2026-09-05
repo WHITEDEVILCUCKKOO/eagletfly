@@ -197,9 +197,9 @@
 
         <div class="dgfc2-content">
             <p class="dgfc2-eyebrow">READY TO START?</p>
-            <h2 class="dgfc2-heading">
+            <h2 class="dgfc2-heading"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">
                 Your First Job Experience
-                <span class="dgfc2-heading-line2">Starts Here</span>
+                <span class="dgfc2-heading-line2 " >Starts Here</span>
             </h2>
             <br>
             <br>

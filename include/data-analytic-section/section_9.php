@@ -315,8 +315,8 @@
 
         <div class="dgfc-content">
 
-            <div class="dgfc-eyebrow">How Our Program Compares</div>
-            <h2 class="dgfc-heading">
+            <div class="dgfc-eyebrow"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">How Our Program Compares</div>
+            <h2 class="dgfc-heading" style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">
                 Why is Digifine's Data Analytics <span class="dgfc-heading-accent">Course the Best?</span>
             </h2>
 <br><br>

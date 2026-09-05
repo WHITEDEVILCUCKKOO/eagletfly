@@ -180,7 +180,7 @@
     <section class="dgfo-section ">
 
         <p class="dgfo-eyebrow  sole_3_background ">CAREER OUTCOMES</p>
-        <h2 class="dgfo-heading">Roles You Can Apply For <span class="dgfo-heading-accent  sole_3_background ">After This Program</span>
+        <h2 class="dgfo-heading"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">Roles You Can Apply For <span class="   rainbow-animated_without_animtion dgfo-heading-accent  sole_3_background ">After This Program</span>
         </h2>
         <br>
         <br>
