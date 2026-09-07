@@ -576,7 +576,7 @@
             <!-- Floating Cards -->
 
             <div class="hero-floating-card hero-card-one " style="height: max-content;">
-                <strong>10+</strong>
+                <strong >10+</strong>
                 <span>Years Experience</span>
             </div>
 

@@ -228,7 +228,7 @@
 
         <!-- card 2 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/Data Science.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_2.jpg" alt=""></div>
           <div class="msw-course-body">
             <h3>Artificial intelligence <br> and ML</h3>
             <p style="margin-top: 10px;">Transform raw data into real-world impact using machine .</p>
@@ -241,7 +241,7 @@
 
         <!-- card 3 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/ai_img.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_3.png" alt=""></div>
           <div class="msw-course-body">
             <h3>Gen Ai and agentic ai</h3>
             <p style="margin-top: 10px;">Master the tools driving the next generation of intelligent products.</p>
@@ -254,7 +254,7 @@
 
         <!-- card 4 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/Data Science.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_4.jpg" alt=""></div>
           <div class="msw-course-body">
             <h3>Data science and Ml</h3>
             <p style="margin-top: 10px;">Master the tools driving the next generation of intelligent products.</p>
@@ -328,7 +328,7 @@
 
         <!-- card 7 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/Product Management.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img style="object-position: top center" src="assets/img/imgaw_5.png" alt=""></div>
           <div class="msw-course-body">
             <h3>Digital Marketing With Ai</h3>
             <p>Build and launch products that solve real problems and drive business growth.</p>
