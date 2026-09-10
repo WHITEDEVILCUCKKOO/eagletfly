@@ -412,6 +412,158 @@
             display: none;
         }
     }
+
+
+
+
+    /* lododer  */
+    /* From Uiverse.io by KSAplay */
+    .loader {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .simple-text {
+        position: absolute;
+        top: -100px;
+        color: white;
+        width: 600px;
+        text-align: center;
+    }
+
+    .cube {
+        position: absolute;
+        width: 40px;
+        transform-style: preserve-3d;
+        transform: rotateX(-40deg) rotateY(-45deg);
+        transition: 300ms ease;
+        cursor: pointer;
+        animation: rotateCube 9s infinite linear;
+    }
+
+    /* change the distance between cubes with translateX */
+    .cube-front,
+    .cube-back {
+        transform: translateX(40px) translateZ(-20px);
+        animation: none;
+    }
+
+    /* change the distance between cubes with translateZ */
+    .cube-top,
+    .cube-bottom {
+        transform: translateZ(20px);
+        animation: none;
+    }
+
+    /* change the distance between cubes with translateX */
+    .cube-left,
+    .cube-right {
+        transform: translateX(40px) translateZ(-20px);
+        animation: none;
+    }
+
+    .face {
+        position: absolute;
+        transform-style: preserve-3d;
+        width: 40px;
+        height: 40px;
+
+        background: rgb(47, 98, 145);
+
+        background: radial-gradient(circle,
+                rgb(8, 89, 126) 0%,
+                rgb(0, 211, 248) 100%);
+    }
+
+    .front {
+        transform: rotateY(0deg) translateZ(20px);
+    }
+
+    .back {
+        transform: rotateY(180deg) translateZ(20px);
+    }
+
+    .left {
+        transform: rotateY(-90deg) translateZ(20px);
+    }
+
+    .right {
+        transform: rotateY(90deg) translateZ(20px);
+    }
+
+    .top {
+        transform: rotateX(90deg) translateZ(20px);
+    }
+
+    .bottom {
+        transform: rotateX(-90deg) translateZ(20px);
+    }
+
+    .cube-back:hover .face,
+    .cube-front:hover .face,
+    .cube-top:hover .face,
+    .cube-bottom:hover .face,
+    .cube-left:hover .face,
+    .cube-right:hover .face {
+        background: rgb(255, 255, 255);
+
+        background: radial-gradient(circle,
+                #edfbff 0%,
+                #aac7fe 45%,
+                #3c8ffb 100%);
+
+        filter:
+            drop-shadow(0px 0px 5px #fff7ed) drop-shadow(0px 0px 15px #3c88fb) drop-shadow(0px 0px 30px rgba(22, 101, 249, 0.9));
+    }
+
+    .cube:active {
+        transform: translateX(0px) translateZ(-20px);
+    }
+
+    .cube-back:active .face,
+    .cube-front:active .face,
+    .cube-top:active .face,
+    .cube-bottom:active .face,
+    .cube-left:active .face,
+    .cube-right:active .face {
+        background: rgb(255, 255, 255);
+
+        background: radial-gradient(circle,
+                #edf5ff 0%,
+                #aad1fe 45%,
+                #3c69fb 100%);
+
+        filter:
+            drop-shadow(0px 0px 5px #fff7ed) drop-shadow(0px 0px 15px #3c95fb) drop-shadow(0px 0px 30px rgba(22, 101, 249, 0.9));
+    }
+
+    .middle {
+        background: transparent;
+    }
+
+    @keyframes rotateCube {
+        0% {
+            transform: rotateX(-30deg) rotateY(45deg);
+        }
+
+        25% {
+            transform: rotateX(-10deg) rotateY(135deg);
+        }
+
+        50% {
+            transform: rotateX(30deg) rotateY(225deg);
+        }
+
+        75% {
+            transform: rotateX(10deg) rotateY(315deg);
+        }
+
+        100% {
+            transform: rotateX(-30deg) rotateY(405deg);
+        }
+    }
 </style>
 
 <section class="hero-sec-container">
@@ -431,7 +583,7 @@
         <!-- ================= LEFT ================= -->
         <div class="hero-sec-left">
 
-            <div class="hero-sec-header" >
+            <div class="hero-sec-header">
 
                 <h1 class="hero-sec-main-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;">
                     Learn
@@ -439,7 +591,7 @@
                     <span class="hero-sec-cursor"></span>
                 </h1>
 
-                <h2 class="hero-sec-sub-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;"    >
+                <h2 class="hero-sec-sub-title" style=" font-family: 'Sora', inter;  font-weight:800;font-size:44px;">
                     From Industry Experts
                 </h2>
 
@@ -544,52 +696,393 @@
 
         </div>
 
-
         <!-- ================= RIGHT IMAGE ================= -->
 
         <div class="hero-sec-right">
 
-            <!--
-                ==========================================
-                APNI IMAGE YAHAN ADD KARNA
-                ==========================================
-
-                Example:
-
-                <img src="assets/img/your-image.webp"
-                     alt="Data Analytics">
-
-            -->
-
-            <div class="hero-image-placeholder">
-
-                <!-- APNI IMAGE YAHAN LAGAO -->
-
-
-                <img src="img/laptop_simg_123 (1).png"
-                    alt="Data Analytics">
-
-
+            <div class="loader">
+                <div class="cube" style="width: 263px; top:-6pc;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <!-- Floating Cards -->
-
-            <div class="hero-floating-card hero-card-one " style="height: max-content;">
-                <strong >10+</strong>
-                <span>Years Experience</span>
+            <div class="loader">
+                <div class="cube" style="width: 363px; animation: rotateCube 11s infinite linear reverse; top:60px;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <div class="hero-floating-card hero-card-two" style="height: max-content;">
-                <strong>100%</strong>
-                <span>Job Assistance</span>
+            <div class="loader">
+                <div class="cube" style="width: 463px; animation: rotateCube 9s infinite linear reverse;top:100px;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <div class="hero-floating-card hero-card-three">
-                <strong>5000+</strong>
-                <span>Students Trained</span>
+            <div class="loader">
+                <div class="cube" style="width: 563px; animation: rotateCube 8.5s infinite linear reverse;top:160px;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="cube" style="width: 663px; animation: rotateCube 8s infinite linear reverse;top:-60px;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loader">
+                <div class="cube" style="width: 763px; animation: rotateCube 7.5s infinite linear ;top:-160px;">
+                    <div class="face middle front">
+                        <div class="cube cube-front">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle back">
+                        <div class="cube cube-back">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle left">
+                        <div class="cube cube-left">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle right">
+                        <div class="cube cube-right">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle top">
+                        <div class="cube cube-top">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                    <div class="face middle bottom">
+                        <div class="cube cube-bottom">
+                            <div class="face front"></div>
+                            <div class="face back"></div>
+                            <div class="face left"></div>
+                            <div class="face right"></div>
+                            <div class="face top"></div>
+                            <div class="face bottom"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

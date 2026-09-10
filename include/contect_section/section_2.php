@@ -66,7 +66,7 @@
     /* ---------- Left panel ---------- */
 
     .qloc-panel {
-        background:linear-gradient(160deg, #0f8f79, #1a7d8f);
+        background:linear-gradient(160deg, #0f228f, #1c1a8f);
         padding: 34px 32px;
         color: #ffffff;
     }
@@ -260,7 +260,7 @@
                 <div class="qloc-info-card">
                     <p class="qloc-info-label">Head Office</p>
                     <p class="qloc-info-name">EagletFly</p>
-                    <p class="qloc-info-address">Ground Floor, 10A/19, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008</p>
+                    <p class="qloc-info-address">Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008</p>
                 </div>
 
                 <div class="qloc-info-card">
@@ -274,7 +274,7 @@
                         <span class="qloc-hours-time">10:00 AM – 5:00 PM</span>
                     </div>
                     <div class="qloc-hours-row">
-                        <span class="qloc-hours-day">Sunday</span>
+                        <span class="qloc-hours-day">Tuesday</span>
                         <span class="qloc-hours-closed" style="color: red;">Closed</span>
                     </div>
                 </div>

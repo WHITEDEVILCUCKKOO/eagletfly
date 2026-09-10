@@ -159,8 +159,8 @@
     }
 
     .qcontact-info-value {
-        font-size: 15px;
-        font-weight: 700;
+        font-size: 14px;
+        /* font-weight: 700; */
         color: #171a2b;
         margin: 0;
     }
@@ -484,11 +484,12 @@
                         <label class="qcontact-label" for="qcontactSubject">Subject <span class="qcontact-required">*</span></label>
                         <select class="qcontact-select" id="qcontactSubject" name="subject" required>
                             <option value="" selected disabled>Select Service</option>
-                            <option value="bulk-sms">Bulk SMS</option>
-                            <option value="whatsapp-api">WhatsApp API</option>
-                            <option value="otp-sms">OTP SMS</option>
-                            <option value="voice">Voice / IVR</option>
-                            <option value="other">Other</option>
+                            <option value="machine_learning_&_ai">Machine Learning & Ai</option>
+                            <option value="data_analytics_with_python">Data Analytics with Python</option>
+                            <option value="data_science_with_python">Data Science with Python</option>
+                            <option value="digital_marketing">Digital Marketing</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
                         </select>
                     </div>
 
