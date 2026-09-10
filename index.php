@@ -95,10 +95,11 @@
       const courses = [
         'Data Science',
         'Data Analytics',
+        'Machine Learning & AI',
+        'Generative AI & Agentic AI',
+        'Digital Marketing',
         'Python',
         'Java',
-        'Digital Marketing',
-        'Machine Learning & AI'
       ];
 
       let courseIndex = 0;
@@ -214,7 +215,7 @@
 
         <!-- card 1 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/Data Analytics.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/aqsnd.png" alt=""></div>
           <div class="msw-course-body">
             <h3>Data Analytics</h3>
             <p style="margin-top: 10px;">Decode patterns, predict outcomes, and drive smart business decisions.</p>
@@ -228,7 +229,7 @@
 
         <!-- card 2 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_2.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/ai_sae.png" alt=""></div>
           <div class="msw-course-body">
             <h3>Artificial intelligence <br> and ML</h3>
             <p style="margin-top: 10px;">Transform raw data into real-world impact using machine .</p>
@@ -254,7 +255,7 @@
 
         <!-- card 4 -->
         <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_4.jpg" alt=""></div>
+          <div class="msw-img-placeholder12"><img src="assets/img/ada489.png" alt=""></div>
           <div class="msw-course-body">
             <h3>Data science and Ml</h3>
             <p style="margin-top: 10px;">Master the tools driving the next generation of intelligent products.</p>
@@ -990,9 +991,9 @@
 
         <div class="msw-testi-card">
           <div class="msw-testi-top">
-            <div class="msw-testi-avatar" style="overflow: hidden;"><img src="img/teachers-1.jpg" alt=""></div>
+            <div class="msw-testi-avatar" style="overflow: hidden;"><img src="assets/img/user.png" alt=""></div>
             <div>
-              <div class="msw-testi-name">Diana</div>
+              <div class="msw-testi-name">Rohit Saini</div>
               <div class="msw-stars">★★★★★</div>
             </div>
           </div>

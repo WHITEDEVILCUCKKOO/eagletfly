@@ -566,7 +566,7 @@
      
  </style>
  <section class="dgfh-hero dss">
-     <div class="decor-hero-ring"></div>
+     <!-- <div class="decor-hero-ring"></div> -->
      <div class="decor-hero-glow1"></div>
      <div class="decor-hero-glow2"></div>
 
