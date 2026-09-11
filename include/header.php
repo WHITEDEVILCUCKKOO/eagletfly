@@ -1419,7 +1419,7 @@
                   <!-- TECH COURSE -->
                   <li class="program-dropdown-item">
 
-                    <a href="#" class="program-dropdown-link">
+                    <a href="machine_learning_and_ai.php" class="program-dropdown-link">
                       Machine Learning & Ai
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
@@ -1669,7 +1669,7 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button">
+              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='machine_learning_and_ai.php'">
 
                 <span>
                   Machine Learning & Ai
