@@ -323,3 +323,70 @@
          transform: rotate(360deg);
      }
  }
+
+
+ /* machine clearing color anintion  start */
+ .animated-gradient-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+
+  /* Background size bada karna zaruri hai taaki gradient move ho sake */
+  background: linear-gradient(
+    90deg, 
+    #3aa0ff 0%, 
+    #685eff 25%, 
+    #d14dff 50%, 
+    #685eff 75%, 
+    #3aa0ff 100%
+  );
+  background-size: 200% auto;
+
+  /* Gradient Clipping */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+
+  /* Animation call */
+  animation: moveGradient 4s linear infinite;
+}
+
+/* Keyframes for animation */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+
+
+.pulse-gradient-text {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+
+  background: linear-gradient(90deg, #3aa0ff 0%, #685eff 40%, #a238ff 75%, #d14dff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  /* Glow aur Pulse Animation */
+  animation: pulseGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px rgba(104, 94, 255, 0.3));
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(209, 77, 255, 0.8));
+  }
+}
+ /* machine clearing color anintion  end */

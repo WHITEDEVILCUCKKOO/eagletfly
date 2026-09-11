@@ -438,7 +438,7 @@
   </svg>
 </a>
 
-<div class="float-chat" id="chat_box" title="Chat">
+<div class="float-chat" id="chat_box" title="Chat" >
   <a href="tel:+91">
     <!-- <div class="badge">1</div> -->
     <svg style="animation: ringing 1s infinite; width: 30px;text-align: center;display: flex;align-items: center;justify-items: center;justify-content: center;align-content: center;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone-call">
@@ -465,10 +465,10 @@
 
 
 
-  document.getElementById("call_me_to_more")
-    .addEventListener("click", () => {
-      window.location.href = "tel:+91";
-    });
+  // document.getElementById("call_me_to_more")
+  //   .addEventListener("click", () => {
+  //     window.location.href = "tel:+91";
+  //   });
 </script>
 
 
