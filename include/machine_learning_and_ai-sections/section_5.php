@@ -1,5 +1,3 @@
-
-
 <style>
     /* =========================================================
 KING DIGITAL RCS FAQ
@@ -430,6 +428,12 @@ PLUS / MINUS ICON
         transform: rotate(180deg);
     }
 
+    .ewras {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
 
     #kdRcsFaqSection .kd-rcs-faq-item.active .kd-rcs-faq-icon-horizontal,
     #kdRcsFaqSection .kd-rcs-faq-item.active .kd-rcs-faq-icon-vertical {
@@ -576,6 +580,8 @@ MOBILE
         }
 
 
+
+
         #kdRcsFaqSection .kd-rcs-faq-answer p {
             margin: 0 16px;
 
@@ -667,8 +673,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -696,8 +702,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -725,8 +731,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -753,8 +759,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -782,8 +788,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -811,8 +817,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
@@ -840,8 +846,8 @@ SMALL MOBILE
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
-                        <span class="kd-rcs-faq-icon-horizontal"></span>
-                        <span class="kd-rcs-faq-icon-vertical"></span>
+                        <span class="kd-rcs-faq-icon-horizontal ewras"></span>
+                        <span class="kd-rcs-faq-icon-vertical ewras" style="transform: translate(-50%, -50%)  rotate(90deg);"></span>
                     </span>
                 </button>
 
