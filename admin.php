@@ -1,10 +1,353 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+
+    header("Location: login.php");
+    exit();
+}
+
+?>
+
+
+<?php include "admin_access/db_config.php" ?>
+
+
+<?php
+
+function timeAgo($timestamp)
+{
+    $time = time() - $timestamp;
+
+    if ($time < 60) {
+        return $time . "sec ago";
+    } elseif ($time < 3600) {
+        return floor($time / 60) . "m ago";
+    } elseif ($time < 86400) {
+        return floor($time / 3600) . "h ago";
+    } elseif ($time < 2592000) {
+        return floor($time / 86400) . "d ago";
+    } elseif ($time < 31536000) {
+        return floor($time / 2592000) . "m ago";
+    } else {
+        return floor($time / 31536000) . "y ago";
+    }
+}
+
+?>
+
+<!-- loging -->
+<?php
+
+$email = $_SESSION['email'];
+
+$result = mysqli_query(
+    $mydb,
+    "SELECT * FROM login_users WHERE user_email='$email'"
+);
+
+$get_data = mysqli_fetch_assoc($result);
+
+// email change
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email_btn'])) {
+
+    $new_email = mysqli_real_escape_string(
+        $mydb,
+        trim($_POST['change_email'])
+    );
+
+    $current_password = mysqli_real_escape_string(
+        $mydb,
+        trim($_POST['email_current_password'])
+    );
+
+    if ($current_password != $get_data['user_password']) {
+
+        echo "<script>alert('Current password is incorrect.');</script>";
+    } else {
+
+        $check_email = mysqli_query(
+            $mydb,
+            "SELECT user_id
+                    FROM login_users
+                    WHERE user_email='$new_email'
+                    AND user_email != '$email'"
+        );
+
+        if (mysqli_num_rows($check_email) > 0) {
+
+            echo "<script>alert('Email already exists.');</script>";
+        } else {
+
+            $update = mysqli_query(
+                $mydb,
+                "UPDATE login_users
+                        SET user_email='$new_email'
+                        WHERE user_email='$email'"
+            );
+
+            if ($update) {
+
+                session_unset();
+                session_destroy();
+
+                echo "
+                        <script>
+                            alert('Email updated successfully. Please login again.');
+                            window.location='login.php';
+                        </script>";
+                exit;
+            }
+        }
+    }
+}
+
+// password chnange
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password_btn'])) {
+
+    $current_password = mysqli_real_escape_string(
+        $mydb,
+        trim($_POST['current_password'])
+    );
+
+    $new_password = mysqli_real_escape_string(
+        $mydb,
+        trim($_POST['new_password'])
+    );
+
+    $confirm_password = mysqli_real_escape_string(
+        $mydb,
+        trim($_POST['confirm_password'])
+    );
+
+    if ($current_password != $get_data['user_password']) {
+
+        echo "<script>alert('Current password is incorrect.');</script>";
+    } elseif ($new_password != $confirm_password) {
+
+        echo "<script>alert('New password and confirm password do not match.');</script>";
+    } else {
+
+        $update = mysqli_query(
+            $mydb,
+            "UPDATE login_users
+                    SET user_password='$new_password'
+                    WHERE user_email='$email'"
+        );
+
+        if ($update) {
+
+            session_unset();
+            session_destroy();
+
+            echo "
+                    <script>
+                        alert('Password updated successfully. Please login again.');
+                        window.location='login.php';
+                    </script>";
+            exit;
+        }
+    }
+}
+?>
+
+<!-- blog add new -->
+<?php
+
+// all blog code 
+if (isset($_POST['blog_submit'])) {
+
+    // Form Data
+    $blog_title   = mysqli_real_escape_string($mydb, $_POST['blog_title']);
+    $blog_author  = mysqli_real_escape_string($mydb, $_POST['blog_author']);
+    $blog_content = mysqli_real_escape_string($mydb, $_POST['blog_content1252']);
+
+    // Slug Generate
+    $blog_slug = strtolower(trim($blog_title));
+    $blog_slug = preg_replace('/[^a-z0-9-]+/', '-', $blog_slug);
+
+
+
+//     if ($blog_content) {
+//     echo "<pre>";
+//     print_r($blog_content);
+//     echo "</pre>";
+// } else {
+//     echo "Blog not found";
+// }
+// exit();
+    // Created Time
+    $created_at = time();
+    
+
+    // Image Upload
+    $blog_img = "";
+
+    if (isset($_FILES['blog_image']) && $_FILES['blog_image']['error'] == 0) {
+        $upload_dir = "assets/blog/";
+
+        $file_name = $_FILES['blog_image']['name'];
+        $tmp_name  = $_FILES['blog_image']['tmp_name'];
+
+        $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+        // Original filename without extension
+        $base_name = pathinfo($file_name, PATHINFO_FILENAME);
+
+        $new_file_name = $base_name . "." . $ext;
+
+        // Check if file already exists
+        if (file_exists($upload_dir . $new_file_name)) {
+            $new_file_name = $base_name . "_" . time() . "_" . rand(1000, 9999) . "." . $ext;
+        }
+
+        if (move_uploaded_file($tmp_name, $upload_dir . $new_file_name)) {
+            $blog_img = $new_file_name;
+        }
+    }
+
+    // Save karne se pehle clean karo
+    $blog_content = str_replace(['<!--StartFragment-->', '<!--EndFragment-->'], '', $blog_content);
+    $blog_content = trim($blog_content);
+
+    // Meta Data
+    $blog_meta_title = $blog_title;
+    $blog_meta_desc  = substr(strip_tags($blog_content), 0, 160);
+
+    // Insert Query
+    $sql = "INSERT INTO blog
+        (
+            blog_title,
+            blog_slug,
+            blog_content,
+            blog_img,
+            blog_author,
+            blog_meta_title,
+            blog_meta_desc,
+            created_at
+        )
+        VALUES
+        (
+            '$blog_title',
+            '$blog_slug',
+            '$blog_content',
+            '$blog_img',
+            '$blog_author',
+            '$blog_meta_title',
+            '$blog_meta_desc',
+            '$created_at'
+        )";
+
+    $result = mysqli_query($mydb, $sql);
+
+    if ($result) {
+        echo "Blog Added Successfully";
+        header("Location: admin.php");
+    } else {
+        echo "Error : " . mysqli_error($mydb);
+    }
+}
+?>
+
+<!-- upload blog -->
+<?php
+if (isset($_POST['update_blog15515'])) {
+
+    $blog_id      = mysqli_real_escape_string($mydb, $_POST['blog_id_name']);
+    $blog_title   = mysqli_real_escape_string($mydb, $_POST['blog_title2']);
+    $blog_author  = mysqli_real_escape_string($mydb, $_POST['blog_author2']);
+    $blog_content = mysqli_real_escape_string($mydb, $_POST['blog_content2']);
+    $updated_at   = time();
+
+    // Clean content
+    $blog_content = str_replace(['<!--StartFragment-->', '<!--EndFragment-->'], '', $blog_content);
+    $blog_content = trim($blog_content);
+
+    // Meta
+    $blog_meta_title = $blog_title;
+    $blog_meta_desc  = substr(strip_tags($blog_content), 0, 160);
+
+    // Purana data fetch karo
+    $old_result = mysqli_query($mydb, "SELECT blog_title, blog_img, blog_slug FROM blog WHERE blog_id = '$blog_id'");
+    $old_data   = mysqli_fetch_assoc($old_result);
+    $old_img    = $old_data['blog_img'];
+    $old_title  = $old_data['blog_title'];
+    $old_slug   = $old_data['blog_slug'];
+
+    // Slug — sirf tab change karo jab title change hua ho
+    if (trim($blog_title) !== trim($old_title)) {
+        $blog_slug = strtolower(trim($blog_title));
+        $blog_slug = preg_replace('/[^a-z0-9-]+/', '-', $blog_slug);
+        $blog_slug = trim($blog_slug, '-');
+    } else {
+        $blog_slug = $old_slug; // purana slug hi rakho
+    }
+
+    // Image handle
+    $upload_dir = "assets/blog/";
+    $blog_img   = $old_img; // default: purani image
+
+    if (isset($_FILES['blog_image2']) && $_FILES['blog_image2']['error'] == 0) {
+
+        $file_name = $_FILES['blog_image2']['name'];
+        $tmp_name  = $_FILES['blog_image2']['tmp_name'];
+        $ext       = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        $base_name = pathinfo($file_name, PATHINFO_FILENAME);
+
+        $new_file_name = $base_name . "." . $ext;
+
+        // Same name pahle se hai to rename
+        if (file_exists($upload_dir . $new_file_name)) {
+            $new_file_name = $base_name . "_" . time() . "_" . rand(1000, 9999) . "." . $ext;
+        }
+
+        if (move_uploaded_file($tmp_name, $upload_dir . $new_file_name)) {
+
+            // Purani image delete karo
+            if (!empty($old_img) && file_exists($upload_dir . $old_img)) {
+                unlink($upload_dir . $old_img);
+            }
+
+            $blog_img = $new_file_name;
+        }
+    }
+
+    // Update Query
+    $sql = "UPDATE blog SET 
+                blog_title      = '$blog_title',
+                blog_slug       = '$blog_slug',
+                blog_content    = '$blog_content',
+                blog_img        = '$blog_img',
+                blog_author     = '$blog_author',
+                blog_meta_title = '$blog_meta_title',
+                blog_meta_desc  = '$blog_meta_desc',
+                updated_at      = '$updated_at'
+            WHERE blog_id = '$blog_id'";
+
+    $result = mysqli_query($mydb, $sql);
+
+    if ($result) {
+        echo "<script>alert('Blog Updated Successfully!'); ";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($mydb) . "');</script>";
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Eagletfly Admin</title>
+
+    <script src="assets/js/blog.js"></script>
 </head>
 
 <body>
@@ -17,6 +360,13 @@
             padding: 0;
         }
     </style>
+
+    <style>
+        .title_admin {
+            color: #0284c7;
+        }
+    </style>
+
 
     <main class="contact-main">
 
@@ -1357,53 +1707,1006 @@
             }
         </style>
 
+
+
+        <!-- Loging -->
+        <style>
+            /* From Uiverse.io by cssbuttons-io */
+            .logout_btn {
+                width: 150px;
+                height: 50px;
+                margin: auto;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                background: red;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+                background: #e62222;
+            }
+
+            .logout_btn,
+            .logout_btn span {
+                transition: 200ms;
+            }
+
+            .logout_btn .text {
+                transform: translateX(35px);
+                color: white;
+                font-weight: bold;
+            }
+
+            .logout_btn .icon {
+                position: absolute;
+                border-left: 1px solid #c41b1b;
+                transform: translateX(110px);
+                height: 40px;
+                width: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .logout_btn svg {
+                width: 15px;
+                fill: #eee;
+            }
+
+            .logout_btn:hover {
+                background: #ff3636;
+            }
+
+            .logout_btn:hover .text {
+                color: transparent;
+            }
+
+            .logout_btn:hover .icon {
+                width: 150px;
+                border-left: none;
+                transform: translateX(0);
+            }
+
+            .logout_btn:focus {
+                outline: none;
+            }
+
+            .logout_btn:active .icon svg {
+                transform: scale(0.8);
+            }
+
+
+
+
+
+
+            /* ===== Bhaum Unique Settings Form ===== */
+
+            .bhaum-settings-card-2026 {
+                max-width: 700px;
+                background: #fff;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+                margin: 0 auto 40px;
+            }
+
+            .bhaum-settings-form-2026 {
+                margin-bottom: 35px;
+            }
+
+            .bhaum-settings-title-2026 {
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .bhaum-field-group-2026 {
+                margin-bottom: 15px;
+            }
+
+            .bhaum-field-group-2026 input {
+                width: 100%;
+                height: 48px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 0 15px;
+                outline: none;
+            }
+
+            .bhaum-password-wrap-2026 {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .bhaum-password-wrap-2026 input {
+                flex: 1;
+            }
+
+            .bhaum-password-toggle-2026 {
+                min-width: 80px;
+                height: 48px;
+                border: none;
+                cursor: pointer;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #055096 0%, #0d8494 100%);
+                color: #fff;
+            }
+
+            .bhaum-save-btn-2026 {
+                border: none;
+                background: linear-gradient(135deg, #055096 0%, #0d8494 100%);
+                color: #fff;
+                padding: 12px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        </style>
+
+
+        <!-- /* -------------------- blog css ---------------------- */ -->
+        <style>
+            /*  ============================  blogedit  ================================  */
+
+
+            .blog_nav {
+                width: 100%;
+            }
+
+            .blog_nav ul {
+                list-style: none;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 0 20px;
+
+            }
+
+            .search_btr {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding-top: 8px;
+
+
+            }
+
+            .search_btr label {
+                position: absolute;
+                color: var(--primary);
+                background-color: white;
+                border-radius: 12px;
+                top: 0;
+                left: 11px;
+                font-weight: 600;
+                font-size: 13px;
+                padding: 0 5px;
+
+            }
+
+            .search_btr input {
+
+                padding: 10px;
+                border-radius: 8px;
+                border: 1px solid #6666;
+            }
+
+            .search_btr input:focus {
+                outline: none;
+                /* border: none; */
+                box-shadow: none;
+                color: var(--danger-back);
+                background-color: #383535;
+            }
+
+
+            .add_new_blog {
+                padding: 10px 15px;
+                background-color: var(--accent);
+                color: rgb(255, 255, 255);
+                outline: none;
+                border: none;
+                border-radius: 10px;
+            }
+
+            .add_new_blog:focus {
+                border: none;
+                outline: none;
+            }
+
+            .devidedLine {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                /* text aur line ke beech space */
+                color: #666;
+                font-size: 12px;
+                margin: 25px 0;
+            }
+
+            .devidedLine::before,
+            .devidedLine::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: #6666;
+            }
+
+            /* -------------------- update blog css ---------------------- */
+
+
+
+            /* -------------------- addnew blog css ---------------------- */
+            .add_fromw {
+                margin-top: 20px;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .show_add_from {
+                display: none;
+            }
+
+            /* Blog Upload Section Styles */
+            .blog-upload-section {
+                min-height: 100vh;
+                padding: 40px 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .blog-upload-container {
+                width: 100%;
+                max-width: 800px;
+                background: #ffffff;
+                border-radius: 20px;
+                padding: 40px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                animation: blogFadeInUp 0.6s ease-out;
+            }
+
+            @keyframes blogFadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .blog-upload-title {
+                font-size: 28px;
+                font-weight: 700;
+                color: #1a1a2e;
+                text-align: center;
+                margin-bottom: 35px;
+                position: relative;
+            }
+
+            .blog-upload-title::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 4px;
+                background: linear-gradient(90deg, #667eea, #764ba2);
+                border-radius: 2px;
+            }
+
+            .blog-upload-group {
+                margin-bottom: 25px;
+            }
+
+            .blog-upload-label {
+                display: block;
+                font-size: 14px;
+                font-weight: 600;
+                color: #374151;
+                margin-bottom: 8px;
+            }
+
+            .blog-upload-input {
+                width: 100%;
+                padding: 14px 18px;
+                font-size: 15px;
+                border: 2px solid #e5e7eb;
+                border-radius: 12px;
+                background: #f9fafb;
+                color: #1f2937;
+                transition: all 0.3s ease;
+                outline: none;
+                box-sizing: border-box;
+            }
+
+            .blog-upload-input:focus {
+                border-color: #667eea;
+                background: #ffffff;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            }
+
+            .blog-upload-input::placeholder {
+                color: #9ca3af;
+            }
+
+            /* Image Upload Area */
+            .blog-image-upload-area {
+                position: relative;
+                border: 2px dashed #d1d5db;
+                border-radius: 16px;
+                padding: 40px;
+                text-align: center;
+                background: #f9fafb;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                overflow: hidden;
+            }
+
+            .blog-image-upload-area:hover {
+                border-color: #667eea;
+                background: #f3f4f6;
+            }
+
+            .blog-image-upload-area.blog-drag-over {
+                border-color: #667eea;
+                background: rgba(102, 126, 234, 0.1);
+                transform: scale(1.02);
+            }
+
+            .blog-image-upload-area input[type="file"] {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .blog-image-placeholder {
+                color: #9ca3af;
+                transition: all 0.3s ease;
+            }
+
+            .blog-image-placeholder svg {
+                margin-bottom: 12px;
+            }
+
+            .blog-image-placeholder p {
+                font-size: 14px;
+                margin: 0;
+            }
+
+            .blog-image-preview {
+                display: none;
+                max-width: 100%;
+                max-height: 300px;
+                border-radius: 12px;
+                object-fit: contain;
+            }
+
+            .blog-image-upload-area.blog-has-image .blog-image-placeholder {
+                display: none;
+            }
+
+            .blog-image-upload-area.blog-has-image .blog-image-preview {
+                display: block;
+                margin: 0 auto;
+                animation: blogImagePop 0.4s ease;
+            }
+
+            @keyframes blogImagePop {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            /* Editor Toolbar */
+            .blog-editor-toolbar {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 6px;
+                padding: 12px;
+                background: #f3f4f6;
+                border: 2px solid #e5e7eb;
+                border-bottom: none;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .blog-toolbar-select {
+                padding: 8px 12px;
+                font-size: 13px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                background: #ffffff;
+                cursor: pointer;
+                outline: none;
+                transition: all 0.2s ease;
+            }
+
+            .blog-toolbar-select:hover {
+                border-color: #667eea;
+            }
+
+            .blog-toolbar-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border: none;
+                border-radius: 8px;
+                background: transparent;
+                color: #4b5563;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-size: 15px;
+            }
+
+            .blog-toolbar-btn:hover {
+                background: #e5e7eb;
+                color: #1f2937;
+            }
+
+            .blog-toolbar-btn:active {
+                transform: scale(0.95);
+            }
+
+            .blog-toolbar-btn.blog-active {
+                background: #667eea;
+                color: #ffffff;
+            }
+
+            .blog-toolbar-divider {
+                width: 1px;
+                height: 24px;
+                background: #d1d5db;
+                margin: 0 4px;
+            }
+
+            .blog-color-picker-wrap {
+                position: relative;
+            }
+
+            .blog-color-btn {
+                flex-direction: column;
+                gap: 2px;
+                height: 40px;
+            }
+
+            .blog-color-icon {
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            .blog-color-bar {
+                width: 20px;
+                height: 4px;
+                border-radius: 2px;
+                background: #000000;
+            }
+
+            #blogBgColorBar {
+                background: #ffffff;
+                border: 1px solid #d1d5db;
+            }
+
+            .blog-color-input {
+                position: absolute;
+                bottom: -5px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            /* Content Editor */
+            .blog-content-editor {
+                min-height: 300px;
+                max-height: 500px;
+                overflow-y: auto;
+                padding: 20px;
+                font-size: 15px;
+                line-height: 1.7;
+                border: 2px solid #e5e7eb;
+                border-top: none;
+                border-radius: 0 0 12px 12px;
+                background: #ffffff;
+                color: #1f2937;
+                outline: none;
+                transition: all 0.3s ease;
+            }
+
+            .blog-content-editor:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            }
+
+            .blog-content-editor:empty::before {
+                content: attr(placeholder);
+                color: #9ca3af;
+                pointer-events: none;
+            }
+
+            .blog-content-editor a {
+                color: #667eea;
+                text-decoration: underline;
+            }
+
+            /* Submit Button */
+            .blog-upload-actions {
+                margin-top: 30px;
+            }
+
+            .blog-submit-btn {
+                width: 100%;
+                padding: 16px 32px;
+                font-size: 16px;
+                font-weight: 600;
+                color: #ffffff;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .blog-submit-btn::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .blog-submit-btn:hover::before {
+                opacity: 1;
+            }
+
+            .blog-submit-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            }
+
+            .blog-submit-btn:active {
+                transform: translateY(0);
+            }
+
+            .blog-btn-text {
+                position: relative;
+                z-index: 1;
+            }
+
+            .blog-btn-loader {
+                display: none;
+                width: 20px;
+                height: 20px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-top-color: #ffffff;
+                border-radius: 50%;
+                animation: blogBtnSpin 0.8s linear infinite;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            @keyframes blogBtnSpin {
+                to {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+
+            .blog-submit-btn.blog-loading .blog-btn-text {
+                opacity: 0;
+            }
+
+            .blog-submit-btn.blog-loading .blog-btn-loader {
+                display: block;
+            }
+
+            /* Modal Styles */
+            .blog-modal-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                padding: 20px;
+            }
+
+            .blog-modal-overlay.blog-modal-active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .blog-modal {
+                width: 100%;
+                max-width: 450px;
+                background: #ffffff;
+                border-radius: 16px;
+                overflow: hidden;
+                transform: scale(0.9) translateY(20px);
+                transition: all 0.3s ease;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .blog-modal-overlay.blog-modal-active .blog-modal {
+                transform: scale(1) translateY(0);
+            }
+
+            .blog-modal-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px 24px;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .blog-modal-header h3 {
+                font-size: 18px;
+                font-weight: 600;
+                color: #1f2937;
+                margin: 0;
+            }
+
+            .blog-modal-close {
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                background: transparent;
+                font-size: 24px;
+                color: #9ca3af;
+                cursor: pointer;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+            }
+
+            .blog-modal-close:hover {
+                background: #f3f4f6;
+                color: #1f2937;
+            }
+
+            .blog-modal-body {
+                padding: 24px;
+            }
+
+            .blog-modal-body .blog-upload-group:last-child {
+                margin-bottom: 0;
+            }
+
+            .blog-modal-footer {
+                display: flex;
+                justify-content: flex-end;
+                gap: 12px;
+                padding: 16px 24px;
+                background: #f9fafb;
+            }
+
+            .blog-modal-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                font-weight: 500;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+
+            .blog-modal-cancel {
+                background: #e5e7eb;
+                color: #4b5563;
+            }
+
+            .blog-modal-cancel:hover {
+                background: #d1d5db;
+            }
+
+            .blog-modal-confirm {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: #ffffff;
+            }
+
+            .blog-modal-confirm:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .blog-upload-section {
+                    padding: 20px 15px;
+                }
+
+                .blog-upload-container {
+                    padding: 25px 20px;
+                    border-radius: 16px;
+                }
+
+                .blog-upload-title {
+                    font-size: 22px;
+                    margin-bottom: 25px;
+                }
+
+                .blog-editor-toolbar {
+                    padding: 10px;
+                    gap: 4px;
+                }
+
+                .blog-toolbar-btn {
+                    width: 32px;
+                    height: 32px;
+                }
+
+                .blog-toolbar-select {
+                    padding: 6px 10px;
+                    font-size: 12px;
+                }
+
+                .blog-toolbar-divider {
+                    height: 20px;
+                    margin: 0 2px;
+                }
+
+                .blog-content-editor {
+                    min-height: 250px;
+                    padding: 15px;
+                    font-size: 14px;
+                }
+
+                .blog-image-upload-area {
+                    padding: 30px 20px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .blog-upload-container {
+                    padding: 20px 15px;
+                }
+
+                .blog-upload-title {
+                    font-size: 20px;
+                }
+
+                .blog-upload-input {
+                    padding: 12px 14px;
+                    font-size: 14px;
+                }
+
+                .blog-toolbar-btn {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 13px;
+                }
+
+                .blog-color-btn {
+                    height: 36px;
+                }
+
+                .blog-submit-btn {
+                    padding: 14px 24px;
+                    font-size: 15px;
+                }
+
+                .blog-modal {
+                    margin: 10px;
+                }
+
+                .blog-modal-header,
+                .blog-modal-body,
+                .blog-modal-footer {
+                    padding: 16px;
+                }
+            }
+
+            /* Scrollbar Styling */
+            .blog-content-editor::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .blog-content-editor::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+
+            .blog-content-editor::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+
+            .blog-content-editor::-webkit-scrollbar-thumb:hover {
+                background: #a1a1a1;
+            }
+
+
+
+            .show_bolg {
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .card_into {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+
+            /* Tablet */
+            @media (max-width: 992px) {
+                .card_into {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            /* Mobile */
+            @media (max-width: 576px) {
+                .card_into {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .blog_card {
+                background: #fff;
+                border-radius: 18px;
+                overflow: hidden;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+                transition: .3s ease;
+                border: 1px solid #eee;
+            }
+
+            .blog_card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            }
+
+            .blog_card img {
+                padding: 10px;
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+            }
+
+            .blog_content {
+                padding: 18px;
+            }
+
+            .blog_meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+                font-size: 13px;
+                color: #666;
+            }
+
+            .blog_author {
+                background: #f5f5f5;
+                padding: 4px 10px;
+                border-radius: 50px;
+            }
+
+            .blog_title {
+                font-size: 14px;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: #222;
+                line-height: 1.4;
+            }
+
+            .blog_desc {
+                color: #666;
+                line-height: 1.6;
+                font-size: 12px;
+                margin-bottom: 18px;
+            }
+
+            .blog_btn {
+                display: inline-block;
+                padding: 10px 18px;
+                background: #4f46e5;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 14px;
+                transition: .3s;
+                outline: none;
+                border: none;
+            }
+
+            .blog_btn:focus {
+                outline: none;
+                border: none;
+            }
+
+            .blog_btn:hover {
+                background: #3730a3;
+            }
+        </style>
+
         <section class="application_section">
 
             <!-- left side  -->
             <section class="left_section_1" id="left_section_box">
 
+                <h1 class="title_admin">Admin Eagletfly</h1>
                 <h6>Getting Started</h6>
 
                 <ul class="top_nave_appli">
                     <li class="subbox_link active" id="overview_btn_124" data-set="overview" onclick="show_this_box(this); close_all_sub_links_ha()">
                         <span class="svg_icon_box">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg svg_icon_color-active" data-subset="icon_1">
-                                <path d="M298.2 72.6C310.5 61.2 329.5 61.2 341.7 72.6L432 156.3L432 144C432 126.3 446.3 112 464 112L496 112C513.7 112 528 126.3 528 144L528 245.5L565.8 280.6C575.4 289.6 578.6 303.5 573.8 315.7C569 327.9 557.2 336 544 336L528 336L528 512C528 547.3 499.3 576 464 576L176 576C140.7 576 112 547.3 112 512L112 336L96 336C82.8 336 71 327.9 66.2 315.7C61.4 303.5 64.6 289.5 74.2 280.6L298.2 72.6zM304 384C277.5 384 256 405.5 256 432L256 528L384 528L384 432C384 405.5 362.5 384 336 384L304 384z" />
+                                <path d="M320.5 437.1C295.3 405.4 280.4 377.7 275.5 353.9C253 265.9 388.1 265.9 365.6 353.9C360.2 378.1 345.3 405.9 320.6 437.1L320.5 437.1zM458.7 510.3C416.6 528.6 375 499.4 339.4 459.8C443.3 329.7 385.5 259.8 320.6 259.8C265.7 259.8 235.4 306.3 247.3 360.3C254.2 389.5 272.5 422.7 301.7 459.8C269.2 495.8 241.2 512.5 216.5 514.7C166.5 522.1 127.4 473.6 145.2 423.6C160.3 384.4 256.9 192.4 261.1 182C276.9 151.9 286.7 124.6 320.5 124.6C352.8 124.6 363.9 150.5 380.9 184.5C416.9 255.1 470.3 362 495.7 423.6C508.9 456.7 494.3 494.9 458.7 510.2zM505.7 374.2C376.8 99.9 369.7 96 320.6 96C275.1 96 255.7 127.7 235.9 168.8C129.7 381.1 119.5 411.2 118.6 413.8C93.4 483.1 145.3 544 208.2 544C229.9 544 268.8 537.9 320.6 481.6C379.3 545.4 421.9 544 433 544C495.9 544.1 547.9 483.1 522.6 413.8C522.6 409.9 505.8 374.9 505.8 374.2L505.8 374.2z" />
                             </svg>
                         </span>
 
                         Overview
                     </li>
-                    <li class="subbox_link" id="login_btn_124" data-set="login" onclick="show_this_box(this); close_all_sub_links_ha()">
+
+                    <li class="subbox_link" id="journeys_btn_124" data-set="journeys" onclick="window.show_this_box(this); show_sub_link(this);">
                         <span class="svg_icon_box">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_2">
-                                <path d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_12">
+                                <path d="M288 88C288 74.7 298.7 64 312 64C457.8 64 576 182.2 576 328C576 341.3 565.3 352 552 352C538.7 352 528 341.3 528 328C528 208.7 431.3 112 312 112C298.7 112 288 101.3 288 88zM144 160C170.5 160 192 181.5 192 208L192 432C192 458.5 213.5 480 240 480C266.5 480 288 458.5 288 432C288 405.5 266.5 384 240 384C231.2 384 224 376.8 224 368L224 304C224 295.2 231.2 288 240 288C319.5 288 384 352.5 384 432C384 511.5 319.5 576 240 576C160.5 576 96 511.5 96 432L96 208C96 181.5 117.5 160 144 160zM312 160C404.8 160 480 235.2 480 328C480 341.3 469.3 352 456 352C442.7 352 432 341.3 432 328C432 261.7 378.3 208 312 208C298.7 208 288 197.3 288 184C288 170.7 298.7 160 312 160z" />
                             </svg>
                         </span>
-                        Login
+                        Blog
                     </li>
+
+                    <!-- Journeys -->
+                    <div class="sub_links_of_allawn" id="journeys_sub_box" data-set="journeys-sub" style="display: none;">
+                        <ul>
+                            <li class="sole78m" id="contect__59" onclick="link_sole_action(this)" data-set="contect-59">Journey Campaign</li>
+                            <li class="sole78m" id="contect__60" onclick="link_sole_action(this)" data-set="contect-60">Journey Reports</li>
+                        </ul>
+                    </div>
+
                     <li class="subbox_link" id="dashbord_btn_124" data-set="dashbord" onclick="show_this_box(this); close_all_sub_links_ha()">
                         <span class="svg_icon_box">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_3">
                                 <path d="M96 96C113.7 96 128 110.3 128 128L128 464C128 472.8 135.2 480 144 480L544 480C561.7 480 576 494.3 576 512C576 529.7 561.7 544 544 544L144 544C99.8 544 64 508.2 64 464L64 128C64 110.3 78.3 96 96 96zM208 288C225.7 288 240 302.3 240 320L240 384C240 401.7 225.7 416 208 416C190.3 416 176 401.7 176 384L176 320C176 302.3 190.3 288 208 288zM352 224L352 384C352 401.7 337.7 416 320 416C302.3 416 288 401.7 288 384L288 224C288 206.3 302.3 192 320 192C337.7 192 352 206.3 352 224zM432 256C449.7 256 464 270.3 464 288L464 384C464 401.7 449.7 416 432 416C414.3 416 400 401.7 400 384L400 288C400 270.3 414.3 256 432 256zM576 160L576 384C576 401.7 561.7 416 544 416C526.3 416 512 401.7 512 384L512 160C512 142.3 526.3 128 544 128C561.7 128 576 142.3 576 160z" />
                             </svg>
                         </span>
-                        Dashboard
+                        Courses
                     </li>
                 </ul>
 
                 <div class="line_rola"></div>
 
                 <div class="bottom_nave_apli">
-                    <h6>Channels</h6>
+                    <h6>Web Pages</h6>
                     <ul class="mosd82">
                         <li class="subbox_link" id="sms_btn_124" onclick="show_this_box(this); show_sub_link(this);" data-set="sms">
                             <span class="svg_icon_box">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_4">
-                                    <path d="M576 304C576 436.5 461.4 544 320 544C282.9 544 247.7 536.6 215.9 523.3L97.5 574.1C88.1 578.1 77.3 575.8 70.4 568.3C63.5 560.8 62 549.8 66.8 540.8L115.6 448.6C83.2 408.3 64 358.3 64 304C64 171.5 178.6 64 320 64C461.4 64 576 171.5 576 304z" />
+                                    <path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" />
                                 </svg>
                             </span>
-                            SMS
+                            Home
                         </li>
 
                         <!-- sms sub link -->
@@ -1574,20 +2877,16 @@
 
                 <h6>Utilities</h6>
                 <ul class="top_nave_appli">
-                    <li class="subbox_link" id="journeys_btn_124" data-set="journeys" onclick="window.show_this_box(this); show_sub_link(this);">
-                        <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_12">
-                                <path d="M576 160C576 210.2 516.9 285.1 491.4 315C487.6 319.4 482 321.1 476.9 320L384 320C366.3 320 352 334.3 352 352C352 369.7 366.3 384 384 384L480 384C533 384 576 427 576 480C576 533 533 576 480 576L203.6 576C212.3 566.1 222.9 553.4 233.6 539.2C239.9 530.8 246.4 521.6 252.6 512L480 512C497.7 512 512 497.7 512 480C512 462.3 497.7 448 480 448L384 448C331 448 288 405 288 352C288 299 331 256 384 256L423.8 256C402.8 224.5 384 188.3 384 160C384 107 427 64 480 64C533 64 576 107 576 160zM181.1 553.1C177.3 557.4 173.9 561.2 171 564.4L169.2 566.4L169 566.2C163 570.8 154.4 570.2 149 564.4C123.8 537 64 466.5 64 416C64 363 107 320 160 320C213 320 256 363 256 416C256 446 234.9 483 212.5 513.9C201.8 528.6 190.8 541.9 181.7 552.4L181.1 553.1zM192 416C192 398.3 177.7 384 160 384C142.3 384 128 398.3 128 416C128 433.7 142.3 448 160 448C177.7 448 192 433.7 192 416zM480 192C497.7 192 512 177.7 512 160C512 142.3 497.7 128 480 128C462.3 128 448 142.3 448 160C448 177.7 462.3 192 480 192z" />
-                            </svg></span>
-                        Journeys
-                    </li>
 
-                    <!-- Journeys -->
-                    <div class="sub_links_of_allawn" id="journeys_sub_box" data-set="journeys-sub">
-                        <ul>
-                            <li class="sole78m" id="contect__59" onclick="link_sole_action(this)" data-set="contect-59">Journey Campaign</li>
-                            <li class="sole78m" id="contect__60" onclick="link_sole_action(this)" data-set="contect-60">Journey Reports</li>
-                        </ul>
-                    </div>
+
+                    <li class="subbox_link" id="login_btn_124" data-set="login" onclick="show_this_box(this); close_all_sub_links_ha()">
+                        <span class="svg_icon_box">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_2">
+                                <path d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
+                            </svg>
+                        </span>
+                        Login
+                    </li>
 
                 </ul>
 
@@ -1613,7 +2912,214 @@
 
                 <!-- section 2 Login -->
                 <section id="login_contect_box" class="section_sub_with all_sejmca8974 ">
-                    2
+
+                    <div class="bhaum-settings-card-2026">
+
+                        <!-- =====================
+                                CHANGE EMAIL
+                            ====================== -->
+
+                        <form method="post" class="bhaum-settings-form-2026">
+
+                            <h3 class="bhaum-settings-title-2026">
+                                Change Email
+                            </h3>
+
+                            <div class="bhaum-field-group-2026">
+
+                                <input
+                                    type="email"
+                                    name="change_email"
+                                    value="<?php echo htmlspecialchars($get_data['user_email']); ?>"
+                                    placeholder="Enter New Email"
+                                    required>
+
+                            </div>
+
+                            <div class="bhaum-field-group-2026">
+
+                                <div class="bhaum-password-wrap-2026">
+
+                                    <input
+                                        type="password"
+                                        name="email_current_password"
+                                        value="<?php echo htmlspecialchars($get_data['user_password']); ?>"
+                                        placeholder="Current Password"
+                                        class="bhaum-email-pass-field-2026"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="bhaum-password-toggle-2026 bhaum-email-pass-toggle-2026">
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                name="change_email_btn"
+                                class="bhaum-save-btn-2026">
+                                Change Email
+                            </button>
+
+                        </form>
+
+
+                        <!-- =====================
+                                CHANGE PASSWORD
+                            ====================== -->
+
+                        <form method="post" class="bhaum-settings-form-2026">
+
+                            <h3 class="bhaum-settings-title-2026">
+                                Change Password
+                            </h3>
+
+                            <div class="bhaum-field-group-2026">
+
+                                <div class="bhaum-password-wrap-2026">
+
+                                    <input
+                                        type="password"
+                                        name="current_password"
+                                        placeholder="Current Password"
+                                        class="bhaum-current-pass-field-2026"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="bhaum-password-toggle-2026 bhaum-current-pass-toggle-2026">
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="bhaum-field-group-2026">
+
+                                <div class="bhaum-password-wrap-2026">
+
+                                    <input
+                                        type="password"
+                                        name="new_password"
+                                        placeholder="New Password"
+                                        class="bhaum-new-pass-field-2026"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="bhaum-password-toggle-2026 bhaum-new-pass-toggle-2026">
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="bhaum-field-group-2026">
+
+                                <div class="bhaum-password-wrap-2026">
+
+                                    <input
+                                        type="password"
+                                        name="confirm_password"
+                                        placeholder="Confirm New Password"
+                                        class="bhaum-confirm-pass-field-2026"
+                                        required>
+
+                                    <button
+                                        type="button"
+                                        class="bhaum-password-toggle-2026 bhaum-confirm-pass-toggle-2026">
+                                        Show
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                name="change_password_btn"
+                                class="bhaum-save-btn-2026">
+                                Change Password
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <button class="logout_btn noselect" onclick="window.location.href='logout.php'">
+                        <span class="text">Logout</span>
+                        <span class="icon">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                            </svg> -->
+                            <svg viewBox="0 0 512 512" width="24" height="24">
+                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+
+                            function bhaumPasswordToggle2026(
+                                inputSelector,
+                                buttonSelector
+                            ) {
+
+                                const input = document.querySelector(inputSelector);
+                                const button = document.querySelector(buttonSelector);
+
+                                if (!input || !button) return;
+
+                                button.addEventListener('click', function() {
+
+                                    if (input.type === 'password') {
+
+                                        input.type = 'text';
+                                        button.innerText = 'Hide';
+
+                                    } else {
+
+                                        input.type = 'password';
+                                        button.innerText = 'Show';
+
+                                    }
+
+                                });
+
+                            }
+
+                            bhaumPasswordToggle2026(
+                                '.bhaum-email-pass-field-2026',
+                                '.bhaum-email-pass-toggle-2026'
+                            );
+
+                            bhaumPasswordToggle2026(
+                                '.bhaum-current-pass-field-2026',
+                                '.bhaum-current-pass-toggle-2026'
+                            );
+
+                            bhaumPasswordToggle2026(
+                                '.bhaum-new-pass-field-2026',
+                                '.bhaum-new-pass-toggle-2026'
+                            );
+
+                            bhaumPasswordToggle2026(
+                                '.bhaum-confirm-pass-field-2026',
+                                '.bhaum-confirm-pass-toggle-2026'
+                            );
+
+                        });
+                    </script>
+
+
+
                 </section>
 
                 <!-- section 3 Dashbord -->
@@ -1621,7 +3127,7 @@
                     3
                 </section>
 
-                <!-- section 4 SMS -->
+                <!-- section 4 home -->
                 <section id="sms_contect_box" class="section_sub_with all_sejmca8974 ">
                     4
                 </section>
@@ -1661,9 +3167,587 @@
                     11
                 </section>
 
-                <!-- section 12 Journeys -->
+                <!-- section 12 blog -->
                 <section id="journeys_contect_box" class="section_sub_with all_sejmca8974 ">
-                    12
+
+                    <div id="orders" class="page ">
+                        <div
+                            style="display: flex; justify-content: space-between; margin-bottom: 25px; flex-wrap: wrap; gap: 10px;">
+                            <h2>Blog Management</h2>
+                            <!-- <button class="btn btn-outline">Export CSV</button> -->
+                        </div>
+
+                        <div class="card">
+                            <div class="table-container">
+                                <!-- blog contect add start here -->
+
+                                <div class="blog_nav">
+                                    <ul>
+                                        <li class="search_btr">
+                                            <label for="Search">Search :-</label>
+                                            <input type="text" placeholder="Enter the Blog ID or Title">
+                                        </li>
+                                        <li id="adeac">
+                                            <button id="btn_add_sadcarlod" class="btn btn-primary" onclick="
+                                        let form=document.getElementById('add_newblog_form');
+                                        let btn=document.getElementById('btn_add_sadcarlod');
+                                        let blog_cards=document.getElementById('vaweca');
+
+                                        form.classList.toggle('show_add_from');
+
+                                        blog_cards.classList.toggle('show_add_from')
+                                        btn.innerHTML=form.classList.contains('show_add_from')
+                                        ? 'Add New Blog'
+                                        : 'Cancel';
+                                        ">
+                                                Add New Blog
+                                            </button>
+
+                                        </li>
+                                        <li id="btn_update_sadcarlod" class="show_add_from">
+
+                                            <div style="padding: 0 20px;display: flex;gap: 10px;">
+                                                <div>
+                                                    <button class="btn btn-primary" onclick="cancel_update_blog()">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                                <div id="btn_update_sadcarlodasas" class="show_add_from">
+                                                    <button class="btn btn-primary" id="delete_update_blog_sd">
+                                                        Delete Blog
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <!-- line -->
+                                <div class="devidedLine"> Blogs Contect </div>
+
+                                <!-- blogs card -->
+                                <div class="show_bolg" id="vaweca">
+                                    <div class="card_into">
+
+                                        <!-- cards -->
+                                        <?php
+
+                                        $sql = "SELECT * FROM blog ORDER BY blog_id DESC LIMIT 8";
+                                        $result = mysqli_query($mydb, $sql);
+
+                                        while ($blog = mysqli_fetch_assoc($result)) {
+                                        ?>
+
+                                            <div class="blog_card">
+
+                                                <div>
+                                                    <img src="assets/blog/<?php echo $blog['blog_img']; ?>" alt="<?php echo $blog['blog_title']; ?>">
+                                                </div>
+
+                                                <div class="blog_content">
+
+                                                    <div class="blog_meta">
+                                                        <span class="blog_author">
+                                                            <?php echo $blog['blog_author']; ?>
+                                                        </span>
+
+                                                        <span>
+                                                            <!-- <?php echo date("d M Y", $blog['created_at']); ?> -->
+                                                            <?php
+                                                            if ($blog['updated_at'] == "Null") {
+                                                                echo timeAgo($blog['created_at']);
+                                                            } else {
+                                                                echo timeAgo($blog['updated_at']) . " Updated";
+                                                            }
+                                                            ?>
+                                                        </span>
+                                                    </div>
+
+                                                    <h3 class="blog_title">
+                                                        <?php echo $blog['blog_title']; ?>
+                                                    </h3>
+
+                                                    <p class="blog_desc">
+                                                        <?php echo substr(strip_tags($blog['blog_content']), 0, 120); ?>...
+                                                    </p>
+
+                                                    <button onclick="edit_blog('<?php echo $blog['blog_slug']; ?>')" class="blog_btn">
+                                                        Edit Blog
+                                                    </button>
+
+                                                </div>
+
+                                            </div>
+
+                                        <?php } ?>
+
+
+
+                                    </div>
+                                </div>
+
+                                <!-- add new form -->
+                                <div id="add_newblog_form" class="add_fromw show_add_from">
+                                    <section class="blog-upload-section">
+                                        <div class="blog-upload-container">
+                                            <h1 class="blog-upload-title">Create New Blog</h1>
+
+                                            <form id="blogUploadForm" method="POST"
+                                                enctype="multipart/form-data">
+
+                                                <!-- Image Upload -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label">Blog Image *</label>
+                                                    <div class="blog-image-upload-area" id="blogImageUploadArea">
+                                                        <input type="file" name="blog_image" id="blogImageInput"
+                                                            accept="image/*" required>
+                                                        <div class="blog-image-placeholder" id="blogImagePlaceholder">
+                                                            <svg xmlns="[w3.org](http://www.w3.org/2000/svg)" width="48"
+                                                                height="48" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="1.5">
+                                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                                <polyline points="21 15 16 10 5 21" />
+                                                            </svg>
+                                                            <p>Click or drag image here</p>
+                                                        </div>
+                                                        <img id="blogImagePreview" class="blog-image-preview" alt="Preview">
+                                                    </div>
+                                                </div>
+                                                <!-- Blog Title -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogTitle">Blog Title *</label>
+                                                    <input type="text" name="blog_title" id="blogTitle"
+                                                        class="blog-upload-input" placeholder="Enter blog title" required>
+                                                </div>
+                                                <!-- Blog Author -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogAuthor">Author Name *</label>
+                                                    <input type="text" name="blog_author" id="blogAuthor"
+                                                        class="blog-upload-input" placeholder="Enter author name" required>
+                                                </div>
+                                                <!-- Blog Content Editor -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label">Blog Content *</label>
+
+                                                    <!-- Toolbar -->
+                                                    <div class="blog-editor-toolbar">
+                                                        <select id="blogFontSize" class="blog-toolbar-select" title="Font Size">
+                                                            <option value="1">Small</option>
+                                                            <option value="3" selected>Normal</option>
+                                                            <option value="5">Large</option>
+                                                            <option value="7">Extra Large</option>
+                                                        </select>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn" data-command="bold"
+                                                            title="Bold">
+                                                            <strong>B</strong>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn" data-command="italic"
+                                                            title="Italic">
+                                                            <em>I</em>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn" data-command="underline"
+                                                            title="Underline">
+                                                            <u>U</u>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="strikeThrough" title="Strikethrough">
+                                                            <s>S</s>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyLeft" title="Align Left">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyCenter" title="Align Center">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm3 4h12v2H6V7zm-3 4h18v2H3v-2zm3 4h12v2H6v-2zm-3 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyRight" title="Align Right">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm6 4h12v2H9V7zm-6 4h18v2H3v-2zm6 4h12v2H9v-2zm-6 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="insertUnorderedList" title="Bullet List">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm4-15h14v2H8V5zm0 8h14v2H8v-2zm0 8h14v2H8v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="insertOrderedList" title="Numbered List">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M2 5h2v2H3v1h2v1H2V7.5h1v-1H2V5zm0 7h2.5v.5H3v1h1.5V14H2v-2zm0 6h2v.5H3v1h1v.5H2v-1.5h.5v-1H2V18zM8 5h14v2H8V5zm0 6h14v2H8v-2zm0 6h14v2H8v-2z" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn" id="blogLinkBtn"
+                                                            title="Insert Link">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2">
+                                                                <path
+                                                                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                                                <path
+                                                                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <div class="blog-color-picker-wrap">
+                                                            <button type="button" class="blog-toolbar-btn blog-color-btn"
+                                                                title="Text Color">
+                                                                <span class="blog-color-icon">A</span>
+                                                                <span class="blog-color-bar" id="blogTextColorBar"></span>
+                                                            </button>
+                                                            <input type="color" id="blogTextColor" class="blog-color-input"
+                                                                value="#000000">
+                                                        </div>
+
+                                                        <div class="blog-color-picker-wrap">
+                                                            <button type="button" class="blog-toolbar-btn blog-color-btn"
+                                                                title="Background Color">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                                                    fill="currentColor">
+                                                                    <path
+                                                                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                </svg>
+                                                                <span class="blog-color-bar" id="blogBgColorBar"></span>
+                                                            </button>
+                                                            <input type="color" id="blogBgColor" class="blog-color-input"
+                                                                value="#ffffff">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Content Editable Area -->
+                                                    <div id="blogContentEditor" class="blog-content-editor"
+                                                        contenteditable="true" placeholder="Write your blog content here...">
+                                                    </div>
+                                                    <input type="hidden" name="blog_content1252" id="blogContentHidden">
+                                                </div>
+                                                <!-- Submit Button -->
+                                                <div class="blog-upload-actions">
+                                                    <button type="submit" name="blog_submit" class="blog-submit-btn">
+                                                        <span class="blog-btn-text">Publish Blog</span>
+                                                        <span class="blog-btn-loader"></span>
+                                                    </button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </section>
+
+                                    <!-- Link Modal -->
+                                    <div class="blog-modal-overlay" id="blogLinkModal">
+                                        <div class="blog-modal">
+                                            <div class="blog-modal-header">
+                                                <h3>Insert Link</h3>
+                                                <button type="button" class="blog-modal-close"
+                                                    id="blogModalClose">&times;</button>
+                                            </div>
+                                            <div class="blog-modal-body">
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogLinkUrl">URL</label>
+                                                    <input type="url" id="blogLinkUrl" class="blog-upload-input"
+                                                        placeholder="[example.com](https://example.com)">
+                                                </div>
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogLinkText">Link Text</label>
+                                                    <input type="text" id="blogLinkText" class="blog-upload-input"
+                                                        placeholder="Click here">
+                                                </div>
+                                            </div>
+                                            <div class="blog-modal-footer">
+                                                <button type="button" class="blog-modal-btn blog-modal-cancel"
+                                                    id="blogLinkCancel">Cancel</button>
+                                                <button type="button" class="blog-modal-btn blog-modal-confirm"
+                                                    id="blogLinkConfirm">Insert</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- update blog  -->
+                                <div id="update_blog_form" class="add_fromw show_add_from">
+                                    <section class="blog-upload-section">
+                                        <div class="blog-upload-container">
+                                            <h1 class="blog-upload-title">Update Blog</h1>
+
+                                            <form id="blogUploadForm" method="POST"
+                                                enctype="multipart/form-data">
+
+                                                <!-- Image Upload -->
+
+                                                <input type="text" name="blog_id_name" id="blog_id_update" readonly hidden>
+
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label">Blog Image *</label>
+                                                    <div class="blog-image-upload-area" id="blogImageUploadArea">
+                                                        <input type="file" name="blog_image2" id="blogImageInput2"
+                                                            accept="image/*">
+                                                        <div class="blog-image-placeholder" id="blogImagePlaceholder">
+                                                            <svg xmlns="[w3.org](http://www.w3.org/2000/svg)" width="48"
+                                                                height="48" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="1.5">
+                                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                                <polyline points="21 15 16 10 5 21" />
+                                                            </svg>
+                                                            <p>Click or drag image here</p>
+                                                        </div>
+                                                        <img id="blogImagePreview" class="blog-image-preview" alt="Preview">
+                                                    </div>
+                                                </div>
+
+                                                <div style="width: 170px;height: 180px;">
+                                                    <img id="blogimg2" alt="" style="object-fit: cover;width: 100%;">
+                                                </div>
+                                                <!-- Blog Title -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogTitle">Blog Title *</label>
+                                                    <input type="text" name="blog_title2" id="blogTitle2"
+                                                        class="blog-upload-input" placeholder="Enter blog title" required>
+                                                </div>
+                                                <!-- Blog Author -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogAuthor">Author Name *</label>
+                                                    <input type="text" name="blog_author2" id="blogAuthor2"
+                                                        class="blog-upload-input" placeholder="Enter author name" required>
+                                                </div>
+                                                <!-- Blog Content Editor -->
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label">Blog Content *</label>
+
+                                                    <!-- Toolbar -->
+                                                    <div class="blog-editor-toolbar">
+                                                        <select id="blogFontSize" class="blog-toolbar-select" title="Font Size">
+                                                            <option value="1">Small</option>
+                                                            <option value="3" selected>Normal</option>
+                                                            <option value="5">Large</option>
+                                                            <option value="7">Extra Large</option>
+                                                        </select>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn" data-command="bold"
+                                                            title="Bold">
+                                                            <strong>B</strong>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn" data-command="italic"
+                                                            title="Italic">
+                                                            <em>I</em>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn" data-command="underline"
+                                                            title="Underline">
+                                                            <u>U</u>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="strikeThrough" title="Strikethrough">
+                                                            <s>S</s>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyLeft" title="Align Left">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyCenter" title="Align Center">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm3 4h12v2H6V7zm-3 4h18v2H3v-2zm3 4h12v2H6v-2zm-3 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="justifyRight" title="Align Right">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M3 3h18v2H3V3zm6 4h12v2H9V7zm-6 4h18v2H3v-2zm6 4h12v2H9v-2zm-6 4h18v2H3v-2z" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="insertUnorderedList" title="Bullet List">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm4-15h14v2H8V5zm0 8h14v2H8v-2zm0 8h14v2H8v-2z" />
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="blog-toolbar-btn"
+                                                            data-command="insertOrderedList" title="Numbered List">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path
+                                                                    d="M2 5h2v2H3v1h2v1H2V7.5h1v-1H2V5zm0 7h2.5v.5H3v1h1.5V14H2v-2zm0 6h2v.5H3v1h1v.5H2v-1.5h.5v-1H2V18zM8 5h14v2H8V5zm0 6h14v2H8v-2zm0 6h14v2H8v-2z" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <button type="button" class="blog-toolbar-btn" id="blogLinkBtn"
+                                                            title="Insert Link">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2">
+                                                                <path
+                                                                    d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                                                <path
+                                                                    d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <div class="blog-toolbar-divider"></div>
+
+                                                        <div class="blog-color-picker-wrap">
+                                                            <button type="button" class="blog-toolbar-btn blog-color-btn"
+                                                                title="Text Color">
+                                                                <span class="blog-color-icon">A</span>
+                                                                <span class="blog-color-bar" id="blogTextColorBar"></span>
+                                                            </button>
+                                                            <input type="color" id="blogTextColor" class="blog-color-input"
+                                                                value="#000000">
+                                                        </div>
+
+                                                        <div class="blog-color-picker-wrap">
+                                                            <button type="button" class="blog-toolbar-btn blog-color-btn"
+                                                                title="Background Color">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                                                    fill="currentColor">
+                                                                    <path
+                                                                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                                                </svg>
+                                                                <span class="blog-color-bar" id="blogBgColorBar"></span>
+                                                            </button>
+                                                            <input type="color" id="blogBgColor" class="blog-color-input"
+                                                                value="#ffffff">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Content Editable Area -->
+                                                    <div id="blogContentEditor2" class="blog-content-editor"
+                                                        contenteditable="true" placeholder="Write your blog content here...">
+                                                    </div>
+                                                    <input type="hidden" name="blog_content2" id="blogContentHidden2">
+                                                </div>
+                                                <!-- Submit Button -->
+                                                <div class="blog-upload-actions">
+                                                    <button type="submit" name="update_blog15515" class="blog-submit-btn">
+                                                        <span class="blog-btn-text">Update Blog</span>
+                                                        <span class="blog-btn-loader"></span>
+                                                    </button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </section>
+
+                                    <!-- Link Modal -->
+                                    <div class="blog-modal-overlay" id="blogLinkModal">
+                                        <div class="blog-modal">
+                                            <div class="blog-modal-header">
+                                                <h3>Insert Link</h3>
+                                                <button type="button" class="blog-modal-close"
+                                                    id="blogModalClose">&times;</button>
+                                            </div>
+                                            <div class="blog-modal-body">
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogLinkUrl">URL</label>
+                                                    <input type="url" id="blogLinkUrl" class="blog-upload-input"
+                                                        placeholder="[example.com](https://example.com)">
+                                                </div>
+                                                <div class="blog-upload-group">
+                                                    <label class="blog-upload-label" for="blogLinkText">Link Text</label>
+                                                    <input type="text" id="blogLinkText" class="blog-upload-input"
+                                                        placeholder="Click here">
+                                                </div>
+                                            </div>
+                                            <div class="blog-modal-footer">
+                                                <button type="button" class="blog-modal-btn blog-modal-cancel"
+                                                    id="blogLinkCancel">Cancel</button>
+                                                <button type="button" class="blog-modal-btn blog-modal-confirm"
+                                                    id="blogLinkConfirm">Insert</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- blog contect add end here -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <script>
+                        function edit_blog(slug) {
+                            let update_blog_form = document.getElementById("update_blog_form")
+                            let card_into = document.getElementById("vaweca")
+
+                            let value = slug;
+
+                            edit_blog_api(value)
+
+
+                            document.getElementById("adeac").classList.add("show_add_from")
+                            document.getElementById("btn_update_sadcarlod").classList.remove("show_add_from")
+                            card_into.classList.add("show_add_from")
+                            update_blog_form.classList.remove("show_add_from")
+
+                        }
+
+                        function cancel_update_blog() {
+                            let update_blog_form = document.getElementById("update_blog_form")
+                            let card_into = document.getElementById("vaweca")
+
+                            let detalis_box = document.getElementById("blg-modal-bg")
+                            let blog_img = document.getElementById("blg-modal-img");
+                            let blog_title = document.getElementById("blg-modal__title");
+                            let blg_meta_data = document.getElementById("blg-modal__meta");
+                            let blg_content_long_desc = document.getElementById("blg-modal-content");
+
+                            detalis_box.style.opacity = '0';
+                            detalis_box.style.pointerEvents = 'none';
+
+                            blog_img.src = `assets/blog/`;
+                            blog_title.innerHTML = "";
+                            blg_meta_data.innerHTML = "";
+                            blg_content_long_desc.innerHTML = "";
+
+                            document.getElementById("adeac").classList.remove("show_add_from")
+                            document.getElementById("btn_update_sadcarlod").classList.add("show_add_from")
+                            card_into.classList.remove("show_add_from")
+                            update_blog_form.classList.add("show_add_from")
+                        }
+                    </script>
+
                 </section>
 
 
