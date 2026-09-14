@@ -1621,7 +1621,7 @@
 
             </li>
             <li><a href="#">Testimonials</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="blog.php">Blog</a></li>
             <li><a href="contect.php">Contact</a></li>
           </ul>
         </div>
@@ -1799,7 +1799,7 @@
 
 
         <a href="#">Testimonials</a>
-        <a href="#">Blog</a>
+        <a href="blog.php">Blog</a>
         <a href="contect.php">Contact</a>
 
       </div>
