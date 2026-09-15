@@ -1406,6 +1406,7 @@
       <div class="nav-wrapper">
         <div class="curved-bg">
           <ul class="desktop-nav">
+            <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li class="our_drop_hover">
 
@@ -1572,7 +1573,7 @@
                   </li>
 
                   <li class="program-dropdown-item">
-                    <a href="#" class="program-dropdown-link">
+                    <a href="digital_marketing.php" class="program-dropdown-link">
                       Digital Marketing
                     </a>
                   </li>
@@ -1620,7 +1621,6 @@
               </div>
 
             </li>
-            <li><a href="#">Testimonials</a></li>
             <li><a href="blog.php">Blog</a></li>
             <li><a href="contect.php">Contact</a></li>
           </ul>
@@ -1754,7 +1754,7 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button">
+              <button class="mobile-course-button itne78" onclick="window.location.href='digital_marketing.php'" type="button">
 
                 <span>
                   Digital Marketing
