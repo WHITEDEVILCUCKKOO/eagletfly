@@ -1582,7 +1582,7 @@
                   <!-- MANAGEMENT & MARKETING -->
                   <li class="program-dropdown-item">
 
-                    <a href="#" class="program-dropdown-link">
+                    <a href="python.php" class="program-dropdown-link">
                       Python
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
@@ -1777,7 +1777,7 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button">
+              <button class="mobile-course-button itne78"  onclick="window.location.href='python.php'"  type="button">
 
                 <span>Python</span>
               </button>
