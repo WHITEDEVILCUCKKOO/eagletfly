@@ -6,21 +6,22 @@
         <!-- Section Heading -->
         <div class="eagletfly-why-heading">
             <h2>
-                Why Learn at
-                <span>Eagletfly Solutions?</span>
+                Why Learn
+                <span>Java at Eagletfly Solutions?</span>
             </h2>
 
             <p>
                 Empowering students across various fields with branches in Delhi,
-                we help you enhance your skills and provide unlimited placement support
-                until you land your dream job. Ready to learn and make an impact?
+                we help you enhance your Java programming skills and provide unlimited
+                placement support until you land your dream job. Ready to learn and
+                build your career in Java?
             </p>
 
             <div class="eagletfly-why-buttons">
 
                 <a href="tel:+919345045466" class="eagletfly-phone-btn">
                     <i class="fa-solid fa-phone"></i>
-                   +91 98114 34634 | +91 98114 34638
+                    +91 98114 34634 | +91 98114 34638
                 </a>
 
                 <a href="#" class="eagletfly-callback-btn">
@@ -39,19 +40,19 @@
             <div class="eagletfly-image-grid">
 
                 <div class="eagletfly-image-small">
-                    <img src="assets/students_imgs/img_2.jpeg" alt="Live Classroom Sessions">
+                    <img src="assets/students_imgs/img_2.jpeg" alt="Live Java Classroom Sessions">
 
                     <span>Live Classroom Sessions</span>
                 </div>
 
                 <div class="eagletfly-image-small">
-                    <img src="assets/students_imgs/img_1.jpeg" alt="Hands-on Projects">
+                    <img src="assets/students_imgs/img_1.jpeg" alt="Java Hands-on Projects">
 
                     <span>Hands-on Projects</span>
                 </div>
 
                 <div class="eagletfly-image-large">
-                    <img src="assets/students_imgs/img_3.jpeg" alt="Free Placement Sessions">
+                    <img src="assets/students_imgs/img_3.jpeg" alt="Free Java Placement Sessions">
 
                     <span>Free Placement Sessions</span>
                 </div>
@@ -74,9 +75,9 @@
                         <h3>Free Interview Clearing Workshops</h3>
 
                         <p>
-                            We help you prepare for job placement with mock interviews,
-                            aptitude practice, and HR round guidance, so you feel
-                            confident and job-ready.
+                            We help you prepare for Java developer job placements
+                            with mock interviews, aptitude practice, coding rounds,
+                            and HR round guidance, so you feel confident and job-ready.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-orange">
@@ -97,12 +98,13 @@
 
                     <div class="eagletfly-feature-text">
 
-                        <h3>Hands-on Capstone Projects</h3>
+                        <h3>Hands-on Java Projects</h3>
 
                         <p>
-                            Work on real-world projects using live data and industry
-                            tools. By the end of the course, you'll have a solid
-                            portfolio that you can confidently showcase to recruiters.
+                            Work on real-world Java projects using practical programming
+                            concepts and industry tools. By the end of the course,
+                            you'll have a solid portfolio that you can confidently
+                            showcase to recruiters.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-blue">
@@ -127,9 +129,9 @@
 
                         <p>
                             Our trainers are working professionals with 8–15 years
-                            of experience. They focus on practical knowledge, not
-                            just theory, so you learn what's actually used in the
-                            industry today.
+                            of experience. They focus on practical Java development,
+                            coding skills, and industry practices, so you learn
+                            what's actually used in the industry today.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-green">
@@ -154,8 +156,9 @@
 
                         <p>
                             Get help creating a strong, professional resume that
-                            highlights your skills in the right way. We make sure
-                            it's a clear, well-structured, and ATS-friendly resume.
+                            highlights your Java programming and development skills.
+                            We make sure it's a clear, well-structured, and
+                            ATS-friendly resume.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-purple">

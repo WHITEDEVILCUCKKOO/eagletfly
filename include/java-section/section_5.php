@@ -13,7 +13,7 @@
             </div>
 
             <h2>
-                Why <span>Python Course in Delhi</span>
+                Why <span>Java Course in Delhi</span>
                 <br>
                 at Eagletfly Solutions?
             </h2>
@@ -29,9 +29,9 @@
                 <div class="ef-highlight-line"></div>
 
                 <p>
-                    Eagletfly Solutions offers comprehensive training,
+                    Eagletfly Solutions offers comprehensive Java training,
                     starting from the basics, and provides students with
-                    clear explanations of Python concepts.
+                    clear explanations of Java concepts and programming fundamentals.
                 </p>
             </div>
 
@@ -41,7 +41,7 @@
                 <div class="ef-highlight-line"></div>
 
                 <p>
-                    The Python training in Delhi fees structure of the
+                    The Java training in Delhi fees structure of the
                     courses is made to be affordable for candidates from
                     all sectors. The option of payment in installments
                     is also available.
@@ -56,7 +56,7 @@
                 <p>
                     Courses consist of expertly designed courseware
                     designed to suit the current industrial requirements
-                    for Python Programmers.
+                    for Java Developers and Software Programmers.
                 </p>
             </div>
 
@@ -92,7 +92,7 @@
                 <p>
                     100% placement training and assistance are provided
                     at the end of the course, helping students prepare
-                    for their professional careers.
+                    for their professional careers in Java development.
                 </p>
             </div>
 
@@ -144,7 +144,6 @@
     box-sizing: border-box;
     background-color: #080b2d;
 
-    /* Grid Background */
     background-image:
         linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
@@ -188,6 +187,7 @@
     border-radius: 50%;
     background: #6475ff;
 }
+
 
 .ef-course-heading h2 {
     margin: 28px 0 0;

@@ -1544,7 +1544,7 @@
                   <!-- TRENDING -->
                   <li class="program-dropdown-item">
 
-                    <a href="#" class="program-dropdown-link">
+                    <a href="data_science.php" class="program-dropdown-link">
                       Data Science with Python
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
@@ -1611,7 +1611,7 @@
                   </li>
 
                   <li class="program-dropdown-item">
-                    <a href="#" class="program-dropdown-link">
+                    <a href="java.php" class="program-dropdown-link">
                       Java
                     </a>
                   </li>
@@ -1729,7 +1729,7 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button">
+              <button class="mobile-course-button itne78"  onclick="window.location.href='data_science.php'"  type="button">
 
                 <span>
                   Data Science with Python
@@ -1785,7 +1785,7 @@
             </div>
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button">
+              <button class="mobile-course-button itne78"  onclick="window.location.href='java.php'"  type="button">
 
                 <span>Java</span>
               </button>

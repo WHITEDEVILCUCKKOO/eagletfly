@@ -1,7 +1,7 @@
 <style>
 
 /* =========================================================
-   PYTHON COURSE FAQ
+   JAVA COURSE FAQ
    COMPLETE ISOLATED CSS
 ========================================================= */
 
@@ -557,13 +557,13 @@
 
             <h2>
                 Questions About Our
-                <span>Python Course</span>
+                <span>Java Course</span>
             </h2>
 
             <p>
-                Find answers to common questions about our Python course,
+                Find answers to common questions about our Java course,
                 training programs, practical learning and how
-                Eagletfly Solutions can help you build your Python skills
+                Eagletfly Solutions can help you build your Java skills
                 and prepare for your career.
             </p>
 
@@ -586,7 +586,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        What is Python and why should I learn it?
+                        What is Java and why should I learn it?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -607,11 +607,11 @@
                     <div class="kd-rcs-faq-answer-inner">
 
                         <p>
-                            Python is a popular, high-level programming language known for
-                            its simple syntax, readability and versatility. Learning Python
-                            can help you understand programming fundamentals and build
-                            applications, automation scripts, websites, data solutions
-                            and other software projects.
+                            Java is a widely used programming language known for its
+                            object-oriented approach, reliability and versatility.
+                            Learning Java can help you understand core programming
+                            concepts and build applications for different platforms
+                            and software environments.
                         </p>
 
                     </div>
@@ -630,7 +630,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        Is Python suitable for beginners?
+                        Is Java suitable for beginners?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -651,10 +651,10 @@
                     <div class="kd-rcs-faq-answer-inner">
 
                         <p>
-                            Yes. Python is considered beginner-friendly because of its
-                            clean and readable syntax. The course starts with programming
-                            fundamentals and gradually covers Python concepts, functions,
-                            object-oriented programming, modules and practical development.
+                            Yes. Java can be learned by beginners with proper guidance.
+                            The course starts with programming fundamentals and gradually
+                            covers Java concepts, object-oriented programming, coding
+                            practices and practical development.
                         </p>
 
                     </div>
@@ -673,7 +673,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        What topics are covered in the Python course?
+                        What topics are covered in the Java course?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -694,11 +694,10 @@
                     <div class="kd-rcs-faq-answer-inner">
 
                         <p>
-                            The Python course covers important programming concepts such as
-                            Python fundamentals, variables, data types, operators, conditions,
-                            loops, functions, lists, tuples, dictionaries, sets, modules,
-                            exception handling, file handling, object-oriented programming
-                            and other core Python concepts.
+                            The Java course covers important programming concepts such as
+                            Java fundamentals, variables, data types, operators, control
+                            statements, methods, classes, objects, inheritance, polymorphism,
+                            exception handling and other core Java concepts.
                         </p>
 
                     </div>
@@ -717,7 +716,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        Will I get practical Python programming experience?
+                        Will I get practical Java programming experience?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -739,10 +738,9 @@
 
                         <p>
                             The training focuses on practical learning along with
-                            theoretical concepts. Students can practice Python programming,
-                            work on coding exercises and understand how Python concepts
-                            are applied while developing scripts, applications and software
-                            projects.
+                            theoretical concepts. Students can practice Java programming,
+                            work on coding exercises and understand how Java concepts
+                            are applied while developing software applications.
                         </p>
 
                     </div>
@@ -761,7 +759,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        Can I learn Python without prior programming experience?
+                        Can I learn Java without prior programming experience?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -782,10 +780,10 @@
                     <div class="kd-rcs-faq-answer-inner">
 
                         <p>
-                            Yes. Beginners can start the Python course without previous
+                            Yes. Beginners can start the Java course without previous
                             programming experience. The learning process begins with
                             basic programming concepts and gradually moves toward
-                            functions, object-oriented programming and Python development.
+                            object-oriented programming and Java development.
                         </p>
 
                     </div>
@@ -804,7 +802,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        What career opportunities can Python skills provide?
+                        What career opportunities can Java skills provide?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -825,11 +823,11 @@
                     <div class="kd-rcs-faq-answer-inner">
 
                         <p>
-                            Python skills can be useful for roles involving software
-                            development, web development, automation, data analysis,
-                            scripting and other areas where Python-based technologies
-                            are used. The actual opportunities depend on your skills,
-                            experience and job requirements.
+                            Java skills can be useful for roles involving software
+                            development, application development, backend programming
+                            and other areas where Java-based technologies are used.
+                            The actual opportunities depend on your skills, experience
+                            and job requirements.
                         </p>
 
                     </div>
@@ -848,7 +846,7 @@
                         aria-expanded="false">
 
                     <span class="kd-rcs-faq-question-text">
-                        How can I get started with the Python course at Eagletfly Solutions?
+                        How can I get started with the Java course at Eagletfly Solutions?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -870,7 +868,7 @@
 
                         <p>
                             You can contact the Eagletfly Solutions team to learn more
-                            about the Python course, training options, course structure
+                            about the Java course, training options, course structure
                             and enrollment process. The team can guide you through the
                             available learning options based on your requirements.
                         </p>
@@ -892,7 +890,7 @@
 <script>
 
 /* =========================================================
-   PYTHON COURSE FAQ ACCORDION
+   JAVA COURSE FAQ ACCORDION
    ONE QUESTION OPEN AT A TIME
 ========================================================= */
 
