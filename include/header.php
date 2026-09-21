@@ -886,6 +886,7 @@
       .msw-nav {
         display: none;
       }
+
       .msw-cards-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -925,6 +926,7 @@
       .msw-section {
         padding: 56px 0;
       }
+
       .msw-cards-grid {
         grid-template-columns: repeat(1, 1fr);
       }
@@ -1289,8 +1291,8 @@
     .rainbow-animated_without_animtion {
       background: linear-gradient(90deg,
           #ff0000,
-         
-          
+
+
 
           #0000ff,
           #8b00ff,
@@ -1417,94 +1419,13 @@
 
                 <ul class="program-dropdown-list">
 
-                  <!-- TECH COURSE -->
+                  <!-- DESIGN COURSE -->
                   <li class="program-dropdown-item">
 
-                    <a href="machine_learning_and_ai.php" class="program-dropdown-link">
-                      Machine Learning & Ai
+                    <a href="data-analytics.php" class="program-dropdown-link">
+                      Data Analytics
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
-
-                    <!-- TECH SUBMENU -->
-                    <!-- <div class="program-submenu">
-
-                      <ul class="program-submenu-list">
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Data Analytics
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Data Science
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Artificial Intelligence
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Fullstack Development
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            DSA With C++
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Generative AI
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Agentic AI
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            DevOps
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            AWS
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Mern Stack
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Power BI
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Business Analytics
-                          </a>
-                        </li>
-
-                      </ul>
-
-                    </div> -->
 
                   </li>
 
@@ -1512,72 +1433,38 @@
                   <!-- DESIGN COURSE -->
                   <li class="program-dropdown-item">
 
-                    <a href="data-analytics.php" class="program-dropdown-link">
-                      Data Analytics with Python
+                    <a href="genAi_&_agentic_ai.php" class="program-dropdown-link">
+                      Gen AI & Agentic AI
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
-                    <!-- DESIGN SUBMENU -->
-                    <!-- <div class="program-submenu">
+                  </li>
 
-                      <ul class="program-submenu-list">
 
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            UI/UX Design Course
-                          </a>
-                        </li>
 
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Graphic Design Course
-                          </a>
-                        </li>
 
-                      </ul>
+                  <!-- TECH COURSE -->
+                  <li class="program-dropdown-item">
 
-                    </div> -->
+                    <a href="machine_learning_and_ai.php" class="program-dropdown-link">
+                      Artificial Intelligence
+                      <!-- <span class="submenu-arrow">›</span> -->
+                    </a>
 
                   </li>
+
+
 
 
                   <!-- TRENDING -->
                   <li class="program-dropdown-item">
 
                     <a href="data_science.php" class="program-dropdown-link">
-                      Data Science with Python
+                      Data science
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
-                    <!-- TRENDING SUBMENU -->
-                    <!-- <div class="program-submenu">
-
-                      <ul class="program-submenu-list">
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Data Analytics with Generative AI
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Data Science with Generative AI
-                          </a>
-                        </li>
-
-                      </ul>
-
-                    </div> -->
-
                   </li>
-
-                  <li class="program-dropdown-item">
-                    <a href="digital_marketing.php" class="program-dropdown-link">
-                      Digital Marketing
-                    </a>
-                  </li>
-
 
                   <!-- MANAGEMENT & MARKETING -->
                   <li class="program-dropdown-item">
@@ -1587,28 +1474,14 @@
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
 
-                    <!-- MANAGEMENT SUBMENU -->
-                    <!-- <div class="program-submenu">
-
-                      <ul class="program-submenu-list">
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Product Management
-                          </a>
-                        </li>
-
-                        <li class="program-submenu-item">
-                          <a href="#" class="program-submenu-link">
-                            Digital Marketing
-                          </a>
-                        </li>
-
-                      </ul>
-
-                    </div> -->
-
                   </li>
+                  <li class="program-dropdown-item">
+                    <a href="digital_marketing.php" class="program-dropdown-link">
+                      Digital Marketing
+                    </a>
+                  </li>
+
+
 
                   <li class="program-dropdown-item">
                     <a href="java.php" class="program-dropdown-link">
@@ -1664,42 +1537,6 @@
 
           <div class="mobile-program-dropdown" style="text-align: end;">
 
-
-            <!-- TECH COURSE -->
-
-            <div class="mobile-course-wrapper">
-
-              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='machine_learning_and_ai.php'">
-
-                <span>
-                  Machine Learning & Ai
-                </span>
-
-                <!-- <span class="mobile-course-icon">+</span> -->
-
-              </button>
-
-
-              <!-- <div class="mobile-course-dropdown">
-
-                <a href="#">Data Analytics</a>
-                <a href="#">Data Science</a>
-                <a href="#">Artificial Intelligence</a>
-                <a href="#">Fullstack Development</a>
-                <a href="#">DSA With C++</a>
-                <a href="#">Generative AI</a>
-                <a href="#">Agentic AI</a>
-                <a href="#">DevOps</a>
-                <a href="#">AWS</a>
-                <a href="#">Mern Stack</a>
-                <a href="#">Power BI</a>
-                <a href="#">Business Analytics</a>
-
-              </div> -->
-
-            </div>
-
-
             <!-- DESIGN COURSE -->
 
             <div class="mobile-course-wrapper">
@@ -1707,7 +1544,8 @@
               <button class="mobile-course-button itne78" onclick="window.location.href='data-analytics.php'" type="button">
 
                 <span>
-                  Data Analytics with Python
+                  Data Analytics
+
                 </span>
 
                 <!-- <span class="mobile-course-icon">+</span> -->
@@ -1725,14 +1563,58 @@
             </div>
 
 
+
+
+
+
+            <!-- TECH COURSE -->
+
+
+            <!-- TECH COURSE -->
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='genAi_&_agentic_ai.php'">
+
+                <span>
+                  Gen AI & Agentic AI
+
+                </span>
+
+                <!-- <span class="mobile-course-icon">+</span> -->
+
+              </button>
+
+
+
+            </div>
+
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='machine_learning_and_ai.php'">
+
+                <span>
+                 Artificial Intelligence 
+
+                </span>
+
+                <!-- <span class="mobile-course-icon">+</span> -->
+
+              </button>
+
+            </div>
+
+
+
+
             <!-- MANAGEMENT & MARKETING -->
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78"  onclick="window.location.href='data_science.php'"  type="button">
+              <button class="mobile-course-button itne78" onclick="window.location.href='data_science.php'" type="button">
 
                 <span>
-                  Data Science with Python
+                  Data Science 
                 </span>
 
                 <!-- <span class="mobile-course-icon">+</span> -->
@@ -1749,6 +1631,14 @@
 
             </div>
 
+            <div class="mobile-course-wrapper">
+
+              <button class="mobile-course-button itne78" onclick="window.location.href='python.php'" type="button">
+
+                <span>Python</span>
+              </button>
+
+            </div>
 
             <!-- TRENDING -->
 
@@ -1777,15 +1667,7 @@
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78"  onclick="window.location.href='python.php'"  type="button">
-
-                <span>Python</span>
-              </button>
-
-            </div>
-            <div class="mobile-course-wrapper">
-
-              <button class="mobile-course-button itne78"  onclick="window.location.href='java.php'"  type="button">
+              <button class="mobile-course-button itne78" onclick="window.location.href='java.php'" type="button">
 
                 <span>Java</span>
               </button>
