@@ -106,7 +106,7 @@
                 <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M4 19h16M6 15l4-5 3 3 5-7" stroke="#0E9C8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg></div>
-                <p class="why-card-title">Hands-on projects</p>
+                <p class="why-card-title">Flexible batch</p>
                 <p class="why-card-desc">Work on real, messy datasets from day one instead of pre-cleaned classroom examples.</p>
             </div>
             <div class="why-card">
@@ -114,7 +114,7 @@
                         <circle cx="12" cy="8" r="4" stroke="#0E9C8A" stroke-width="2" />
                         <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#0E9C8A" stroke-width="2" stroke-linecap="round" />
                     </svg></div>
-                <p class="why-card-title">1:1 mentorship</p>
+                <p class="why-card-title">100% Internship</p>
                 <p class="why-card-desc">A dedicated mentor reviews your notebooks and code, not just your final grade.</p>
             </div>
             <div class="why-card">
@@ -122,21 +122,21 @@
                         <path d="M12 3v6l4 2" stroke="#0E9C8A" stroke-width="2" stroke-linecap="round" />
                         <circle cx="12" cy="12" r="9" stroke="#0E9C8A" stroke-width="2" />
                     </svg></div>
-                <p class="why-card-title">Instructors from industry</p>
+                <p class="why-card-title">Resume building session</p>
                 <p class="why-card-desc">Taught by practitioners currently building analytics and ML systems, not full-time trainers only.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12h14M5 6h14M5 18h9" stroke="#0E9C8A" stroke-width="2" stroke-linecap="round" />
                     </svg></div>
-                <p class="why-card-title">Flexible batches</p>
+                <p class="why-card-title">Hands on training</p>
                 <p class="why-card-desc">Weekday, weekend and online-live formats so the course fits around your job or college.</p>
             </div>
             <div class="why-card">
                 <div class="why-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-4a4 4 0 100-8 4 4 0 000 8zm6 0a4 4 0 10-4-4" stroke="#0E9C8A" stroke-width="2" stroke-linecap="round" />
                     </svg></div>
-                <p class="why-card-title">Small cohort sizes</p>
+                <p class="why-card-title">Live projects</p>
                 <p class="why-card-desc">Capped batches mean every question gets answered, not lost in a crowd of hundreds.</p>
             </div>
             <div class="why-card">

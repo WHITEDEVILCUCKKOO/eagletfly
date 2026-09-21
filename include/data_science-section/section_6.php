@@ -68,18 +68,18 @@
             <p class="tools-desc">The same stack analysts and ML engineers use in production, not toy substitutes.</p>
         </div>
         <div class="tools-grid" id="tools-target">
+            <span class="tools-chip">Data Science</span>
             <span class="tools-chip">Python</span>
-            <span class="tools-chip">Pandas</span>
-            <span class="tools-chip">NumPy</span>
             <span class="tools-chip">SQL</span>
-            <span class="tools-chip">Power BI</span>
-            <span class="tools-chip">Tableau</span>
-            <span class="tools-chip">Scikit-learn</span>
-            <span class="tools-chip">TensorFlow</span>
+            <span class="tools-chip">NumPy</span>
+            <span class="tools-chip">Pandas</span>
             <span class="tools-chip">Matplotlib</span>
-            <span class="tools-chip">Seaborn</span>
-            <span class="tools-chip">Jupyter</span>
-            <span class="tools-chip">Git</span>
+            <span class="tools-chip">Scikitlearn</span>
+            <span class="tools-chip">Machine Learning</span>
+            <!-- <span class="tools-chip">Tableau</span> -->
+            <!-- <span class="tools-chip">Seaborn</span> -->
+            <!-- <span class="tools-chip">Jupyter</span> -->
+            <!-- <span class="tools-chip">Git</span> -->
         </div>
     </section>
 

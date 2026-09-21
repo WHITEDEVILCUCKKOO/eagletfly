@@ -71,15 +71,15 @@
                 <p class="stats-label">Learners trained</p>
             </div>
             <div class="stats-cell">
-                <p class="stats-num">₹5–12L</p>
+                <p class="stats-num">₹4–5L</p>
                 <p class="stats-label">Average package</p>
             </div>
             <div class="stats-cell">
-                <p class="stats-num">90%</p>
+                <p class="stats-num">70% - 80%</p>
                 <p class="stats-label">Placement rate</p>
             </div>
             <div class="stats-cell">
-                <p class="stats-num">12 yrs</p>
+                <p class="stats-num">10 yrs</p>
                 <p class="stats-label">In tech education</p>
             </div>
         </div>
