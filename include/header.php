@@ -1,10 +1,23 @@
+<?php
+
+include "./admin_access/db_config.php";
+include "./admin_access/functions/global_info.php";
+
+$global_info = get_global_info($mydb);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="img/logo/facion.png">
+  <link
+    rel="icon"
+    type="image/x-icon"
+    href="img/logo/<?php echo htmlspecialchars($global_info['facion_icon']); ?>">
   <title>EagletFly </title>
 
   <link rel="stylesheet" href="assets/css/main.css">
@@ -1401,7 +1414,11 @@
     <header class="header-container">
       <!-- 1. Logo -->
       <div class="logo">
-        <a href="index.php"><img src="img/logo/lOGO-B-e1561700484623.png" alt="Logo"></a>
+        <a href="index.php">
+          <img
+            src="img/logo/<?php echo htmlspecialchars($global_info['logo'] ?? ''); ?>"
+            alt="Logo">
+        </a>
       </div>
 
       <!-- 2. Desktop Curved Center Navigation -->
@@ -1495,18 +1512,45 @@
 
             </li>
             <li><a href="blog.php">Blog</a></li>
-            <li><a href="contect.php">Contact</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </div>
 
       <!-- 3. Social Icons & Hamburger Icon -->
       <div style="display: flex; align-items: center; gap: 20px;">
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
+       <div class="social-icons">
+
+    <a
+        href="<?php echo htmlspecialchars($global_info['globle_instagram'] ?? '#', ENT_QUOTES); ?>"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+    >
+        <i class="fab fa-instagram"></i>
+    </a>
+
+
+    <a
+        href="<?php echo htmlspecialchars($global_info['globle_linkedin'] ?? '#', ENT_QUOTES); ?>"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+    >
+        <i class="fab fa-linkedin"></i>
+    </a>
+
+
+    <a
+        href="<?php echo htmlspecialchars($global_info['globle_yt'] ?? '#', ENT_QUOTES); ?>"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube"
+    >
+        <i class="fab fa-youtube"></i>
+    </a>
+
+</div>
 
         <button class="hamburger" id="hamburger" aria-label="Open menu">
           <span></span>
@@ -1594,7 +1638,7 @@
               <button class="mobile-course-button itne78" type="button" onclick="window.location.href='machine_learning_and_ai.php'">
 
                 <span>
-                 Artificial Intelligence 
+                  Artificial Intelligence
 
                 </span>
 
@@ -1614,7 +1658,7 @@
               <button class="mobile-course-button itne78" onclick="window.location.href='data_science.php'" type="button">
 
                 <span>
-                  Data Science 
+                  Data Science
                 </span>
 
                 <!-- <span class="mobile-course-icon">+</span> -->
@@ -1682,7 +1726,7 @@
 
         <a href="#">Testimonials</a>
         <a href="blog.php">Blog</a>
-        <a href="contect.php">Contact</a>
+        <a href="contact.php">Contact</a>
 
       </div>
     </header>

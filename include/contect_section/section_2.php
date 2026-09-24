@@ -2,7 +2,7 @@
     .qloc-wrap {
         background: linear-gradient(135deg, #eafaf3 0%, #f3fbf9 55%, #eef9f7 100%);
         /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
-        padding: 120px 20px 80px ;
+        padding: 120px 20px 80px;
     }
 
     .qloc-inner {
@@ -66,7 +66,7 @@
     /* ---------- Left panel ---------- */
 
     .qloc-panel {
-        background:linear-gradient(160deg, #0f228f, #1c1a8f);
+        background: linear-gradient(160deg, #0f228f, #1c1a8f);
         padding: 34px 32px;
         color: #ffffff;
     }
@@ -239,7 +239,7 @@
     <div class="qloc-inner">
 
         <div class="qloc-head">
-            <h2 class="qloc-title">Our  <span class="qcontact-title-accent"> Location</span></h2>
+            <h2 class="qloc-title">Our <span class="qcontact-title-accent"> Location</span></h2>
             <p class="qloc-sub">Visit us at our office or reach out — we'd love to meet you in person.</p>
         </div>
 
@@ -260,7 +260,9 @@
                 <div class="qloc-info-card">
                     <p class="qloc-info-label">Head Office</p>
                     <p class="qloc-info-name">EagletFly</p>
-                    <p class="qloc-info-address">Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008</p>
+                    <p class="qloc-info-address">
+                        <?php echo htmlspecialchars($global_info['footer_address'] ?? ''); ?>
+                    </p>
                 </div>
 
                 <div class="qloc-info-card">
@@ -282,9 +284,16 @@
 
             <!-- Right map panel -->
             <div class="qloc-map-panel">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d437.67775252896064!2d77.17010613344813!3d28.647079886220727!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e5d2381555%3A0x370e46f5213d8008!2sPrimora%20Kids!5e0!3m2!1sen!2sin!4v1788349705408!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            </div>
+                <iframe
+                    src="<?php echo htmlspecialchars($global_info['map_link'] ?? '', ENT_QUOTES); ?>"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
 
+            </div>
         </div>
-    </div>
 </section>

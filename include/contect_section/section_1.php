@@ -89,7 +89,7 @@
     /* ---------- Left panel ---------- */
 
     .qcontact-panel {
-        background: #ecfeff ;
+        background: #ecfeff;
         border-radius: 22px;
         padding: 34px 30px;
         opacity: 0;
@@ -322,7 +322,7 @@
         font-size: 15px;
         font-weight: 700;
         color: #ffffff;
-       background: linear-gradient(90deg, #00A878 0%, #1696B5 100%);
+        background: linear-gradient(90deg, #00A878 0%, #1696B5 100%);
         border: none;
         border-radius: 12px;
         padding: 15px 20px;
@@ -525,7 +525,7 @@
             <div class="qcontact-panel">
                 <h3 class="qcontact-panel-title">Let's Connect</h3>
                 <p class="qcontact-panel-desc">Have a question or a project in mind? Fill out the form and our team will get back to you within 24 hours. We're here to understand your needs and find the right solution for your business.
-</p>
+                </p>
 
                 <div class="qcontact-info-card">
                     <div class="qcontact-info-icon">
@@ -538,8 +538,12 @@
                     </div>
                     <div>
                         <p class="qcontact-info-label">SALES EMAIL</p>
-                        <p class="qcontact-info-value">info@eagletflysolutions.com / eagletflysolutions@gmail.com</p>
-                       
+                        <p class="qcontact-info-value">
+                            <?php echo htmlspecialchars($global_info['footer_email_1'] ?? ''); ?>
+                            /
+                            <?php echo htmlspecialchars($global_info['footer_email_2'] ?? ''); ?>
+                        </p>
+
                     </div>
                 </div>
 
@@ -551,7 +555,11 @@
                     </div>
                     <div>
                         <p class="qcontact-info-label">WHATSAPP</p>
-                        <p class="qcontact-info-value qcontact-teal">+91 9811434638 | +91 98114 34634</p>
+                        <p class="qcontact-info-value qcontact-teal">
+                            <?php echo htmlspecialchars($global_info['footer_phone_1'] ?? ''); ?>
+                            |
+                            <?php echo htmlspecialchars($global_info['footer_phone_2'] ?? ''); ?>
+                        </p>
 
                     </div>
                     <div></div>
