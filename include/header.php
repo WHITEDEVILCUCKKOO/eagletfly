@@ -1450,7 +1450,7 @@ $global_info = get_global_info($mydb);
                   <!-- DESIGN COURSE -->
                   <li class="program-dropdown-item">
 
-                    <a href="genAi_&_agentic_ai.php" class="program-dropdown-link">
+                    <a href="gen_ai-&-agentic_ai.php" class="program-dropdown-link">
                       Gen AI & Agentic AI
                       <!-- <span class="submenu-arrow">›</span> -->
                     </a>
@@ -1618,7 +1618,7 @@ $global_info = get_global_info($mydb);
 
             <div class="mobile-course-wrapper">
 
-              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='genAi_&_agentic_ai.php'">
+              <button class="mobile-course-button itne78" type="button" onclick="window.location.href='gen_ai-&-agentic_ai.php'">
 
                 <span>
                   Gen AI & Agentic AI
