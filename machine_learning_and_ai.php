@@ -23,23 +23,31 @@
 <main>
     <!-- section 1 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_1.php' ?>
-
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_1.php' ?>
+    
     <!-- section 2 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_2.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_2.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_3.php' ?>
     
-
+    
     <!-- section 3 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_3.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_4.php' ?>
     
-
+    
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_4.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_5.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_6.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_7.php' ?>
+    <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/content_8.php' ?>
     
-
+    
     <!-- section 5 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_5.php' ?>
     
-
+    
     <!-- section 6 -->
     <?php require_once __DIR__ . '/include/machine_learning_and_ai-sections/section_6.php' ?>
     
