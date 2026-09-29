@@ -370,7 +370,7 @@
 
      @media (max-width: 560px) {
          .dgfh-hero {
-             padding: 32px 16px 44px;
+             padding: 120px 16px 44px;
          }
 
          .dgfh-heading {

@@ -27,19 +27,24 @@
 
     <!-- section 2 -->
     <?php require_once __DIR__ . '/include/python-section/section_2.php' ?>
-
+    <?php require_once __DIR__ . '/include/python-section/content_1.php' ?>
+    
     <!-- section 3 -->
     <?php require_once __DIR__ . '/include/python-section/section_3.php' ?>
-
+    <?php require_once __DIR__ . '/include/python-section/content_2.php' ?>
+    
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/python-section/section_4.php' ?>
-
+    <?php require_once __DIR__ . '/include/python-section/content_3.php' ?>
+    
     <!-- section 5 -->
     <?php require_once __DIR__ . '/include/python-section/section_5.php' ?>
-
+    <?php require_once __DIR__ . '/include/python-section/content_4.php' ?>
+    <?php require_once __DIR__ . '/include/python-section/content_5.php' ?>
+    
     <!-- section 6 -->
     <?php require_once __DIR__ . '/include/python-section/section_6.php' ?>
-
+    
     <!-- section 7 -->
     <?php require_once __DIR__ . '/include/python-section/section_7.php' ?>
     
@@ -48,6 +53,7 @@
     
     <!-- section 9 -->
     <?php require_once __DIR__ . '/include/python-section/section_9.php' ?>
+    <?php require_once __DIR__ . '/include/python-section/content_6.php' ?>
     
     <!-- section 10 -->
     <?php require_once __DIR__ . '/include/python-section/section_10.php' ?>

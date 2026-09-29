@@ -1,26 +1,28 @@
 <!-- ================= WHY LEARN SECTION ================= -->
+
 <section class="eagletfly-why-section">
 
     <div class="eagletfly-why-container">
 
         <!-- Section Heading -->
         <div class="eagletfly-why-heading">
+
             <h2>
-                Why Learn at
+                Why Learn Python at
                 <span>Eagletfly Solutions?</span>
             </h2>
 
             <p>
-                Empowering students across various fields with branches in Delhi,
-                we help you enhance your skills and provide unlimited placement support
-                until you land your dream job. Ready to learn and make an impact?
+                Build strong Python programming skills through structured learning,
+                hands-on development, real-world projects, modern frameworks, and
+                practical career preparation designed for aspiring software developers.
             </p>
 
             <div class="eagletfly-why-buttons">
 
                 <a href="tel:+919345045466" class="eagletfly-phone-btn">
                     <i class="fa-solid fa-phone"></i>
-                   +91 98114 34634 | +91 98114 34638
+                    +91 98114 34634 | +91 98114 34638
                 </a>
 
                 <a href="#" class="eagletfly-callback-btn">
@@ -29,6 +31,7 @@
                 </a>
 
             </div>
+
         </div>
 
 
@@ -39,21 +42,24 @@
             <div class="eagletfly-image-grid">
 
                 <div class="eagletfly-image-small">
-                    <img src="assets/students_imgs/img_2.jpeg" alt="Live Classroom Sessions">
-
-                    <span>Live Classroom Sessions</span>
+                    <img
+                        src="assets/students_imgs/img_2.jpeg"
+                        alt="Python Classroom Training">
+                    <span>Python Classroom Training</span>
                 </div>
 
                 <div class="eagletfly-image-small">
-                    <img src="assets/students_imgs/img_1.jpeg" alt="Hands-on Projects">
-
-                    <span>Hands-on Projects</span>
+                    <img
+                        src="assets/students_imgs/img_1.jpeg"
+                        alt="Hands-on Python Projects">
+                    <span>Hands-on Python Projects</span>
                 </div>
 
                 <div class="eagletfly-image-large">
-                    <img src="assets/students_imgs/img_3.jpeg" alt="Free Placement Sessions">
-
-                    <span>Free Placement Sessions</span>
+                    <img
+                        src="assets/students_imgs/img_3.jpeg"
+                        alt="Practical Career Preparation">
+                    <span>Practical Career Preparation</span>
                 </div>
 
             </div>
@@ -66,21 +72,21 @@
                 <div class="eagletfly-feature-card">
 
                     <div class="eagletfly-feature-icon eagletfly-orange">
-                        <i class="fa-solid fa-users"></i>
+                        <i class="fa-solid fa-code"></i>
                     </div>
 
                     <div class="eagletfly-feature-text">
 
-                        <h3>Free Interview Clearing Workshops</h3>
+                        <h3>Strong Python Fundamentals</h3>
 
                         <p>
-                            We help you prepare for job placement with mock interviews,
-                            aptitude practice, and HR round guidance, so you feel
-                            confident and job-ready.
+                            Build a strong foundation in Python syntax, variables,
+                            operators, control flow, functions, scope, and logical
+                            problem-solving techniques.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-orange">
-                            100% Free
+                            Core Python
                         </span>
 
                     </div>
@@ -92,21 +98,21 @@
                 <div class="eagletfly-feature-card">
 
                     <div class="eagletfly-feature-icon eagletfly-blue">
-                        <i class="fa-solid fa-code"></i>
+                        <i class="fa-solid fa-diagram-project"></i>
                     </div>
 
                     <div class="eagletfly-feature-text">
 
-                        <h3>Hands-on Capstone Projects</h3>
+                        <h3>Advanced OOP & Data Structures</h3>
 
                         <p>
-                            Work on real-world projects using live data and industry
-                            tools. By the end of the course, you'll have a solid
-                            portfolio that you can confidently showcase to recruiters.
+                            Learn lists, tuples, sets, dictionaries, comprehensions,
+                            classes, objects, inheritance, polymorphism, encapsulation,
+                            and exception handling.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-blue">
-                            Portfolio Ready
+                            Advanced Concepts
                         </span>
 
                     </div>
@@ -118,22 +124,21 @@
                 <div class="eagletfly-feature-card">
 
                     <div class="eagletfly-feature-icon eagletfly-green">
-                        <i class="fa-regular fa-clock"></i>
+                        <i class="fa-solid fa-database"></i>
                     </div>
 
                     <div class="eagletfly-feature-text">
 
-                        <h3>Real-time Industry Experts as Trainers</h3>
+                        <h3>Database & API Development</h3>
 
                         <p>
-                            Our trainers are working professionals with 8–15 years
-                            of experience. They focus on practical knowledge, not
-                            just theory, so you learn what's actually used in the
-                            industry today.
+                            Work with files, regular expressions, MySQL or PostgreSQL,
+                            CRUD operations, RESTful APIs, JSON data, authentication,
+                            and modern backend development workflows.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-green">
-                            Industry Certified
+                            Practical Development
                         </span>
 
                     </div>
@@ -145,21 +150,21 @@
                 <div class="eagletfly-feature-card">
 
                     <div class="eagletfly-feature-icon eagletfly-purple">
-                        <i class="fa-regular fa-file-lines"></i>
+                        <i class="fa-solid fa-briefcase"></i>
                     </div>
 
                     <div class="eagletfly-feature-text">
 
-                        <h3>Free Resume Preparation</h3>
+                        <h3>Career & Real-World Project Preparation</h3>
 
                         <p>
-                            Get help creating a strong, professional resume that
-                            highlights your skills in the right way. We make sure
-                            it's a clear, well-structured, and ATS-friendly resume.
+                            Build portfolio-ready projects while learning Django,
+                            Flask, Git, GitHub, cloud deployment, interview preparation,
+                            and industry best practices for Python development.
                         </p>
 
                         <span class="eagletfly-feature-tag eagletfly-tag-purple">
-                            ATS Optimised
+                            Career Focused
                         </span>
 
                     </div>
@@ -351,6 +356,10 @@
 }
 
 
+/* =========================================
+   FEATURE ICON
+========================================= */
+
 .eagletfly-feature-icon {
     width: 45px;
     height: 45px;
@@ -461,6 +470,7 @@
     .eagletfly-image-grid {
         grid-template-rows: 220px 300px;
     }
+
 }
 
 
@@ -512,6 +522,7 @@
     .eagletfly-feature-text p {
         font-size: 11px;
     }
+
 }
 
 </style>
