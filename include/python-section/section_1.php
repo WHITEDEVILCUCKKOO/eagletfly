@@ -19,7 +19,7 @@
 
         width: 100%;
 
-        min-height: 590px
+        min-height: 590px;
         display: flex;
 
         align-items: center;
