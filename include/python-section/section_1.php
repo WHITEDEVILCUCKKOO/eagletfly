@@ -19,8 +19,7 @@
 
         width: 100%;
 
-        min-height: 590px;
-
+        min-height: 590px
         display: flex;
 
         align-items: center;
@@ -1574,9 +1573,9 @@
 
         .kd-podcast-main-shot {
 
-            top: 15px;
+            /* top: 15px;
 
-            left: 2%;
+            left: 2%; */
 
             width: 82%;
 

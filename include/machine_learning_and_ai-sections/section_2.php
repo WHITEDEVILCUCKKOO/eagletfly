@@ -362,6 +362,13 @@
 
             }
 
+            @media (max-width:970px) {
+                .bottom_div_s
+            {
+                    display: none;
+            }
+        }
+
             .kdst-container {
                 /* max-width: 1100px; */
                 margin: 0 auto;

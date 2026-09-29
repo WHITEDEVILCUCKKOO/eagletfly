@@ -76,8 +76,15 @@
     }
 
     @keyframes kdPodcastContentIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .kd-podcast-eyebrow {
@@ -164,7 +171,9 @@
         box-shadow: 0 13px 30px rgba(231, 111, 0, .22) !important;
     }
 
-    .kd-podcast-primary:hover { transform: translateY(-2px); }
+    .kd-podcast-primary:hover {
+        transform: translateY(-2px);
+    }
 
     .kd-podcast-btn-arrow {
         width: 33px;
@@ -178,7 +187,10 @@
         background: rgba(255, 255, 255, .15);
     }
 
-    .kd-podcast-btn-arrow svg { width: 19px; height: 19px; }
+    .kd-podcast-btn-arrow svg {
+        width: 19px;
+        height: 19px;
+    }
 
     .kd-podcast-secondary,
     .kd-podcast-secondary:hover,
@@ -293,8 +305,15 @@
     }
 
     @keyframes kdPodcastMainReveal {
-        from { opacity: 0; transform: translateY(20px) scale(.98); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
     }
 
     /* ===== JAVA LOGO — CUP RINGS + RISING STEAM ===== */
@@ -318,15 +337,28 @@
         filter: blur(30px);
         opacity: 0;
         animation: kdGlowFadeIn .8s 1.8s ease-out forwards,
-                   kdGlowPulse 3.2s 2.6s ease-in-out infinite;
+            kdGlowPulse 3.2s 2.6s ease-in-out infinite;
         pointer-events: none;
     }
 
-    @keyframes kdGlowFadeIn { to { opacity: 1; } }
+    @keyframes kdGlowFadeIn {
+        to {
+            opacity: 1;
+        }
+    }
 
     @keyframes kdGlowPulse {
-        0%, 100% { opacity: .5; transform: scale(.92); }
-        50% { opacity: 1; transform: scale(1.08); }
+
+        0%,
+        100% {
+            opacity: .5;
+            transform: scale(.92);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.08);
+        }
     }
 
     .kd-java-logo-container {
@@ -339,98 +371,322 @@
     }
 
     @keyframes kdLogoFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-9px); }
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-9px);
+        }
     }
 
-    .kd-java-logo-container svg { width: 100%; height: 100%; overflow: visible; }
+    .kd-java-logo-container svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
 
     /* rings: bottom to top build */
-    .kd-java-ring { opacity: 0; transform: scaleX(.6); transform-box: fill-box; transform-origin: center; }
+    .kd-java-ring {
+        opacity: 0;
+        transform: scaleX(.6);
+        transform-box: fill-box;
+        transform-origin: center;
+    }
 
     .kd-podcast-studio-visual.kd-in-view .kd-java-ring {
         animation: kdRingIn .55s cubic-bezier(.2, .9, .3, 1.2) forwards;
     }
 
-    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-3 { animation-delay: .1s; }
-    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-2 { animation-delay: .32s; }
-    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-1 { animation-delay: .54s; }
+    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-3 {
+        animation-delay: .1s;
+    }
+
+    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-2 {
+        animation-delay: .32s;
+    }
+
+    .kd-podcast-studio-visual.kd-in-view .kd-java-ring-1 {
+        animation-delay: .54s;
+    }
 
     @keyframes kdRingIn {
-        0% { opacity: 0; transform: scaleX(.6) translateY(6px); }
-        100% { opacity: 1; transform: scaleX(1) translateY(0); }
+        0% {
+            opacity: 0;
+            transform: scaleX(.6) translateY(6px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scaleX(1) translateY(0);
+        }
     }
 
     /* steam: fades up after cup is built, then loops */
-    .kd-java-steam { opacity: 0; transform-box: fill-box; transform-origin: bottom center; }
+    .kd-java-steam {
+        opacity: 0;
+        transform-box: fill-box;
+        transform-origin: bottom center;
+    }
 
     .kd-podcast-studio-visual.kd-in-view .kd-java-steam-1 {
         animation: kdSteamRise 3s 1.1s ease-in-out infinite;
     }
+
     .kd-podcast-studio-visual.kd-in-view .kd-java-steam-2 {
         animation: kdSteamRise 3s 1.4s ease-in-out infinite;
     }
 
     @keyframes kdSteamRise {
-        0% { opacity: 0; transform: translateY(6px) scale(.94); }
-        25% { opacity: .95; }
-        70% { opacity: .55; }
-        100% { opacity: 0; transform: translateY(-10px) scale(1.03); }
+        0% {
+            opacity: 0;
+            transform: translateY(6px) scale(.94);
+        }
+
+        25% {
+            opacity: .95;
+        }
+
+        70% {
+            opacity: .55;
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-10px) scale(1.03);
+        }
     }
 
     @media(max-width:1024px) {
-        .kd-podcast-hero-2026 { min-height: 560px; padding: 38px 0; }
-        .kd-podcast-hero-wrap { width: min(960px, calc(100% - 36px)); }
-        .kd-podcast-hero-grid { grid-template-columns: minmax(0, 1fr) 470px; gap: 42px; }
-        .kd-podcast-hero-copy h1 { font-size: 50px; }
-        .kd-podcast-hero-desc { font-size: 14.5px; }
-        .kd-podcast-studio-visual { min-height: 450px; }
-        .kd-podcast-main-shot { height: 380px; }
+        .kd-podcast-hero-2026 {
+            min-height: 560px;
+            padding: 38px 0;
+        }
+
+        .kd-podcast-hero-wrap {
+            width: min(960px, calc(100% - 36px));
+        }
+
+        .kd-podcast-hero-grid {
+            grid-template-columns: minmax(0, 1fr) 470px;
+            gap: 42px;
+        }
+
+        .kd-podcast-hero-copy h1 {
+            font-size: 50px;
+        }
+
+        .kd-podcast-hero-desc {
+            font-size: 14.5px;
+        }
+
+        .kd-podcast-studio-visual {
+            min-height: 450px;
+        }
+
+        .kd-podcast-main-shot {
+            height: 380px;
+        }
     }
 
     @media(max-width:767px) {
-        .kd-podcast-hero-2026 { min-height: auto; padding: 32px 0 34px; }
-        .kd-podcast-hero-wrap { width: calc(100% - 28px); max-width: 590px; }
-        .kd-podcast-hero-grid { grid-template-columns: 1fr; gap: 27px; }
-        .kd-podcast-hero-copy { text-align: center; padding: 80px 30px 30px; }
-        .kd-podcast-eyebrow { justify-content: center; margin-bottom: 11px; font-size: 8.5px; }
-        .kd-podcast-eyebrow-line { width: 28px; flex-basis: 28px; }
-        .kd-podcast-hero-copy h1 { max-width: 540px; margin: 0 auto; font-size: 37px; line-height: 1.09; }
-        .kd-podcast-hero-desc { max-width: 530px; margin: 14px auto 0; font-size: 14px; line-height: 1.7; }
-        .kd-podcast-hero-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 19px; }
-        .kd-podcast-hero-btn, .kd-podcast-hero-btn:hover, .kd-podcast-hero-btn:focus, .kd-podcast-hero-btn:active { width: 100%; min-height: 48px; font-size: 10px !important; }
-        .kd-podcast-primary { padding: 0 6px 0 11px; }
-        .kd-podcast-secondary { padding: 0 10px; }
-        .kd-podcast-hero-meta { margin: 18px auto 0; padding: 11px 9px; gap: 8px; text-align: left; }
-        .kd-podcast-meta-item { gap: 6px; }
-        .kd-podcast-meta-icon { width: 29px; height: 29px; flex-basis: 29px; }
-        .kd-podcast-meta-icon svg { width: 14px; height: 14px; }
-        .kd-podcast-meta-item strong { font-size: 7.7px; }
-        .kd-podcast-meta-item small { font-size: 5.7px; }
-        .kd-podcast-studio-visual { min-height: 425px; max-width: 510px; width: 100%; margin: 0 auto; }
-        .kd-podcast-main-shot { bottom: 19px; left: 50%; width: 80%; }
+        .kd-podcast-hero-2026 {
+            min-height: auto;
+            padding: 32px 0 34px;
+        }
+
+        .kd-podcast-hero-wrap {
+            width: calc(100% - 28px);
+            max-width: 590px;
+        }
+
+        .kd-podcast-hero-grid {
+            grid-template-columns: 1fr;
+            gap: 27px;
+        }
+
+        .kd-podcast-hero-copy {
+            text-align: center;
+            padding: 80px 30px 30px;
+        }
+
+        .kd-podcast-eyebrow {
+            justify-content: center;
+            margin-bottom: 11px;
+            font-size: 8.5px;
+        }
+
+        .kd-podcast-eyebrow-line {
+            width: 28px;
+            flex-basis: 28px;
+        }
+
+        .kd-podcast-hero-copy h1 {
+            max-width: 540px;
+            margin: 0 auto;
+            font-size: 37px;
+            line-height: 1.09;
+        }
+
+        .kd-podcast-hero-desc {
+            max-width: 530px;
+            margin: 14px auto 0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .kd-podcast-hero-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 19px;
+        }
+
+        .kd-podcast-hero-btn,
+        .kd-podcast-hero-btn:hover,
+        .kd-podcast-hero-btn:focus,
+        .kd-podcast-hero-btn:active {
+            width: 100%;
+            min-height: 48px;
+            font-size: 10px !important;
+        }
+
+        .kd-podcast-primary {
+            padding: 0 6px 0 11px;
+        }
+
+        .kd-podcast-secondary {
+            padding: 0 10px;
+        }
+
+        .kd-podcast-hero-meta {
+            margin: 18px auto 0;
+            padding: 11px 9px;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .kd-podcast-meta-item {
+            gap: 6px;
+        }
+
+        .kd-podcast-meta-icon {
+            width: 29px;
+            height: 29px;
+            flex-basis: 29px;
+        }
+
+        .kd-podcast-meta-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .kd-podcast-meta-item strong {
+            font-size: 7.7px;
+        }
+
+        .kd-podcast-meta-item small {
+            font-size: 5.7px;
+        }
+
+        .kd-podcast-studio-visual {
+            min-height: 425px;
+            max-width: 510px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .kd-podcast-main-shot {
+            bottom: 19px;
+            left: 50%;
+            width: 80%;
+        }
     }
 
     @media(max-width:420px) {
-        .kd-podcast-hero-2026 { padding: 28px 0 30px; }
-        .kd-podcast-hero-wrap { width: calc(100% - 24px); }
-        .kd-podcast-hero-grid { gap: 22px; }
-        .kd-podcast-hero-copy h1 { font-size: 31px; }
-        .kd-podcast-hero-desc { margin-top: 12px; font-size: 13px; }
-        .kd-podcast-hero-actions { margin-top: 16px; gap: 6px; }
-        .kd-podcast-hero-btn, .kd-podcast-hero-btn:hover, .kd-podcast-hero-btn:focus, .kd-podcast-hero-btn:active { min-height: 45px; font-size: 8.7px !important; }
-        .kd-podcast-hero-meta { margin-top: 15px; padding: 9px 7px; gap: 5px; }
-        .kd-podcast-meta-divider { height: 29px; }
-        .kd-podcast-meta-icon { width: 25px; height: 25px; flex-basis: 25px; }
-        .kd-podcast-meta-item strong { font-size: 6.9px; }
-        .kd-podcast-meta-item small { font-size: 5px; }
-        .kd-podcast-studio-visual { min-height: 370px; }
-        .kd-podcast-main-shot { top: 15px; left: 2%; width: 82%; border-radius: 18px; }
+        .kd-podcast-hero-2026 {
+            padding: 28px 0 30px;
+        }
+
+        .kd-podcast-hero-wrap {
+            width: calc(100% - 24px);
+        }
+
+        .kd-podcast-hero-grid {
+            gap: 22px;
+        }
+
+        .kd-podcast-hero-copy h1 {
+            font-size: 31px;
+        }
+
+        .kd-podcast-hero-desc {
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        .kd-podcast-hero-actions {
+            margin-top: 16px;
+            gap: 6px;
+        }
+
+        .kd-podcast-hero-btn,
+        .kd-podcast-hero-btn:hover,
+        .kd-podcast-hero-btn:focus,
+        .kd-podcast-hero-btn:active {
+            min-height: 45px;
+            font-size: 8.7px !important;
+        }
+
+        .kd-podcast-hero-meta {
+            margin-top: 15px;
+            padding: 9px 7px;
+            gap: 5px;
+        }
+
+        .kd-podcast-meta-divider {
+            height: 29px;
+        }
+
+        .kd-podcast-meta-icon {
+            width: 25px;
+            height: 25px;
+            flex-basis: 25px;
+        }
+
+        .kd-podcast-meta-item strong {
+            font-size: 6.9px;
+        }
+
+        .kd-podcast-meta-item small {
+            font-size: 5px;
+        }
+
+        .kd-podcast-studio-visual {
+            min-height: 370px;
+        }
+
+        .kd-podcast-main-shot {
+            /* top: 15px;
+            left: 2%; */
+            width: 82%;
+            border-radius: 18px;
+        }
     }
 
     @media(prefers-reduced-motion:reduce) {
-        .kd-podcast-hero-copy, .kd-podcast-main-shot { animation: none !important; }
-        .kd-java-ring, .kd-java-steam, .kd-java-logo-container, .kd-java-glow {
+
+        .kd-podcast-hero-copy,
+        .kd-podcast-main-shot {
+            animation: none !important;
+        }
+
+        .kd-java-ring,
+        .kd-java-steam,
+        .kd-java-logo-container,
+        .kd-java-glow {
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;
@@ -536,13 +792,13 @@
 </section>
 
 <script>
-    (function () {
+    (function() {
         var section = document.querySelector(".kd-podcast-hero-2026");
         var visual = section && section.querySelector(".kd-podcast-studio-visual");
         if (!section || !visual) return;
 
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     visual.classList.remove("kd-in-view");
                     void visual.offsetWidth;
@@ -551,7 +807,9 @@
                     visual.classList.remove("kd-in-view");
                 }
             });
-        }, { threshold: 0.35 });
+        }, {
+            threshold: 0.35
+        });
 
         observer.observe(section);
     })();

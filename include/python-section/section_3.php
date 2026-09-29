@@ -301,178 +301,340 @@
     <section class="kd-cov-section">
 
         <!-- LEFT: COURSE OVERVIEW -->
-        <div>
-            <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
-            <h1 class="kd-cov-heading">Everything you need to master
-                Python Course in Delhi | Ducat India.</h1>
+       <div>
+    <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
 
-            <div class="kd-cov-body-wrap" id="kdCovBody">
-                <h2>Overview</h2>
-                <p>Python has become the common language for building products, automating work, and making sense of data. This program is designed for learners who want to turn “I can write a script” into “I can ship reliable solutions.” You’ll learn the building blocks of Python, practise clean coding habits, and apply them to realistic problems—data wrangling, file and API workflows, simple web backends, and analytical reporting. Every topic ends in a task you can repeat and adapt, so progress is visible and usable.</p>
-                <p>We keep things practical: clear explanations, measured exercises, and a portfolio that proves what you can do. You also get free access to our tutorial website for revision, and a small welcome kit (bag, pen, notepad) so your notes and checklists are always at hand.</p>
-                <h2>Course Objectives</h2>
-                <ul>
-                    <li>Write clean, readable Python code with functions, modules, and clear error handling.</li>
-                    <li>Work confidently with files, JSON/CSV, and external services using HTTP and simple automation.</li>
-                    <li>Organise data using lists, dicts, sets, and tuples; apply comprehension patterns sensibly.</li>
-                    <li>Model small applications with classes where it actually helps (not everywhere).</li>
-                    <li>Process and summarise datasets; produce audit-friendly outputs and reports.</li>
-                    <li>Build a minimal, well-structured backend to expose data and workflows.</li>
-                    <li>Present results with concise documentation so reviewers can verify your steps.</li>
-                </ul>
-                <h2>Who Should Attend</h2>
-                <ul>
-                    <li>Students/freshers who want a structured, hands-on path into developer/analyst roles.</li>
-                    <li>Working professionals who rely on spreadsheets or manual tasks and want automation.</li>
-                    <li>Career switchers seeking fundamentals plus a demonstrable portfolio.</li>
-                    <li>Entrepreneurs who need reliable scripts, small backends, or data pipelines for their product.</li>
-                </ul>
-                <h2>Curriculum (Syllabus)</h2>
-                <p>The syllabus moves from foundations to project delivery. You’ll practise the essentials, build small utilities, and finish with a capstone that combines data handling, API work, and a tiny backend.</p>
-                <ul>
-                    <li>Python essentials and coding discipline</li>
-                    <li>Data structures &amp; algorithms (practical set)</li>
-                    <li>Files, CSV/JSON, and task automation</li>
-                    <li>HTTP requests and small workflow scripts</li>
-                    <li>Simple backend development and routing</li>
-                    <li>Data cleaning, calculation, and summarisation</li>
-                    <li>Testing habits and basic performance checks</li>
-                    <li>Packaging your work and documenting decisions</li>
-                </ul>
-                <h2>Modules</h2>
-                <h3>Module 1 — Python Foundations &amp; Habits</h3>
-                <p>Syntax that matters, naming, comments that explain intent, and a “no mystery numbers” rule. Inputs, outputs, and a quick tour of the runtime so nothing feels magical.</p>
-                <h3>Module 2 — Data Structures in Practice</h3>
-                <p>Lists, dicts, sets, tuples; when to use which and why. Slicing, searching, grouping, and small algorithmic patterns that save time.</p>
-                <h3>Module 3 — Working with Files &amp; Data Formats</h3>
-                <p>Read/write CSV/JSON safely, handle encodings, merge records, and build repeatable scripts that never overwrite source data without backups.</p>
-                <h3>Module 4 — Web Requests &amp; Small Workflows</h3>
-                <p>Make requests, validate responses, and stitch tiny automations together—download, transform, and summarise data on a schedule.</p>
-                <h3>Module 5 — Lightweight Backend Development</h3>
-                <p>Design tidy routes, separate concerns, and return clear responses. Capture input errors up front and log what matters for debugging.</p>
-                <h3>Module 6 — Data Cleaning &amp; Reporting</h3>
-                <p>Filter, aggregate, and calculate indicators. Create compact reports and export formats that managers actually read.</p>
-                <h3>Module 7 — Testing &amp; Reliability</h3>
-                <p>Write just-enough tests to catch regressions. Structure folders, control randomness, and measure simple performance to avoid slow paths.</p>
-                <h3>Module 8 — Packaging &amp; Documentation</h3>
-                <p>Turn scripts into reusable modules, write a minimal README, and provide a setup script so others can run your work in minutes.</p>
-                <h3>Capstone — Automate • Analyse • Serve</h3>
-                <p>Define a small problem, fetch/process data, publish an endpoint or report, and submit a concise README that explains assumptions, limitations, and next steps.</p>
-                <h2>Optional Add-ons</h2>
-                <ul>
-                    <li><b>Free access</b> to our tutorial website for practice files, checklists, and revision.</li>
-                    <li>Welcome kit with <b>bag, pen, and notepad</b>.</li>
-                    <li>Interview sprints and portfolio reviews before placement season.</li>
-                </ul>
-                <h2>0% Easy EMI</h2>
-                <p>We keep education accessible. Fees are <b>affordable</b>, and you can opt for <b>0% Easy EMI</b> for <b>3 or 6 months</b>. Spread the cost without interest and focus on building skills that compound.</p>
-                <h2>Placement Support</h2>
-                <ul>
-                    <li>Role mapping so your applications align with your strengths and portfolio.</li>
-                    <li>Resume and profile edits that highlight measurable outcomes from your projects.</li>
-                    <li>Mock interviews with feedback you can act on immediately.</li>
-                    <li>Targeted referrals and guidance that continue until you land a role.</li>
-                </ul>
-                <h2>Career Paths &amp; Job Roles</h2>
-                <ul>
-                    <li><b>Python Developer (Junior):</b> build utilities, small services, and reliable scripts.</li>
-                    <li><b>Data/Reporting Analyst (Entry):</b> clean datasets, create summaries, and automate recurring reports.</li>
-                    <li><b>Automation/MIS Associate:</b> remove manual steps, standardise inputs, and document workflows.</li>
-                    <li><b>Backend Trainee:</b> implement simple endpoints and error-aware request handling.</li>
-                </ul>
-                <h2>Other Related Courses near you</h2>
-                <p>Anyone building a career roadmap through Python Course In Delhi | Ducat India can explore <a href="https://wordhtml.com/">Python Full Stack Course</a> for deeper practical learning. The course is designed around API development, responsive design, live project workflow, and frontend development. This makes it useful for stronger project and interview preparation.</p>
-                <p>For another related learning option, <a href="https://wordhtml.com/">Selenium with Python Training</a> can be added naturally in the content. It supports bug reporting, Selenium basics, real project testing practice, and test case design. Students can understand which course fits their goals better.</p>
-                <h2>Eligibility &amp; Prerequisites</h2>
-                <p>No strict prerequisites. Comfort with basic computer operations is enough. Prior coding helps but isn’t required—we build from first principles and give you repeatable practice.</p>
-                <h2>Learning Methodology</h2>
-                <p>Each session has three parts: a focused concept, a guided demonstration, and a hands-on task. You’ll track decisions in a short learning log (what you tried, what failed, what you changed) so improvement is visible and reviewable. Reflection is part of the grade.</p>
-                <h2>Portfolio &amp; Project Deliverables</h2>
-                <p>You graduate with proof of work: a clean repository, small utilities with instructions, a minimal backend or reporting pipeline, and a readable README that explains choices and trade-offs.</p>
-                <h2>Ducat Branches in Delhi NCR</h2>
-                <ul>
-                    <li><a href="https://share.google/RV9R9uKp3Nsgy7iq5">Noida Sector 16</a></li>
-                    <li><a href="https://share.google/xMdpehHP08BZGsV8d">Noida Sector 63</a></li>
-                    <li><a href="https://share.google/PoTTMkTqxIXJGLfrN">Noida Extension</a></li>
-                    <li><a href="https://share.google/5138jZr6Hl08udkyI">Gurugram</a></li>
-                    <li><a href="https://share.google/SgQ9nXpKMhHJR71Ov">Faridabad</a></li>
-                    <li><a href="https://share.google/vXpxgLCd67PZ19hj6">Jaipur</a></li>
-                    <li><a href="https://share.google/L8nTeIXevDGcA6AXr">Vikaspuri, Delhi</a></li>
-                    <li><a href="https://share.google/hFsJr0GecsZwMhzsG">Pitampura, Delhi</a></li>
-                    <li><a href="https://share.google/c2r2rqwMqMIlifOoZ">South Extension I, Delhi</a></li>
-                </ul>
-                <h2>Why Choose Ducat India?</h2>
-                <p>Choosing a training partner is a career decision. We focus on outcomes you can show and skills you can defend.</p>
-                <ul>
-                    <li><b>Practice over promises:</b> every topic ends with a working task you can repeat at home.</li>
-                    <li><b>Clarity first:</b> we teach reasoning and trade-offs, not just steps.</li>
-                    <li><b>Transparent evaluation:</b> rubrics are shared early; expectations are concrete.</li>
-                    <li><b>Portfolio orientation:</b> you leave with artefacts that hiring teams can audit quickly.</li>
-                    <li><b>Ongoing support:</b> placement help continues until you land a role.</li>
-                    <li><b>Accessible plans:</b> affordable fees with <b>0% Easy EMI (3/6 months)</b>, tutorial site access, and a welcome kit.</li>
-                </ul>
-                <h2>Admission Process</h2>
-                <p>We keep admissions supportive and structured so you start strong:</p>
-                <ol>
-                    <li><b>Counselling call:</b> align goals, background, weekly availability, and preferred role targets.</li>
-                </ol>
-                <ol>
-                    <li><b>Readiness discussion:</b> a friendly check of logic and problem-solving; used to tailor your starting plan.</li>
-                </ol>
-                <ol>
-                    <li><b>Enrollment &amp; onboarding:</b> paperwork, choose <b>0% EMI</b> if needed, tutorial portal access, and your orientation checklist.</li>
-                </ol>
-                <ol>
-                    <li><b>Orientation week:</b> set up environment, create your first utility script, and review the code style you’ll follow in the course.</li>
-                </ol>
-                <ol>
-                    <li><b>Milestone plan:</b> a month-by-month map of concepts, tasks, and checkpoints with clear quality bars and examples of “meets/exceeds”.</li>
-                </ol>
-                <ol>
-                    <li><b>Progress reviews:</b> periodic code reviews with concrete edits; blockers are resolved quickly so momentum stays high.</li>
-                </ol>
-                <ol>
-                    <li><b>Placement readiness:</b> when your capstone and projects meet rubric thresholds, we start interview sprints and role-matching.</li>
-                </ol>
-                <h2>Certification &amp; Assessment</h2>
-                <p>Certification is earned through consistent practice and clear outcomes:</p>
-                <ul>
-                    <li><b>Lab quality:</b> readable code, sensible structure, and error handling that doesn’t hide problems.</li>
-                    <li><b>Midterm build:</b> a small automation or reporting task delivered end-to-end with inputs, outputs, and a short narrative explaining results.</li>
-                    <li><b>Capstone evaluation:</b> fetch/process real-world data, expose a minimal service or publish a clean report, and ship a concise README that states assumptions, limitations, and next steps.</li>
-                    <li><b>Review &amp; revision:</b> mentors provide actionable feedback; you revise and resubmit where needed.</li>
-                    <li><b>Final certification:</b> awarded after you meet rubric thresholds and present your capstone to a review panel.</li>
-                </ul>
-                <h3>Other Python Course</h3>
-                <ul>
-                    <li><a href="https://www.ducatindia.com/datascienceusingpython">Data Science with Python Course In Noida</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-gurgaon">Python Course In Gurgaon</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-faridabad">Best Python Training course In Faridabad</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-south-extension">Best Python Course In South Extension</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-india">Best Python Training Course In India</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-pitampura">Best Python Course In Pitampura</a></li>
-                    <li><a href="https://www.ducatindia.com/python-training-course-in-ghaziabad">Best Python Course In Ghaziabad</a></li>
-                    <li><a href="https://www.ducatindia.com/python-course-in-vikaspuri">Best Python Course In Vikaspuri</a></li>
-                    <li><a href="https://www.ducatindia.com/python-course-in-sector-16-noida">Python Course in Noida Sector 16</a></li>
-                    <li><a href="https://www.ducatindia.com/best-python-course-in-noida-extension">Best Python Course in Noida Extension</a></li>
-                    <li><a href="https://www.ducatindia.com/best-python-course-in-jaipur">Best Python Course in Jaipur</a></li>
-                </ul>
-                <h3>Why Choose Ducat India for Data Analytics Training in Delhi?</h3>
-                <ul>
-                    <li><b>Experienced Trainers</b>: Our trainers have real-world experience and deep knowledge in data analytics, ensuring that you learn from the best in the industry.</li>
-                    <li><b>Project-Based Learning</b>: Learn through hands-on projects that will help you apply the theory to real-world problems.</li>
-                    <li><b>Placement Assistance</b>: We have a dedicated team to help you find the right job post-training.</li>
-                    <li><b>Comprehensive Curriculum</b>: Our course content covers everything you need to know to become a proficient data analyst.</li>
-                </ul>
-            </div>
+    <h1 class="kd-cov-heading">
+        Why Pursue Python Training in Delhi NCR?
+    </h1>
 
-            <button class="kd-cov-readmore" id="kdCovToggle">
-                <span id="kdCovToggleText">Read More</span>
-                <svg viewBox="0 0 12 8" fill="none">
-                    <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" />
-                </svg>
-            </button>
-        </div>
+    <div class="kd-cov-body-wrap" id="kdCovBody">
+
+        <h2>Why Pursue Python Training in Delhi NCR?</h2>
+
+        <p>
+            The Delhi NCR region has swiftly attained a status as a leading technological hub.
+            This city hosts top IT consulting companies, multinational financial technology
+            corporations, budding startups, and global analytic firms. As you pursue the
+            Python course in Delhi, you will have access to vast employment opportunities,
+            active communities of developers, and viable career prospects.
+        </p>
+
+        <h2>Strategic Career Advantages</h2>
+
+        <ul>
+            <li>
+                <strong>Great Career Opportunities:</strong>
+                Highly demanded Python software developers, Django back-end engineers,
+                and automation experts are in big demand by some of the best companies
+                in cities such as Delhi, Gurgaon, and Noida.
+            </li>
+
+            <li>
+                <strong>Diverse Career Choices:</strong>
+                Learn a versatile programming language that can be applied across
+                software development, automation, web development, data analysis,
+                and other technology domains.
+            </li>
+
+            <li>
+                <strong>Hands-on Learning Experience:</strong>
+                Create practical applications using APIs, databases, web frameworks,
+                and other real-world development technologies.
+            </li>
+
+            <li>
+                <strong>Great Salaries:</strong>
+                Python specialists are in demand across multiple technology roles,
+                creating opportunities for professionals with relevant and practical
+                Python development skills.
+            </li>
+        </ul>
+
+        <h2>Why Choose EagletFly Solutions for Python Training?</h2>
+
+        <p>
+            Selecting the right training partner is crucial for translating coding
+            concepts into long-term career success. <strong>EagletFly Solutions</strong>
+            delivers a modern, production-focused learning experience that goes far
+            beyond traditional classroom lectures.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Industry-Standard Course Content:</strong>
+                Understand how real-world software systems are built and engineered
+                while learning Git, RESTful APIs, data access frameworks, and
+                modular software design.
+            </li>
+
+            <li>
+                <strong>Advice from Seasoned Developers:</strong>
+                Explore real-world examples of large-scale software systems and
+                development practices used by experienced developers.
+            </li>
+
+            <li>
+                <strong>Small Groups:</strong>
+                Benefit from small batches where instructors can provide personalized
+                code feedback and address individual queries effectively.
+            </li>
+
+            <li>
+                <strong>Placement Assistance:</strong>
+                Get support throughout your job search, including resume assistance,
+                mock technical interviews, and job referral guidance.
+            </li>
+        </ul>
+
+        <h2>Complete Python Course Curriculum Overview</h2>
+
+        <p>
+            Our curriculum builds your technical capability step-by-step, taking you
+            smoothly from fundamental programming logic to advanced web frameworks,
+            database connectivity, REST APIs, and automated development practices
+            across four core program phases.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Stage 1 (Fundamentals of Programming):</strong>
+                Understand algorithms, control structures, primitive data types,
+                Python 3, and VS Code. Learn to design command-line applications
+                and solve programming problems using Python.
+            </li>
+
+            <li>
+                <strong>Stage 2 (Data Structures and OOP):</strong>
+                Work with sequences such as lists and tuples, mappings, classes,
+                objects, inheritance, and modular programming concepts.
+            </li>
+
+            <li>
+                <strong>Stage 3 (File Processing and Database Interaction):</strong>
+                Learn exception handling, regular expressions, file handling,
+                and SQL programming using SQLite, MySQL, and PostgreSQL.
+                Build CRUD applications and file-processing scripts.
+            </li>
+
+            <li>
+                <strong>Stage 4 (Web Development Frameworks and REST APIs):</strong>
+                Learn Django and Flask along with views, templates, routing,
+                REST APIs, authentication, and API testing with Postman.
+            </li>
+        </ul>
+
+        <h2>Module 1: Python Fundamentals &amp; Logic Building</h2>
+
+        <p>
+            Lay a solid foundation in programming principles, development environment
+            setup, and core control structures.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Configuration of the Environment:</strong>
+                Install Python 3, configure the development environment using
+                VS Code or Jupyter Notebooks, and use virtual environments with
+                <code>venv</code>.
+            </li>
+
+            <li>
+                <strong>Language Syntax and Variables:</strong>
+                Understand variables, dynamic typing, arithmetic and logical
+                operators, console input, and type casting.
+            </li>
+
+            <li>
+                <strong>Control Flow:</strong>
+                Work with if-elif-else conditions, for and while loops, and
+                control statements such as break, continue, and pass.
+            </li>
+
+            <li>
+                <strong>Modular Functions:</strong>
+                Understand functions, function scope, default and keyword arguments,
+                return values, and lambda functions.
+            </li>
+        </ul>
+
+        <h2>Module 2: Advanced Data Structures &amp; Object-Oriented Programming (OOP)</h2>
+
+        <p>
+            Structure clean, maintainable, and scalable software using core
+            object-oriented programming principles.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Built-in Data Structures:</strong>
+                Work with lists, tuples, sets, dictionaries, nested structures,
+                list comprehensions, and slicing.
+            </li>
+
+            <li>
+                <strong>Object-Oriented Programming:</strong>
+                Learn classes, objects, constructors such as <code>__init__</code>,
+                instance variables, methods, and encapsulation.
+            </li>
+
+            <li>
+                <strong>Inheritance and Polymorphism:</strong>
+                Understand single and multiple inheritance, method overriding,
+                the <code>super()</code> concept, and duck typing.
+            </li>
+
+            <li>
+                <strong>Exception Handling:</strong>
+                Handle runtime errors using try-except-else-finally statements
+                and create user-defined exceptions.
+            </li>
+        </ul>
+
+        <h2>Module 3: File I/O, Regular Expressions &amp; Database Connectivity</h2>
+
+        <p>
+            Learn how real-world enterprise applications manipulate external
+            files and interact with database management systems.
+        </p>
+
+        <ul>
+            <li>
+                <strong>File Management:</strong>
+                Open, close, read, and write text files, CSV documents, JSON files,
+                binary files, and serialized data using pickle.
+            </li>
+
+            <li>
+                <strong>Regular Expressions:</strong>
+                Analyze and validate complex input data such as email addresses,
+                passwords, identifiers, and other structured text.
+            </li>
+
+            <li>
+                <strong>Database Connectivity:</strong>
+                Connect Python applications to MySQL or PostgreSQL, write
+                parameterized SQL queries, and perform CRUD operations.
+            </li>
+        </ul>
+
+        <h2>Module 4: Web Development with Django &amp; Flask APIs</h2>
+
+        <p>
+            Build dynamic web applications and scalable backend services using
+            popular Python web frameworks and REST API technologies.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Micro Framework Flask:</strong>
+                Create lightweight web routes, use Jinja2 templates, work with
+                forms, and build micro APIs.
+            </li>
+
+            <li>
+                <strong>Full-Stack Django Framework:</strong>
+                Learn the MVT architecture, Django ORM, forms, authentication,
+                and the built-in Django Admin platform.
+            </li>
+
+            <li>
+                <strong>RESTful API:</strong>
+                Create REST APIs using Django REST Framework, work with JSON
+                requests and responses, implement authentication, and test
+                APIs with Postman.
+            </li>
+
+            <li>
+                <strong>Version Control and Cloud:</strong>
+                Track source-code changes using Git and GitHub and learn the
+                fundamentals of deploying Python applications to cloud servers.
+            </li>
+        </ul>
+
+        <h2>Program Specialization Tracks at EagletFly Solutions</h2>
+
+        <p>
+            Selecting the right learning track helps align your training with
+            your specific career goals and technical interests.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Core Python Track:</strong>
+                A 2-month (8-week) program suitable for beginners and scripting
+                enthusiasts. It covers Python syntax, OOP, file operations,
+                automation, and practical utility projects.
+            </li>
+
+            <li>
+                <strong>Python Full-Stack Track:</strong>
+                A 4-month (16-week) program for aspiring web developers and
+                backend engineers. It covers Django, Flask, database design,
+                HTML/CSS, REST APIs, and full-stack application development.
+            </li>
+
+            <li>
+                <strong>Python for Data and AI Track:</strong>
+                A 4-month (16-week) program for aspiring data analysts and
+                AI specialists. It introduces Pandas, NumPy, statistics,
+                and machine learning fundamentals.
+            </li>
+        </ul>
+
+        <h2>Real-World Capstone Projects &amp; Practical Applications</h2>
+
+        <p>
+            Practical application is at the center of our
+            <strong>Python Training in Delhi</strong>. You will work on
+            portfolio-oriented projects across important software development
+            and data domains.
+        </p>
+
+        <ul>
+            <li>
+                <strong>E-Commerce Web Application:</strong>
+                Develop an online shopping platform using Django with user
+                registration, dynamic product filtering, session-based shopping
+                carts, order tracking, and payment integration concepts.
+            </li>
+
+            <li>
+                <strong>Automated Web Crawler and Scraper:</strong>
+                Build a web scraping application using BeautifulSoup and Selenium
+                to collect structured information from web pages and store the
+                processed data in an SQL database.
+            </li>
+
+            <li>
+                <strong>Enterprise REST API:</strong>
+                Develop an application integration service using Django REST
+                Framework or FastAPI with authentication, access control,
+                endpoint testing, serialization, and API integration.
+            </li>
+
+            <li>
+                <strong>Automated Data Pipeline:</strong>
+                Create an ETL workflow that processes server log files, cleans
+                unstructured data, and organizes the resulting information in
+                an SQL database.
+            </li>
+        </ul>
+
+    </div>
+
+    <button class="kd-cov-readmore" id="kdCovToggle">
+        <span id="kdCovToggleText">Read More</span>
+
+        <svg viewBox="0 0 12 8" fill="none">
+            <path
+                d="M1 1l5 5 5-5"
+                stroke="currentColor"
+                stroke-width="1.6"
+            />
+        </svg>
+    </button>
+</div>
 
         <!-- RIGHT: DEMO FORM -->
         <div class="kd-cov-form-wrap">

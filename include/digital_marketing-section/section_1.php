@@ -1664,9 +1664,9 @@
 
         .kd-podcast-main-shot {
 
-            top: 15px;
+            /* top: 15px;
 
-            left: 2%;
+            left: 2%; */
 
             width: 82%;
 
