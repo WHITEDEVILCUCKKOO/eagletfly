@@ -217,6 +217,7 @@ function timeAgo($timestamp)
         border-radius: 24px;
         box-shadow: 0 30px 60px rgba(33, 29, 25, .18);
         animation: blg7-up .8s .7s both;
+            object-fit: contain;
     }
 
     /* ---------------- ARTICLE (editor ka HTML bhi style hoga) ---------------- */
@@ -484,7 +485,8 @@ function timeAgo($timestamp)
     .blg7-thumb img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        /* object-fit: cover; */
+            object-fit: contain;
         transition: transform .7s ease;
     }
 
@@ -722,7 +724,7 @@ function timeAgo($timestamp)
                     ?>
                         <a class="blg7-card" href="blog_details.php?slug=<?= urlencode($r['blog_slug']) ?>">
                             <div class="blg7-thumb">
-                                <img src="<?= $imgPath . htmlspecialchars($r['blog_img']) ?>" alt="<?= htmlspecialchars($r['blog_title']) ?>">
+                                <img src="<?= htmlspecialchars($r['blog_img']) ?>" alt="<?= htmlspecialchars($r['blog_title']) ?>">
                             </div>
                             <div class="blg7-cardbody">
                                 <span class="blg7-cdate"><?= htmlspecialchars(blogDate($r['created_at'])) ?></span>
