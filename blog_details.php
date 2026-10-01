@@ -683,7 +683,7 @@ function timeAgo($timestamp)
         <!-- COVER -->
         <?php if (!empty($blog['blog_img'])): ?>
             <section class="blg7-coverwrap">
-                <img class="blg7-cover" src="assets/blog/<?= $imgPath . htmlspecialchars($blog['blog_img']) ?>" alt="<?= htmlspecialchars($blog['blog_title']) ?>">
+                <img class="blg7-cover" src="assets/blog/<?= htmlspecialchars($blog['blog_img']) ?>" alt="<?= htmlspecialchars($blog['blog_title']) ?>">
             </section>
         <?php endif; ?>
 
