@@ -724,7 +724,7 @@ function timeAgo($timestamp)
                     ?>
                         <a class="blg7-card" href="blog_details.php?slug=<?= urlencode($r['blog_slug']) ?>">
                             <div class="blg7-thumb">
-                                <img src="<?= htmlspecialchars($r['blog_img']) ?>" alt="<?= htmlspecialchars($r['blog_title']) ?>">
+                                <img src="assets/blog/<?= htmlspecialchars($r['blog_img']) ?>" alt="<?= htmlspecialchars($r['blog_title']) ?>">
                             </div>
                             <div class="blg7-cardbody">
                                 <span class="blg7-cdate"><?= htmlspecialchars(blogDate($r['created_at'])) ?></span>
