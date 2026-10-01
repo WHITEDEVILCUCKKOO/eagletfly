@@ -603,7 +603,7 @@ $data_set = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
 
             <?php foreach ($data_set as $blog) { ?>
 
-                <div class="blogIn-card">
+                <div class="blogIn-card" onclick="window.location.href='blog_details.php?slug=<?php echo$blog['blog_slug'];?>'">
 
                     <div class="blogIn-imageArea">
 
