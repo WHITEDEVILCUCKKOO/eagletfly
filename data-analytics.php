@@ -24,30 +24,40 @@
 
     <!-- section 1 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_1.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_1.php' ?>
+    
     <!-- section 2 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_2.php' ?>
-
+    
     <!-- section 3 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_3.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_2.php' ?>
+    
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_4.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_3.php' ?>
+    
     <!-- section 5 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_5.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_4.php' ?>
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_5.php' ?>
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_6.php' ?>
+    
     <!-- section 6 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_6.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_7.php' ?>
+    
     <!-- section 7 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_7.php' ?>
-
+    
     <!-- section 8 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_8.php' ?>
-
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_8.php' ?>
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_9.php' ?>
+    
     <!-- section 9 -->
     <?php require_once __DIR__ . '/include/data-analytic-section/section_9.php' ?>
+    <?php require_once __DIR__ . '/include/data-analytic-section/content_10.php' ?>
 
 
 </main>
