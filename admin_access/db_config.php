@@ -1,9 +1,43 @@
-<?php
-// $mydb = mysqli_connect("host","user_name","password","database_name");
 
-$mydb = mysqli_connect("localhost", "daurp0duction_eagletfly", "eagletfly@@1327", "daurp0duction_db_eagletfly");
-// $mydb = mysqli_connect("localhost", "root", "", "db_eagletfly");
+<?php
+
+// Detect local development environment
+$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', [
+    'localhost',
+    '127.0.0.1'
+]);
+
+if ($isLocal) {
+
+    // Local XAMPP / WAMP
+    $host = "localhost";
+    $user = "root";
+    $password = "";
+    $database = "db_eagletfly";
+
+} else {
+
+    // Live / Hosting
+    $host = "localhost";
+    $user = "daurp0duction_eagletfly";
+    $password = "eagletfly@@1327";
+    $database = "daurp0duction_db_eagletfly";
+}
+
+$mydb = mysqli_connect(
+    $host,
+    $user,
+    $password,
+    $database
+);
 
 if (!$mydb) {
-    die("Database connection failed: " . mysqli_connect_error());
+    die(
+        "Database connection failed.<br>" .
+        "Host: " . htmlspecialchars($host) . "<br>" .
+        "Database: " . htmlspecialchars($database) . "<br>" .
+        "Error: " . htmlspecialchars(mysqli_connect_error())
+    );
 }
+
+mysqli_set_charset($mydb, "utf8mb4");
