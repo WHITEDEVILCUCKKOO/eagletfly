@@ -138,7 +138,7 @@
         typeEffect();
       }
     });
-    </script>
+  </script>
 
 
 
@@ -169,11 +169,11 @@
     }
 
     .msw-img-placeholder12 img {
-     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: .25s ease;
-    object-position: center center;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .25s ease;
+      object-position: center center;
       /* object-position: center center; */
     }
 
@@ -183,19 +183,116 @@
     }
 
 
-    .sole_riper_1{
-          box-shadow: none !important;
-          transition: .25x ease;
-        }
-        .sole_riper_1:hover{
+    .sole_riper_1 {
+      box-shadow: none !important;
       transition: .25x ease;
-          box-shadow: 0 2px 2px 2px #666 !important;
     }
 
-    .curase_topse{
-      font-size:20px ;
+    .sole_riper_1:hover {
+      transition: .25x ease;
+      box-shadow: 0 2px 2px 2px #666 !important;
+    }
+
+    .curase_topse {
+      font-size: 20px;
     }
   </style>
+  <?php
+
+  /* =========================================================
+   COURSES FROM DATABASE (public page)
+   Agar ye page root folder me nahi hai, to path adjust karo.
+========================================================= */
+
+  include_once __DIR__ . "/admin_access/db_config.php";
+  include_once __DIR__ . "/admin_access/functions/Courses/all_courses.php";
+
+
+  /* Sirf Active courses, purane pehle */
+
+  $public_courses = [];
+
+  foreach (array_reverse(get_all_courses($mydb)) as $public_course_row) {
+
+    if (($public_course_row['course_status'] ?? '') === 'Active') {
+      $public_courses[] = $public_course_row;
+    }
+  }
+
+
+  /* Category ke hisaab se group */
+
+  $public_course_groups = [];
+
+  foreach ($public_courses as $public_course_row) {
+
+    $group_name = trim($public_course_row['course_category'] ?? '');
+
+    if ($group_name === '') {
+      $group_name = 'Other Courses';
+    }
+
+    $public_course_groups[$group_name][] = $public_course_row;
+  }
+
+
+  /* Category ke neeche ki line (category ka naam bilkul aisa hi likhna admin me) */
+
+  $public_category_sub = [
+    'tech courses'                    => 'Build what powers the world — from algorithms to AI agents.',
+    'high language courses'           => 'Shape the future of user experience and brand identity.',
+    'marketing & management course'   => 'Grow brands and lead campaigns with measurable impact.',
+  ];
+
+
+  /* Highlights se 2 bullet banao */
+
+  function public_course_bullets($course)
+  {
+    $bullets = [];
+
+    $highlights = trim($course['course_highlights'] ?? '');
+
+    if ($highlights !== '') {
+
+      $lines = array_values(array_filter(array_map('trim', preg_split('/\r\n|\r|\n/', $highlights))));
+
+      if (count($lines) >= 2) {
+
+        $bullets[] = $lines[0];
+        $bullets[] = $lines[1];
+      } else {
+
+        $items = array_values(array_filter(array_map('trim', explode(',', $highlights))));
+
+        $bullets[] = (count($items) > 1)
+          ? 'Covers ' . implode(', ', array_slice($items, 0, 6)) . '.'
+          : $items[0];
+      }
+    }
+
+    /* Doosra bullet: duration / mode / level */
+
+    $info = [];
+
+    foreach (['course_duration', 'course_mode', 'course_level'] as $info_key) {
+
+      $info_value = trim($course[$info_key] ?? '');
+
+      if ($info_value !== '') {
+        $info[] = $info_value;
+      }
+    }
+
+    if (count($bullets) < 2 && count($info) > 0) {
+      $bullets[] = implode(' • ', $info);
+    }
+
+    return $bullets;
+  }
+
+  ?>
+
   <section class="msw-section" id="msw-programs">
     <div class="msw-container">
       <div class="msw-section-head msw-reveal">
@@ -205,141 +302,95 @@
           opportunities that matter.</p>
       </div>
 
-      <div class="msw-pill-heading msw-reveal">
-        <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="#">Tech Courses</a>
-        <p class="msw-section-sub curase_topse" style="margin-top:30px;">Build what powers the world — from algorithms to AI
-          agents.</p>
-      </div>
 
-      <div class="msw-cards-grid msw-reveal">
+      <?php if (count($public_course_groups) === 0) { ?>
 
-        <!-- card 1 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/aqsnd.png" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Data Analytics</h3>
-            <p style="margin-top: 10px;">Decode patterns, predict outcomes, and drive smart business decisions.</p>
-            <ul style="margin-top: 10px;">
-              <li>Pick up SQL, Excel, Power BI, Tableau, and data storytelling.</li>
-              <li>Gain business context, work on case studies, and form dashboards that find impact.</li>
-            </ul>
-
-          </div>
+        <div class="msw-pill-heading msw-reveal">
+          <p class="msw-section-sub curase_topse" style="margin-top:30px;">
+            Courses will be available soon.
+          </p>
         </div>
 
-        <!-- card 2 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/ai_sae.png" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Artificial intelligence <br> and ML</h3>
-            <p style="margin-top: 10px;">Transform raw data into real-world impact using machine .</p>
-            <ul style="margin-top: 10px;">
-              <li>Work with Python, Pandas, NumPy, and Scikit-Learn.</li>
-              <li>Command data cleaning, feature engineering, un-supervised ML models, and model evaluation.</li>
-            </ul>
-          </div>
+      <?php } ?>
+
+
+      <?php
+
+      $group_index = 0;
+
+      foreach ($public_course_groups as $group_name => $group_courses) {
+
+        $group_key = strtolower($group_name);
+
+        $group_sub = $public_category_sub[$group_key] ?? '';
+
+        $heading_style = ($group_index > 0) ? ' style="margin-top:60px;"' : '';
+
+        $grid_class = (count($group_courses) >= 3)
+          ? 'msw-cards-grid msw-reveal'
+          : 'msw-cards-grid msw-two msw-reveal';
+      ?>
+
+        <div class="msw-pill-heading msw-reveal" <?php echo $heading_style; ?>>
+          <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="#"><?php echo htmlspecialchars($group_name); ?></a>
+
+          <?php if ($group_sub !== '') { ?>
+            <p class="msw-section-sub curase_topse" style="margin-top:30px;"><?php echo htmlspecialchars($group_sub); ?></p>
+          <?php } ?>
         </div>
 
-        <!-- card 3 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/imgaw_3.png" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Gen Ai and agentic ai</h3>
-            <p style="margin-top: 10px;">Master the tools driving the next generation of intelligent products.</p>
-            <ul style="margin-top: 10px;">
-              <li>Deep dive into Generative AI, LLMs, and ChatGPT-based tools.</li>
-              <li>Build real capstone projects mentored by industry experts.</li>
-            </ul>
-          </div>
+
+        <div class="<?php echo $grid_class; ?>">
+
+          <?php foreach ($group_courses as $course) {
+
+            $card_image = trim($course['course_image'] ?? '');
+
+            if ($card_image !== '') {
+              $card_image .= '?v=' . ($course['course_updated_at'] ?? '');
+            }
+
+            $card_bullets = public_course_bullets($course);
+          ?>
+
+            <div class="msw-course-card">
+
+              <div class="msw-img-placeholder12">
+                <?php if ($card_image !== '') { ?>
+                  <img src="<?php echo htmlspecialchars($card_image); ?>" alt="<?php echo htmlspecialchars($course['course_name']); ?>">
+                <?php } ?>
+              </div>
+
+              <div class="msw-course-body">
+
+                <h3><?php echo htmlspecialchars($course['course_name']); ?></h3>
+
+                <?php if (trim($course['course_short_description'] ?? '') !== '') { ?>
+                  <p style="margin-top: 10px;"><?php echo htmlspecialchars($course['course_short_description']); ?></p>
+                <?php } ?>
+
+                <?php if (count($card_bullets) > 0) { ?>
+                  <ul style="margin-top: 10px;">
+                    <?php foreach ($card_bullets as $card_bullet) { ?>
+                      <li><?php echo htmlspecialchars($card_bullet); ?></li>
+                    <?php } ?>
+                  </ul>
+                <?php } ?>
+
+              </div>
+
+            </div>
+
+          <?php } ?>
+
         </div>
 
-        <!-- card 4 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="assets/img/ada489.png" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Data science and Ml</h3>
-            <p style="margin-top: 10px;">Master the tools driving the next generation of intelligent products.</p>
-            <ul style="margin-top: 10px;">
-              <li>Deep dive into Generative AI, LLMs, and ChatGPT-based tools.</li>
-              <li>Build real capstone projects mentored by industry experts.</li>
-            </ul>
-          </div>
-        </div>
+      <?php
 
-      </div>
+        $group_index++;
+      }
+      ?>
 
-
-
-
-      <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
-        <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="#">High Language
-          Courses</a>
-        <p class="msw-section-sub curase_topse" style="margin-top:30px;">Shape the future of user experience and brand identity.
-        </p>
-      </div>
-
-      <!-- card 4 -->
-      <div class="msw-cards-grid msw-two msw-reveal">
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/Python logo.jpg" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Python</h3>
-            <p>Formulate intuitive, beautiful digital experiences that users love.</p>
-            <ul>
-              <li>Cover design thinking, user research, wireframing, and prototyping.</li>
-              <li>Explore tools like Figma and craft real product journeys.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- card 5 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/java.jpg" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Java</h3>
-            <p>Craft visual identities that turn heads and tell stories.</p>
-            <ul>
-              <li>Get the hang of visual hierarchy, typography, brand systems, and Adobe Creative Suite.</li>
-              <li>Become skilled in design systems, create campaigns, and style a polished portfolio.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="msw-pill-heading msw-reveal" style="margin-top:60px;">
-        <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="#">Marketing &amp;
-          Management Course</a>
-        <p class="msw-section-sub curase_topse" style="margin-top:30px;">Grow brands and lead campaigns with measurable impact.
-        </p>
-      </div>
-
-      <!-- card 6 -->
-      <div class="msw-cards-grid msw-two msw-reveal">
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img src="img/digital markting.jpg" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Digital Marketing</h3>
-            <p>Drive traffic, convert leads, and optimize marketing with data-driven strategies.</p>
-            <ul>
-              <li>Nail SEO, Google Ads, Meta Ads, and marketing funnels, and analytics tools.</li>
-              <li>Launch real campaigns and measure ROI.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- card 7 -->
-        <div class="msw-course-card">
-          <div class="msw-img-placeholder12"><img style="object-position: top center" src="assets/img/imgaw_5.png" alt=""></div>
-          <div class="msw-course-body">
-            <h3>Digital Marketing With Ai</h3>
-            <p>Build and launch products that solve real problems and drive business growth.</p>
-            <ul>
-              <li>Master product roadmapping, Agile methodologies, and stakeholder management.</li>
-              <li>Work on real-world product specs and prioritize features for impact.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -378,37 +429,42 @@
       font-weight: 800;
     }
 
-    .reative_box:nth-child(1){
-      border-top-left-radius:100px !important;
-      border-bottom-right-radius:40px !important;
+    .reative_box:nth-child(1) {
+      border-top-left-radius: 100px !important;
+      border-bottom-right-radius: 40px !important;
       border: 1px solid orangered !important;
     }
-    .reative_box:nth-child(2){
+
+    .reative_box:nth-child(2) {
       border: 1px solid orangered !important;
       height: 250px !important;
-      border-top-left-radius:40px !important;
-      border-bottom-right-radius:40px !important;
+      border-top-left-radius: 40px !important;
+      border-bottom-right-radius: 40px !important;
     }
-    .reative_box:nth-child(3){
+
+    .reative_box:nth-child(3) {
       border: 1px solid orangered !important;
-      border-bottom-left-radius:80px !important;
-      border-top-right-radius:100px !important;
+      border-bottom-left-radius: 80px !important;
+      border-top-right-radius: 100px !important;
     }
-    .reative_box:nth-child(4 ){
+
+    .reative_box:nth-child(4) {
       border: 1px solid orangered !important;
-      border-bottom-left-radius:100px !important;
-      border-top-right-radius:40px !important;
+      border-bottom-left-radius: 100px !important;
+      border-top-right-radius: 40px !important;
     }
-    .reative_box:nth-child(5){
-     border: 1px solid orangered !important;
+
+    .reative_box:nth-child(5) {
+      border: 1px solid orangered !important;
       height: 250px !important;
-      border-top-left-radius:80px !important;
-      border-bottom-right-radius:100px !important;
+      border-top-left-radius: 80px !important;
+      border-bottom-right-radius: 100px !important;
     }
-    .reative_box:nth-child(6){
+
+    .reative_box:nth-child(6) {
       border: 1px solid orangered !important;
-      border-top-left-radius:50px !important;
-      border-bottom-right-radius:100px !important;
+      border-top-left-radius: 50px !important;
+      border-bottom-right-radius: 100px !important;
     }
   </style>
   <section class="msw-section msw-summit" id="msw-about">
@@ -875,14 +931,14 @@
 
 
   <!-- WHY TRUST -->
-   <style>
-    .icon_shot_12{
-      svg{
+  <style>
+    .icon_shot_12 {
+      svg {
         width: 30px;
         fill: blue;
       }
     }
-   </style>
+  </style>
   <section class="msw-section msw-trust">
     <div class="msw-container">
       <div class="msw-section-head msw-reveal">
@@ -897,39 +953,51 @@
       </div>
       <div class="msw-features-grid msw-reveal">
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M512 320C512 214 426 128 320 128C214 128 128 214 128 320C128 426 214 512 320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM320 400C364.2 400 400 364.2 400 320C400 275.8 364.2 240 320 240C275.8 240 240 275.8 240 320C240 364.2 275.8 400 320 400zM320 176C399.5 176 464 240.5 464 320C464 399.5 399.5 464 320 464C240.5 464 176 399.5 176 320C176 240.5 240.5 176 320 176zM288 320C288 302.3 302.3 288 320 288C337.7 288 352 302.3 352 320C352 337.7 337.7 352 320 352C302.3 352 288 337.7 288 320z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M512 320C512 214 426 128 320 128C214 128 128 214 128 320C128 426 214 512 320 512C426 512 512 426 512 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320zM320 400C364.2 400 400 364.2 400 320C400 275.8 364.2 240 320 240C275.8 240 240 275.8 240 320C240 364.2 275.8 400 320 400zM320 176C399.5 176 464 240.5 464 320C464 399.5 399.5 464 320 464C240.5 464 176 399.5 176 320C176 240.5 240.5 176 320 176zM288 320C288 302.3 302.3 288 320 288C337.7 288 352 302.3 352 320C352 337.7 337.7 352 320 352C302.3 352 288 337.7 288 320z" />
+              </svg></span></div>
           <h3>Outcome-Oriented Approach</h3>
           <p>Indulge into career-aligned learning paths built by ex-Cognizant professionals. We offer dedicated
             capstone projects and role-based simulations to let you ace in your domain.</p>
         </div>
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M434.8 54.1C446.7 62.7 451.1 78.3 445.7 91.9L367.3 288L512 288C525.5 288 537.5 296.4 542.1 309.1C546.7 321.8 542.8 336 532.5 344.6L244.5 584.6C233.2 594 217.1 594.5 205.2 585.9C193.3 577.3 188.9 561.7 194.3 548.1L272.7 352L128 352C114.5 352 102.5 343.6 97.9 330.9C93.3 318.2 97.2 304 107.5 295.4L395.5 55.4C406.8 46 422.9 45.5 434.8 54.1z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M434.8 54.1C446.7 62.7 451.1 78.3 445.7 91.9L367.3 288L512 288C525.5 288 537.5 296.4 542.1 309.1C546.7 321.8 542.8 336 532.5 344.6L244.5 584.6C233.2 594 217.1 594.5 205.2 585.9C193.3 577.3 188.9 561.7 194.3 548.1L272.7 352L128 352C114.5 352 102.5 343.6 97.9 330.9C93.3 318.2 97.2 304 107.5 295.4L395.5 55.4C406.8 46 422.9 45.5 434.8 54.1z" />
+              </svg></span></div>
           <h3>Real-Time Expertise</h3>
           <p>We move above the pre-recorded monotony. We live mentor sessions, we ensure to resolve all your queries
             and break down real-world case studies.</p>
         </div>
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M288 64C323.3 64 352 85.5 352 112C352 122.4 347.6 132 340 139.9C333.4 146.8 328 155.2 328 164.8C328 179.8 340.2 192 355.2 192L400 192C426.5 192 448 213.5 448 240L448 284.8C448 299.8 460.2 312 475.2 312C484.7 312 493.2 306.6 500.1 300C508 292.5 517.6 288 528 288C554.5 288 576 316.7 576 352C576 387.3 554.5 416 528 416C517.6 416 507.9 411.6 500.1 404C493.2 397.4 484.8 392 475.2 392C460.2 392 448 404.2 448 419.2L448 528C448 554.5 426.5 576 400 576L343.2 576C330.4 576 320 565.6 320 552.8C320 543.6 325.8 535.5 333.2 530C344.8 521.3 352 509.3 352 496C352 469.5 323.3 448 288 448C252.7 448 224 469.5 224 496C224 509.3 231.2 521.3 242.8 530C250.2 535.5 256 543.5 256 552.8C256 565.6 245.6 576 232.8 576L112 576C85.5 576 64 554.5 64 528L64 407.2C64 394.4 74.4 384 87.2 384C96.4 384 104.5 389.8 110 397.2C118.7 408.8 130.7 416 144 416C170.5 416 192 387.3 192 352C192 316.7 170.5 288 144 288C130.7 288 118.7 295.2 110 306.8C104.5 314.2 96.5 320 87.2 320C74.4 320 64 309.6 64 296.8L64 240C64 213.5 85.5 192 112 192L220.8 192C235.8 192 248 179.8 248 164.8C248 155.3 242.6 146.8 236 139.9C228.5 132 224 122.4 224 112C224 85.5 252.7 64 288 64z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M288 64C323.3 64 352 85.5 352 112C352 122.4 347.6 132 340 139.9C333.4 146.8 328 155.2 328 164.8C328 179.8 340.2 192 355.2 192L400 192C426.5 192 448 213.5 448 240L448 284.8C448 299.8 460.2 312 475.2 312C484.7 312 493.2 306.6 500.1 300C508 292.5 517.6 288 528 288C554.5 288 576 316.7 576 352C576 387.3 554.5 416 528 416C517.6 416 507.9 411.6 500.1 404C493.2 397.4 484.8 392 475.2 392C460.2 392 448 404.2 448 419.2L448 528C448 554.5 426.5 576 400 576L343.2 576C330.4 576 320 565.6 320 552.8C320 543.6 325.8 535.5 333.2 530C344.8 521.3 352 509.3 352 496C352 469.5 323.3 448 288 448C252.7 448 224 469.5 224 496C224 509.3 231.2 521.3 242.8 530C250.2 535.5 256 543.5 256 552.8C256 565.6 245.6 576 232.8 576L112 576C85.5 576 64 554.5 64 528L64 407.2C64 394.4 74.4 384 87.2 384C96.4 384 104.5 389.8 110 397.2C118.7 408.8 130.7 416 144 416C170.5 416 192 387.3 192 352C192 316.7 170.5 288 144 288C130.7 288 118.7 295.2 110 306.8C104.5 314.2 96.5 320 87.2 320C74.4 320 64 309.6 64 296.8L64 240C64 213.5 85.5 192 112 192L220.8 192C235.8 192 248 179.8 248 164.8C248 155.3 242.6 146.8 236 139.9C228.5 132 224 122.4 224 112C224 85.5 252.7 64 288 64z" />
+              </svg></span></div>
           <h3>Built-in Practice Layer</h3>
           <p>Master Data Science, AI, Machine Learning, Deep Learning, and ChatGPT with the latest tools by
             enrolling
             in the AI course in Delhi.</p>
         </div>
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M192 64C156.7 64 128 92.7 128 128L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 234.5C512 217.5 505.3 201.2 493.3 189.2L386.7 82.7C374.7 70.7 358.5 64 341.5 64L192 64zM453.5 240L360 240C346.7 240 336 229.3 336 216L336 122.5L453.5 240z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M192 64C156.7 64 128 92.7 128 128L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 234.5C512 217.5 505.3 201.2 493.3 189.2L386.7 82.7C374.7 70.7 358.5 64 341.5 64L192 64zM453.5 240L360 240C346.7 240 336 229.3 336 216L336 122.5L453.5 240z" />
+              </svg></span></div>
           <h3>Beyond Certification</h3>
           <p>Resume and LinkedIn optimization and assist in profoundly. Get expert help with interview readiness
             drills, mock rounds, and hiring partner accessibility.</p>
         </div>
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 64C267 64 224 107 224 160L224 288C224 341 267 384 320 384C373 384 416 341 416 288L416 160C416 107 373 64 320 64zM176 248C176 234.7 165.3 224 152 224C138.7 224 128 234.7 128 248L128 288C128 385.9 201.3 466.7 296 478.5L296 528L248 528C234.7 528 224 538.7 224 552C224 565.3 234.7 576 248 576L392 576C405.3 576 416 565.3 416 552C416 538.7 405.3 528 392 528L344 528L344 478.5C438.7 466.7 512 385.9 512 288L512 248C512 234.7 501.3 224 488 224C474.7 224 464 234.7 464 248L464 288C464 367.5 399.5 432 320 432C240.5 432 176 367.5 176 288L176 248z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M320 64C267 64 224 107 224 160L224 288C224 341 267 384 320 384C373 384 416 341 416 288L416 160C416 107 373 64 320 64zM176 248C176 234.7 165.3 224 152 224C138.7 224 128 234.7 128 248L128 288C128 385.9 201.3 466.7 296 478.5L296 528L248 528C234.7 528 224 538.7 224 552C224 565.3 234.7 576 248 576L392 576C405.3 576 416 565.3 416 552C416 538.7 405.3 528 392 528L344 528L344 478.5C438.7 466.7 512 385.9 512 288L512 248C512 234.7 501.3 224 488 224C474.7 224 464 234.7 464 248L464 288C464 367.5 399.5 432 320 432C240.5 432 176 367.5 176 288L176 248z" />
+              </svg></span></div>
           <h3>Mock Interviews with Real Feedback</h3>
           <p>Our seasoned industry mentors conduct simulations and share detailed feedback to improve your
             performance
             and reach your goal one step at a time.</p>
         </div>
         <div class="msw-feature-card">
-          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M300.9 149.2L184.3 278.8C179.7 283.9 179.9 291.8 184.8 296.7C215.3 327.2 264.8 327.2 295.3 296.7L327.1 264.9C331.3 260.7 336.6 258.4 342 258C348.8 257.4 355.8 259.7 361 264.9L537.6 440L608 384L608 96L496 160L472.2 144.1C456.4 133.6 437.9 128 418.9 128L348.5 128C347.4 128 346.2 128 345.1 128.1C328.2 129 312.3 136.6 300.9 149.2zM148.6 246.7L255.4 128L215.8 128C190.3 128 165.9 138.1 147.9 156.1L144 160L32 96L32 384L188.4 514.3C211.4 533.5 240.4 544 270.3 544L286 544L279 537C269.6 527.6 269.6 512.4 279 503.1C288.4 493.8 303.6 493.7 312.9 503.1L353.9 544.1L362.9 544.1C382 544.1 400.7 539.8 417.7 531.8L391 505C381.6 495.6 381.6 480.4 391 471.1C400.4 461.8 415.6 461.7 424.9 471.1L456.9 503.1L474.4 485.6C483.3 476.7 485.9 463.8 482 452.5L344.1 315.7L329.2 330.6C279.9 379.9 200.1 379.9 150.8 330.6C127.8 307.6 126.9 270.7 148.6 246.6z"/></svg></span></div>
+          <div class="msw-feature-icon"><span class="icon_shot_12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M300.9 149.2L184.3 278.8C179.7 283.9 179.9 291.8 184.8 296.7C215.3 327.2 264.8 327.2 295.3 296.7L327.1 264.9C331.3 260.7 336.6 258.4 342 258C348.8 257.4 355.8 259.7 361 264.9L537.6 440L608 384L608 96L496 160L472.2 144.1C456.4 133.6 437.9 128 418.9 128L348.5 128C347.4 128 346.2 128 345.1 128.1C328.2 129 312.3 136.6 300.9 149.2zM148.6 246.7L255.4 128L215.8 128C190.3 128 165.9 138.1 147.9 156.1L144 160L32 96L32 384L188.4 514.3C211.4 533.5 240.4 544 270.3 544L286 544L279 537C269.6 527.6 269.6 512.4 279 503.1C288.4 493.8 303.6 493.7 312.9 503.1L353.9 544.1L362.9 544.1C382 544.1 400.7 539.8 417.7 531.8L391 505C381.6 495.6 381.6 480.4 391 471.1C400.4 461.8 415.6 461.7 424.9 471.1L456.9 503.1L474.4 485.6C483.3 476.7 485.9 463.8 482 452.5L344.1 315.7L329.2 330.6C279.9 379.9 200.1 379.9 150.8 330.6C127.8 307.6 126.9 270.7 148.6 246.6z" />
+              </svg></span></div>
           <h3>Hiring Network Access</h3>
           <p>We have a rich network of professionals spread over leading MNCs. Get referred to top companies through
             our growing pool of hiring partners.</p>
