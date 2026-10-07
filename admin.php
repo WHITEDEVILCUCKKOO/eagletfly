@@ -397,6 +397,159 @@ $global_info = get_global_info($mydb);
 ?>
 
 
+
+
+
+<!-- courses -->
+<?php
+
+/* =========================================================
+   COURSE FUNCTIONS
+========================================================= */
+
+include_once __DIR__ . "/admin_access/functions/Courses/all_courses.php";
+include_once __DIR__ . "/admin_access/functions/Courses/get_single_course.php";
+include_once __DIR__ . "/admin_access/functions/Courses/add_courses.php";
+include_once __DIR__ . "/admin_access/functions/Courses/update_course.php";
+include_once __DIR__ . "/admin_access/functions/Courses/delete_course.php";
+
+
+/* Form isi page (admin.php) par submit hoga */
+
+$course_action_url = "admin.php";
+
+
+/* =========================================================
+   ALERT + REDIRECT TO admin.php
+========================================================= */
+
+function course_alert_redirect($message)
+{
+    echo "<script>";
+    echo "alert(" . json_encode($message) . ");";
+    echo "window.location.href = 'admin.php';";
+    echo "</script>";
+    exit;
+}
+
+
+/* =========================================================
+   COURSE FORM SUBMIT (ADD / UPDATE / DELETE)
+========================================================= */
+
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    isset($_POST['action']) &&
+    in_array($_POST['action'], ['add', 'update', 'delete'], true)
+) {
+
+    $course_form_action = $_POST['action'];
+
+    /* Switches -> database values */
+
+    $course_data = $_POST;
+
+    $course_data['course_status'] =
+        isset($_POST['course_status']) ? 'Active' : 'Inactive';
+
+    $course_data['course_featured'] =
+        isset($_POST['course_featured']) ? 'Yes' : 'No';
+
+    $course_image = $_FILES['course_image'] ?? null;
+
+
+    /* ---------- ADD ---------- */
+
+    if ($course_form_action === 'add') {
+
+        $course_result = add_course($mydb, $course_data, $course_image);
+
+        course_alert_redirect($course_result['message']);
+    }
+
+
+    /* ---------- UPDATE ---------- */
+
+    if ($course_form_action === 'update') {
+
+        $course_id = (int)($_POST['course_id'] ?? 0);
+
+        $old_course = get_single_course($mydb, $course_id);
+
+        if (!$old_course) {
+            course_alert_redirect("Course not found.");
+        }
+
+        /* Syllabus form me nahi hai, purani value bachao */
+        $course_data['course_syllabus'] = $old_course['course_syllabus'] ?? '';
+
+        $remove_course_image = isset($_POST['remove_course_image']);
+
+        $course_result = update_course(
+            $mydb,
+            $course_id,
+            $course_data,
+            $course_image,
+            $remove_course_image
+        );
+
+        course_alert_redirect($course_result['message']);
+    }
+
+
+    /* ---------- DELETE ---------- */
+
+    if ($course_form_action === 'delete') {
+
+        $course_id = (int)($_POST['course_id'] ?? 0);
+
+        $course_result = delete_course($mydb, $course_id);
+
+        course_alert_redirect($course_result['message']);
+    }
+}
+
+
+/* =========================================================
+   COURSES DATA (list + stats)
+========================================================= */
+
+$all_courses = get_all_courses($mydb);
+
+$total_courses = count($all_courses);
+$active_courses = 0;
+$inactive_courses = 0;
+$featured_courses = 0;
+
+foreach ($all_courses as $course_count_row) {
+
+    if (($course_count_row['course_status'] ?? '') === 'Active') {
+        $active_courses++;
+    } else {
+        $inactive_courses++;
+    }
+
+    if (($course_count_row['course_featured'] ?? '') === 'Yes') {
+        $featured_courses++;
+    }
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -407,6 +560,7 @@ $global_info = get_global_info($mydb);
     <link rel="icon" type="image/x-icon" href="img/logo/facion.png">
     <title>Eagletfly Admin</title>
     <link rel="stylesheet" href="admin_access/admin.css">
+    <link rel="stylesheet" href="admin_access/css/courses.css">
 
     <script src="assets/js/blog.js"></script>
 </head>
@@ -490,27 +644,27 @@ $global_info = get_global_info($mydb);
                                     <path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z" />
                                 </svg>
                             </span>
-                            Home
+                            Add Media
                         </li>
 
                         <!-- sms sub link -->
                         <div class="sub_links_of_allawn" id="sms_sub_box" data-set="sms-sub">
                             <ul>
-                                <li class="sole78m" id="contect__1" onclick="link_sole_action(this)" data-set="contect-1">SMS Dashbord</li>
-                                <li class="sole78m" id="contect__2" onclick="link_sole_action(this)" data-set="contect-2">Create SMS Campaign</li>
-                                <li class="sole78m" id="contect__3" onclick="link_sole_action(this)" data-set="contect-3">Tiny Campaign( Smart URL )</li>
-                                <li class="sole78m" id="contect__4" onclick="link_sole_action(this)" data-set="contect-4">Manage Sender ID</li>
-                                <li class="sole78m" id="contect__5" onclick="link_sole_action(this)" data-set="contect-5">Manage Template</li>
-                                <li class="sole78m" id="contect__6" onclick="link_sole_action(this)" data-set="contect-6">My Routes</li>
-                                <li class="sole78m" id="contect__7" onclick="link_sole_action(this)" data-set="contect-7">Contact Manager</li>
-                                <li class="sole78m" id="contect__8" onclick="link_sole_action(this)" data-set="contect-8">Manage Group</li>
-                                <li class="sole78m" id="contect__9" onclick="link_sole_action(this)" data-set="contect-9">Blacklist Numbers</li>
-                                <li class="sole78m" id="contect__10" onclick="link_sole_action(this)" data-set="contect-10">SMS Reports</li>
-                                <li class="sole78m" id="contect__11" onclick="link_sole_action(this)" data-set="contect-11">SMS API Integration</li>
+                                <li class="sole78m " id="contect__3" onclick="link_sole_action(this)" data-set="contect-3">All Pages Baners</li>
+                                <li class="sole78m " id="contect__1" onclick="link_sole_action(this)" data-set="contect-1">Add Videos</li>
+                                <li class="sole78m " id="contect__2" onclick="link_sole_action(this)" data-set="contect-2">Add Photos</li>
+                                <li class="sole78m not_show_link" id="contect__4" onclick="link_sole_action(this)" data-set="contect-4">Manage Sender ID</li>
+                                <li class="sole78m not_show_link" id="contect__5" onclick="link_sole_action(this)" data-set="contect-5">Manage Template</li>
+                                <li class="sole78m not_show_link" id="contect__6" onclick="link_sole_action(this)" data-set="contect-6">My Routes</li>
+                                <li class="sole78m not_show_link" id="contect__7" onclick="link_sole_action(this)" data-set="contect-7">Contact Manager</li>
+                                <li class="sole78m not_show_link" id="contect__8" onclick="link_sole_action(this)" data-set="contect-8">Manage Group</li>
+                                <li class="sole78m not_show_link" id="contect__9" onclick="link_sole_action(this)" data-set="contect-9">Blacklist Numbers</li>
+                                <li class="sole78m not_show_link" id="contect__10" onclick="link_sole_action(this)" data-set="contect-10">SMS Reports</li>
+                                <li class="sole78m not_show_link" id="contect__11" onclick="link_sole_action(this)" data-set="contect-11">SMS API Integration</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="rcs_btn_124" data-set="rcs" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="rcs_btn_124" data-set="rcs" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_5">
                                     <path d="M144 128C144 92.7 172.7 64 208 64L432 64C467.3 64 496 92.7 496 128L496 512C496 547.3 467.3 576 432 576L208 576C172.7 576 144 547.3 144 512L144 128zM256 504C256 517.3 266.7 528 280 528L360 528C373.3 528 384 517.3 384 504C384 490.7 373.3 480 360 480L280 480C266.7 480 256 490.7 256 504zM432 128L208 128L208 432L432 432L432 128z" />
                                 </svg></span>
@@ -520,18 +674,18 @@ $global_info = get_global_info($mydb);
                         <!-- Rcs sub link -->
                         <div class="sub_links_of_allawn" id="rcs_sub_box" data-set="rcs-sub">
                             <ul>
-                                <li class="sole78m" id="contect__12" onclick="link_sole_action(this)" data-set="contect-12">RCS Dashbord</li>
-                                <li class="sole78m" id="contect__13" onclick="link_sole_action(this)" data-set="contect-13">RCS Agent</li>
-                                <li class="sole78m" id="contect__14" onclick="link_sole_action(this)" data-set="contect-14">Templates</li>
-                                <li class="sole78m" id="contect__15" onclick="link_sole_action(this)" data-set="contect-15">Create Campaign</li>
-                                <li class="sole78m" id="contect__16" onclick="link_sole_action(this)" data-set="contect-16">Manage Group</li>
-                                <li class="sole78m" id="contect__17" onclick="link_sole_action(this)" data-set="contect-17">Blacklist Numbers</li>
-                                <li class="sole78m" id="contect__18" onclick="link_sole_action(this)" data-set="contect-18">RCS Reports</li>
-                                <li class="sole78m" id="contect__19" onclick="link_sole_action(this)" data-set="contect-19">Chatbot Automation</li>
+                                <li class="sole78m not_show_link" id="contect__12" onclick="link_sole_action(this)" data-set="contect-12">RCS Dashbord</li>
+                                <li class="sole78m not_show_link" id="contect__13" onclick="link_sole_action(this)" data-set="contect-13">RCS Agent</li>
+                                <li class="sole78m not_show_link" id="contect__14" onclick="link_sole_action(this)" data-set="contect-14">Templates</li>
+                                <li class="sole78m not_show_link" id="contect__15" onclick="link_sole_action(this)" data-set="contect-15">Create Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__16" onclick="link_sole_action(this)" data-set="contect-16">Manage Group</li>
+                                <li class="sole78m not_show_link" id="contect__17" onclick="link_sole_action(this)" data-set="contect-17">Blacklist Numbers</li>
+                                <li class="sole78m not_show_link" id="contect__18" onclick="link_sole_action(this)" data-set="contect-18">RCS Reports</li>
+                                <li class="sole78m not_show_link" id="contect__19" onclick="link_sole_action(this)" data-set="contect-19">Chatbot Automation</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="whatsapp_btn_124" data-set="whatsapp" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="whatsapp_btn_124" data-set="whatsapp" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_6">
                                     <path d="M476.9 161.1C435 119.1 379.2 96 319.9 96C197.5 96 97.9 195.6 97.9 318C97.9 357.1 108.1 395.3 127.5 429L96 544L213.7 513.1C246.1 530.8 282.6 540.1 319.8 540.1L319.9 540.1C442.2 540.1 544 440.5 544 318.1C544 258.8 518.8 203.1 476.9 161.1zM319.9 502.7C286.7 502.7 254.2 493.8 225.9 477L219.2 473L149.4 491.3L168 423.2L163.6 416.2C145.1 386.8 135.4 352.9 135.4 318C135.4 216.3 218.2 133.5 320 133.5C369.3 133.5 415.6 152.7 450.4 187.6C485.2 222.5 506.6 268.8 506.5 318.1C506.5 419.9 421.6 502.7 319.9 502.7zM421.1 364.5C415.6 361.7 388.3 348.3 383.2 346.5C378.1 344.6 374.4 343.7 370.7 349.3C367 354.9 356.4 367.3 353.1 371.1C349.9 374.8 346.6 375.3 341.1 372.5C308.5 356.2 287.1 343.4 265.6 306.5C259.9 296.7 271.3 297.4 281.9 276.2C283.7 272.5 282.8 269.3 281.4 266.5C280 263.7 268.9 236.4 264.3 225.3C259.8 214.5 255.2 216 251.8 215.8C248.6 215.6 244.9 215.6 241.2 215.6C237.5 215.6 231.5 217 226.4 222.5C221.3 228.1 207 241.5 207 268.8C207 296.1 226.9 322.5 229.6 326.2C232.4 329.9 268.7 385.9 324.4 410C359.6 425.2 373.4 426.5 391 423.9C401.7 422.3 423.8 410.5 428.4 397.5C433 384.5 433 373.4 431.6 371.1C430.3 368.6 426.6 367.2 421.1 364.5z" />
                                 </svg></span>
@@ -541,22 +695,22 @@ $global_info = get_global_info($mydb);
                         <!-- whatsapp sub link -->
                         <div class="sub_links_of_allawn" id="whatsapp_sub_box" data-set="whatsapp-sub">
                             <ul>
-                                <li class="sole78m" id="contect__20" onclick="link_sole_action(this)" data-set="contect-20">WhatsApp Onboarding</li>
-                                <li class="sole78m" id="contect__21" onclick="link_sole_action(this)" data-set="contect-21">Dashbord</li>
-                                <li class="sole78m" id="contect__22" onclick="link_sole_action(this)" data-set="contect-22">Templates</li>
-                                <li class="sole78m" id="contect__23" onclick="link_sole_action(this)" data-set="contect-23">Campaign</li>
-                                <li class="sole78m" id="contect__24" onclick="link_sole_action(this)" data-set="contect-24">Reports</li>
-                                <li class="sole78m" id="contect__25" onclick="link_sole_action(this)" data-set="contect-25">Agent</li>
-                                <li class="sole78m" id="contect__26" onclick="link_sole_action(this)" data-set="contect-26">Chatbot Builder</li>
-                                <li class="sole78m" id="contect__27" onclick="link_sole_action(this)" data-set="contect-27">Payment</li>
-                                <li class="sole78m" id="contect__28" onclick="link_sole_action(this)" data-set="contect-28">Catalogue</li>
+                                <li class="sole78m not_show_link" id="contect__20" onclick="link_sole_action(this)" data-set="contect-20">WhatsApp Onboarding</li>
+                                <li class="sole78m not_show_link" id="contect__21" onclick="link_sole_action(this)" data-set="contect-21">Dashbord</li>
+                                <li class="sole78m not_show_link" id="contect__22" onclick="link_sole_action(this)" data-set="contect-22">Templates</li>
+                                <li class="sole78m not_show_link" id="contect__23" onclick="link_sole_action(this)" data-set="contect-23">Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__24" onclick="link_sole_action(this)" data-set="contect-24">Reports</li>
+                                <li class="sole78m not_show_link" id="contect__25" onclick="link_sole_action(this)" data-set="contect-25">Agent</li>
+                                <li class="sole78m not_show_link" id="contect__26" onclick="link_sole_action(this)" data-set="contect-26">Chatbot Builder</li>
+                                <li class="sole78m not_show_link" id="contect__27" onclick="link_sole_action(this)" data-set="contect-27">Payment</li>
+                                <li class="sole78m not_show_link" id="contect__28" onclick="link_sole_action(this)" data-set="contect-28">Catalogue</li>
                             </ul>
                         </div>
 
 
 
 
-                        <li class="subbox_link" id="voice_btn_124" data-set="voice" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="voice_btn_124" data-set="voice" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_7">
                                     <path d="M376 32C504.1 32 608 135.9 608 264C608 277.3 597.3 288 584 288C570.7 288 560 277.3 560 264C560 162.4 477.6 80 376 80C362.7 80 352 69.3 352 56C352 42.7 362.7 32 376 32zM384 224C401.7 224 416 238.3 416 256C416 273.7 401.7 288 384 288C366.3 288 352 273.7 352 256C352 238.3 366.3 224 384 224zM352 152C352 138.7 362.7 128 376 128C451.1 128 512 188.9 512 264C512 277.3 501.3 288 488 288C474.7 288 464 277.3 464 264C464 215.4 424.6 176 376 176C362.7 176 352 165.3 352 152zM176.1 65.4C195.8 60 216.4 70.1 224.2 88.9L264.7 186.2C271.6 202.7 266.8 221.8 252.9 233.2L208.8 269.3C241.3 340.9 297.8 399.3 368.1 434.2L406.7 387C418 373.1 437.1 368.4 453.7 375.2L551 415.8C569.8 423.6 579.9 444.2 574.5 463.9L573 469.4C555.4 534.1 492.9 589.3 416.6 573.2C241.6 536.1 103.9 398.4 66.8 223.4C50.7 147.1 105.9 84.6 170.5 66.9L176 65.4z" />
                                 </svg></span>
@@ -564,20 +718,20 @@ $global_info = get_global_info($mydb);
                         </li>
 
                         <!-- voice sub link -->
-                        <div class="sub_links_of_allawn" id="voice_sub_box" data-set="voice-sub">
+                        <div class="sub_links_of_allawn not_show_link" id="voice_sub_box" data-set="voice-sub">
                             <ul>
-                                <li class="sole78m" id="contect__29" onclick="link_sole_action(this)" data-set="contect-29">Voice Dashbord</li>
-                                <li class="sole78m" id="contect__30" onclick="link_sole_action(this)" data-set="contect-30">Voice Files</li>
-                                <li class="sole78m" id="contect__31" onclick="link_sole_action(this)" data-set="contect-31">Components</li>
-                                <li class="sole78m" id="contect__32" onclick="link_sole_action(this)" data-set="contect-32">Voice Campaign Management</li>
-                                <li class="sole78m" id="contect__33" onclick="link_sole_action(this)" data-set="contect-33">Agent Monitoring</li>
-                                <li class="sole78m" id="contect__34" onclick="link_sole_action(this)" data-set="contect-34">Report</li>
-                                <li class="sole78m" id="contect__35" onclick="link_sole_action(this)" data-set="contect-35">Manage Agents</li>
-                                <li class="sole78m" id="contect__36" onclick="link_sole_action(this)" data-set="contect-36">Manage Remarks</li>
+                                <li class="sole78m not_show_link" id="contect__29" onclick="link_sole_action(this)" data-set="contect-29">Voice Dashbord</li>
+                                <li class="sole78m not_show_link" id="contect__30" onclick="link_sole_action(this)" data-set="contect-30">Voice Files</li>
+                                <li class="sole78m not_show_link" id="contect__31" onclick="link_sole_action(this)" data-set="contect-31">Components</li>
+                                <li class="sole78m not_show_link" id="contect__32" onclick="link_sole_action(this)" data-set="contect-32">Voice Campaign Management</li>
+                                <li class="sole78m not_show_link" id="contect__33" onclick="link_sole_action(this)" data-set="contect-33">Agent Monitoring</li>
+                                <li class="sole78m not_show_link" id="contect__34" onclick="link_sole_action(this)" data-set="contect-34">Report</li>
+                                <li class="sole78m not_show_link" id="contect__35" onclick="link_sole_action(this)" data-set="contect-35">Manage Agents</li>
+                                <li class="sole78m not_show_link" id="contect__36" onclick="link_sole_action(this)" data-set="contect-36">Manage Remarks</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="ivr_btn_124" data-set="ivr" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="ivr_btn_124" data-set="ivr" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_8">
                                     <path d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z" />
                                 </svg></span>
@@ -585,19 +739,19 @@ $global_info = get_global_info($mydb);
                         </li>
 
                         <!-- IVR / Campaign -->
-                        <div class="sub_links_of_allawn" id="ivr_sub_box" data-set="ivr-sub">
+                        <div class="sub_links_of_allawn not_show_link" id="ivr_sub_box" data-set="ivr-sub">
                             <ul>
-                                <li class="sole78m" id="contect__37" onclick="link_sole_action(this)" data-set="contect-37">Dashboard</li>
-                                <li class="sole78m" id="contect__38" onclick="link_sole_action(this)" data-set="contect-38">Campaign</li>
-                                <li class="sole78m" id="contect__39" onclick="link_sole_action(this)" data-set="contect-39">Voice Files</li>
-                                <li class="sole78m" id="contect__40" onclick="link_sole_action(this)" data-set="contect-40">Components</li>
-                                <li class="sole78m" id="contect__41" onclick="link_sole_action(this)" data-set="contect-41">Manage Agent</li>
-                                <li class="sole78m" id="contect__42" onclick="link_sole_action(this)" data-set="contect-42">Manage Remarks</li>
-                                <li class="sole78m" id="contect__43" onclick="link_sole_action(this)" data-set="contect-43">Report</li>
+                                <li class="sole78m not_show_link" id="contect__37" onclick="link_sole_action(this)" data-set="contect-37">Dashboard</li>
+                                <li class="sole78m not_show_link" id="contect__38" onclick="link_sole_action(this)" data-set="contect-38">Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__39" onclick="link_sole_action(this)" data-set="contect-39">Voice Files</li>
+                                <li class="sole78m not_show_link" id="contect__40" onclick="link_sole_action(this)" data-set="contect-40">Components</li>
+                                <li class="sole78m not_show_link" id="contect__41" onclick="link_sole_action(this)" data-set="contect-41">Manage Agent</li>
+                                <li class="sole78m not_show_link" id="contect__42" onclick="link_sole_action(this)" data-set="contect-42">Manage Remarks</li>
+                                <li class="sole78m not_show_link" id="contect__43" onclick="link_sole_action(this)" data-set="contect-43">Report</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="click_to_call_btn_124" data-set="click_to_call" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="click_to_call_btn_124" data-set="click_to_call" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_9">
                                     <path d="M224.2 89C216.3 70.1 195.7 60.1 176.1 65.4L170.6 66.9C106 84.5 50.8 147.1 66.9 223.3C104 398.3 241.7 536 416.7 573.1C493 589.3 555.5 534 573.1 469.4L574.6 463.9C580 444.2 569.9 423.6 551.1 415.8L453.8 375.3C437.3 368.4 418.2 373.2 406.8 387.1L368.2 434.3C297.9 399.4 241.3 341 208.8 269.3L253 233.3C266.9 222 271.6 202.9 264.8 186.3L224.2 89z" />
@@ -607,18 +761,18 @@ $global_info = get_global_info($mydb);
                         </li>
 
                         <!-- Click To Call -->
-                        <div class="sub_links_of_allawn" id="click_to_call_sub_box" data-set="click_to_call-sub">
+                        <div class="sub_links_of_allawn not_show_link" id="click_to_call_sub_box" data-set="click_to_call-sub">
                             <ul>
-                                <li class="sole78m" id="contect__44" onclick="link_sole_action(this)" data-set="contect-44">Dashboard</li>
-                                <li class="sole78m" id="contect__45" onclick="link_sole_action(this)" data-set="contect-45">Manage Agent</li>
-                                <li class="sole78m" id="contect__46" onclick="link_sole_action(this)" data-set="contect-46">Campaign</li>
-                                <li class="sole78m" id="contect__47" onclick="link_sole_action(this)" data-set="contect-47">Agent Monitoring</li>
-                                <li class="sole78m" id="contect__48" onclick="link_sole_action(this)" data-set="contect-48">Manage Remarks</li>
-                                <li class="sole78m" id="contect__49" onclick="link_sole_action(this)" data-set="contect-49">Report</li>
+                                <li class="sole78m not_show_link" id="contect__44" onclick="link_sole_action(this)" data-set="contect-44">Dashboard</li>
+                                <li class="sole78m not_show_link" id="contect__45" onclick="link_sole_action(this)" data-set="contect-45">Manage Agent</li>
+                                <li class="sole78m not_show_link" id="contect__46" onclick="link_sole_action(this)" data-set="contect-46">Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__47" onclick="link_sole_action(this)" data-set="contect-47">Agent Monitoring</li>
+                                <li class="sole78m not_show_link" id="contect__48" onclick="link_sole_action(this)" data-set="contect-48">Manage Remarks</li>
+                                <li class="sole78m not_show_link" id="contect__49" onclick="link_sole_action(this)" data-set="contect-49">Report</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="text_to_speech_btn_124" data-set="text_to_speech" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="text_to_speech_btn_124" data-set="text_to_speech" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_10">
                                     <path d="M112 416L160 416L294.1 535.2C300.5 540.9 308.7 544 317.2 544C336.4 544 352 528.4 352 509.2L352 130.8C352 111.6 336.4 96 317.2 96C308.7 96 300.5 99.1 294.1 104.8L160 224L112 224C85.5 224 64 245.5 64 272L64 368C64 394.5 85.5 416 112 416zM505.1 171C494.8 162.6 479.7 164.2 471.3 174.5C462.9 184.8 464.5 199.9 474.8 208.3C507.3 234.7 528 274.9 528 320C528 365.1 507.3 405.3 474.8 431.8C464.5 440.2 463 455.3 471.3 465.6C479.6 475.9 494.8 477.4 505.1 469.1C548.3 433.9 576 380.2 576 320.1C576 260 548.3 206.3 505.1 171.1zM444.6 245.5C434.3 237.1 419.2 238.7 410.8 249C402.4 259.3 404 274.4 414.3 282.8C425.1 291.6 432 305 432 320C432 335 425.1 348.4 414.3 357.3C404 365.7 402.5 380.8 410.8 391.1C419.1 401.4 434.3 402.9 444.6 394.6C466.1 376.9 480 350.1 480 320C480 289.9 466.1 263.1 444.5 245.5z" />
                                 </svg></span>
@@ -626,18 +780,18 @@ $global_info = get_global_info($mydb);
                         </li>
 
                         <!-- Text To Speech -->
-                        <div class="sub_links_of_allawn" id="text_to_speech_sub_box" data-set="text_to_speech-sub">
+                        <div class="sub_links_of_allawn not_show_link" id="text_to_speech_sub_box" data-set="text_to_speech-sub">
                             <ul>
-                                <li class="sole78m" id="contect__50" onclick="link_sole_action(this)" data-set="contect-50">Dashboard</li>
-                                <li class="sole78m" id="contect__51" onclick="link_sole_action(this)" data-set="contect-51">Voice Files</li>
-                                <li class="sole78m" id="contect__52" onclick="link_sole_action(this)" data-set="contect-52">Manage TTS Template</li>
-                                <li class="sole78m" id="contect__53" onclick="link_sole_action(this)" data-set="contect-53">Create Campaign</li>
-                                <li class="sole78m" id="contect__54" onclick="link_sole_action(this)" data-set="contect-54">Report</li>
-                                <li class="sole78m" id="contect__55" onclick="link_sole_action(this)" data-set="contect-55">Manage Remarks</li>
+                                <li class="sole78m not_show_link" id="contect__50" onclick="link_sole_action(this)" data-set="contect-50">Dashboard</li>
+                                <li class="sole78m not_show_link" id="contect__51" onclick="link_sole_action(this)" data-set="contect-51">Voice Files</li>
+                                <li class="sole78m not_show_link" id="contect__52" onclick="link_sole_action(this)" data-set="contect-52">Manage TTS Template</li>
+                                <li class="sole78m not_show_link" id="contect__53" onclick="link_sole_action(this)" data-set="contect-53">Create Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__54" onclick="link_sole_action(this)" data-set="contect-54">Report</li>
+                                <li class="sole78m not_show_link" id="contect__55" onclick="link_sole_action(this)" data-set="contect-55">Manage Remarks</li>
                             </ul>
                         </div>
 
-                        <li class="subbox_link" id="ai_agent_btn_124" data-set="ai_agent" onclick="show_this_box(this); show_sub_link(this);">
+                        <li class="subbox_link not_show_link" id="ai_agent_btn_124" data-set="ai_agent" onclick="show_this_box(this); show_sub_link(this);">
                             <span class="svg_icon_box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="sub_set_iocn_svg" data-subset="icon_11">
                                     <path d="M352 64C352 46.3 337.7 32 320 32C302.3 32 288 46.3 288 64L288 128L192 128C139 128 96 171 96 224L96 448C96 501 139 544 192 544L448 544C501 544 544 501 544 448L544 224C544 171 501 128 448 128L352 128L352 64zM160 432C160 418.7 170.7 408 184 408L216 408C229.3 408 240 418.7 240 432C240 445.3 229.3 456 216 456L184 456C170.7 456 160 445.3 160 432zM280 432C280 418.7 290.7 408 304 408L336 408C349.3 408 360 418.7 360 432C360 445.3 349.3 456 336 456L304 456C290.7 456 280 445.3 280 432zM400 432C400 418.7 410.7 408 424 408L456 408C469.3 408 480 418.7 480 432C480 445.3 469.3 456 456 456L424 456C410.7 456 400 445.3 400 432zM224 240C250.5 240 272 261.5 272 288C272 314.5 250.5 336 224 336C197.5 336 176 314.5 176 288C176 261.5 197.5 240 224 240zM368 288C368 261.5 389.5 240 416 240C442.5 240 464 261.5 464 288C464 314.5 442.5 336 416 336C389.5 336 368 314.5 368 288zM64 288C64 270.3 49.7 256 32 256C14.3 256 0 270.3 0 288L0 384C0 401.7 14.3 416 32 416C49.7 416 64 401.7 64 384L64 288zM608 256C590.3 256 576 270.3 576 288L576 384C576 401.7 590.3 416 608 416C625.7 416 640 401.7 640 384L640 288C640 270.3 625.7 256 608 256z" />
                                 </svg></span>
@@ -646,11 +800,11 @@ $global_info = get_global_info($mydb);
 
 
                         <!-- AI Agent -->
-                        <div class="sub_links_of_allawn" id="ai_agent_sub_box" data-set="ai_agent-sub">
+                        <div class="sub_links_of_allawn not_show_link" id="ai_agent_sub_box" data-set="ai_agent-sub">
                             <ul>
-                                <li class="sole78m" id="contect__56" onclick="link_sole_action(this)" data-set="contect-56">Dashboard</li>
-                                <li class="sole78m" id="contect__57" onclick="link_sole_action(this)" data-set="contect-57">AI Agent Campaign</li>
-                                <li class="sole78m" id="contect__58" onclick="link_sole_action(this)" data-set="contect-58">Report</li>
+                                <li class="sole78m not_show_link" id="contect__56" onclick="link_sole_action(this)" data-set="contect-56">Dashboard</li>
+                                <li class="sole78m not_show_link" id="contect__57" onclick="link_sole_action(this)" data-set="contect-57">AI Agent Campaign</li>
+                                <li class="sole78m not_show_link" id="contect__58" onclick="link_sole_action(this)" data-set="contect-58">Report</li>
                             </ul>
                         </div>
 
@@ -1245,13 +1399,857 @@ $global_info = get_global_info($mydb);
                         });
                     </script>
 
-
-
                 </section>
 
                 <!-- section 3 Dashbord -->
                 <section id="dashbord_contect_box" class="section_sub_with all_sejmca8974 ">
-                    3
+
+                    <div class="edu-course-manager-xk91">
+
+                        <!-- ==================================================
+                                    COURSE LIST PAGE
+                            ================================================== -->
+
+                        <div id="eduCourseListPageXk91">
+
+                            <!-- HEADER -->
+
+                            <div class="edu-course-header-xk91">
+
+                                <div>
+                                    <h2>Courses</h2>
+                                    <p>Manage all institute courses from here.</p>
+                                </div>
+
+                                <button type="button" class="edu-course-add-btn-xk91" id="eduCourseAddBtnXk91">
+                                    <span>+</span>
+                                    Add New Course
+                                </button>
+
+                            </div>
+
+
+                            <!-- STATS -->
+
+                            <div class="edu-course-stats-xk91">
+
+                                <div class="edu-course-stat-card-xk91">
+                                    <div class="edu-course-stat-icon-xk91">📚</div>
+                                    <div>
+                                        <span>Total Courses</span>
+                                        <strong><?php echo $total_courses; ?></strong>
+                                    </div>
+                                </div>
+
+                                <div class="edu-course-stat-card-xk91">
+                                    <div class="edu-course-stat-icon-xk91">✓</div>
+                                    <div>
+                                        <span>Active Courses</span>
+                                        <strong><?php echo $active_courses; ?></strong>
+                                    </div>
+                                </div>
+
+                                <div class="edu-course-stat-card-xk91">
+                                    <div class="edu-course-stat-icon-xk91">○</div>
+                                    <div>
+                                        <span>Inactive Courses</span>
+                                        <strong><?php echo $inactive_courses; ?></strong>
+                                    </div>
+                                </div>
+
+                                <div class="edu-course-stat-card-xk91">
+                                    <div class="edu-course-stat-icon-xk91">★</div>
+                                    <div>
+                                        <span>Featured Courses</span>
+                                        <strong><?php echo $featured_courses; ?></strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- COURSE LIST -->
+
+                            <div class="edu-course-list-box-xk91">
+
+                                <div class="edu-course-list-top-xk91">
+
+                                    <div>
+                                        <h3>All Courses</h3>
+                                        <p>View and manage your available courses.</p>
+                                    </div>
+
+                                    <div class="edu-course-tools-xk91">
+
+                                        <div class="edu-course-search-xk91">
+                                            <span>⌕</span>
+                                            <input type="text" id="eduCourseSearchXk91" placeholder="Search course...">
+                                        </div>
+
+                                        <select class="edu-course-filter-xk91" id="eduCourseFilterXk91">
+                                            <option value="all">All Status</option>
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- TABLE -->
+
+                                <div class="edu-course-table-scroll-xk91">
+
+                                    <table class="edu-course-table-xk91">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Category</th>
+                                                <th>Duration</th>
+                                                <th>Mode</th>
+                                                <th>Fee</th>
+                                                <th>Status</th>
+                                                <th>Featured</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody id="eduCourseTableBodyXk91">
+
+                                            <?php foreach ($all_courses as $course) {
+
+                                                $c_status_class = (($course['course_status'] ?? '') === 'Active') ? 'active' : 'inactive';
+                                                $c_status_text  = ($c_status_class === 'active') ? 'Active' : 'Inactive';
+                                                $c_featured     = (($course['course_featured'] ?? '') === 'Yes');
+
+                                                $c_image = $course['course_image'] ?? '';
+                                                $c_image_url = '';
+
+                                                if ($c_image !== '') {
+                                                    $c_image_url = $c_image . '?v=' . ($course['course_updated_at'] ?? '');
+                                                }
+
+                                                $c_fee = $course['course_fee'] ?? '';
+                                                $c_discount = $course['course_discount_fee'] ?? '';
+
+                                                $c_json = htmlspecialchars(
+                                                    json_encode($course, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                );
+                                            ?>
+
+                                                <tr data-course-status="<?php echo $c_status_class; ?>">
+
+                                                    <td>
+                                                        <div class="edu-course-info-xk91">
+
+                                                            <div class="edu-course-image-xk91">
+                                                                <?php if ($c_image_url !== '') { ?>
+                                                                    <img
+                                                                        src="<?php echo htmlspecialchars($c_image_url); ?>"
+                                                                        alt="<?php echo htmlspecialchars($course['course_name']); ?>">
+                                                                <?php } ?>
+                                                            </div>
+
+                                                            <div>
+                                                                <strong><?php echo htmlspecialchars($course['course_name']); ?></strong>
+                                                                <span><?php echo htmlspecialchars($course['course_code'] ?? ''); ?></span>
+                                                            </div>
+
+                                                        </div>
+                                                    </td>
+
+                                                    <td><?php echo htmlspecialchars($course['course_category'] ?? ''); ?></td>
+
+                                                    <td><?php echo htmlspecialchars($course['course_duration'] ?? ''); ?></td>
+
+                                                    <td><?php echo htmlspecialchars($course['course_mode'] ?? ''); ?></td>
+
+                                                    <td>
+                                                        <?php if ($c_discount !== '' && is_numeric($c_discount)) { ?>
+
+                                                            <strong>₹<?php echo number_format((float)$c_discount); ?></strong>
+
+                                                            <?php if ($c_fee !== '' && is_numeric($c_fee)) { ?>
+                                                                <del>₹<?php echo number_format((float)$c_fee); ?></del>
+                                                            <?php } ?>
+
+                                                        <?php } elseif ($c_fee !== '' && is_numeric($c_fee)) { ?>
+
+                                                            <strong>₹<?php echo number_format((float)$c_fee); ?></strong>
+
+                                                        <?php } else { ?>
+
+                                                            -
+
+                                                        <?php } ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="edu-course-status-xk91 <?php echo $c_status_class; ?>">
+                                                            <?php echo $c_status_text; ?>
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <?php if ($c_featured) { ?>
+                                                            <span class="edu-course-featured-xk91">★ Featured</span>
+                                                        <?php } else { ?>
+                                                            <span class="edu-course-featured-empty-xk91">Not Featured</span>
+                                                        <?php } ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="edu-course-actions-xk91">
+
+                                                            <button
+                                                                type="button"
+                                                                class="edu-course-action-btn-xk91 edit"
+                                                                data-course="<?php echo $c_json; ?>">
+                                                                ✎
+                                                            </button>
+
+                                                            <button
+                                                                type="button"
+                                                                class="edu-course-action-btn-xk91 delete"
+                                                                data-id="<?php echo (int)$course['course_id']; ?>"
+                                                                data-name="<?php echo htmlspecialchars($course['course_name'], ENT_QUOTES); ?>">
+                                                                🗑
+                                                            </button>
+
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+
+                                            <?php } ?>
+
+
+                                            <!-- NO RESULT -->
+
+                                            <tr id="eduCourseNoResultXk91" style="<?php echo $total_courses > 0 ? 'display:none;' : ''; ?>">
+                                                <td colspan="8" style="text-align:center; padding:30px; color:#9aa2b0;">
+                                                    No courses found.
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DELETE FORM (hidden) -->
+
+                        <form
+                            id="eduCourseDeleteFormXk91"
+                            method="post"
+                            action="<?php echo $course_action_url; ?>"
+                            style="display:none;">
+
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="course_id" id="eduCourseDeleteIdXk91" value="">
+
+                        </form>
+
+
+                        <!-- ==================================================
+                                ADD / UPDATE FULL PAGE
+                            ================================================== -->
+
+                        <div class="edu-course-form-page-xk91" id="eduCourseFormPageXk91">
+
+                            <div class="edu-course-form-page-header-xk91">
+                                <div>
+
+                                    <button type="button" class="edu-course-back-btn-xk91" id="eduCourseBackBtnXk91">
+                                        ← Back to Courses
+                                    </button>
+
+                                    <h2 id="eduCourseFormTitleXk91">Add New Course</h2>
+
+                                    <p id="eduCourseFormDescriptionXk91">
+                                        Add all important information about the course.
+                                    </p>
+
+                                </div>
+                            </div>
+
+
+                            <form
+                                id="eduCourseDemoFormXk91"
+                                method="post"
+                                action="<?php echo $course_action_url; ?>"
+                                enctype="multipart/form-data">
+
+                                <input type="hidden" name="action" id="eduCourseActionXk91" value="add">
+                                <input type="hidden" name="course_id" id="eduCourseIdXk91" value="">
+
+
+                                <!-- BASIC INFORMATION -->
+
+                                <div class="edu-course-form-section-xk91">
+
+                                    <h4>Basic Information</h4>
+
+                                    <div class="edu-course-form-grid-xk91">
+
+                                        <div class="edu-course-field-xk91 full">
+                                            <label>Course Name</label>
+                                            <input type="text" name="course_name" id="eduCourseNameXk91" placeholder="Enter course name" required>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Course Code</label>
+                                            <input type="text" name="course_code" id="eduCourseCodeXk91" placeholder="Example: DA-001">
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Course Category</label>
+                                            <input type="text" name="course_category" id="eduCourseCategoryXk91" placeholder="Example: Data Science, Finance, Management">
+                                        </div>
+
+
+                                        <!-- COURSE IMAGE -->
+
+                                        <div class="edu-course-field-xk91 full">
+
+                                            <label>Course Image</label>
+
+                                            <div class="edu-course-update-image-box-xk91">
+
+                                                <div class="edu-course-image-column-xk91">
+                                                    <span class="edu-course-image-label-xk91">Current Image</span>
+                                                    <div class="edu-course-old-image-preview-xk91" id="eduCourseOldImagePreviewXk91">
+                                                        <span>No Existing Image</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="edu-course-image-column-xk91">
+                                                    <span class="edu-course-image-label-xk91">New Image</span>
+                                                    <div class="edu-course-new-image-preview-xk91" id="eduCourseNewImagePreviewXk91">
+                                                        <span>No New Image</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="edu-course-image-upload-area-xk91">
+
+                                                    <div class="edu-course-upload-icon-xk91">+</div>
+
+                                                    <div class="edu-course-upload-content-xk91">
+                                                        <strong id="eduCourseImageUploadTitleXk91">Choose New Image</strong>
+                                                        <span>JPG, PNG or WEBP</span>
+                                                    </div>
+
+                                                    <input
+                                                        type="file"
+                                                        name="course_image"
+                                                        id="eduCourseImageInputXk91"
+                                                        accept="image/jpeg,image/png,image/webp">
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- REMOVE IMAGE -->
+
+                                            <label class="edu-course-remove-image-check-xk91">
+
+                                                <input type="checkbox" name="remove_course_image" value="1" id="eduCourseRemoveImageXk91">
+
+                                                <span class="edu-course-remove-checkbox-xk91"></span>
+
+                                                <div>
+                                                    <strong>Remove Course Image</strong>
+                                                    <small>Save this course without any image</small>
+                                                </div>
+
+                                            </label>
+
+                                        </div>
+
+
+                                        <div class="edu-course-field-xk91 full">
+                                            <label>Short Description</label>
+                                            <textarea name="course_short_description" id="eduCourseShortDescriptionXk91" rows="3" placeholder="Short description for course card..."></textarea>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91 full">
+                                            <label>Full Description</label>
+                                            <textarea name="course_description" id="eduCourseDescriptionXk91" rows="5" placeholder="Write complete course description..."></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- COURSE DETAILS -->
+
+                                <div class="edu-course-form-section-xk91">
+
+                                    <h4>Course Details</h4>
+
+                                    <div class="edu-course-form-grid-xk91">
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Duration</label>
+                                            <input type="text" name="course_duration" id="eduCourseDurationXk91" placeholder="Example: 6 Months">
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Course Mode</label>
+                                            <select name="course_mode" id="eduCourseModeXk91">
+                                                <option value="">Select Mode</option>
+                                                <option value="Online">Online</option>
+                                                <option value="Offline">Offline</option>
+                                                <option value="Hybrid">Hybrid</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Course Level</label>
+                                            <select name="course_level" id="eduCourseLevelXk91">
+                                                <option value="">Select Level</option>
+                                                <option value="Beginner">Beginner</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Advanced">Advanced</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Faculty</label>
+                                            <input type="text" name="course_faculty" id="eduCourseFacultyXk91" placeholder="Faculty / Instructor name">
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Batch Timing</label>
+                                            <input type="text" name="course_batch_timing" id="eduCourseBatchTimingXk91" placeholder="Example: 6 PM - 8 PM">
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Eligibility</label>
+                                            <input type="text" name="course_eligibility" id="eduCourseEligibilityXk91" placeholder="Example: 12th Pass / Graduate">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- FEES -->
+
+                                <div class="edu-course-form-section-xk91">
+
+                                    <h4>Fees & Certification</h4>
+
+                                    <div class="edu-course-form-grid-xk91">
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Course Fee</label>
+                                            <div class="edu-course-input-prefix-xk91">
+                                                <span>₹</span>
+                                                <input type="number" name="course_fee" id="eduCourseFeeXk91" placeholder="50000">
+                                            </div>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91">
+                                            <label>Discounted Fee</label>
+                                            <div class="edu-course-input-prefix-xk91">
+                                                <span>₹</span>
+                                                <input type="number" name="course_discount_fee" id="eduCourseDiscountFeeXk91" placeholder="39999">
+                                            </div>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91 full">
+                                            <label>Certification</label>
+                                            <textarea name="course_certification" id="eduCourseCertificationXk91" rows="3" placeholder="Certificate details..."></textarea>
+                                        </div>
+
+                                        <div class="edu-course-field-xk91 full">
+                                            <label>Placement</label>
+                                            <textarea name="course_placement" id="eduCoursePlacementXk91" rows="3" placeholder="Placement assistance details..."></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- HIGHLIGHTS -->
+
+                                <div class="edu-course-form-section-xk91">
+
+                                    <h4>Course Highlights</h4>
+
+                                    <div class="edu-course-field-xk91">
+
+                                        <label>What Students Will Learn</label>
+
+                                        <textarea name="course_highlights" id="eduCourseHighlightsXk91" rows="5" placeholder="Write course highlights..."></textarea>
+
+                                        <small>Example: SQL, Excel, Power BI, Tableau, Data Storytelling</small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- SETTINGS -->
+
+                                <div class="edu-course-form-section-xk91">
+
+                                    <h4>Course Settings</h4>
+
+                                    <div class="edu-course-settings-row-xk91">
+
+                                        <label class="edu-course-switch-xk91">
+                                            <input type="checkbox" name="course_status" value="Active" id="eduCourseStatusXk91" checked>
+                                            <span></span>
+                                            <b>Active Course</b>
+                                        </label>
+
+                                        <label class="edu-course-switch-xk91">
+                                            <input type="checkbox" name="course_featured" value="Yes" id="eduCourseFeaturedXk91">
+                                            <span></span>
+                                            <b>Featured Course</b>
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- FORM BUTTONS -->
+
+                                <div class="edu-course-form-actions-xk91">
+
+                                    <button type="button" class="edu-course-form-cancel-btn-xk91" id="eduCourseFormCancelBtnXk91">
+                                        Back
+                                    </button>
+
+                                    <button type="submit" class="edu-course-save-btn-xk91" id="eduCourseSaveBtnXk91">
+                                        Add Course
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <script>
+                        (function() {
+
+                            /* ==================================================
+                               ELEMENTS
+                            ================================================== */
+
+                            const listPage = document.getElementById("eduCourseListPageXk91");
+                            const formPage = document.getElementById("eduCourseFormPageXk91");
+
+                            const addBtn = document.getElementById("eduCourseAddBtnXk91");
+                            const backBtn = document.getElementById("eduCourseBackBtnXk91");
+                            const cancelBtn = document.getElementById("eduCourseFormCancelBtnXk91");
+
+                            const form = document.getElementById("eduCourseDemoFormXk91");
+                            const formTitle = document.getElementById("eduCourseFormTitleXk91");
+                            const formDescription = document.getElementById("eduCourseFormDescriptionXk91");
+                            const saveBtn = document.getElementById("eduCourseSaveBtnXk91");
+
+                            const actionInput = document.getElementById("eduCourseActionXk91");
+                            const idInput = document.getElementById("eduCourseIdXk91");
+
+                            const imageInput = document.getElementById("eduCourseImageInputXk91");
+                            const oldImagePreview = document.getElementById("eduCourseOldImagePreviewXk91");
+                            const newImagePreview = document.getElementById("eduCourseNewImagePreviewXk91");
+                            const imageUploadTitle = document.getElementById("eduCourseImageUploadTitleXk91");
+                            const removeImage = document.getElementById("eduCourseRemoveImageXk91");
+
+                            const searchInput = document.getElementById("eduCourseSearchXk91");
+                            const filterSelect = document.getElementById("eduCourseFilterXk91");
+                            const noResultRow = document.getElementById("eduCourseNoResultXk91");
+
+                            const deleteForm = document.getElementById("eduCourseDeleteFormXk91");
+                            const deleteIdInput = document.getElementById("eduCourseDeleteIdXk91");
+
+
+                            /* field id => course column */
+
+                            const fieldMap = {
+                                eduCourseNameXk91: "course_name",
+                                eduCourseCodeXk91: "course_code",
+                                eduCourseCategoryXk91: "course_category",
+                                eduCourseShortDescriptionXk91: "course_short_description",
+                                eduCourseDescriptionXk91: "course_description",
+                                eduCourseDurationXk91: "course_duration",
+                                eduCourseModeXk91: "course_mode",
+                                eduCourseLevelXk91: "course_level",
+                                eduCourseFacultyXk91: "course_faculty",
+                                eduCourseBatchTimingXk91: "course_batch_timing",
+                                eduCourseEligibilityXk91: "course_eligibility",
+                                eduCourseFeeXk91: "course_fee",
+                                eduCourseDiscountFeeXk91: "course_discount_fee",
+                                eduCourseCertificationXk91: "course_certification",
+                                eduCoursePlacementXk91: "course_placement",
+                                eduCourseHighlightsXk91: "course_highlights"
+                            };
+
+
+                            /* ==================================================
+                               SHOW LIST / FORM
+                            ================================================== */
+
+                            function showList() {
+                                formPage.classList.remove("show");
+                                listPage.style.display = "block";
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth"
+                                });
+                            }
+
+                            function showForm() {
+                                listPage.style.display = "none";
+                                formPage.classList.add("show");
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: "smooth"
+                                });
+                            }
+
+
+                            /* ==================================================
+                               IMAGE UI
+                            ================================================== */
+
+                            function setPreview(box, imageUrl, emptyText) {
+
+                                box.innerHTML = "";
+
+                                if (imageUrl) {
+                                    const img = document.createElement("img");
+                                    img.src = imageUrl;
+                                    img.alt = "Course Image";
+                                    box.appendChild(img);
+                                } else {
+                                    const span = document.createElement("span");
+                                    span.textContent = emptyText;
+                                    box.appendChild(span);
+                                }
+                            }
+
+                            function resetImageUI(oldImageUrl) {
+
+                                setPreview(
+                                    oldImagePreview,
+                                    oldImageUrl,
+                                    oldImageUrl === null ? "No Existing Image" : "No Image Available"
+                                );
+
+                                setPreview(newImagePreview, "", "No New Image");
+
+                                imageUploadTitle.textContent =
+                                    oldImageUrl === null ? "Choose Course Image" : "Choose New Image";
+
+                                removeImage.checked = false;
+                                imageInput.value = "";
+                            }
+
+
+                            /* ==================================================
+                               ADD NEW COURSE
+                            ================================================== */
+
+                            addBtn.addEventListener("click", function() {
+
+                                form.reset();
+
+                                actionInput.value = "add";
+                                idInput.value = "";
+
+                                resetImageUI(null);
+
+                                formTitle.textContent = "Add New Course";
+                                formDescription.textContent = "Add all important information about the course.";
+                                saveBtn.textContent = "Add Course";
+
+                                showForm();
+                            });
+
+                            backBtn.addEventListener("click", showList);
+                            cancelBtn.addEventListener("click", showList);
+
+
+                            /* ==================================================
+                               IMAGE SELECT / REMOVE
+                            ================================================== */
+
+                            imageInput.addEventListener("change", function() {
+
+                                const file = this.files && this.files[0];
+
+                                if (!file) {
+                                    return;
+                                }
+
+                                const reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                    setPreview(newImagePreview, e.target.result, "");
+                                    imageUploadTitle.textContent = file.name;
+                                    removeImage.checked = false;
+                                };
+
+                                reader.readAsDataURL(file);
+                            });
+
+                            removeImage.addEventListener("change", function() {
+
+                                if (this.checked) {
+
+                                    imageInput.value = "";
+                                    setPreview(newImagePreview, "", "Image Will Be Removed");
+                                    imageUploadTitle.textContent = "Image will be removed";
+
+                                } else {
+
+                                    setPreview(newImagePreview, "", "No New Image");
+                                    imageUploadTitle.textContent = "Choose New Image";
+                                }
+                            });
+
+
+                            /* ==================================================
+                               EDIT COURSE
+                            ================================================== */
+
+                            document
+                                .querySelectorAll(".edu-course-action-btn-xk91.edit")
+                                .forEach(function(button) {
+
+                                    button.addEventListener("click", function() {
+
+                                        let course = {};
+
+                                        try {
+                                            course = JSON.parse(this.getAttribute("data-course"));
+                                        } catch (e) {
+                                            alert("Course data could not be loaded.");
+                                            return;
+                                        }
+
+                                        form.reset();
+
+                                        actionInput.value = "update";
+                                        idInput.value = course.course_id;
+
+                                        Object.keys(fieldMap).forEach(function(fieldId) {
+                                            const value = course[fieldMap[fieldId]];
+                                            document.getElementById(fieldId).value =
+                                                (value === null || value === undefined) ? "" : value;
+                                        });
+
+                                        document.getElementById("eduCourseStatusXk91").checked =
+                                            course.course_status === "Active";
+
+                                        document.getElementById("eduCourseFeaturedXk91").checked =
+                                            course.course_featured === "Yes";
+
+                                        const oldImage = course.course_image ?
+                                            course.course_image + "?v=" + (course.course_updated_at || "") :
+                                            "";
+
+                                        resetImageUI(oldImage);
+
+                                        formTitle.textContent = "Update Course";
+                                        formDescription.textContent = "Update the course information and settings.";
+                                        saveBtn.textContent = "Update Course";
+
+                                        showForm();
+                                    });
+                                });
+
+
+                            /* ==================================================
+                               DELETE (2 TIMES CONFIRM)
+                            ================================================== */
+
+                            document
+                                .querySelectorAll(".edu-course-action-btn-xk91.delete")
+                                .forEach(function(button) {
+
+                                    button.addEventListener("click", function() {
+
+                                        const courseId = this.getAttribute("data-id");
+                                        const courseName = this.getAttribute("data-name");
+
+                                        /* Confirm 1 */
+                                        if (!confirm("Are you sure you want to delete \"" + courseName + "\"?")) {
+                                            return;
+                                        }
+
+                                        /* Confirm 2 */
+                                        if (!confirm("FINAL WARNING!\n\n\"" + courseName + "\" and its image will be deleted permanently.\nThis cannot be undone.\n\nDelete now?")) {
+                                            return;
+                                        }
+
+                                        deleteIdInput.value = courseId;
+                                        deleteForm.submit();
+                                    });
+                                });
+
+
+                            /* ==================================================
+                               SEARCH + FILTER (work together)
+                            ================================================== */
+
+                            function applyFilters() {
+
+                                const searchValue = searchInput.value.toLowerCase().trim();
+                                const statusValue = filterSelect.value;
+
+                                let visibleCount = 0;
+
+                                document
+                                    .querySelectorAll("#eduCourseTableBodyXk91 tr[data-course-status]")
+                                    .forEach(function(row) {
+
+                                        const matchSearch =
+                                            row.textContent.toLowerCase().includes(searchValue);
+
+                                        const matchStatus =
+                                            statusValue === "all" ||
+                                            statusValue === row.getAttribute("data-course-status");
+
+                                        if (matchSearch && matchStatus) {
+                                            row.style.display = "";
+                                            visibleCount++;
+                                        } else {
+                                            row.style.display = "none";
+                                        }
+                                    });
+
+                                noResultRow.style.display = visibleCount === 0 ? "" : "none";
+                            }
+
+                            searchInput.addEventListener("input", applyFilters);
+                            filterSelect.addEventListener("change", applyFilters);
+
+                        })();
+                    </script>
+
                 </section>
 
                 <!-- section 4 home -->
@@ -1809,22 +2807,832 @@ $global_info = get_global_info($mydb);
                     </script>
 
                 </section>
+<!-- sublink box 1 -->
+<section id="contect_1_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
+
+    <?php
+
+    include "admin_access/functions/AllVideos/add_video.php";
+    include "admin_access/functions/AllVideos/delete_video.php";
 
 
-                <!-- sublink box 1 -->
-                <section id="contect_1_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa ">
-                    sub 1
-                </section>
+    /* ADD VIDEO */
+
+    if (isset($_POST['add_all_video_xk91'])) {
+
+        $all_video_add_result_xk91 = add_all_video($mydb);
+
+        echo "<script>
+            alert(" . json_encode($all_video_add_result_xk91['message']) . ");
+            window.location.href = 'admin.php';
+        </script>";
+
+        exit;
+    }
+
+
+    /* DELETE VIDEO */
+
+    if (isset($_POST['delete_all_video_xk91'])) {
+
+        $all_video_delete_result_xk91 = delete_all_video($mydb);
+
+        echo "<script>
+            alert(" . json_encode($all_video_delete_result_xk91['message']) . ");
+            window.location.href = 'admin.php';
+        </script>";
+
+        exit;
+    }
+
+
+    /* GET ALL VIDEOS */
+
+    $all_video_list_query_xk91 = mysqli_query(
+        $mydb,
+        "SELECT *
+         FROM all_videos
+         ORDER BY video_id DESC"
+    );
+
+    ?>
+
+
+
+    <section class="all-video-admin-section-xk91">
+
+        <style>
+
+            .all-video-admin-section-xk91 {
+                width: 100%;
+                padding: 30px;
+                box-sizing: border-box;
+            }
+
+
+            /* HEADER */
+
+            .all-video-admin-head-xk91 {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .all-video-admin-title-xk91 {
+                margin: 0;
+                font-size: 34px;
+                line-height: 1.2;
+            }
+
+
+            /* ADD FORM */
+
+            .all-video-add-card-xk91 {
+                display: none;
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto 35px;
+                padding: 25px;
+                box-sizing: border-box;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 15px;
+            }
+
+
+            .all-video-add-card-xk91.show {
+                display: block;
+            }
+
+
+            .all-video-form-group-xk91 {
+                margin-bottom: 18px;
+            }
+
+
+            .all-video-form-group-xk91 label {
+                display: block;
+                margin-bottom: 7px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+
+            .all-video-form-group-xk91 input,
+            .all-video-form-group-xk91 select,
+            .all-video-form-group-xk91 textarea {
+                width: 100%;
+                padding: 12px;
+                box-sizing: border-box;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                outline: none;
+            }
+
+
+            .all-video-form-group-xk91 input:focus,
+            .all-video-form-group-xk91 select:focus,
+            .all-video-form-group-xk91 textarea:focus {
+                border-color: #111;
+            }
+
+
+            .all-video-form-buttons-xk91 {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+
+            .all-video-submit-btn-xk91,
+            .all-video-cancel-btn-xk91 {
+                border: 0;
+                padding: 11px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 600;
+            }
+
+
+            .all-video-submit-btn-xk91 {
+                background: #111;
+                color: #fff;
+            }
+
+
+            .all-video-cancel-btn-xk91 {
+                background: #eee;
+                color: #222;
+            }
+
+
+            /* VIDEO GRID */
+
+            .all-video-card-grid-xk91 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 25px;
+            }
+
+
+            /* ADD NEW VIDEO CARD */
+
+            .all-video-add-new-card-xk91 {
+                width: 100%;
+                min-height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 12px;
+                background: #fafafa;
+                border: 2px dashed #ccc;
+                border-radius: 16px;
+                cursor: pointer;
+                box-sizing: border-box;
+                transition: 0.2s ease;
+            }
+
+
+            .all-video-add-new-card-xk91.hide {
+                display: none;
+            }
+
+
+            .all-video-add-new-card-xk91:hover {
+                border-color: #111;
+                background: #f7f7f7;
+            }
+
+
+            .all-video-add-new-icon-xk91 {
+                width: 55px;
+                height: 55px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: #111;
+                color: #fff;
+                font-size: 30px;
+                line-height: 1;
+            }
+
+
+            .all-video-add-new-text-xk91 {
+                font-size: 15px;
+                font-weight: 600;
+            }
+
+
+            /* VIDEO CARD */
+
+            .all-video-card-xk91 {
+                width: 100%;
+                overflow: hidden;
+                background: #fff;
+                border-radius: 16px;
+                border: 1px solid #eee;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+                box-sizing: border-box;
+            }
+
+
+            .all-video-card-player-xk91 {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                background: #111;
+                overflow: hidden;
+            }
+
+
+            .all-video-card-player-xk91 video {
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: contain;
+                background: #000;
+            }
+
+
+            .all-video-card-content-xk91 {
+                padding: 18px;
+            }
+
+
+            .all-video-card-title-xk91 {
+                margin: 0 0 8px;
+                font-size: 19px;
+                line-height: 1.35;
+                font-weight: 700;
+            }
+
+
+            .all-video-card-description-xk91 {
+                margin: 0 0 15px;
+                font-size: 14px;
+                line-height: 1.5;
+                color: #777;
+            }
+
+
+            .all-video-card-bottom-xk91 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+
+            /* STATUS */
+
+            .all-video-status-active-xk91,
+            .all-video-status-inactive-xk91 {
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+
+            .all-video-status-active-xk91 {
+                background: #dcfce7;
+                color: #166534;
+            }
+
+
+            .all-video-status-inactive-xk91 {
+                background: #fee2e2;
+                color: #991b1b;
+            }
+
+
+            /* DELETE */
+
+            .all-video-delete-btn-xk91 {
+                border: 0;
+                background: #dc2626;
+                color: #fff;
+                padding: 8px 13px;
+                border-radius: 7px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+
+            .all-video-delete-btn-xk91:hover {
+                background: #b91c1c;
+            }
+
+
+            /* EMPTY */
+
+            .all-video-empty-xk91 {
+                width: 100%;
+                padding: 50px 20px;
+                text-align: center;
+                color: #777;
+                box-sizing: border-box;
+            }
+
+
+            /* TABLET */
+
+            @media (max-width: 1000px) {
+
+                .all-video-card-grid-xk91 {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+            }
+
+
+            /* MOBILE */
+
+            @media (max-width: 600px) {
+
+                .all-video-admin-section-xk91 {
+                    padding: 20px 15px;
+                }
+
+
+                .all-video-admin-title-xk91 {
+                    font-size: 28px;
+                }
+
+
+                .all-video-card-grid-xk91 {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                }
+
+
+                .all-video-add-card-xk91 {
+                    max-width: 100%;
+                    padding: 18px;
+                }
+
+            }
+
+        </style>
+
+
+
+        <!-- HEADER -->
+
+        <div class="all-video-admin-head-xk91">
+
+            <h2 class="all-video-admin-title-xk91">
+                All Videos
+            </h2>
+
+        </div>
+
+
+
+        <!-- ADD FORM -->
+
+        <div
+            id="allVideoAddCardXk91"
+            class="all-video-add-card-xk91"
+        >
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+
+                <!-- VIDEO TITLE -->
+
+                <div class="all-video-form-group-xk91">
+
+                    <label>
+                        Video Title
+                    </label>
+
+                    <input
+                        type="text"
+                        name="video_title"
+                        placeholder="Enter video title"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- VIDEO FILE -->
+
+                <div class="all-video-form-group-xk91">
+
+                    <label>
+                        Video File
+                    </label>
+
+                    <input
+                        type="file"
+                        name="video_file"
+                        accept="video/mp4,video/webm,video/ogg"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="all-video-form-group-xk91">
+
+                    <label>
+                        Video Description
+                    </label>
+
+                    <textarea
+                        name="video_description"
+                        rows="4"
+                        placeholder="Enter video description"
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="all-video-form-group-xk91">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select name="video_status">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="all-video-form-buttons-xk91">
+
+                    <button
+                        type="submit"
+                        name="add_all_video_xk91"
+                        class="all-video-submit-btn-xk91"
+                    >
+                        Add Video
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="all-video-cancel-btn-xk91"
+                        onclick="closeAllVideoAddXk91()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- VIDEO GRID -->
+
+        <div class="all-video-card-grid-xk91">
+
+
+            <!-- ADD NEW VIDEO CARD -->
+
+            <div
+                id="allVideoAddNewCardXk91"
+                class="all-video-add-new-card-xk91"
+                onclick="openAllVideoAddXk91()"
+            >
+
+                <div class="all-video-add-new-icon-xk91">
+                    +
+                </div>
+
+                <div class="all-video-add-new-text-xk91">
+                    Add New Video
+                </div>
+
+            </div>
+
+
+
+            <?php
+
+            if (
+                $all_video_list_query_xk91 &&
+                mysqli_num_rows($all_video_list_query_xk91) > 0
+            ) {
+
+                while (
+                    $all_video_row_xk91 =
+                    mysqli_fetch_assoc($all_video_list_query_xk91)
+                ) {
+
+
+                    $all_video_title_xk91 = htmlspecialchars(
+                        $all_video_row_xk91['video_title'] ?? '',
+                        ENT_QUOTES,
+                        'UTF-8'
+                    );
+
+
+                    $all_video_file_xk91 = htmlspecialchars(
+                        $all_video_row_xk91['video_file'] ?? '',
+                        ENT_QUOTES,
+                        'UTF-8'
+                    );
+
+
+                    $all_video_description_xk91 = htmlspecialchars(
+                        $all_video_row_xk91['video_description'] ?? '',
+                        ENT_QUOTES,
+                        'UTF-8'
+                    );
+
+                    ?>
+
+
+
+                    <!-- VIDEO CARD -->
+
+                    <div class="all-video-card-xk91">
+
+
+                        <!-- VIDEO -->
+
+                        <div class="all-video-card-player-xk91">
+
+                            <video
+                                controls
+                                preload="metadata"
+                                playsinline
+                            >
+
+                                <source
+                                    src="<?php echo $all_video_file_xk91; ?>"
+                                    type="video/mp4"
+                                >
+
+                                Your browser does not support the video tag.
+
+                            </video>
+
+                        </div>
+
+
+
+                        <!-- CONTENT -->
+
+                        <div class="all-video-card-content-xk91">
+
+
+                            <h3 class="all-video-card-title-xk91">
+
+                                <?php
+                                echo $all_video_title_xk91;
+                                ?>
+
+                            </h3>
+
+
+
+                            <?php
+
+                            if ($all_video_description_xk91 !== '') {
+
+                                ?>
+
+                                <p class="all-video-card-description-xk91">
+
+                                    <?php
+                                    echo $all_video_description_xk91;
+                                    ?>
+
+                                </p>
+
+                                <?php
+
+                            }
+
+                            ?>
+
+
+
+                            <div class="all-video-card-bottom-xk91">
+
+
+                                <!-- STATUS -->
+
+                                <?php
+
+                                if (
+                                    $all_video_row_xk91['video_status'] === 'Active'
+                                ) {
+
+                                    ?>
+
+                                    <span class="all-video-status-active-xk91">
+                                        Active
+                                    </span>
+
+                                    <?php
+
+                                } else {
+
+                                    ?>
+
+                                    <span class="all-video-status-inactive-xk91">
+                                        Inactive
+                                    </span>
+
+                                    <?php
+
+                                }
+
+                                ?>
+
+
+
+                                <!-- DELETE -->
+
+                                <form
+                                    method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this video?');"
+                                >
+
+                                    <input
+                                        type="hidden"
+                                        name="video_id"
+                                        value="<?php echo (int) $all_video_row_xk91['video_id']; ?>"
+                                    >
+
+
+                                    <button
+                                        type="submit"
+                                        name="delete_all_video_xk91"
+                                        class="all-video-delete-btn-xk91"
+                                    >
+                                        Delete
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <?php
+
+                }
+
+            } else {
+
+                ?>
+
+                <div class="all-video-empty-xk91">
+                    No videos available.
+                </div>
+
+                <?php
+
+            }
+
+            ?>
+
+        </div>
+
+
+    </section>
+
+
+
+    <script>
+
+        function openAllVideoAddXk91() {
+
+            var allVideoAddBoxXk91 =
+                document.getElementById('allVideoAddCardXk91');
+
+            var allVideoAddNewCardXk91 =
+                document.getElementById('allVideoAddNewCardXk91');
+
+
+            /* FORM SHOW */
+
+            allVideoAddBoxXk91.classList.add('show');
+
+
+            /* ADD NEW CARD HIDE */
+
+            allVideoAddNewCardXk91.classList.add('hide');
+
+
+            /* FORM PAR SCROLL */
+
+            setTimeout(function () {
+
+                allVideoAddBoxXk91.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+            }, 100);
+
+        }
+
+
+
+        function closeAllVideoAddXk91() {
+
+            var allVideoAddBoxXk91 =
+                document.getElementById('allVideoAddCardXk91');
+
+            var allVideoAddNewCardXk91 =
+                document.getElementById('allVideoAddNewCardXk91');
+
+
+            /* FORM HIDE */
+
+            allVideoAddBoxXk91.classList.remove('show');
+
+
+            /* ADD NEW CARD SHOW */
+
+            allVideoAddNewCardXk91.classList.remove('hide');
+
+        }
+
+    </script>
+
+
+</section>
+
+
+
 
                 <!-- sublink box 2 -->
                 <section id="contect_2_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa ">
                     sub 2
                 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- sublink box 3 -->
-                <section id="contect_3_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa ">
-                    sub 3
+                <section id="contect_3_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa course-video-section-xk91">
+                    3
+
                 </section>
+
+
+
+
+
+
+
+
+
+
 
                 <!-- sublink box 4 -->
                 <section id="contect_4_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">

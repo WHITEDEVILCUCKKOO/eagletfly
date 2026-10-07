@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 25, 2026 at 02:30 AM
--- Server version: 8.0.46-cll-lve
--- PHP Version: 8.4.25
+-- Host: 127.0.0.1
+-- Generation Time: Oct 07, 2026 at 10:44 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,33 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `daurp0duction_db_eagletfly`
+-- Database: `db_eagletfly`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `all_videos`
+--
+
+CREATE TABLE `all_videos` (
+  `video_id` int(11) NOT NULL,
+  `video_title` varchar(255) NOT NULL,
+  `video_slug` varchar(255) NOT NULL,
+  `video_file` varchar(255) DEFAULT '',
+  `video_thumbnail` varchar(255) DEFAULT '',
+  `video_description` text DEFAULT NULL,
+  `video_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active',
+  `video_created_at` int(11) NOT NULL,
+  `video_updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `all_videos`
+--
+
+INSERT INTO `all_videos` (`video_id`, `video_title`, `video_slug`, `video_file`, `video_thumbnail`, `video_description`, `video_status`, `video_created_at`, `video_updated_at`) VALUES
+(2, 'Video 2', 'video-2', 'assets/videos/all-videos/video-2-1791362242.mp4', '', 'asdasd', 'Active', 1791362242, NULL);
 
 -- --------------------------------------------------------
 
@@ -28,16 +53,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blog` (
-  `blog_id` int NOT NULL,
-  `blog_title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `blog_slug` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `blog_content` longtext COLLATE utf8mb4_general_ci NOT NULL,
-  `blog_img` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `blog_author` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `blog_meta_title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `blog_meta_desc` text COLLATE utf8mb4_general_ci,
-  `created_at` varchar(233) COLLATE utf8mb4_general_ci NOT NULL,
-  `updated_at` varchar(233) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Null'
+  `blog_id` int(11) NOT NULL,
+  `blog_title` varchar(255) NOT NULL,
+  `blog_slug` varchar(255) NOT NULL,
+  `blog_content` longtext NOT NULL,
+  `blog_img` varchar(255) NOT NULL,
+  `blog_author` varchar(100) NOT NULL,
+  `blog_meta_title` varchar(255) DEFAULT NULL,
+  `blog_meta_desc` text DEFAULT NULL,
+  `created_at` varchar(233) NOT NULL,
+  `updated_at` varchar(233) NOT NULL DEFAULT 'Null'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -50,24 +75,71 @@ INSERT INTO `blog` (`blog_id`, `blog_title`, `blog_slug`, `blog_content`, `blog_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(11) NOT NULL,
+  `course_name` varchar(255) NOT NULL,
+  `course_slug` varchar(255) NOT NULL,
+  `course_code` varchar(100) DEFAULT '',
+  `course_category` varchar(150) DEFAULT '',
+  `course_image` varchar(255) DEFAULT '',
+  `course_short_description` text DEFAULT NULL,
+  `course_description` longtext DEFAULT NULL,
+  `course_highlights` longtext DEFAULT NULL,
+  `course_duration` varchar(100) DEFAULT '',
+  `course_mode` varchar(50) DEFAULT '',
+  `course_level` varchar(50) DEFAULT '',
+  `course_fee` decimal(10,2) DEFAULT 0.00,
+  `course_discount_fee` decimal(10,2) DEFAULT 0.00,
+  `course_syllabus` text DEFAULT NULL,
+  `course_eligibility` text DEFAULT NULL,
+  `course_certification` text DEFAULT NULL,
+  `course_placement` text DEFAULT NULL,
+  `course_faculty` varchar(255) DEFAULT '',
+  `course_batch_timing` varchar(255) DEFAULT '',
+  `course_featured` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `course_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active',
+  `course_created_at` int(11) NOT NULL,
+  `course_updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`, `course_slug`, `course_code`, `course_category`, `course_image`, `course_short_description`, `course_description`, `course_highlights`, `course_duration`, `course_mode`, `course_level`, `course_fee`, `course_discount_fee`, `course_syllabus`, `course_eligibility`, `course_certification`, `course_placement`, `course_faculty`, `course_batch_timing`, `course_featured`, `course_status`, `course_created_at`, `course_updated_at`) VALUES
+(5, 'Data Analytics', 'data-analytics', '', 'Tech Courses', 'assets/img/aqsnd.png', 'Decode patterns, predict outcomes, and drive smart business decisions.', 'Learn data analytics with practical tools and real-world business cases.', 'SQL, Excel, Power BI, Tableau, Data Storytelling, Dashboards', '', '', '', 0.00, 0.00, 'SQL, Excel, Power BI, Tableau, Data Storytelling', '', '', '', '', '', 'No', 'Active', 1791358218, NULL),
+(6, 'Artificial Intelligence & ML', 'artificial-intelligence-ml', '', 'Tech Courses', 'assets/img/ai_sae.png', 'Transform raw data into real-world impact using machine learning.', 'Build a strong foundation in Python, data processing, machine learning and model evaluation.', 'Python, Pandas, NumPy, Scikit-Learn, Data Cleaning, Feature Engineering, ML Models', '', '', '', 0.00, 0.00, 'Python, Pandas, NumPy, Scikit-Learn, Machine Learning', '', '', '', '', '', 'No', 'Active', 1791358218, NULL),
+(7, 'Gen AI & Agentic AI', 'gen-ai-agentic-ai', '', 'Tech Courses', 'assets/img/imgaw_3.png', 'Master the tools driving the next generation of intelligent products.', 'Explore Generative AI, LLMs and AI-powered tools while building practical projects.', 'Generative AI, LLMs, ChatGPT, AI Tools, Agentic AI, Capstone Projects', '', '', '', 0.00, 0.00, 'Generative AI, LLMs, ChatGPT-based tools, Agentic AI', '', '', '', '', '', 'Yes', 'Active', 1791358218, NULL),
+(8, 'Data Science & ML', 'data-science-ml', '', 'Tech Courses', 'assets/img/ada489.png', 'Master data science and machine learning to solve real-world problems.', 'Learn data science concepts, machine learning techniques and practical problem solving.', 'Data Science, Machine Learning, Python, Data Analysis, Model Building', '', '', '', 0.00, 0.00, 'Python, Data Science, Machine Learning, Model Evaluation', '', '', '', '', '', 'No', 'Active', 1791358218, NULL),
+(9, 'Python', 'python', '', 'High Language Courses', 'img/Python logo.jpg', 'Build a strong programming foundation with Python.', 'Learn Python programming from fundamentals to practical application development.', 'Python Basics, OOP, Functions, Data Structures, File Handling, Projects', '', '', '', 0.00, 0.00, 'Python Programming, OOP, Data Structures, Practical Projects', '', '', '', '', '', 'Yes', 'Active', 1791358218, NULL),
+(10, 'Java', 'java', '', 'High Language Courses', 'img/java.jpg', 'Build powerful applications with Java programming.', 'Learn Java programming, object-oriented concepts and application development.', 'Java Basics, OOP, Collections, Exception Handling, Projects', '', '', '', 0.00, 0.00, 'Java Programming, OOP, Collections, Application Development', '', '', '', '', '', 'No', 'Active', 1791358218, NULL),
+(11, 'Digital Marketing', 'digital-marketing', '', 'Marketing & Management Course', 'img/digital markting.jpg', 'Drive traffic, convert leads, and optimize marketing with data-driven strategies.', 'Learn modern digital marketing strategies and launch measurable marketing campaigns.', 'SEO, Google Ads, Meta Ads, Marketing Funnels, Analytics, ROI', '', '', '', 0.00, 0.00, 'SEO, Google Ads, Meta Ads, Marketing Analytics, Campaign Management', '', '', '', '', '', 'Yes', 'Active', 1791358218, NULL),
+(12, 'Digital Marketing With AI', 'digital-marketing-with-ai', '', 'Marketing & Management Course', 'assets/img/imgaw_5.png', 'Use AI to build smarter digital marketing strategies and campaigns.', 'Learn how artificial intelligence can improve content, campaigns, analytics and marketing workflows.', 'AI Marketing Tools, SEO, Content Creation, Automation, Analytics, AI Campaigns', '4 Months', 'Offline', 'Advanced', 0.00, 0.00, 'AI Marketing, SEO, Content Creation, Automation, Marketing Analytics', '', '', '', '', '', 'Yes', 'Active', 1791358218, 1791358318);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `global_info`
 --
 
 CREATE TABLE `global_info` (
-  `globle_info_id` int NOT NULL,
-  `facion_icon` text COLLATE utf8mb4_general_ci NOT NULL,
-  `logo` text COLLATE utf8mb4_general_ci NOT NULL,
-  `globle_call_phone` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `globle_whatsapp` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_address` text COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_email_1` varchar(233) COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_email_2` varchar(233) COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_phone_1` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `footer_phone_2` varchar(13) COLLATE utf8mb4_general_ci NOT NULL,
-  `globle_instagram` text COLLATE utf8mb4_general_ci NOT NULL,
-  `globle_yt` text COLLATE utf8mb4_general_ci NOT NULL,
-  `globle_linkedin` text COLLATE utf8mb4_general_ci NOT NULL,
-  `map_link` text COLLATE utf8mb4_general_ci NOT NULL
+  `globle_info_id` int(11) NOT NULL,
+  `facion_icon` text NOT NULL,
+  `logo` text NOT NULL,
+  `globle_call_phone` varchar(13) NOT NULL,
+  `globle_whatsapp` varchar(12) NOT NULL,
+  `footer_address` text NOT NULL,
+  `footer_email_1` varchar(233) NOT NULL,
+  `footer_email_2` varchar(233) NOT NULL,
+  `footer_phone_1` varchar(13) NOT NULL,
+  `footer_phone_2` varchar(13) NOT NULL,
+  `globle_instagram` text NOT NULL,
+  `globle_yt` text NOT NULL,
+  `globle_linkedin` text NOT NULL,
+  `map_link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,10 +156,10 @@ INSERT INTO `global_info` (`globle_info_id`, `facion_icon`, `logo`, `globle_call
 --
 
 CREATE TABLE `login_users` (
-  `user_id` int NOT NULL,
-  `username` varchar(122) COLLATE utf8mb4_general_ci NOT NULL,
-  `user_email` text COLLATE utf8mb4_general_ci NOT NULL,
-  `user_password` text COLLATE utf8mb4_general_ci NOT NULL
+  `user_id` int(11) NOT NULL,
+  `username` varchar(122) NOT NULL,
+  `user_email` text NOT NULL,
+  `user_password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -102,10 +174,24 @@ INSERT INTO `login_users` (`user_id`, `username`, `user_email`, `user_password`)
 --
 
 --
+-- Indexes for table `all_videos`
+--
+ALTER TABLE `all_videos`
+  ADD PRIMARY KEY (`video_id`),
+  ADD UNIQUE KEY `unique_video_slug` (`video_slug`);
+
+--
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`blog_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `unique_course_slug` (`course_slug`);
 
 --
 -- Indexes for table `global_info`
@@ -124,22 +210,34 @@ ALTER TABLE `login_users`
 --
 
 --
+-- AUTO_INCREMENT for table `all_videos`
+--
+ALTER TABLE `all_videos`
+  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `blog_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `global_info`
 --
 ALTER TABLE `global_info`
-  MODIFY `globle_info_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `globle_info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `login_users`
 --
 ALTER TABLE `login_users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
