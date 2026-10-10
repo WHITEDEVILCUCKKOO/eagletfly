@@ -24,12 +24,17 @@
 
     <!-- section 1 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_1.php' ?>
-
+    
     <!-- section 2 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_2.php' ?>
-
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_1.php' ?>
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_2.php' ?>
+    
     <!-- section 3 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_3.php' ?>
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_3.php' ?>
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_4.php' ?>
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_5.php' ?>
 
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_4.php' ?>

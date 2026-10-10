@@ -22,7 +22,7 @@
                 #0B1020 34%,
                 #121126 68%,
                 #17102B 100%);
-        font-family: 'Manrope', Arial, sans-serif;
+        /* font-family: 'Manrope', Arial, sans-serif; */
         position: relative;
         padding: 60px 54px 90px;
         /* background: #262626; */

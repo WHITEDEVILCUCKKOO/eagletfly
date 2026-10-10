@@ -1,533 +1,549 @@
-    
-<style>
-    
-    .kd-cov-section {
-        background: #ffffff;
-        font-family: 'Manrope', Arial, sans-serif;
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 56px 24px 80px;
-        display: grid;
-        grid-template-columns: 1.55fr 1fr;
-        gap: 56px;
-        align-items: start;
-    }
-
-    /* ================= LEFT COLUMN ================= */
-
-    .kd-cov-eyebrow {
-        color: #5b6bd6;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: .08em;
-        margin: 0 0 14px;
-    }
-
-    .kd-cov-heading {
-        font-size: 42px;
-        line-height: 1.15;
-        font-weight: 800;
-        letter-spacing: -.02em;
-        margin: 0 0 26px;
-        color: #12121f;
-    }
-
-    .kd-cov-body-wrap {
-        position: relative;
-        max-height: 330px;
-        overflow: hidden;
-        transition: max-height .4s ease;
-    }
-
-    .kd-cov-body-wrap.kd-cov-expanded {
-        max-height: 420px;
-        overflow-y: auto;
-        padding-right: 14px;
-    }
-
-    .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar-thumb {
-        background: #5b6bd6;
-        border-radius: 10px;
-    }
-
-    .kd-cov-body-wrap:not(.kd-cov-expanded):after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 90px;
-        background: linear-gradient(180deg, rgba(255,255,255,0), #ffffff 88%);
-        pointer-events: none;
-    }
-
-    .kd-cov-body-wrap ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    .kd-cov-body-wrap li {
-        position: relative;
-        padding: 0 0 18px 20px;
-        font-size: 16.5px;
-        line-height: 1.65;
-        color: #3a3a4a;
-    }
-
-    .kd-cov-body-wrap li:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 10px;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #12121f;
-    }
-
-    .kd-cov-body-wrap li b {
-        color: #12121f;
-        font-weight: 800;
-    }
-
-    .kd-cov-body-wrap p {
-        font-size: 16.5px;
-        line-height: 1.65;
-        color: #3a3a4a;
-        margin: 0 0 18px;
-    }
-
-    .kd-cov-body-wrap h2 {
-        font-size: 24px;
-        font-weight: 800;
-        color: #12121f;
-        margin: 30px 0 14px;
-    }
-
-    .kd-cov-body-wrap > *:first-child {
-        margin-top: 0;
-    }
-
-    .kd-cov-body-wrap h3 {
-        font-size: 18px;
-        font-weight: 800;
-        color: #12121f;
-        margin: 22px 0 10px;
-    }
-
-    .kd-cov-body-wrap ul {
-        margin: 0 0 18px;
-    }
-
-    .kd-cov-body-wrap a {
-        color: #5b6bd6;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .kd-cov-body-wrap a:hover {
-        text-decoration: underline;
-    }
-
-    .kd-cov-readmore {
-        margin-top: 24px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 13px 26px;
-        border: none;
-        border-radius: 30px;
-        background: #12123a;
-        color: #ffffff;
-        font-size: 14.5px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: background .2s ease;
-    }
-
-    .kd-cov-readmore:hover {
-        background: #1c1c52;
-    }
-
-    .kd-cov-readmore svg {
-        width: 13px;
-        height: 13px;
-        transition: transform .3s ease;
-    }
-
-    .kd-cov-readmore.kd-cov-open svg {
-        transform: rotate(180deg);
-    }
-
-    /* ================= RIGHT COLUMN (FORM CARD) ================= */
-
-    .kd-cov-form-wrap {
-        position: sticky;
-        top: 24px;
-    }
-
-    .kd-cov-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        margin-bottom: 14px;
-        border-radius: 30px;
-        background: linear-gradient(90deg, #ff8a3d, #ff6a3d);
-        color: #ffffff;
-        font-size: 12.5px;
-        font-weight: 800;
-    }
-
-    .kd-cov-form-card {
-        background: #ffffff;
-        border: 1px solid rgba(20,20,40,.08);
-        border-radius: 18px;
-        padding: 26px 26px 22px;
-        box-shadow: 0 18px 40px rgba(20,20,50,.08);
-    }
-
-    .kd-cov-form-title {
-        margin: 0 0 18px;
-        font-size: 21px;
-        font-weight: 800;
-        color: #12121f;
-    }
-
-    .kd-cov-field {
-        width: 100%;
-        padding: 13px 15px;
-        margin-bottom: 12px;
-        border: 1px solid #d8dae3;
-        border-radius: 8px;
-        font-size: 14.5px;
-        font-family: inherit;
-        color: #4a4a5a;
-        background: #ffffff;
-        outline: none;
-        transition: border-color .2s ease;
-    }
-
-    .kd-cov-field:focus {
-        border-color: #5b6bd6;
-    }
-
-    select.kd-cov-field {
-        appearance: none;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%237a7a8a' stroke-width='1.6' fill='none' fill-rule='evenodd'/></svg>");
-        background-repeat: no-repeat;
-        background-position: right 15px center;
-        cursor: pointer;
-    }
-
-    .kd-cov-field[readonly] {
-        background: #f2f3f7;
-        color: #6a6a7a;
-        cursor: default;
-    }
-
-    .kd-cov-captcha-label {
-        font-size: 14.5px;
-        font-weight: 800;
-        color: #12121f;
-        margin: 6px 0 10px;
-    }
-
-    .kd-cov-submit {
-        width: 100%;
-        padding: 14px;
-        margin-top: 4px;
-        border: none;
-        border-radius: 8px;
-        background: #1c2b6b;
-        color: #ffffff;
-        font-size: 15.5px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: background .2s ease;
-    }
-
-    .kd-cov-submit:hover {
-        background: #142058;
-    }
-
-    .kd-cov-trust {
-        text-align: center;
-        margin: 14px 0 0;
-        font-size: 12px;
-        color: #8a8a96;
-    }
-
-    .kd-cov-msg {
-        text-align: center;
-        font-size: 13px;
-        font-weight: 700;
-        margin-top: 10px;
-        min-height: 16px;
-    }
-
-    .kd-cov-msg.kd-cov-error { color: #e04b4b; }
-    .kd-cov-msg.kd-cov-success { color: #2fa96a; }
-
-    @media(max-width: 900px) {
+    <style>
         .kd-cov-section {
-            grid-template-columns: 1fr;
-            padding: 40px 20px 60px;
+            background: #ffffff;
+            font-family: 'Manrope', Arial, sans-serif;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 56px 24px 80px;
+            display: grid;
+            grid-template-columns: 1.55fr 1fr;
+            gap: 56px;
+            align-items: start;
         }
-        .kd-cov-heading { font-size: 30px; }
-        .kd-cov-form-wrap { position: static; }
-    }
-</style>
+
+        /* ================= LEFT COLUMN ================= */
+
+        .kd-cov-eyebrow {
+            color: #5b6bd6;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            margin: 0 0 14px;
+        }
+
+        .kd-cov-heading {
+            font-size: 42px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -.02em;
+            margin: 0 0 26px;
+            color: #12121f;
+        }
+
+        .kd-cov-body-wrap {
+            position: relative;
+            max-height: 330px;
+            overflow: hidden;
+            transition: max-height .4s ease;
+        }
+
+        .kd-cov-body-wrap.kd-cov-expanded {
+            max-height: 420px;
+            overflow-y: auto;
+            padding-right: 14px;
+        }
+
+        .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .kd-cov-body-wrap.kd-cov-expanded::-webkit-scrollbar-thumb {
+            background: #5b6bd6;
+            border-radius: 10px;
+        }
+
+        .kd-cov-body-wrap:not(.kd-cov-expanded):after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 90px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff 88%);
+            pointer-events: none;
+        }
+
+        .kd-cov-body-wrap ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .kd-cov-body-wrap li {
+            position: relative;
+            padding: 0 0 18px 20px;
+            font-size: 16.5px;
+            line-height: 1.65;
+            color: #3a3a4a;
+        }
+
+        .kd-cov-body-wrap li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #12121f;
+        }
+
+        .kd-cov-body-wrap li b {
+            color: #12121f;
+            font-weight: 800;
+        }
+
+        .kd-cov-body-wrap p {
+            font-size: 16.5px;
+            line-height: 1.65;
+            color: #3a3a4a;
+            margin: 0 0 18px;
+        }
+
+        .kd-cov-body-wrap h2 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #12121f;
+            margin: 30px 0 14px;
+        }
+
+        .kd-cov-body-wrap>*:first-child {
+            margin-top: 0;
+        }
+
+        .kd-cov-body-wrap h3 {
+            font-size: 18px;
+            font-weight: 800;
+            color: #12121f;
+            margin: 22px 0 10px;
+        }
+
+        .kd-cov-body-wrap ul {
+            margin: 0 0 18px;
+        }
+
+        .kd-cov-body-wrap a {
+            color: #5b6bd6;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .kd-cov-body-wrap a:hover {
+            text-decoration: underline;
+        }
+
+        .kd-cov-readmore {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border: none;
+            border-radius: 30px;
+            background: #12123a;
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .kd-cov-readmore:hover {
+            background: #1c1c52;
+        }
+
+        .kd-cov-readmore svg {
+            width: 13px;
+            height: 13px;
+            transition: transform .3s ease;
+        }
+
+        .kd-cov-readmore.kd-cov-open svg {
+            transform: rotate(180deg);
+        }
+
+        /* ================= RIGHT COLUMN (FORM CARD) ================= */
+
+        .kd-cov-form-wrap {
+            position: sticky;
+            top: 24px;
+        }
+
+        .kd-cov-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            margin-bottom: 14px;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #ff8a3d, #ff6a3d);
+            color: #ffffff;
+            font-size: 12.5px;
+            font-weight: 800;
+        }
+
+        .kd-cov-form-card {
+            background: #ffffff;
+            border: 1px solid rgba(20, 20, 40, .08);
+            border-radius: 18px;
+            padding: 26px 26px 22px;
+            box-shadow: 0 18px 40px rgba(20, 20, 50, .08);
+        }
+
+        .kd-cov-form-title {
+            margin: 0 0 18px;
+            font-size: 21px;
+            font-weight: 800;
+            color: #12121f;
+        }
+
+        .kd-cov-field {
+            width: 100%;
+            padding: 13px 15px;
+            margin-bottom: 12px;
+            border: 1px solid #d8dae3;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-family: inherit;
+            color: #4a4a5a;
+            background: #ffffff;
+            outline: none;
+            transition: border-color .2s ease;
+        }
+
+        .kd-cov-field:focus {
+            border-color: #5b6bd6;
+        }
+
+        select.kd-cov-field {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%237a7a8a' stroke-width='1.6' fill='none' fill-rule='evenodd'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            cursor: pointer;
+        }
+
+        .kd-cov-field[readonly] {
+            background: #f2f3f7;
+            color: #6a6a7a;
+            cursor: default;
+        }
+
+        .kd-cov-captcha-label {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #12121f;
+            margin: 6px 0 10px;
+        }
+
+        .kd-cov-submit {
+            width: 100%;
+            padding: 14px;
+            margin-top: 4px;
+            border: none;
+            border-radius: 8px;
+            background: #1c2b6b;
+            color: #ffffff;
+            font-size: 15.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s ease;
+        }
+
+        .kd-cov-submit:hover {
+            background: #142058;
+        }
+
+        .kd-cov-trust {
+            text-align: center;
+            margin: 14px 0 0;
+            font-size: 12px;
+            color: #8a8a96;
+        }
+
+        .kd-cov-msg {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 10px;
+            min-height: 16px;
+        }
+
+        .kd-cov-msg.kd-cov-error {
+            color: #e04b4b;
+        }
+
+        .kd-cov-msg.kd-cov-success {
+            color: #2fa96a;
+        }
+
+        @media(max-width: 900px) {
+            .kd-cov-section {
+                grid-template-columns: 1fr;
+                padding: 40px 20px 60px;
+            }
+
+            .kd-cov-heading {
+                font-size: 30px;
+            }
+
+            .kd-cov-form-wrap {
+                position: static;
+            }
+        }
+    </style>
 
 
-<section class="kd-cov-section">
+    <section class="kd-cov-section">
 
-    <!-- LEFT: COURSE OVERVIEW -->
-    <div>
-        <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
-        <h1 class="kd-cov-heading">Everything you need to master Digital Marketing Course In Faridabad.</h1>
+        <!-- LEFT: COURSE OVERVIEW -->
+        <div>
+            <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
+            <h1 class="kd-cov-heading">Everything you need to master Digital Marketing Course In Faridabad.</h1>
 
-        <div class="kd-cov-body-wrap" id="kdCovBody">
-            <h2>Overview</h2>
-            <p>Digital Marketing Course in Faridabad is a practical, industry-oriented training program designed to build expertise in SEO, paid advertising, social media marketing, content strategy, analytics, and AI-driven marketing workflows using platforms like Google Ads, Google Analytics, Google Tag Manager, Meta Ads Manager, and Canva. The course focuses on building real-world digital marketing skills aligned with current business and performance marketing requirements.</p>
-            <p>This training helps learners understand how brands generate traffic, leads, conversions, and online visibility across search engines, social platforms, and AI-driven discovery systems. The curriculum combines strategy, execution, analytics, and campaign optimization for modern marketing roles.</p>
 
-            <h2>Why Should You Learn Digital Marketing in 2025?</h2>
-            <p>In 2025, digital marketing remains one of the most dynamic and essential skills in the professional world. With the rapid growth of online platforms, businesses are heavily relying on digital strategies to reach their target audience, making this field both relevant and lucrative.</p>
+           
+<div class="kd-cov-body-wrap" id="kdCovBody">
 
-            <h3>1. High Demand Across Industries</h3>
-            <p>As the global economy continues its digital transformation, the demand for skilled digital marketers is skyrocketing. Companies, whether startups or multinational corporations need professionals who can drive traffic, generate leads, and convert them into customers through effective online campaigns.</p>
+    <h2>Why EagletFly Solutions Stands Out as a Digital Marketing Training Institute in Patel Nagar</h2>
 
-            <h3>2. Career Flexibility and Growth</h3>
-            <p>Digital marketing offers incredible career flexibility. You can work in diverse roles such as SEO specialist, content marketer, social media strategist, or data analyst. It also provides opportunities to freelance, work remotely, or even launch your own business. The constantly evolving nature of this field ensures continuous learning and career growth.</p>
+    <p>With numerous training options available across Delhi NCR, selecting the right partner determines whether you just learn concepts or master real commercial execution. <strong>EagletFly Solutions</strong> sets a high bar for digital marketing education:</p>
 
-            <h3>3. Essential for Entrepreneurs</h3>
-            <p>For business owners, digital marketing is an indispensable tool for growth. By understanding digital strategies, entrepreneurs can better manage their brands, optimize budgets, and achieve higher returns on investment. From social media engagement to SEO, digital marketing equips businesses to compete effectively in a global market.</p>
+    <ul>
+        <li>Execution of Live Advertising Budget: Participation in current projects with Google Ads, Meta Ads, and Search Engine Optimization will provide the student with hands-on budgeting experience, conducting A/B testing, and analyzing conversion parameters.</li>
+        <li>Educational Faculty Involved in Actual Work at the Agency: Learning from real practitioners (digital strategists, media buyers, and SEO specialists) who develop and implement marketing campaigns for large companies.</li>
+        <li>Practical Laboratory Training: More than 70% of class hours are devoted to gaining experience in hands-on labs covering website development, tracking pixels installation, and keywords audit.</li>
+        <li>Career and Placement Support: Extensive assistance in obtaining a job in the profession through individual resume refinement, mock interviews and optimization of the LinkedIn profile.</li>
+    </ul>
 
-            <h3>4. Integration of Technology</h3>
-            <p>With advancements in AI, data analytics, and automation, digital marketing is becoming increasingly sophisticated. Learning these skills in 2025 positions you ahead of the curve, making you a valuable asset to any organization.</p>
+    <h2>Complete Core Curriculum Overview</h2>
 
-            <h3>5. Future-Proof Career</h3>
-            <p>As traditional marketing methods lose relevance, digital marketing continues to expand. By learning digital marketing now, you ensure a stable and future-ready career in an ever-growing industry.</p>
+    <p>Our <strong>Digital Marketing Training in Patel Nagar</strong> builds your skill set step-by-step across 12 modules, covering every aspect of modern organic, paid, and automated marketing channels.</p>
 
-            <p>Learning digital marketing in 2025 is an opportunity to stay competitive, creative, and impactful in the modern professional landscape.</p>
+    <h3>Module 1: Marketing Fundamentals, Consumer Psychology &amp; Funnel Strategy</h3>
 
-            <h2>Why Choose DUCAT India for Digital Marketing Training?</h2>
-            <p>The institute you choose can significantly impact your career. At DUCAT India, we aim to provide an unparalleled learning experience by focusing on both theoretical knowledge and practical exposure. Here's what sets us apart:</p>
-            <ul>
-                <li><b>Expert Trainers:</b> Learn from seasoned professionals with years of industry experience who bring real-world insights into the classroom.</li>
-                <li><b>Updated Curriculum:</b> Our course is continually revised to include the latest trends, strategies, and tools in digital marketing.</li>
-                <li><b>Hands-On Learning:</b> Work on live projects and case studies to build confidence and develop job-ready skills.</li>
-                <li><b>State-of-the-Art Infrastructure:</b> Train in a fully equipped, tech-enabled environment that fosters innovation and creativity.</li>
-                <li><b>Flexible Scheduling:</b> Choose from weekday and weekend batches to suit your lifestyle, whether you're a student or a working professional.</li>
-                <li><b>Placement Support:</b> Our strong network of industry partners and placement cell ensures excellent career opportunities for our students.</li>
-                <li><b>Post-Training Support:</b> Even after completing the course, you'll have access to our resources, guidance, and mentorship.</li>
-            </ul>
+    <p>Establish a strong strategic baseline before diving into digital software execution.</p>
 
-            <h2>Why Digital Marketing is a Lucrative Career Choice?</h2>
-            <p>The digital revolution has transformed how businesses operate, creating a high demand for skilled digital marketers. Here's why digital marketing is one of the most promising career paths:</p>
-            <ul>
-                <li><b>Ever-Increasing Demand:</b> Businesses across industries are seeking professionals who can manage their online presence and strategies.</li>
-                <li><b>High-Paying Roles:</b> Digital marketing professionals are among the highest-paid in the industry, with opportunities to earn well at all levels.</li>
-                <li><b>Diverse Career Options:</b> Explore roles like SEO specialist, PPC manager, social media strategist, content marketer, email marketing expert, and more.</li>
-                <li><b>Dynamic Work Environment:</b> The fast-paced nature of digital marketing ensures continuous learning and exciting challenges.</li>
-                <li><b>Flexibility and Freedom:</b> Choose to work full-time, freelance, or even start your own digital marketing agency.</li>
-            </ul>
-            <p>By enrolling in DUCAT India's Digital Marketing Course in Faridabad, you'll gain the skills to seize these opportunities and build a rewarding career.</p>
-            <p>You can also check out our following course if you want to upskill yourself in the Digital Marketing Field.</p>
-            <ul>
-                <li><a href="#">Digital Marketing Professional</a></li>
-                <li><a href="#">Advanced Digital Marketing</a></li>
-            </ul>
+    <ul>
+        <li>Inbound Marketing vs. Outbound Marketing- Learn the differences between pull strategies of organic marketing and the disruptive ads of outbound marketing.</li>
+        <li>Buyer Persona Mapping and Customer Journeys- Determine the characteristics of the audience that has pain points, buyer signals, and customer triggers.</li>
+        <li>Structure of the Marketing Funnel- Understand the stages of awareness, consideration, conversion and retention (TOFU, MOFU, BOFU) in customer acquisition.</li>
+        <li>Competitor Analysis and Market Research- Use platforms such as SimilarWeb, SEMrush, or SpyFu to perform a complete digital audit.</li>
+    </ul>
 
-            <h2>What You'll Learn in Our Digital Marketing Course?</h2>
-            <p>Our comprehensive training program covers everything you need to know to excel in digital marketing. Below are the core modules and what you'll master in each:</p>
+    <h3>Module 2: Website Planning, Domain Mapping &amp; WordPress Architecture</h3>
 
-            <h3>1. Search Engine Optimization (SEO)</h3>
-            <p>SEO is the cornerstone of digital marketing. Learn how to optimize websites to rank higher on search engines, drive organic traffic, and increase visibility.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Keyword research, content optimization, and meta tags for on-page SEO.</li>
-                <li>Link-building techniques, guest posting, and directory submissions for off-page SEO.</li>
-                <li>Speed optimization, mobile SEO, and improving user experience through technical SEO.</li>
-                <li>Staying updated with Google's algorithm changes and adapting strategies accordingly.</li>
-            </ul>
+    <p>Find out how you can create, set up and promote websites that focus on increasing conversion rates without having to write complex code.</p>
 
-            <h3>2. Pay-Per-Click Advertising (PPC)</h3>
-            <p>PPC is a powerful tool to drive immediate traffic to your website. Gain expertise in managing paid campaigns on platforms like Google Ads, Facebook Ads, and LinkedIn Ads.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Creating and optimizing Google Ads campaigns.</li>
-                <li>Understanding bidding strategies and budget management.</li>
-                <li>Enhancing conversions through well-designed landing pages.</li>
-                <li>Exploring advertising opportunities on social media platforms.</li>
-            </ul>
+    <ul>
+        <li>Domain and Hosting: Know how to configure DNS, setup SSL certificates, and organize cloud hosting.</li>
+        <li>WordPress CMS Installation: Get WordPress installed, choose a theme, customize the layout without special programming knowledge.</li>
+        <li>Landing Page Creation: Design landing pages optimized for conversion and mobile-capable with lead-generating forms.</li>
+        <li>User Experience (UX) and Speed Related Deployments: Optimize loading speeds and image compression rate, and ensure easy navigation.</li>
+    </ul>
 
-            <h3>3. Social Media Marketing (SMM)</h3>
-            <p>Master the art of engaging and converting audiences on social platforms like Facebook, Instagram, Twitter, and LinkedIn.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Building social media strategies tailored to your target audience.</li>
-                <li>Running ad campaigns to increase brand awareness and drive leads.</li>
-                <li>Utilizing analytics tools to measure and optimize performance.</li>
-                <li>Effective techniques for audience engagement and community building.</li>
-            </ul>
+    <h3>Module 3: Search Engine Optimization (SEO) &amp; Search Architecture</h3>
 
-            <h3>4. Content Marketing</h3>
-            <p>Content is the heart of digital marketing. Learn how to create and distribute impactful content that attracts, engages, and converts audiences.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Writing SEO-friendly blogs, articles, and web content.</li>
-                <li>Developing compelling video marketing strategies.</li>
-                <li>Storytelling for brand-building and customer retention.</li>
-                <li>Email marketing techniques, including drip campaigns and newsletters.</li>
-            </ul>
+    <p>Master organic search algorithms to secure top page-one rankings on Google and drive organic web traffic.</p>
 
-            <h3>5. Email Marketing</h3>
-            <p>Email marketing is one of the most cost-effective ways to nurture leads and drive sales. Learn how to create compelling email campaigns that deliver results.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Building and segmenting email lists for targeted communication.</li>
-                <li>Crafting persuasive email copies with clear CTAs.</li>
-                <li>Automating email campaigns for efficiency.</li>
-                <li>Analyzing open rates, click-through rates, and other performance metrics.</li>
-            </ul>
+    <p>The following are the steps for improving the search engine optimization (SEO) of a business's website.</p>
 
-            <h3>6. Analytics and Data Interpretation</h3>
-            <p>Data is at the core of digital marketing success. Understand how to measure the performance of your campaigns and optimize them for better outcomes.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Setting up and managing Google Analytics.</li>
-                <li>Tracking essential KPIs like traffic, conversions, and bounce rates.</li>
-                <li>Creating custom reports to evaluate campaign performance.</li>
-                <li>Using data-driven insights to refine strategies.</li>
-            </ul>
+    <ul>
+        <li>Keyword Research and Search Intent: Find high-intent keywords both for transactional and informational usages by using tools like Google Keyword Planner, Ahrefs, and Ubersuggest.</li>
+        <li>On-Page SEO Optimization: Keep optimizing the title, meta description, and headers (e.g. H1 - H6), URL slugs, alt text for images, and internal links.</li>
+        <li>Technical SEO and Site Audits: Fix crawling and indexing issues, produce XML sitemaps, manage the robots file, fix the Core Web Vitals, and optimize the Schema Markup.</li>
+        <li>Off-Page SEO and Link Building: Conduct all linking efforts ethically and legally.</li>
+        <li>Local SEO and Google My Business Profile (GMB Profile): Help the local businesses obtain high position in local searches through citation and reviews.</li>
+    </ul>
 
-            <h3>7. Affiliate Marketing</h3>
-            <p>Learn the ins and outs of affiliate marketing to create additional revenue streams.</p>
-            <p><b>Key Topics Covered:</b></p>
-            <ul>
-                <li>Setting up affiliate programs and selecting the right partners.</li>
-                <li>Leveraging platforms like Amazon Associates and ClickBank.</li>
-                <li>Tracking affiliate performance and maximizing earnings.</li>
-            </ul>
+    <h3>Module 4: Google Analytics 4 (GA4) &amp; Google Tag Manager (GTM)</h3>
 
-            <h2>Why Faridabad is a Great Place to Learn Digital Marketing?</h2>
-            <p>Faridabad offers a dynamic environment that's ideal for budding digital marketers. Here's why:</p>
-            <ul>
-                <li><b>Thriving Business Hub:</b> The city is home to a mix of startups, SMEs, and large enterprises, offering plenty of opportunities to apply your skills.</li>
-                <li><b>Networking Opportunities:</b> Attend local workshops, meetups, and seminars to connect with like-minded professionals.</li>
-                <li><b>High Demand for Skills:</b> With more businesses adopting digital platforms, the demand for trained professionals in Faridabad is growing rapidly.</li>
-                <li><b>Cultural Diversity:</b> The diverse demographics in Faridabad provide valuable insights into consumer behavior, an essential aspect of marketing.</li>
-            </ul>
+    <p>Convert raw website traffic data into actionable business insights with industry-standard measurement platforms.</p>
 
-            <h2>Explore Our Other Branches</h2>
-            <p>We also offer digital marketing training at these locations:</p>
-            <ul>
-                <li><a href="#">Best Digital Marketing Course In Ghaziabad</a></li>
-                <li><a href="#">Best Digital Marketing Course In Delhi</a></li>
-                <li><a href="#">Best Digital Marketing Course In South Extension</a></li>
-                <li><a href="#">Best Digital Marketing Course In Gurgaon</a></li>
-                <li><a href="#">Best Digital Marketing Course In Pitampura</a></li>
-                <li><a href="#">Best Digital Marketing Course in Vikaspuri</a></li>
-            </ul>
+    <ul>
+        <li>GA4 Property Setup: Configure data flows, measurement IDs, data retention settings, and privacy-related configuration.</li>
+        <li>Event &amp; Conversion Tracking: Prepare customized events, button clicks, form submission, and purchase goals—using Google Tag Manager.</li>
+        <li>Audience Segmentation &amp; Exploration Reports: Create customized conversion paths, path explorations, and demographics to analyze the performance of different channels.</li>
+        <li>Looker Studio Dashboards: Create automated, executive-ready marketing reports for your clients and company's stakeholders.</li>
+    </ul>
 
-            <h2>Why Choose DUCAT India – Faridabad's Best Digital Marketing Institute?</h2>
-            <p>At DUCAT India, we are committed to helping you achieve your career goals. Our curriculum, expert trainers, and hands-on approach ensure you're ready to excel in the professional world. Our alumni have secured roles in leading companies and even started their own ventures.</p>
+    <h3>Module 5: Search Engine Marketing (SEM) &amp; Google Ads</h3>
 
-            <h2>Begin Your Journey Toward Success in Faridabad</h2>
-            <p>Are you ready to kickstart your career in digital marketing? Enroll in DUCAT India's Digital Marketing Course in Faridabad and take the first step toward building a brighter future. With expert mentorship, practical learning experiences, and placement support, you'll gain the skills and confidence needed to succeed in this dynamic field.</p>
-            <p>Contact us today to learn more about the course and secure your spot. At DUCAT India, your success is our mission!</p>
+    <p>Become proficient at Google search ads to drive instant traffic from customers as soon as they need what you're offering.</p>
+
+    <ul>
+        <li>Use a proper structure for your campaigns by organizing your Google Ads account, making separate campaigns, ad groups and choose a bidding option.</li>
+        <li>Select various types of Google Ads using the Search Ads, Display Network Banner Ads, Shopping Ads, YouTube Video Ads, Performance Max (PMax).</li>
+        <li>Adjust your quality score for each of the ads you place in order to achieve higher ad rank and lower your Cost-per-click.</li>
+        <li>Create ads that have everything necessary in order to sell your products making use of all the tools that are available.</li>
+        <li>Determine the bidding options that you would like to apply, such as Target CPA, Target ROAS and Maximize Conversions.</li>
+    </ul>
+
+    <h3>Module 6: Social Media Optimization (SMO) &amp; Organic Brand Building</h3>
+
+    <p>Develop an organic social media presence on every major platform in order build brand loyalty and engage audiences.</p>
+
+    <ul>
+        <li>Platform-Specific Strategies: Different formats of content should be created for Instagram, Facebook, LinkedIn, YouTube, Twitter/X, and Pinterest.</li>
+        <li>Content Calendar &amp; Aesthetic: There should be branding themes created visually and the posting must be scheduled regularly through the usage of tools like Canva, Buffer, and Hootsuite.</li>
+        <li>Short-Form Video Marketing: Instagram Reels and YouTube shorts must be scripted, recorded and edited; good videos should go viral.</li>
+        <li>Community Management: Customer feedback should be handled as well as keeping the engagement of users higher.</li>
+    </ul>
+
+    <h3>Module 7: Social Media Marketing (SMM) &amp; Meta Ads Management</h3>
+
+    <p>Use precise, profitable paid ads on Facebook and Instagram.</p>
+
+    <ul>
+        <li>Meta Business Suite and Ads Manager - take advantage of Business Manager features to set up business assets, provide access rights, and secure ad accounts.</li>
+        <li>Meta Pixel and CAPI - set up pixel tracking, use the Aggregated event measurement feature, and configure server-side conversions.</li>
+        <li>Target Audience Frameworks - dive into the audience targeting techniques to learn how to work with different types of audiences.</li>
+        <li>Creative Strategy and A/B Testing - show great results by applying high-performing video ads, carousel ads, and catalog ads in your campaign.</li>
+        <li>E-commerce Funnel Retargeting - increase the number of paid clients and keep your customers longer by using conversion funnels.</li>
+    </ul>
+
+    <h3>Module 8: Content Marketing, Copywriting &amp; Storytelling</h3>
+
+    <p>Generate persuasive text and useful assets that guide customers smoothly through their purchase journey.</p>
+
+    <ul>
+        <li>Theories of copywriting: Implement successful selling methods such as AIDA (Attention, Interest, Desire, Action) and PAS (Problem, Agitate, Solve).</li>
+        <li>Creating Content Strategy: Create a strategy for long publications such as blogs, eBooks, whitepapers, case studies, and email marketing.</li>
+        <li>Writing video scripts: Construct full scripts for advertisements, brand narrative, product description, and videos for YouTube.</li>
+    </ul>
+
+    <h3>Module 9: Email Marketing &amp; Marketing Automation</h3>
+
+    <p>Utilize automated customer communication in order to develop the leads, maintain repeat sales, and develop long-term customer relationships.</p>
+
+    <ul>
+        <li>List-building &amp; Opt-in strategies: Create harmless lead capture pop-ups, embedded forms, and landing pages.</li>
+        <li>Email service platforms: Install and run email services like mailchimp, Brevo, ActiveCampaign, and Klaviyo.</li>
+        <li>Automated email sequences: Create welcome series, abandoned cart recovery flows, drip email sequences, and re-engagement campaigns.</li>
+        <li>Deliverability &amp; A/B testing: Improve the rate of opening emails and rate of clicks through management of sender's reputation, subject line testing, as well as SPF/DKIM authentication.</li>
+    </ul>
+
+    <h3>Module 10: E-Commerce Marketing &amp; Marketplace Optimization</h3>
+
+    <p>Boost revenue for e-commerce businesses around the world with unique platforms and conventional e-commerce directories.</p>
+
+    <p>Creating Shopify Stores: Design simple and conversion-driven e-commerce environments that allow for payment processing and stock management.</p>
+
+    <ul>
+        <li>Marketplace Enrichment (Amazon/Flipkart): Improve product descriptions on Amazon (Search Engine Optimization), oversee A+ content, and manage Amazon PPC campaigns.</li>
+        <li>Conversion Optimization (CRO): Minimize issues during checkout, improve product pages, and utilize heatmaps through Hotjar, etc.</li>
+    </ul>
+
+    <h3>Module 11: AI-Driven Digital Marketing &amp; Automation Tools</h3>
+
+    <p>Use current platforms in artificial intelligence to speed up the process of making content as well as optimization of campaigns and conducting research.</p>
+
+    <ul>
+        <li>Generative AI for Content and Copy: Use programs like ChatGPT, Claude and Gemini in order to write drafts for blogs, ad properties and emails.</li>
+        <li>Visual and Video Creation through AI: Create videos and marketing pictures by using advanced software such as Midjourney, Canva AI and Runway.</li>
+        <li>Search Engine Optimization through AI: Use artificial intelligence during conducting keyword research and carrying out work on SEO.</li>
+    </ul>
+
+    <h3>Module 12: Affiliate Marketing, Freelancing &amp; Agency Operations</h3>
+
+    <p>The following are some independent ways to monetize your digital expertise via freelancing, operating your own agency, or leveraging affiliate networks.</p>
+
+    <ul>
+        <li>Affiliate Marketing: Sign up and make money on platforms such as Amazon Associates, ClickBank, and Impact Radius.</li>
+        <li>Freelancing: Source clients from online platforms such as Upwork, Fiverr, LinkedIn, and cold emailing.</li>
+        <li>Setting Up an Agency: Package your services and make client proposals, contracts, and reports scalable.</li>
+    </ul>
+
+</div>
+
+
+
+            <button class="kd-cov-readmore" id="kdCovToggle">
+                <span id="kdCovToggleText">Read More</span>
+                <svg viewBox="0 0 12 8" fill="none">
+                    <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+            </button>
         </div>
 
-        <button class="kd-cov-readmore" id="kdCovToggle">
-            <span id="kdCovToggleText">Read More</span>
-            <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
-        </button>
-    </div>
+        <!-- RIGHT: DEMO FORM -->
+        <div class="kd-cov-form-wrap">
+            <span class="kd-cov-badge">★ Bestseller</span>
 
-    <!-- RIGHT: DEMO FORM -->
-    <div class="kd-cov-form-wrap">
-        <span class="kd-cov-badge">★ Bestseller</span>
+            <div class="kd-cov-form-card">
+                <h3 class="kd-cov-form-title">Request Free Demo</h3>
 
-        <div class="kd-cov-form-card">
-            <h3 class="kd-cov-form-title">Request Free Demo</h3>
+                <form id="kdCovForm">
+                    <input class="kd-cov-field" type="text" placeholder="Full Name" required>
+                    <input class="kd-cov-field" type="email" placeholder="Email Address" required>
+                    <input class="kd-cov-field" type="tel" placeholder="Phone Number" required>
+                    <input class="kd-cov-field" type="text" value="Digital Marketing Course In Faridabad" readonly>
 
-            <form id="kdCovForm">
-                <input class="kd-cov-field" type="text" placeholder="Full Name" required>
-                <input class="kd-cov-field" type="email" placeholder="Email Address" required>
-                <input class="kd-cov-field" type="tel" placeholder="Phone Number" required>
-                <input class="kd-cov-field" type="text" value="Digital Marketing Course In Faridabad" readonly>
+                    <select class="kd-cov-field" required>
+                        <option value="" disabled selected>Select a Branch</option>
+                        <option>Faridabad - Sector 15</option>
+                        <option>Faridabad - NIT</option>
+                        <option>Delhi - Laxmi Nagar</option>
+                    </select>
 
-                <select class="kd-cov-field" required>
-                    <option value="" disabled selected>Select a Branch</option>
-                    <option>Faridabad - Sector 15</option>
-                    <option>Faridabad - NIT</option>
-                    <option>Delhi - Laxmi Nagar</option>
-                </select>
+                    <p class="kd-cov-captcha-label">Solve: <span id="kdCovA">4</span> + <span id="kdCovB">4</span> = ?</p>
+                    <input class="kd-cov-field" type="text" id="kdCovAnswer" placeholder="Enter answer" required>
 
-                <p class="kd-cov-captcha-label">Solve: <span id="kdCovA">4</span> + <span id="kdCovB">4</span> = ?</p>
-                <input class="kd-cov-field" type="text" id="kdCovAnswer" placeholder="Enter answer" required>
+                    <button type="submit" class="kd-cov-submit">Submit</button>
+                    <p class="kd-cov-msg" id="kdCovMsg"></p>
+                </form>
 
-                <button type="submit" class="kd-cov-submit">Submit</button>
-                <p class="kd-cov-msg" id="kdCovMsg"></p>
-            </form>
-
-            <p class="kd-cov-trust">🔒 Your data is safe with us. No spam.</p>
+                <p class="kd-cov-trust">🔒 Your data is safe with us. No spam.</p>
+            </div>
         </div>
-    </div>
 
-</section>
+    </section>
 
-<script>
-    // Read More toggle
-    const body = document.getElementById('kdCovBody');
-    const toggleBtn = document.getElementById('kdCovToggle');
-    const toggleText = document.getElementById('kdCovToggleText');
+    <script>
+        // Read More toggle
+        const body = document.getElementById('kdCovBody');
+        const toggleBtn = document.getElementById('kdCovToggle');
+        const toggleText = document.getElementById('kdCovToggleText');
 
-    toggleBtn.addEventListener('click', () => {
-        const expanded = body.classList.toggle('kd-cov-expanded');
-        toggleBtn.classList.toggle('kd-cov-open', expanded);
-        toggleText.textContent = expanded ? 'Read Less' : 'Read More';
-    });
+        toggleBtn.addEventListener('click', () => {
+            const expanded = body.classList.toggle('kd-cov-expanded');
+            toggleBtn.classList.toggle('kd-cov-open', expanded);
+            toggleText.textContent = expanded ? 'Read Less' : 'Read More';
+        });
 
-    // Simple math captcha
-    let numA = 4, numB = 4;
-    function newCaptcha() {
-        numA = Math.floor(Math.random() * 8) + 1;
-        numB = Math.floor(Math.random() * 8) + 1;
-        document.getElementById('kdCovA').textContent = numA;
-        document.getElementById('kdCovB').textContent = numB;
-    }
+        // Simple math captcha
+        let numA = 4,
+            numB = 4;
 
-    const form = document.getElementById('kdCovForm');
-    const msg = document.getElementById('kdCovMsg');
+        function newCaptcha() {
+            numA = Math.floor(Math.random() * 8) + 1;
+            numB = Math.floor(Math.random() * 8) + 1;
+            document.getElementById('kdCovA').textContent = numA;
+            document.getElementById('kdCovB').textContent = numB;
+        }
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const answer = parseInt(document.getElementById('kdCovAnswer').value, 10);
+        const form = document.getElementById('kdCovForm');
+        const msg = document.getElementById('kdCovMsg');
 
-        if (answer !== numA + numB) {
-            msg.textContent = 'Incorrect answer, please try again.';
-            msg.className = 'kd-cov-msg kd-cov-error';
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const answer = parseInt(document.getElementById('kdCovAnswer').value, 10);
+
+            if (answer !== numA + numB) {
+                msg.textContent = 'Incorrect answer, please try again.';
+                msg.className = 'kd-cov-msg kd-cov-error';
+                newCaptcha();
+                document.getElementById('kdCovAnswer').value = '';
+                return;
+            }
+
+            msg.textContent = 'Thank you! We will contact you shortly.';
+            msg.className = 'kd-cov-msg kd-cov-success';
+            form.reset();
             newCaptcha();
-            document.getElementById('kdCovAnswer').value = '';
-            return;
-        }
-
-        msg.textContent = 'Thank you! We will contact you shortly.';
-        msg.className = 'kd-cov-msg kd-cov-success';
-        form.reset();
-        newCaptcha();
-    });
-</script>
-
+        });
+    </script>
