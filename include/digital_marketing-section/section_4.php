@@ -4,7 +4,7 @@
     }
 
     .kd-steps-section {
-       background:
+        background:
             radial-gradient(circle at 8% 12%,
                 rgba(255, 102, 46, .18),
                 transparent 30%),
@@ -119,7 +119,7 @@
     }
 
     .kd-step-card h3 {
-        margin: 0 0 10px;
+        /* margin: 0 0 10px; */
         font-size: clamp(14px, 1.3vw, 16.5px);
         font-weight: 800;
         color: #12121f;
@@ -892,16 +892,29 @@
             animation: none;
         }
 
-        .your-element2{
+        .your-element2 {
             animation: none;
         }
 
+    }
+
+    .pargarnaf_5464{
+        width: 80%;
+        text-align: center;
+        margin: 10px auto !important;
+        display: block;
+        color: #b6b3b3;
     }
 </style>
 
 
 <section class="kd-steps-section">
-    <h2 class="kd-steps-title">You're Just A Few Steps Closer To Getting Your Digital Marketing with AI Course Certification</h2>
+    <h2 class="kd-steps-title">Career Scope & High-Demand Job Roles
+    </h2>
+    <p  class="pargarnaf_5464">
+        Upon completing a certified Digital Marketing Course in Patel Nagar, you can pursue a number of different roles in the fields of IT, digital marketing, e-commerce, and corporate marketing departments:
+
+    </p>
 
     <div class="kd-steps-scroll-wrapper">
         <div class="kd-steps-stage" id="kdStepsStage">
@@ -935,8 +948,8 @@
                     <div class="kd-step-icon kd-step-icon-blank"></div>
                     <span class="kd-step-num">01</span>
                 </div>
-                <h3>Follow 3A</h3>
-                <p>Our structured learning model focuses on Attendance, Assignment &amp; Assessment, encouraging consistency and helping you achieve a success score.</p>
+                <h3>Digital Marketing Executive</h3>
+                <p>Oversees and implements campaigns across all digital marketing platforms, including SEO, social, email, and content.</p>
             </article>
 
             <!-- Card 2 -->
@@ -952,8 +965,8 @@
                     </div>
                     <span class="kd-step-num">02</span>
                 </div>
-                <h3>Industry-Specific Skills</h3>
-                <p>Gain hands-on expertise with tools and technologies tailored to high-demand roles in data, development, cloud, testing and marketing.</p>
+                <h3>SEO Specialist/ <br> Manager</h3>
+                <p>Specializes in the search engine optimization aspects, including site audit, organic rankings, and keyword strategy.</p>
             </article>
 
             <!-- Card 3 -->
@@ -969,8 +982,8 @@
                     </div>
                     <span class="kd-step-num">03</span>
                 </div>
-                <h3>Profile Building</h3>
-                <p>Get expert guidance on resume creation, LinkedIn, and web portfolio development to confidently present your skills to employers.</p>
+                <h3>PPC/Performance Marketing Specialist:</h3>
+                <p>Develops and manages advertising budget for Google Ads and Meta Ads.</p>
             </article>
 
             <!-- Card 4 -->
@@ -984,8 +997,8 @@
                     </div>
                     <span class="kd-step-num">04</span>
                 </div>
-                <h3>Exam</h3>
-                <p>Clear the final evaluation exam designed to test your technical understanding and practical readiness to conquer real-world challenges.</p>
+                <h3>Social Media Manager</h3>
+                <p>Creates brand presence and engages customers through social media channels. </p>
             </article>
 
             <!-- Card 5 -->
@@ -1000,8 +1013,8 @@
                     </div>
                     <span class="kd-step-num">05</span>
                 </div>
-                <h3>Global Certification</h3>
-                <p>Earn globally recognized certifications that validate your expertise and enhance your professional credibility across industries.</p>
+                <h3>Content Marketer/ <br> Copywriter</h3>
+                <p>Creates various content materials such as blogs, emails, sales copy, and videos to promote the brand.</p>
             </article>
 
             <!-- Card 6 -->
@@ -1015,8 +1028,8 @@
                     </div>
                     <span class="kd-step-num">06</span>
                 </div>
-                <h3>Integrated Internship</h3>
-                <p>Apply your knowledge in real projects and case studies through an internship that prepares you to understand workplace challenges and build credibility.</p>
+                <h3>6E-Commerce Growth Manager</h3>
+                <p> Works with different strategies to increase sales of online stores through conversion rate optimization (CRO), funnel strategies, marketplace ads, and customer retention tactics.</p>
             </article>
 
             <!-- Start with -->

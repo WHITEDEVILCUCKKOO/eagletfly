@@ -35,15 +35,18 @@
     <?php require_once __DIR__ . '/include/digital_marketing-section/contect_3.php' ?>
     <?php require_once __DIR__ . '/include/digital_marketing-section/contect_4.php' ?>
     <?php require_once __DIR__ . '/include/digital_marketing-section/contect_5.php' ?>
-
+    
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_4.php' ?>
-
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_6.php' ?>
+    
     <!-- section 5 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_5.php' ?>
-
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_7.php' ?>      
+    
     <!-- section 6 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_6.php' ?>
+    <?php require_once __DIR__ . '/include/digital_marketing-section/contect_8.php' ?>      
 
     <!-- section 7 -->
     <?php require_once __DIR__ . '/include/digital_marketing-section/section_7.php' ?>

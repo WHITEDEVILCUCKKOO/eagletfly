@@ -12,8 +12,7 @@ COMPLETE ISOLATED CSS
 
     #kdRcsFaqSection {
         --kd-rcs-primary: #e2ad3b;
-        --kd-rcs-primary-dark: #e2ad3b
-        --kd-rcs-cyan: #20d9ff;
+        --kd-rcs-primary-dark: #e2ad3b --kd-rcs-cyan: #20d9ff;
         --kd-rcs-purple: #e2ad3b;
         --kd-rcs-heading: #18243d;
         --kd-rcs-text: #68758c;
@@ -645,15 +644,15 @@ SMALL MOBILE
 
             <h2>
                 Questions About Our
-                <span>Machine Learning & And Ai</span>
+                <span>Digital Marketing</span>
             </h2>
 
 
-            <p>
+            <!-- <p>
                 Find answers to common questions about RCS messaging, interactive
                 communication, branded messages and how King Digital can help your
                 business create more engaging customer experiences.
-            </p>
+            </p> -->
 
         </div>
 
@@ -669,7 +668,7 @@ SMALL MOBILE
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
-                        What is RCS messaging?
+                        What are the eligibility requirements for joining the Digital Marketing Course in Patel Nagar?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -682,10 +681,8 @@ SMALL MOBILE
                 <div class="kd-rcs-faq-answer">
                     <div class="kd-rcs-faq-answer-inner">
                         <p>
-                            RCS, or Rich Communication Services, is an advanced business
-                            messaging solution that allows brands to create richer and more
-                            interactive conversations. Messages can include branded content,
-                            images, buttons, suggested actions and other engaging elements.
+                            There are no strict academic prerequisites. High school graduates, college students, working professionals, non-IT graduates, and business owners can all enroll. A basic understanding of computer operations and internet browsing is all you need to get started.
+
                         </p>
                     </div>
                 </div>
@@ -698,7 +695,9 @@ SMALL MOBILE
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
-                        How is RCS different from traditional SMS?
+                        Does EagletFly Solutions provide direct placement support?
+
+
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -711,10 +710,8 @@ SMALL MOBILE
                 <div class="kd-rcs-faq-answer">
                     <div class="kd-rcs-faq-answer-inner">
                         <p>
-                            Traditional SMS is mainly text-based, while RCS supports a more
-                            interactive messaging experience. Businesses can use rich media,
-                            branded messaging, visual content and action buttons to create
-                            more engaging customer communication.
+                            Yes. We offer comprehensive placement support, including 1-on-1 resume reviews, portfolio preparation, technical mock interviews, LinkedIn branding, and direct interview scheduling with hiring partners across Delhi NCR.
+
                         </p>
                     </div>
                 </div>
@@ -727,7 +724,8 @@ SMALL MOBILE
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
-                        Can I add images and buttons to RCS messages?
+                        Is digital marketing a good career choice for non-technical candidates?
+
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -740,9 +738,8 @@ SMALL MOBILE
                 <div class="kd-rcs-faq-answer">
                     <div class="kd-rcs-faq-answer-inner">
                         <p>
-                            Yes. RCS messaging can support rich visual content and interactive
-                            features such as images, cards, buttons and suggested actions,
-                            helping customers interact with your business more easily.
+                            Yes. Modern digital marketing relies primarily on strategic thinking, audience understanding, visual creativity, and logical data analysis rather than complex software coding.
+
                         </p>
                     </div>
                 </div>
@@ -755,7 +752,8 @@ SMALL MOBILE
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
-                        Can RCS messages be branded with my business identity?
+                        Are flexible class schedules available for working professionals?
+
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -768,10 +766,8 @@ SMALL MOBILE
                 <div class="kd-rcs-faq-answer">
                     <div class="kd-rcs-faq-answer-inner">
                         <p>
-                            Yes. RCS can help businesses create a more recognizable brand
-                            experience by presenting communication in a professional and
-                            visually engaging format that is designed around your brand
-                            identity and messaging goals.
+                            Yes. We offer flexible options including weekday morning batches, evening classes, and weekend-only cohorts to accommodate your work schedule.
+
                         </p>
                     </div>
                 </div>
@@ -784,7 +780,7 @@ SMALL MOBILE
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
-                        What businesses can benefit from RCS messaging?
+                        How long does it take to complete the training and get job-ready?
                     </span>
 
                     <span class="kd-rcs-faq-icon" aria-hidden="true">
@@ -797,10 +793,9 @@ SMALL MOBILE
                 <div class="kd-rcs-faq-answer">
                     <div class="kd-rcs-faq-answer-inner">
                         <p>
-                            RCS messaging can be useful for businesses across many industries
-                            that want to create more interactive customer communication,
-                            promote products or services, share important updates and improve
-                            overall audience engagement.
+
+                            You can master core digital marketing fundamentals in 8 weeks, while our complete 4-month professional track equips you for agency-level specialist roles.
+
                         </p>
                     </div>
                 </div>
@@ -809,7 +804,7 @@ SMALL MOBILE
 
 
             <!-- FAQ 6 -->
-            <div class="kd-rcs-faq-item">
+            <div class="kd-rcs-faq-item" style="display: none;">
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
@@ -838,7 +833,7 @@ SMALL MOBILE
 
 
             <!-- FAQ 7 -->
-            <div class="kd-rcs-faq-item">
+            <div class="kd-rcs-faq-item" style="display: none;">
 
                 <button class="kd-rcs-faq-question" type="button" aria-expanded="false">
                     <span class="kd-rcs-faq-question-text">
