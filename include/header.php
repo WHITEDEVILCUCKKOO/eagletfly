@@ -1138,7 +1138,7 @@ $global_info = get_global_info($mydb);
   <style>
     /* ==============================
    PAGE LOADER
-============================== */
+    ============================== */
 
     .page-loader {
       position: fixed;
@@ -1185,7 +1185,7 @@ $global_info = get_global_info($mydb);
 
     /* ==============================
    ROTATING RING
-============================== */
+    ============================== */
 
     .loader-ring {
       position: absolute;
@@ -1234,52 +1234,52 @@ $global_info = get_global_info($mydb);
 
     /* ==============================
    CENTER LOGO
-============================== */
+    ============================== */
 
-    .loader-logo {
-      width: 158px;
-      height: 158px;
+        .loader-logo {
+          width: 158px;
+          height: 158px;
 
-      background: #ffffff;
+          background: #ffffff;
 
-      border-radius: 50%;
+          border-radius: 50%;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-      position: relative;
+          position: relative;
 
-      z-index: 2;
+          z-index: 2;
 
-      box-shadow:
-        0 5px 25px rgba(48, 56, 61, 0.12);
-      margin-top: 8px;
-    }
+          box-shadow:
+            0 5px 25px rgba(48, 56, 61, 0.12);
+          margin-top: 8px;
+        }
 
 
-    .loader-logo img {
-      width: 100%;
-      height: 100%;
+        .loader-logo img {
+          width: 100%;
+          height: 100%;
 
-      object-fit: contain;
+          object-fit: contain;
 
-      display: block;
-    }
+          display: block;
+        }
 
-    .loader-ring {
-      position: absolute;
+        .loader-ring {
+          position: absolute;
 
-      width: 170px;
-      height: 170px;
+          width: 170px;
+          height: 170px;
 
-      border-radius: 50%;
+          border-radius: 50%;
 
-    }
+        }
 
-    /* ==============================
-   MOBILE
-============================== */
+        /* ==============================
+      MOBILE
+    ============================== */
 
     @media (max-width: 600px) {
 
@@ -1389,7 +1389,7 @@ $global_info = get_global_info($mydb);
 
       <!-- Center Image -->
       <div class="loader-logo">
-        <img src="img/logo/lOGO-B-e1561700484623.png" alt="Eagletely Solutions">
+        <img src="img/logo/<?php echo htmlspecialchars($global_info['facion_icon']); ?>" alt="Eagletely Solutions">
       </div>
 
     </div>
@@ -1519,38 +1519,35 @@ $global_info = get_global_info($mydb);
 
       <!-- 3. Social Icons & Hamburger Icon -->
       <div style="display: flex; align-items: center; gap: 20px;">
-       <div class="social-icons">
+        <div class="social-icons">
 
-    <a
-        href="<?php echo htmlspecialchars($global_info['globle_instagram'] ?? '#', ENT_QUOTES); ?>"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram"
-    >
-        <i class="fab fa-instagram"></i>
-    </a>
-
-
-    <a
-        href="<?php echo htmlspecialchars($global_info['globle_linkedin'] ?? '#', ENT_QUOTES); ?>"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-    >
-        <i class="fab fa-linkedin"></i>
-    </a>
+          <a
+            href="<?php echo htmlspecialchars($global_info['globle_instagram'] ?? '#', ENT_QUOTES); ?>"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
 
 
-    <a
-        href="<?php echo htmlspecialchars($global_info['globle_yt'] ?? '#', ENT_QUOTES); ?>"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube"
-    >
-        <i class="fab fa-youtube"></i>
-    </a>
+          <a
+            href="<?php echo htmlspecialchars($global_info['globle_linkedin'] ?? '#', ENT_QUOTES); ?>"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
 
-</div>
+
+          <a
+            href="<?php echo htmlspecialchars($global_info['globle_yt'] ?? '#', ENT_QUOTES); ?>"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+
+        </div>
 
         <button class="hamburger" id="hamburger" aria-label="Open menu">
           <span></span>
