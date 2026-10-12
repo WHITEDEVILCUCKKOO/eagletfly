@@ -1081,7 +1081,7 @@ foreach ($all_courses as $course_count_row) {
                                 <div class="global-input-field">
 
                                     <label for="globle_linkedin">
-                                        LinkedIn Link
+                                        Facebook Link
                                     </label>
 
                                     <input
@@ -2807,795 +2807,777 @@ foreach ($all_courses as $course_count_row) {
                     </script>
 
                 </section>
-<!-- sublink box 1 -->
-<section id="contect_1_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
+                <!-- sublink box 1 -->
+                <section id="contect_1_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
 
-    <?php
+                    <?php
 
-    include "admin_access/functions/AllVideos/add_video.php";
-    include "admin_access/functions/AllVideos/delete_video.php";
+                    include "admin_access/functions/AllVideos/add_video.php";
+                    include "admin_access/functions/AllVideos/delete_video.php";
 
 
-    /* ADD VIDEO */
+                    /* ADD VIDEO */
 
-    if (isset($_POST['add_all_video_xk91'])) {
+                    if (isset($_POST['add_all_video_xk91'])) {
 
-        $all_video_add_result_xk91 = add_all_video($mydb);
+                        $all_video_add_result_xk91 = add_all_video($mydb);
 
-        echo "<script>
+                        echo "<script>
             alert(" . json_encode($all_video_add_result_xk91['message']) . ");
             window.location.href = 'admin.php';
         </script>";
 
-        exit;
-    }
+                        exit;
+                    }
 
 
-    /* DELETE VIDEO */
+                    /* DELETE VIDEO */
 
-    if (isset($_POST['delete_all_video_xk91'])) {
+                    if (isset($_POST['delete_all_video_xk91'])) {
 
-        $all_video_delete_result_xk91 = delete_all_video($mydb);
+                        $all_video_delete_result_xk91 = delete_all_video($mydb);
 
-        echo "<script>
+                        echo "<script>
             alert(" . json_encode($all_video_delete_result_xk91['message']) . ");
             window.location.href = 'admin.php';
         </script>";
 
-        exit;
-    }
+                        exit;
+                    }
 
 
-    /* GET ALL VIDEOS */
+                    /* GET ALL VIDEOS */
 
-    $all_video_list_query_xk91 = mysqli_query(
-        $mydb,
-        "SELECT *
+                    $all_video_list_query_xk91 = mysqli_query(
+                        $mydb,
+                        "SELECT *
          FROM all_videos
          ORDER BY video_id DESC"
-    );
-
-    ?>
-
-
-
-    <section class="all-video-admin-section-xk91">
-
-        <style>
-
-            .all-video-admin-section-xk91 {
-                width: 100%;
-                padding: 30px;
-                box-sizing: border-box;
-            }
-
-
-            /* HEADER */
-
-            .all-video-admin-head-xk91 {
-                width: 100%;
-                margin-bottom: 30px;
-            }
-
-            .all-video-admin-title-xk91 {
-                margin: 0;
-                font-size: 34px;
-                line-height: 1.2;
-            }
-
-
-            /* ADD FORM */
-
-            .all-video-add-card-xk91 {
-                display: none;
-                width: 100%;
-                max-width: 600px;
-                margin: 0 auto 35px;
-                padding: 25px;
-                box-sizing: border-box;
-                background: #fff;
-                border: 1px solid #ddd;
-                border-radius: 15px;
-            }
-
-
-            .all-video-add-card-xk91.show {
-                display: block;
-            }
-
-
-            .all-video-form-group-xk91 {
-                margin-bottom: 18px;
-            }
-
-
-            .all-video-form-group-xk91 label {
-                display: block;
-                margin-bottom: 7px;
-                font-size: 14px;
-                font-weight: 600;
-            }
-
-
-            .all-video-form-group-xk91 input,
-            .all-video-form-group-xk91 select,
-            .all-video-form-group-xk91 textarea {
-                width: 100%;
-                padding: 12px;
-                box-sizing: border-box;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                outline: none;
-            }
-
-
-            .all-video-form-group-xk91 input:focus,
-            .all-video-form-group-xk91 select:focus,
-            .all-video-form-group-xk91 textarea:focus {
-                border-color: #111;
-            }
-
-
-            .all-video-form-buttons-xk91 {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-
-            .all-video-submit-btn-xk91,
-            .all-video-cancel-btn-xk91 {
-                border: 0;
-                padding: 11px 18px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-weight: 600;
-            }
-
-
-            .all-video-submit-btn-xk91 {
-                background: #111;
-                color: #fff;
-            }
-
-
-            .all-video-cancel-btn-xk91 {
-                background: #eee;
-                color: #222;
-            }
-
-
-            /* VIDEO GRID */
-
-            .all-video-card-grid-xk91 {
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 25px;
-            }
-
-
-            /* ADD NEW VIDEO CARD */
-
-            .all-video-add-new-card-xk91 {
-                width: 100%;
-                min-height: 300px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                gap: 12px;
-                background: #fafafa;
-                border: 2px dashed #ccc;
-                border-radius: 16px;
-                cursor: pointer;
-                box-sizing: border-box;
-                transition: 0.2s ease;
-            }
-
-
-            .all-video-add-new-card-xk91.hide {
-                display: none;
-            }
-
-
-            .all-video-add-new-card-xk91:hover {
-                border-color: #111;
-                background: #f7f7f7;
-            }
-
-
-            .all-video-add-new-icon-xk91 {
-                width: 55px;
-                height: 55px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                background: #111;
-                color: #fff;
-                font-size: 30px;
-                line-height: 1;
-            }
-
-
-            .all-video-add-new-text-xk91 {
-                font-size: 15px;
-                font-weight: 600;
-            }
-
-
-            /* VIDEO CARD */
-
-            .all-video-card-xk91 {
-                width: 100%;
-                overflow: hidden;
-                background: #fff;
-                border-radius: 16px;
-                border: 1px solid #eee;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
-                box-sizing: border-box;
-            }
-
-
-            .all-video-card-player-xk91 {
-                width: 100%;
-                aspect-ratio: 16 / 9;
-                background: #111;
-                overflow: hidden;
-            }
-
-
-            .all-video-card-player-xk91 video {
-                width: 100%;
-                height: 100%;
-                display: block;
-                object-fit: contain;
-                background: #000;
-            }
-
-
-            .all-video-card-content-xk91 {
-                padding: 18px;
-            }
-
-
-            .all-video-card-title-xk91 {
-                margin: 0 0 8px;
-                font-size: 19px;
-                line-height: 1.35;
-                font-weight: 700;
-            }
-
-
-            .all-video-card-description-xk91 {
-                margin: 0 0 15px;
-                font-size: 14px;
-                line-height: 1.5;
-                color: #777;
-            }
-
-
-            .all-video-card-bottom-xk91 {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 10px;
-            }
-
-
-            /* STATUS */
-
-            .all-video-status-active-xk91,
-            .all-video-status-inactive-xk91 {
-                display: inline-block;
-                padding: 5px 10px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 600;
-            }
-
-
-            .all-video-status-active-xk91 {
-                background: #dcfce7;
-                color: #166534;
-            }
-
-
-            .all-video-status-inactive-xk91 {
-                background: #fee2e2;
-                color: #991b1b;
-            }
-
-
-            /* DELETE */
-
-            .all-video-delete-btn-xk91 {
-                border: 0;
-                background: #dc2626;
-                color: #fff;
-                padding: 8px 13px;
-                border-radius: 7px;
-                cursor: pointer;
-                font-size: 12px;
-                font-weight: 600;
-            }
-
-
-            .all-video-delete-btn-xk91:hover {
-                background: #b91c1c;
-            }
-
-
-            /* EMPTY */
-
-            .all-video-empty-xk91 {
-                width: 100%;
-                padding: 50px 20px;
-                text-align: center;
-                color: #777;
-                box-sizing: border-box;
-            }
-
-
-            /* TABLET */
-
-            @media (max-width: 1000px) {
-
-                .all-video-card-grid-xk91 {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                }
-
-            }
-
-
-            /* MOBILE */
-
-            @media (max-width: 600px) {
-
-                .all-video-admin-section-xk91 {
-                    padding: 20px 15px;
-                }
-
-
-                .all-video-admin-title-xk91 {
-                    font-size: 28px;
-                }
-
-
-                .all-video-card-grid-xk91 {
-                    grid-template-columns: 1fr;
-                    gap: 20px;
-                }
-
-
-                .all-video-add-card-xk91 {
-                    max-width: 100%;
-                    padding: 18px;
-                }
-
-            }
-
-        </style>
-
-
-
-        <!-- HEADER -->
-
-        <div class="all-video-admin-head-xk91">
-
-            <h2 class="all-video-admin-title-xk91">
-                All Videos
-            </h2>
-
-        </div>
-
-
-
-        <!-- ADD FORM -->
-
-        <div
-            id="allVideoAddCardXk91"
-            class="all-video-add-card-xk91"
-        >
-
-            <form
-                method="POST"
-                enctype="multipart/form-data"
-            >
-
-
-                <!-- VIDEO TITLE -->
-
-                <div class="all-video-form-group-xk91">
-
-                    <label>
-                        Video Title
-                    </label>
-
-                    <input
-                        type="text"
-                        name="video_title"
-                        placeholder="Enter video title"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- VIDEO FILE -->
-
-                <div class="all-video-form-group-xk91">
-
-                    <label>
-                        Video File
-                    </label>
-
-                    <input
-                        type="file"
-                        name="video_file"
-                        accept="video/mp4,video/webm,video/ogg"
-                        required
-                    >
-
-                </div>
-
-
-
-                <!-- DESCRIPTION -->
-
-                <div class="all-video-form-group-xk91">
-
-                    <label>
-                        Video Description
-                    </label>
-
-                    <textarea
-                        name="video_description"
-                        rows="4"
-                        placeholder="Enter video description"
-                    ></textarea>
-
-                </div>
-
-
-
-                <!-- STATUS -->
-
-                <div class="all-video-form-group-xk91">
-
-                    <label>
-                        Status
-                    </label>
-
-                    <select name="video_status">
-
-                        <option value="Active">
-                            Active
-                        </option>
-
-                        <option value="Inactive">
-                            Inactive
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- BUTTONS -->
-
-                <div class="all-video-form-buttons-xk91">
-
-                    <button
-                        type="submit"
-                        name="add_all_video_xk91"
-                        class="all-video-submit-btn-xk91"
-                    >
-                        Add Video
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="all-video-cancel-btn-xk91"
-                        onclick="closeAllVideoAddXk91()"
-                    >
-                        Cancel
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-
-
-        <!-- VIDEO GRID -->
-
-        <div class="all-video-card-grid-xk91">
-
-
-            <!-- ADD NEW VIDEO CARD -->
-
-            <div
-                id="allVideoAddNewCardXk91"
-                class="all-video-add-new-card-xk91"
-                onclick="openAllVideoAddXk91()"
-            >
-
-                <div class="all-video-add-new-icon-xk91">
-                    +
-                </div>
-
-                <div class="all-video-add-new-text-xk91">
-                    Add New Video
-                </div>
-
-            </div>
-
-
-
-            <?php
-
-            if (
-                $all_video_list_query_xk91 &&
-                mysqli_num_rows($all_video_list_query_xk91) > 0
-            ) {
-
-                while (
-                    $all_video_row_xk91 =
-                    mysqli_fetch_assoc($all_video_list_query_xk91)
-                ) {
-
-
-                    $all_video_title_xk91 = htmlspecialchars(
-                        $all_video_row_xk91['video_title'] ?? '',
-                        ENT_QUOTES,
-                        'UTF-8'
-                    );
-
-
-                    $all_video_file_xk91 = htmlspecialchars(
-                        $all_video_row_xk91['video_file'] ?? '',
-                        ENT_QUOTES,
-                        'UTF-8'
-                    );
-
-
-                    $all_video_description_xk91 = htmlspecialchars(
-                        $all_video_row_xk91['video_description'] ?? '',
-                        ENT_QUOTES,
-                        'UTF-8'
                     );
 
                     ?>
 
 
 
-                    <!-- VIDEO CARD -->
+                    <section class="all-video-admin-section-xk91">
 
-                    <div class="all-video-card-xk91">
+                        <style>
+                            .all-video-admin-section-xk91 {
+                                width: 100%;
+                                padding: 30px;
+                                box-sizing: border-box;
+                            }
 
 
-                        <!-- VIDEO -->
+                            /* HEADER */
 
-                        <div class="all-video-card-player-xk91">
+                            .all-video-admin-head-xk91 {
+                                width: 100%;
+                                margin-bottom: 30px;
+                            }
 
-                            <video
-                                controls
-                                preload="metadata"
-                                playsinline
-                            >
+                            .all-video-admin-title-xk91 {
+                                margin: 0;
+                                font-size: 34px;
+                                line-height: 1.2;
+                            }
 
-                                <source
-                                    src="<?php echo $all_video_file_xk91; ?>"
-                                    type="video/mp4"
-                                >
 
-                                Your browser does not support the video tag.
+                            /* ADD FORM */
 
-                            </video>
+                            .all-video-add-card-xk91 {
+                                display: none;
+                                width: 100%;
+                                max-width: 600px;
+                                margin: 0 auto 35px;
+                                padding: 25px;
+                                box-sizing: border-box;
+                                background: #fff;
+                                border: 1px solid #ddd;
+                                border-radius: 15px;
+                            }
+
+
+                            .all-video-add-card-xk91.show {
+                                display: block;
+                            }
+
+
+                            .all-video-form-group-xk91 {
+                                margin-bottom: 18px;
+                            }
+
+
+                            .all-video-form-group-xk91 label {
+                                display: block;
+                                margin-bottom: 7px;
+                                font-size: 14px;
+                                font-weight: 600;
+                            }
+
+
+                            .all-video-form-group-xk91 input,
+                            .all-video-form-group-xk91 select,
+                            .all-video-form-group-xk91 textarea {
+                                width: 100%;
+                                padding: 12px;
+                                box-sizing: border-box;
+                                border: 1px solid #ddd;
+                                border-radius: 8px;
+                                outline: none;
+                            }
+
+
+                            .all-video-form-group-xk91 input:focus,
+                            .all-video-form-group-xk91 select:focus,
+                            .all-video-form-group-xk91 textarea:focus {
+                                border-color: #111;
+                            }
+
+
+                            .all-video-form-buttons-xk91 {
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
+                            }
+
+
+                            .all-video-submit-btn-xk91,
+                            .all-video-cancel-btn-xk91 {
+                                border: 0;
+                                padding: 11px 18px;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                font-weight: 600;
+                            }
+
+
+                            .all-video-submit-btn-xk91 {
+                                background: #111;
+                                color: #fff;
+                            }
+
+
+                            .all-video-cancel-btn-xk91 {
+                                background: #eee;
+                                color: #222;
+                            }
+
+
+                            /* VIDEO GRID */
+
+                            .all-video-card-grid-xk91 {
+                                width: 100%;
+                                display: grid;
+                                grid-template-columns: repeat(3, minmax(0, 1fr));
+                                gap: 25px;
+                            }
+
+
+                            /* ADD NEW VIDEO CARD */
+
+                            .all-video-add-new-card-xk91 {
+                                width: 100%;
+                                min-height: 300px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-direction: column;
+                                gap: 12px;
+                                background: #fafafa;
+                                border: 2px dashed #ccc;
+                                border-radius: 16px;
+                                cursor: pointer;
+                                box-sizing: border-box;
+                                transition: 0.2s ease;
+                            }
+
+
+                            .all-video-add-new-card-xk91.hide {
+                                display: none;
+                            }
+
+
+                            .all-video-add-new-card-xk91:hover {
+                                border-color: #111;
+                                background: #f7f7f7;
+                            }
+
+
+                            .all-video-add-new-icon-xk91 {
+                                width: 55px;
+                                height: 55px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                border-radius: 50%;
+                                background: #111;
+                                color: #fff;
+                                font-size: 30px;
+                                line-height: 1;
+                            }
+
+
+                            .all-video-add-new-text-xk91 {
+                                font-size: 15px;
+                                font-weight: 600;
+                            }
+
+
+                            /* VIDEO CARD */
+
+                            .all-video-card-xk91 {
+                                width: 100%;
+                                overflow: hidden;
+                                background: #fff;
+                                border-radius: 16px;
+                                border: 1px solid #eee;
+                                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+                                box-sizing: border-box;
+                            }
+
+
+                            .all-video-card-player-xk91 {
+                                width: 100%;
+                                aspect-ratio: 16 / 9;
+                                background: #111;
+                                overflow: hidden;
+                            }
+
+
+                            .all-video-card-player-xk91 video {
+                                width: 100%;
+                                height: 100%;
+                                display: block;
+                                object-fit: contain;
+                                background: #000;
+                            }
+
+
+                            .all-video-card-content-xk91 {
+                                padding: 18px;
+                            }
+
+
+                            .all-video-card-title-xk91 {
+                                margin: 0 0 8px;
+                                font-size: 19px;
+                                line-height: 1.35;
+                                font-weight: 700;
+                            }
+
+
+                            .all-video-card-description-xk91 {
+                                margin: 0 0 15px;
+                                font-size: 14px;
+                                line-height: 1.5;
+                                color: #777;
+                            }
+
+
+                            .all-video-card-bottom-xk91 {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                gap: 10px;
+                            }
+
+
+                            /* STATUS */
+
+                            .all-video-status-active-xk91,
+                            .all-video-status-inactive-xk91 {
+                                display: inline-block;
+                                padding: 5px 10px;
+                                border-radius: 20px;
+                                font-size: 12px;
+                                font-weight: 600;
+                            }
+
+
+                            .all-video-status-active-xk91 {
+                                background: #dcfce7;
+                                color: #166534;
+                            }
+
+
+                            .all-video-status-inactive-xk91 {
+                                background: #fee2e2;
+                                color: #991b1b;
+                            }
+
+
+                            /* DELETE */
+
+                            .all-video-delete-btn-xk91 {
+                                border: 0;
+                                background: #dc2626;
+                                color: #fff;
+                                padding: 8px 13px;
+                                border-radius: 7px;
+                                cursor: pointer;
+                                font-size: 12px;
+                                font-weight: 600;
+                            }
+
+
+                            .all-video-delete-btn-xk91:hover {
+                                background: #b91c1c;
+                            }
+
+
+                            /* EMPTY */
+
+                            .all-video-empty-xk91 {
+                                width: 100%;
+                                padding: 50px 20px;
+                                text-align: center;
+                                color: #777;
+                                box-sizing: border-box;
+                            }
+
+
+                            /* TABLET */
+
+                            @media (max-width: 1000px) {
+
+                                .all-video-card-grid-xk91 {
+                                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                                }
+
+                            }
+
+
+                            /* MOBILE */
+
+                            @media (max-width: 600px) {
+
+                                .all-video-admin-section-xk91 {
+                                    padding: 20px 15px;
+                                }
+
+
+                                .all-video-admin-title-xk91 {
+                                    font-size: 28px;
+                                }
+
+
+                                .all-video-card-grid-xk91 {
+                                    grid-template-columns: 1fr;
+                                    gap: 20px;
+                                }
+
+
+                                .all-video-add-card-xk91 {
+                                    max-width: 100%;
+                                    padding: 18px;
+                                }
+
+                            }
+                        </style>
+
+
+
+                        <!-- HEADER -->
+
+                        <div class="all-video-admin-head-xk91">
+
+                            <h2 class="all-video-admin-title-xk91">
+                                All Videos
+                            </h2>
 
                         </div>
 
 
 
-                        <!-- CONTENT -->
+                        <!-- ADD FORM -->
 
-                        <div class="all-video-card-content-xk91">
+                        <div
+                            id="allVideoAddCardXk91"
+                            class="all-video-add-card-xk91">
+
+                            <form
+                                method="POST"
+                                enctype="multipart/form-data">
 
 
-                            <h3 class="all-video-card-title-xk91">
+                                <!-- VIDEO TITLE -->
 
-                                <?php
-                                echo $all_video_title_xk91;
-                                ?>
+                                <div class="all-video-form-group-xk91">
 
-                            </h3>
+                                    <label>
+                                        Video Title
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="video_title"
+                                        placeholder="Enter video title"
+                                        required>
+
+                                </div>
+
+
+
+                                <!-- VIDEO FILE -->
+
+                                <div class="all-video-form-group-xk91">
+
+                                    <label>
+                                        Video File
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        name="video_file"
+                                        accept="video/mp4,video/webm,video/ogg"
+                                        required>
+
+                                </div>
+
+
+
+                                <!-- DESCRIPTION -->
+
+                                <div class="all-video-form-group-xk91">
+
+                                    <label>
+                                        Video Description
+                                    </label>
+
+                                    <textarea
+                                        name="video_description"
+                                        rows="4"
+                                        placeholder="Enter video description"></textarea>
+
+                                </div>
+
+
+
+                                <!-- STATUS -->
+
+                                <div class="all-video-form-group-xk91">
+
+                                    <label>
+                                        Status
+                                    </label>
+
+                                    <select name="video_status">
+
+                                        <option value="Active">
+                                            Active
+                                        </option>
+
+                                        <option value="Inactive">
+                                            Inactive
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+
+                                <!-- BUTTONS -->
+
+                                <div class="all-video-form-buttons-xk91">
+
+                                    <button
+                                        type="submit"
+                                        name="add_all_video_xk91"
+                                        class="all-video-submit-btn-xk91">
+                                        Add Video
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="all-video-cancel-btn-xk91"
+                                        onclick="closeAllVideoAddXk91()">
+                                        Cancel
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+
+
+                        <!-- VIDEO GRID -->
+
+                        <div class="all-video-card-grid-xk91">
+
+
+                            <!-- ADD NEW VIDEO CARD -->
+
+                            <div
+                                id="allVideoAddNewCardXk91"
+                                class="all-video-add-new-card-xk91"
+                                onclick="openAllVideoAddXk91()">
+
+                                <div class="all-video-add-new-icon-xk91">
+                                    +
+                                </div>
+
+                                <div class="all-video-add-new-text-xk91">
+                                    Add New Video
+                                </div>
+
+                            </div>
 
 
 
                             <?php
 
-                            if ($all_video_description_xk91 !== '') {
+                            if (
+                                $all_video_list_query_xk91 &&
+                                mysqli_num_rows($all_video_list_query_xk91) > 0
+                            ) {
 
-                                ?>
+                                while (
+                                    $all_video_row_xk91 =
+                                    mysqli_fetch_assoc($all_video_list_query_xk91)
+                                ) {
 
-                                <p class="all-video-card-description-xk91">
 
-                                    <?php
-                                    echo $all_video_description_xk91;
-                                    ?>
+                                    $all_video_title_xk91 = htmlspecialchars(
+                                        $all_video_row_xk91['video_title'] ?? '',
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    );
 
-                                </p>
 
-                                <?php
+                                    $all_video_file_xk91 = htmlspecialchars(
+                                        $all_video_row_xk91['video_file'] ?? '',
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    );
 
-                            }
+
+                                    $all_video_description_xk91 = htmlspecialchars(
+                                        $all_video_row_xk91['video_description'] ?? '',
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    );
 
                             ?>
 
 
 
-                            <div class="all-video-card-bottom-xk91">
+                                    <!-- VIDEO CARD -->
+
+                                    <div class="all-video-card-xk91">
 
 
-                                <!-- STATUS -->
+                                        <!-- VIDEO -->
+
+                                        <div class="all-video-card-player-xk91">
+
+                                            <video
+                                                controls
+                                                preload="metadata"
+                                                playsinline>
+
+                                                <source
+                                                    src="<?php echo $all_video_file_xk91; ?>"
+                                                    type="video/mp4">
+
+                                                Your browser does not support the video tag.
+
+                                            </video>
+
+                                        </div>
+
+
+
+                                        <!-- CONTENT -->
+
+                                        <div class="all-video-card-content-xk91">
+
+
+                                            <h3 class="all-video-card-title-xk91">
+
+                                                <?php
+                                                echo $all_video_title_xk91;
+                                                ?>
+
+                                            </h3>
+
+
+
+                                            <?php
+
+                                            if ($all_video_description_xk91 !== '') {
+
+                                            ?>
+
+                                                <p class="all-video-card-description-xk91">
+
+                                                    <?php
+                                                    echo $all_video_description_xk91;
+                                                    ?>
+
+                                                </p>
+
+                                            <?php
+
+                                            }
+
+                                            ?>
+
+
+
+                                            <div class="all-video-card-bottom-xk91">
+
+
+                                                <!-- STATUS -->
+
+                                                <?php
+
+                                                if (
+                                                    $all_video_row_xk91['video_status'] === 'Active'
+                                                ) {
+
+                                                ?>
+
+                                                    <span class="all-video-status-active-xk91">
+                                                        Active
+                                                    </span>
+
+                                                <?php
+
+                                                } else {
+
+                                                ?>
+
+                                                    <span class="all-video-status-inactive-xk91">
+                                                        Inactive
+                                                    </span>
+
+                                                <?php
+
+                                                }
+
+                                                ?>
+
+
+
+                                                <!-- DELETE -->
+
+                                                <form
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this video?');">
+
+                                                    <input
+                                                        type="hidden"
+                                                        name="video_id"
+                                                        value="<?php echo (int) $all_video_row_xk91['video_id']; ?>">
+
+
+                                                    <button
+                                                        type="submit"
+                                                        name="delete_all_video_xk91"
+                                                        class="all-video-delete-btn-xk91">
+                                                        Delete
+                                                    </button>
+
+                                                </form>
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+
 
                                 <?php
 
-                                if (
-                                    $all_video_row_xk91['video_status'] === 'Active'
-                                ) {
-
-                                    ?>
-
-                                    <span class="all-video-status-active-xk91">
-                                        Active
-                                    </span>
-
-                                    <?php
-
-                                } else {
-
-                                    ?>
-
-                                    <span class="all-video-status-inactive-xk91">
-                                        Inactive
-                                    </span>
-
-                                    <?php
-
                                 }
+                            } else {
 
                                 ?>
 
+                                <div class="all-video-empty-xk91">
+                                    No videos available.
+                                </div>
 
+                            <?php
 
-                                <!-- DELETE -->
+                            }
 
-                                <form
-                                    method="POST"
-                                    onsubmit="return confirm('Are you sure you want to delete this video?');"
-                                >
-
-                                    <input
-                                        type="hidden"
-                                        name="video_id"
-                                        value="<?php echo (int) $all_video_row_xk91['video_id']; ?>"
-                                    >
-
-
-                                    <button
-                                        type="submit"
-                                        name="delete_all_video_xk91"
-                                        class="all-video-delete-btn-xk91"
-                                    >
-                                        Delete
-                                    </button>
-
-                                </form>
-
-
-                            </div>
-
+                            ?>
 
                         </div>
 
 
-                    </div>
+                    </section>
 
 
 
-                    <?php
+                    <script>
+                        function openAllVideoAddXk91() {
 
-                }
+                            var allVideoAddBoxXk91 =
+                                document.getElementById('allVideoAddCardXk91');
 
-            } else {
-
-                ?>
-
-                <div class="all-video-empty-xk91">
-                    No videos available.
-                </div>
-
-                <?php
-
-            }
-
-            ?>
-
-        </div>
+                            var allVideoAddNewCardXk91 =
+                                document.getElementById('allVideoAddNewCardXk91');
 
 
-    </section>
+                            /* FORM SHOW */
+
+                            allVideoAddBoxXk91.classList.add('show');
 
 
+                            /* ADD NEW CARD HIDE */
 
-    <script>
-
-        function openAllVideoAddXk91() {
-
-            var allVideoAddBoxXk91 =
-                document.getElementById('allVideoAddCardXk91');
-
-            var allVideoAddNewCardXk91 =
-                document.getElementById('allVideoAddNewCardXk91');
+                            allVideoAddNewCardXk91.classList.add('hide');
 
 
-            /* FORM SHOW */
+                            /* FORM PAR SCROLL */
 
-            allVideoAddBoxXk91.classList.add('show');
+                            setTimeout(function() {
 
+                                allVideoAddBoxXk91.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
 
-            /* ADD NEW CARD HIDE */
+                            }, 100);
 
-            allVideoAddNewCardXk91.classList.add('hide');
-
-
-            /* FORM PAR SCROLL */
-
-            setTimeout(function () {
-
-                allVideoAddBoxXk91.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-            }, 100);
-
-        }
+                        }
 
 
 
-        function closeAllVideoAddXk91() {
+                        function closeAllVideoAddXk91() {
 
-            var allVideoAddBoxXk91 =
-                document.getElementById('allVideoAddCardXk91');
+                            var allVideoAddBoxXk91 =
+                                document.getElementById('allVideoAddCardXk91');
 
-            var allVideoAddNewCardXk91 =
-                document.getElementById('allVideoAddNewCardXk91');
-
-
-            /* FORM HIDE */
-
-            allVideoAddBoxXk91.classList.remove('show');
+                            var allVideoAddNewCardXk91 =
+                                document.getElementById('allVideoAddNewCardXk91');
 
 
-            /* ADD NEW CARD SHOW */
+                            /* FORM HIDE */
 
-            allVideoAddNewCardXk91.classList.remove('hide');
-
-        }
-
-    </script>
+                            allVideoAddBoxXk91.classList.remove('show');
 
 
-</section>
+                            /* ADD NEW CARD SHOW */
+
+                            allVideoAddNewCardXk91.classList.remove('hide');
+
+                        }
+                    </script>
+
+
+                </section>
 
 
 

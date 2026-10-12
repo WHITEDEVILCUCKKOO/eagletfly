@@ -1797,9 +1797,9 @@
                 </div>
 
                 <h1>
-                    Master Digital Marketing
-                    <span> Course In delhi </span> &
-                    get job-ready in 6 Months
+                    Digital Marketing Course 
+                    <span> in Patel Nagar </span> 
+                 
 
                 </h1>
 
