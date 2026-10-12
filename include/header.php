@@ -1535,7 +1535,7 @@ $global_info = get_global_info($mydb);
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-facebook" style="color: #025bff;"></i>
           </a>
 
 
