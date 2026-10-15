@@ -2254,7 +2254,694 @@ foreach ($all_courses as $course_count_row) {
 
                 <!-- section 4 home -->
                 <section id="sms_contect_box" class="section_sub_with all_sejmca8974 ">
-                    4
+
+                    
+                    <?php
+ 
+                        /* INCLUDE PLACEMENT FUNCTIONS */
+                        include_once "admin_access/functions/Placements/add_placement.php";
+                        include_once "admin_access/functions/Placements/update_placement.php";
+                        include_once "admin_access/functions/Placements/delete_placement.php";
+ 
+ 
+                        /* ADD PLACEMENT */
+                        if (isset($_POST['add_placement_xk91'])) {
+ 
+                            $placement_add_result_xk91 = add_placement($mydb);
+ 
+                            echo "<script>
+                                alert(" . json_encode($placement_add_result_xk91['message']) . ");
+                                window.location.href = 'admin.php';
+                            </script>";
+ 
+                            exit;
+                        }
+ 
+ 
+                        /* UPDATE PLACEMENT */
+                        if (isset($_POST['update_placement_xk91'])) {
+ 
+                            $placement_update_result_xk91 = update_placement($mydb);
+ 
+                            echo "<script>
+                                alert(" . json_encode($placement_update_result_xk91['message']) . ");
+                                window.location.href = 'admin.php';
+                            </script>";
+ 
+                            exit;
+                        }
+ 
+ 
+                        /* DELETE PLACEMENT */
+                        if (isset($_POST['delete_placement_xk91'])) {
+ 
+                            $placement_delete_result_xk91 = delete_placement($mydb);
+ 
+                            echo "<script>
+                                    alert(" . json_encode($placement_delete_result_xk91['message']) . ");
+                                    window.location.href = 'admin.php';
+                                </script>";
+ 
+                            exit;
+                        }
+ 
+ 
+                        /* GET ALL PLACEMENTS */
+                        $placement_list_query_xk91 = mysqli_query(
+                            $mydb,
+                            "SELECT *
+                            FROM placements
+                            ORDER BY placement_sort_order ASC, placement_id DESC"
+                        );
+ 
+                        /* PHOTO FOLDER (apne project ke hisaab se badlo) */
+                        $placement_photo_dir_xk91 = 'uploads/placements/';
+ 
+                    ?>
+ 
+ 
+                    <div class="eagletfly-placement-xk91-admin">
+ 
+                        <!-- Header -->
+                        <div class="eagletfly-placement-xk91-header">
+                            <div>
+                                <h2>Placements Management</h2>
+                                <p>Manage student placements and achievements.</p>
+                            </div>
+ 
+                            <button type="button" class="eagletfly-placement-xk91-primary-btn"
+                                onclick="eagletflyPlacementXK91ShowForm('add')">
+                                + Add New Placement
+                            </button>
+                        </div>
+ 
+                        <!-- Placement List -->
+                        <div class="eagletfly-placement-xk91-panel" id="eagletflyPlacementXK91ListPanel">
+ 
+                            <div class="eagletfly-placement-xk91-list-head">
+                                <h3>Placement List</h3>
+ 
+                                <input type="search"
+                                    id="eagletflyPlacementXK91Search"
+                                    placeholder="Search student, company or position...">
+                            </div>
+ 
+                            <div class="eagletfly-placement-xk91-table-wrap">
+                                <table class="eagletfly-placement-xk91-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Photo</th>
+                                            <th>Student Name</th>
+                                            <th>Position</th>
+                                            <th>Company</th>
+                                            <th>Status</th>
+                                            <th>Order</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+ 
+                                    <tbody id="eagletflyPlacementXK91TableBody">
+                                    <?php if ($placement_list_query_xk91 && mysqli_num_rows($placement_list_query_xk91) > 0): ?>
+                                        <?php while ($row_xk91 = mysqli_fetch_assoc($placement_list_query_xk91)):
+ 
+                                            $photo_url_xk91 = !empty($row_xk91['student_photo'])
+                                                ? $placement_photo_dir_xk91 . $row_xk91['student_photo']
+                                                : '';
+ 
+                                            $row_data_xk91 = [
+                                                'id'          => $row_xk91['placement_id'],
+                                                'student'     => $row_xk91['student_name'],
+                                                'position'    => $row_xk91['placement_position'],
+                                                'company'     => $row_xk91['company_name'],
+                                                'status'      => $row_xk91['placement_status'],
+                                                'order'       => $row_xk91['placement_sort_order'],
+                                                'description' => $row_xk91['placement_description'] ?? '',
+                                                'photo'       => $photo_url_xk91,
+                                            ];
+                                        ?>
+                                        <tr data-placement-row="true">
+                                            <td><?= (int)$row_xk91['placement_id'] ?></td>
+                                            <td>
+                                                <?php if ($photo_url_xk91): ?>
+                                                    <img src="<?= htmlspecialchars($row_xk91['student_photo'])?>" alt=""
+                                                         style="width:48px;height:48px;object-fit:cover;border-radius:8px">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td><?= htmlspecialchars($row_xk91['student_name']) ?></td>
+                                            <td><?= htmlspecialchars($row_xk91['placement_position']) ?></td>
+                                            <td><?= htmlspecialchars($row_xk91['company_name']) ?></td>
+                                            <td><?= htmlspecialchars($row_xk91['placement_status']) ?></td>
+                                            <td><?= (int)$row_xk91['placement_sort_order'] ?></td>
+                                            <td style="white-space:nowrap">
+                                                <button type="button" class="eagletfly-placement-xk91-back-btn"
+                                                    data-placement="<?= htmlspecialchars(json_encode($row_data_xk91), ENT_QUOTES) ?>"
+                                                    onclick="eagletflyPlacementXK91Edit(this)">Edit</button>
+ 
+                                                <form method="POST" style="display:inline"
+                                                      onsubmit="return confirm('Delete this placement?')">
+                                                    <input type="hidden" name="placement_id" value="<?= (int)$row_xk91['placement_id'] ?>">
+                                                    <button type="submit" name="delete_placement_xk91" value="1"
+                                                            class="eagletfly-placement-xk91-back-btn">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php endwhile; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8" class="eagletfly-placement-xk91-empty">
+                                                No placements found.
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+ 
+                        </div>
+ 
+                        <!-- Add / Update Form -->
+                        <div class="eagletfly-placement-xk91-panel eagletfly-placement-xk91-form-panel"
+                            id="eagletflyPlacementXK91FormPanel" hidden>
+ 
+                            <div class="eagletfly-placement-xk91-form-heading">
+                                <div>
+                                    <h3 id="eagletflyPlacementXK91FormTitle">Add Placement</h3>
+                                    <p>Add student details and placement information.</p>
+                                </div>
+ 
+                                <button type="button" class="eagletfly-placement-xk91-back-btn"
+                                    onclick="eagletflyPlacementXK91ShowForm('list')">
+                                    ← Back to List
+                                </button>
+                            </div>
+ 
+                            <form id="eagletflyPlacementXK91Form"
+                                method="POST"
+                                enctype="multipart/form-data">
+ 
+                                <input type="hidden" name="placement_id"
+                                    id="eagletflyPlacementXK91Id">
+ 
+                                <!-- Is input ka name JS add/update ke hisaab se badalta hai -->
+                                <input type="hidden" name="add_placement_xk91"
+                                    id="eagletflyPlacementXK91Action" value="1">
+ 
+                                <div class="eagletfly-placement-xk91-form-grid">
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Student">Student Name *</label>
+                                        <input type="text" name="student_name"
+                                            id="eagletflyPlacementXK91Student"
+                                            placeholder="Enter student name" required>
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Position">Placement Position *</label>
+                                        <input type="text" name="placement_position"
+                                            id="eagletflyPlacementXK91Position"
+                                            placeholder="e.g. Software Developer" required>
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Company">Company Name *</label>
+                                        <input type="text" name="company_name"
+                                            id="eagletflyPlacementXK91Company"
+                                            placeholder="Enter company name" required>
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Status">Placement Status *</label>
+                                        <select name="placement_status"
+                                            id="eagletflyPlacementXK91Status" required>
+                                            <option value="Got Placed">Got Placed</option>
+                                            <option value="Internship">Internship</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Order">Sort Order</label>
+                                        <input type="number" name="placement_sort_order"
+                                            id="eagletflyPlacementXK91Order"
+                                            placeholder="0" value="0">
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field">
+                                        <label for="eagletflyPlacementXK91Photo">Student Photo *</label>
+                                        <input type="file" name="student_photo"
+                                            id="eagletflyPlacementXK91Photo"
+                                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+                                        <small>JPG, PNG or WEBP. Maximum size 5 MB.</small>
+ 
+                                        <div class="epx91-preview-row">
+                                            <div id="eagletflyPlacementXK91OldBox" hidden>
+                                                <small>Current photo</small>
+                                                <img id="eagletflyPlacementXK91OldImg" alt="">
+                                            </div>
+                                            <div id="eagletflyPlacementXK91NewBox" hidden>
+                                                <small id="eagletflyPlacementXK91NewLabel">Selected photo</small>
+                                                <img id="eagletflyPlacementXK91NewImg" alt="">
+                                                <small id="eagletflyPlacementXK91NewName"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+ 
+                                    <div class="eagletfly-placement-xk91-field eagletfly-placement-xk91-description">
+                                        <label for="eagletflyPlacementXK91Description">Description</label>
+                                        <textarea name="placement_description"
+                                            id="eagletflyPlacementXK91Description"
+                                            rows="4"
+                                            placeholder="Optional placement details"></textarea>
+                                    </div>
+ 
+                                </div>
+ 
+                                <div class="eagletfly-placement-xk91-form-actions">
+                                    <button type="button" class="eagletfly-placement-xk91-back-btn"
+                                        onclick="eagletflyPlacementXK91ShowForm('list')">
+                                        Cancel
+                                    </button>
+ 
+                                    <button type="submit"
+                                        class="eagletfly-placement-xk91-primary-btn"
+                                        id="eagletflyPlacementXK91SubmitBtn">
+                                        Save Placement
+                                    </button>
+                                </div>
+ 
+                            </form>
+                        </div>
+ 
+                    </div>
+ 
+ 
+                    <style>
+                        /* PLACEMENTS UI - isolated styling; overrides legacy admin styles */
+                        .eagletfly-placement-xk91-admin {
+                            --epx91-ink: #14213d;
+                            --epx91-muted: #718096;
+                            --epx91-line: #e4eaf2;
+                            --epx91-blue: #2457d6;
+                            --epx91-blue-dark: #173fa8;
+                            --epx91-soft: #f4f7fc;
+                            width: 95% !important;
+                            max-width: 95% !important;
+                            margin: auto;
+                            padding: 26px !important;
+                            box-sizing: border-box !important;
+                            background: #f5f7fb !important;
+                            border-radius: 16px !important;
+                            color: var(--epx91-ink) !important;
+                            font-family: Inter, Arial, sans-serif !important;
+                        }
+ 
+                        .eagletfly-placement-xk91-admin * {
+                            box-sizing: border-box !important
+                        }
+ 
+                        .eagletfly-placement-xk91-header,
+                        .eagletfly-placement-xk91-list-head,
+                        .eagletfly-placement-xk91-form-heading,
+                        .eagletfly-placement-xk91-form-actions {
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: space-between !important;
+                            gap: 18px !important
+                        }
+ 
+                        .eagletfly-placement-xk91-header {
+                            margin: 0 0 24px !important
+                        }
+ 
+                        .eagletfly-placement-xk91-header h2 {
+                            margin: 0 0 7px !important;
+                            font-size: 27px !important;
+                            line-height: 1.25 !important;
+                            font-weight: 800 !important;
+                            letter-spacing: -.5px !important;
+                            color: var(--epx91-ink) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-header p,
+                        .eagletfly-placement-xk91-form-heading p {
+                            margin: 0 !important;
+                            font-size: 14px !important;
+                            line-height: 1.6 !important;
+                            color: var(--epx91-muted) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-panel {
+                            background: #fff !important;
+                            border: 1px solid var(--epx91-line) !important;
+                            border-radius: 14px !important;
+                            padding: 24px !important;
+                            margin: 0 0 22px !important;
+                            box-shadow: 0 8px 28px rgba(26, 45, 84, .055) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-list-head {
+                            margin: 0 0 20px !important
+                        }
+ 
+                        .eagletfly-placement-xk91-list-head h3,
+                        .eagletfly-placement-xk91-form-heading h3 {
+                            margin: 0 !important;
+                            color: var(--epx91-ink) !important;
+                            font-size: 19px !important;
+                            font-weight: 750 !important
+                        }
+ 
+                        .eagletfly-placement-xk91-list-head input {
+                            width: min(100%, 360px) !important;
+                            max-width: 100% !important
+                        }
+ 
+                        .eagletfly-placement-xk91-table-wrap {
+                            width: 100% !important;
+                            overflow-x: auto !important
+                        }
+ 
+                        .eagletfly-placement-xk91-table {
+                            width: 100% !important;
+                            min-width: 850px !important;
+                            border-collapse: separate !important;
+                            border-spacing: 0 !important;
+                            font-size: 13px !important;
+                            background: #fff !important
+                        }
+ 
+                        .eagletfly-placement-xk91-table th {
+                            background: #f0f4fb !important;
+                            color: #4a5c78 !important;
+                            font-size: 11px !important;
+                            text-transform: uppercase !important;
+                            letter-spacing: .7px !important;
+                            font-weight: 800 !important;
+                            white-space: nowrap !important
+                        }
+ 
+                        .eagletfly-placement-xk91-table th,
+                        .eagletfly-placement-xk91-table td {
+                            padding: 15px 13px !important;
+                            text-align: left !important;
+                            vertical-align: middle !important;
+                            border: 0 !important;
+                            border-bottom: 1px solid #edf1f7 !important;
+                            color: #34445e !important
+                        }
+ 
+                        .eagletfly-placement-xk91-table tbody tr:hover {
+                            background: #f8faff !important
+                        }
+ 
+                        .eagletfly-placement-xk91-empty {
+                            padding: 36px 18px !important;
+                            text-align: center !important;
+                            color: var(--epx91-muted) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-form-grid {
+                            display: grid !important;
+                            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                            gap: 21px !important;
+                            margin-top: 25px !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field {
+                            display: flex !important;
+                            flex-direction: column !important;
+                            gap: 8px !important;
+                            min-width: 0 !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field label {
+                            display: block !important;
+                            margin: 0 !important;
+                            color: #34445e !important;
+                            font-size: 12px !important;
+                            font-weight: 750 !important;
+                            letter-spacing: .15px !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field input,
+                        .eagletfly-placement-xk91-field select,
+                        .eagletfly-placement-xk91-field textarea,
+                        .eagletfly-placement-xk91-list-head input {
+                            display: block !important;
+                            width: 100% !important;
+                            max-width: 100% !important;
+                            min-height: 44px !important;
+                            margin: 0 !important;
+                            padding: 11px 13px !important;
+                            border: 1px solid #d8e1ee !important;
+                            border-radius: 8px !important;
+                            background: #fff !important;
+                            color: #243650 !important;
+                            font-family: inherit !important;
+                            font-size: 13px !important;
+                            line-height: 1.4 !important;
+                            box-shadow: none !important;
+                            outline: none !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field textarea {
+                            min-height: 110px !important;
+                            resize: vertical !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field input:focus,
+                        .eagletfly-placement-xk91-field select:focus,
+                        .eagletfly-placement-xk91-field textarea:focus,
+                        .eagletfly-placement-xk91-list-head input:focus {
+                            border-color: var(--epx91-blue) !important;
+                            box-shadow: 0 0 0 3px rgba(36, 87, 214, .12) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-field small {
+                            color: var(--epx91-muted) !important;
+                            font-size: 11px !important;
+                            line-height: 1.5 !important
+                        }
+ 
+                        .eagletfly-placement-xk91-description {
+                            grid-column: 1/-1 !important
+                        }
+ 
+                        .eagletfly-placement-xk91-primary-btn,
+                        .eagletfly-placement-xk91-back-btn {
+                            display: inline-flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                            gap: 8px !important;
+                            min-height: 43px !important;
+                            padding: 11px 17px !important;
+                            border-radius: 8px !important;
+                            font-family: inherit !important;
+                            font-size: 13px !important;
+                            font-weight: 750 !important;
+                            line-height: 1.2 !important;
+                            cursor: pointer !important;
+                            text-decoration: none !important;
+                            box-shadow: none !important;
+                            transition: background .15s ease, border-color .15s ease !important
+                        }
+ 
+                        .eagletfly-placement-xk91-primary-btn {
+                            border: 1px solid var(--epx91-blue) !important;
+                            background: var(--epx91-blue) !important;
+                            color: #fff !important
+                        }
+ 
+                        .eagletfly-placement-xk91-primary-btn:hover {
+                            background: var(--epx91-blue-dark) !important;
+                            border-color: var(--epx91-blue-dark) !important
+                        }
+ 
+                        .eagletfly-placement-xk91-back-btn {
+                            border: 1px solid #d8e1ee !important;
+                            background: #fff !important;
+                            color: #34445e !important
+                        }
+ 
+                        .eagletfly-placement-xk91-back-btn:hover {
+                            background: #f2f5fa !important
+                        }
+ 
+                        .eagletfly-placement-xk91-form-actions {
+                            justify-content: flex-end !important;
+                            margin-top: 25px !important
+                        }
+ 
+                        /* Photo preview (old / new) */
+                        .epx91-preview-row {
+                            display: flex !important;
+                            gap: 18px !important;
+                            flex-wrap: wrap !important;
+                            margin-top: 6px !important
+                        }
+ 
+                        .epx91-preview-row img {
+                            display: block !important;
+                            width: 110px !important;
+                            height: 110px !important;
+                            object-fit: cover !important;
+                            border-radius: 10px !important;
+                            border: 1px solid #d8e1ee !important;
+                            margin: 4px 0 !important
+                        }
+ 
+                        [hidden] {
+                            display: none !important
+                        }
+ 
+                        @media(max-width:700px) {
+                            .eagletfly-placement-xk91-admin {
+                                padding: 15px !important;
+                                border-radius: 10px !important
+                            }
+ 
+                            .eagletfly-placement-xk91-header,
+                            .eagletfly-placement-xk91-list-head,
+                            .eagletfly-placement-xk91-form-heading {
+                                align-items: stretch !important;
+                                flex-direction: column !important
+                            }
+ 
+                            .eagletfly-placement-xk91-header h2 {
+                                font-size: 22px !important
+                            }
+ 
+                            .eagletfly-placement-xk91-panel {
+                                padding: 16px !important
+                            }
+ 
+                            .eagletfly-placement-xk91-list-head input {
+                                width: 100% !important
+                            }
+ 
+                            .eagletfly-placement-xk91-form-grid {
+                                grid-template-columns: minmax(0, 1fr) !important;
+                                gap: 17px !important
+                            }
+ 
+                            .eagletfly-placement-xk91-description {
+                                grid-column: auto !important
+                            }
+ 
+                            .eagletfly-placement-xk91-header>button {
+                                align-self: flex-start !important
+                            }
+ 
+                            .eagletfly-placement-xk91-form-actions {
+                                flex-wrap: wrap !important
+                            }
+                        }
+                    </style>
+ 
+                    <script>
+                        const epx91 = id => document.getElementById('eagletflyPlacementXK91' + id);
+ 
+                        function eagletflyPlacementXK91ResetPreview() {
+                            if (epx91('NewImg').src && epx91('NewImg').src.startsWith('blob:')) {
+                                URL.revokeObjectURL(epx91('NewImg').src);
+                            }
+                            epx91('OldBox').hidden = true;
+                            epx91('NewBox').hidden = true;
+                            epx91('OldImg').removeAttribute('src');
+                            epx91('NewImg').removeAttribute('src');
+                            epx91('NewName').textContent = '';
+                        }
+ 
+                        function eagletflyPlacementXK91ShowForm(mode) {
+                            const listPanel = epx91('ListPanel');
+                            const formPanel = epx91('FormPanel');
+ 
+                            if (mode === 'list') {
+                                formPanel.hidden = true;
+                                listPanel.hidden = false;
+                                return;
+                            }
+ 
+                            listPanel.hidden = true;
+                            formPanel.hidden = false;
+ 
+                            if (mode === 'add') {
+                                epx91('Form').reset();
+                                epx91('Id').value = '';
+                                epx91('Order').value = '0';
+                                epx91('Status').value = 'Got Placed';
+                                epx91('Action').name = 'add_placement_xk91';
+                                epx91('Photo').required = true;
+                                epx91('FormTitle').textContent = 'Add Placement';
+                                epx91('SubmitBtn').textContent = 'Save Placement';
+                                eagletflyPlacementXK91ResetPreview();
+                            }
+ 
+                            if (mode === 'update') {
+                                epx91('Action').name = 'update_placement_xk91';
+                                epx91('Photo').required = false;
+                                epx91('FormTitle').textContent = 'Update Placement';
+                                epx91('SubmitBtn').textContent = 'Update Placement';
+                            }
+                        }
+ 
+                        /* Edit button: form me purani values bharo */
+                        function eagletflyPlacementXK91Edit(btn) {
+                            const d = JSON.parse(btn.dataset.placement);
+ 
+                            eagletflyPlacementXK91ShowForm('update');
+                            epx91('Form').reset();
+                            eagletflyPlacementXK91ResetPreview();
+ 
+                            epx91('Id').value          = d.id;
+                            epx91('Student').value     = d.student;
+                            epx91('Position').value    = d.position;
+                            epx91('Company').value     = d.company;
+                            epx91('Status').value      = d.status;
+                            epx91('Order').value       = d.order;
+                            epx91('Description').value = d.description;
+ 
+                            if (d.photo) {
+                                epx91('OldImg').src = d.photo;
+                                epx91('OldBox').hidden = false;
+                            }
+                        }
+ 
+                        /* Photo select hote hi preview */
+                        epx91('Photo').addEventListener('change', function () {
+                            const file = this.files[0];
+                            const isUpdate = epx91('Action').name === 'update_placement_xk91';
+ 
+                            if (!file) {
+                                epx91('NewBox').hidden = true;
+                                return;
+                            }
+ 
+                            if (file.size > 5 * 1024 * 1024) {
+                                alert('Image 5 MB se badi hai.');
+                                this.value = '';
+                                epx91('NewBox').hidden = true;
+                                return;
+                            }
+ 
+                            epx91('NewImg').src = URL.createObjectURL(file);
+                            epx91('NewName').textContent = file.name;
+                            epx91('NewLabel').textContent = isUpdate ? 'New photo (save karne par replace hogi)' : 'Selected photo';
+                            epx91('NewBox').hidden = false;
+                        });
+ 
+                        /* Search */
+                        epx91('Search').addEventListener('input', function () {
+                            const q = this.value.toLowerCase().trim();
+                            document.querySelectorAll('#eagletflyPlacementXK91TableBody tr[data-placement-row="true"]')
+                                .forEach(row => row.hidden = !row.textContent.toLowerCase().includes(q));
+                        });
+                    </script>
+ 
+
+
                 </section>
 
                 <!-- section 5 RCS -->
@@ -2807,6 +3494,7 @@ foreach ($all_courses as $course_count_row) {
                     </script>
 
                 </section>
+
                 <!-- sublink box 1 -->
                 <section id="contect_1_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
 
@@ -2823,9 +3511,9 @@ foreach ($all_courses as $course_count_row) {
                         $all_video_add_result_xk91 = add_all_video($mydb);
 
                         echo "<script>
-            alert(" . json_encode($all_video_add_result_xk91['message']) . ");
-            window.location.href = 'admin.php';
-        </script>";
+                            alert(" . json_encode($all_video_add_result_xk91['message']) . ");
+                            window.location.href = 'admin.php';
+                        </script>";
 
                         exit;
                     }
@@ -2838,9 +3526,9 @@ foreach ($all_courses as $course_count_row) {
                         $all_video_delete_result_xk91 = delete_all_video($mydb);
 
                         echo "<script>
-            alert(" . json_encode($all_video_delete_result_xk91['message']) . ");
-            window.location.href = 'admin.php';
-        </script>";
+                            alert(" . json_encode($all_video_delete_result_xk91['message']) . ");
+                            window.location.href = 'admin.php';
+                        </script>";
 
                         exit;
                     }
@@ -2851,8 +3539,8 @@ foreach ($all_courses as $course_count_row) {
                     $all_video_list_query_xk91 = mysqli_query(
                         $mydb,
                         "SELECT *
-         FROM all_videos
-         ORDER BY video_id DESC"
+                            FROM all_videos
+                            ORDER BY video_id DESC"
                     );
 
                     ?>
@@ -3580,17 +4268,558 @@ foreach ($all_courses as $course_count_row) {
                 </section>
 
 
+                <?php
+
+                /* INCLUDE IMAGE FUNCTIONS */
+
+                include_once "admin_access/functions/AllImages/add_image.php";
+                include_once "admin_access/functions/AllImages/delete_image.php";
+
+
+                /* ADD IMAGE */
+
+                if (isset($_POST['add_all_image_xk91'])) {
+
+                    $all_image_add_result_xk91 = add_all_image($mydb);
+
+                    echo "<script>
+                            alert(" . json_encode($all_image_add_result_xk91['message']) . ");
+                            window.location.href = 'admin.php';
+                        </script>";
+
+                    exit;
+                }
+
+
+                /* DELETE IMAGE */
+
+                if (isset($_POST['delete_all_image_xk91'])) {
+
+                    $all_image_delete_result_xk91 = delete_all_image($mydb);
+
+                    echo "<script>
+                            alert(" . json_encode($all_image_delete_result_xk91['message']) . ");
+                            window.location.href = 'admin.php';
+                        </script>";
+
+                    exit;
+                }
+
+
+                /* GET ALL IMAGES */
+
+                $all_image_list_query_xk91 = mysqli_query(
+                    $mydb,
+                    "SELECT *
+                        FROM all_images
+                        ORDER BY image_id DESC"
+                );
+
+                ?>
+
+
+
+
+
+
 
 
                 <!-- sublink box 2 -->
                 <section id="contect_2_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa ">
-                    sub 2
+
+
+                    <style>
+                        .all-images-admin-section-xk91 {
+                            width: 100%;
+                            padding: 30px;
+                            box-sizing: border-box;
+                        }
+
+                        .all-images-admin-head-xk91 {
+                            margin-bottom: 25px;
+                        }
+
+                        .all-images-admin-title-xk91 {
+                            margin: 0;
+                            font-size: 32px;
+                            line-height: 1.3;
+                        }
+
+                        /* ADD FORM */
+
+                        .all-images-add-card-xk91 {
+                            display: none;
+                            width: 100%;
+                            max-width: 600px;
+                            margin: 0 auto 30px;
+                            padding: 25px;
+                            background: #fff;
+                            border: 1px solid #ddd;
+                            border-radius: 14px;
+                            box-sizing: border-box;
+                        }
+
+                        .all-images-add-card-xk91.show {
+                            display: block;
+                        }
+
+                        .all-images-form-group-xk91 {
+                            margin-bottom: 18px;
+                        }
+
+                        .all-images-form-group-xk91 label {
+                            display: block;
+                            margin-bottom: 7px;
+                            font-size: 14px;
+                            font-weight: 600;
+                        }
+
+                        .all-images-form-group-xk91 input,
+                        .all-images-form-group-xk91 select,
+                        .all-images-form-group-xk91 textarea {
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            box-sizing: border-box;
+                            outline: none;
+                        }
+
+                        .all-images-form-group-xk91 input:focus,
+                        .all-images-form-group-xk91 select:focus,
+                        .all-images-form-group-xk91 textarea:focus {
+                            border-color: #222;
+                        }
+
+                        .all-images-form-buttons-xk91 {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                        }
+
+                        .all-images-submit-btn-xk91,
+                        .all-images-cancel-btn-xk91,
+                        .all-images-delete-btn-xk91 {
+                            border: 0;
+                            padding: 11px 17px;
+                            border-radius: 7px;
+                            cursor: pointer;
+                            font-weight: 600;
+                        }
+
+                        .all-images-submit-btn-xk91 {
+                            background: #111;
+                            color: #fff;
+                        }
+
+                        .all-images-cancel-btn-xk91 {
+                            background: #eee;
+                            color: #222;
+                        }
+
+                        /* IMAGE GRID */
+
+                        .all-images-card-grid-xk91 {
+                            display: grid;
+                            grid-template-columns: repeat(3, minmax(0, 1fr));
+                            gap: 24px;
+                            width: 95%;
+                            margin: auto;
+                        }
+
+                        /* ADD NEW CARD */
+
+                        .all-images-add-new-card-xk91 {
+                            min-height: 260px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 12px;
+                            background: #fafafa;
+                            border: 2px dashed #ccc;
+                            border-radius: 14px;
+                            cursor: pointer;
+                            box-sizing: border-box;
+                        }
+
+                        .all-images-add-new-card-xk91.hide {
+                            display: none;
+                        }
+
+                        .all-images-add-new-card-xk91:hover {
+                            border-color: #111;
+                            background: #f5f5f5;
+                        }
+
+                        .all-images-add-new-icon-xk91 {
+                            width: 52px;
+                            height: 52px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            background: #111;
+                            color: #fff;
+                            font-size: 30px;
+                        }
+
+                        .all-images-add-new-text-xk91 {
+                            font-size: 15px;
+                            font-weight: 600;
+                        }
+
+                        /* IMAGE CARD */
+
+                        .all-images-card-xk91 {
+                            min-width: 0;
+                            overflow: hidden;
+                            background: #fff;
+                            border: 1px solid #eee;
+                            border-radius: 14px;
+                            box-shadow: 0 6px 22px rgba(0, 0, 0, .06);
+                        }
+
+                        .all-images-card-preview-xk91 {
+                            width: 100%;
+                            aspect-ratio: 4 / 3;
+                            overflow: hidden;
+                            background: #f5f5f5;
+                        }
+
+                        .all-images-card-preview-xk91 img {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        .all-images-card-content-xk91 {
+                            padding: 16px;
+                        }
+
+                        .all-images-card-title-xk91 {
+                            margin: 0 0 8px;
+                            font-size: 18px;
+                            line-height: 1.4;
+                            overflow-wrap: anywhere;
+                        }
+
+                        .all-images-card-description-xk91 {
+                            margin: 0 0 14px;
+                            color: #777;
+                            font-size: 14px;
+                            line-height: 1.5;
+                            overflow-wrap: anywhere;
+                        }
+
+                        .all-images-card-bottom-xk91 {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                        }
+
+                        .all-images-status-xk91 {
+                            display: inline-block;
+                            padding: 5px 10px;
+                            border-radius: 20px;
+                            font-size: 12px;
+                            font-weight: 600;
+                        }
+
+                        .all-images-status-active-xk91 {
+                            color: #166534;
+                            background: #dcfce7;
+                        }
+
+                        .all-images-status-inactive-xk91 {
+                            color: #991b1b;
+                            background: #fee2e2;
+                        }
+
+                        .all-images-delete-btn-xk91 {
+                            color: #fff;
+                            background: #dc2626;
+                            font-size: 12px;
+                        }
+
+                        .all-images-delete-btn-xk91:hover {
+                            background: #b91c1c;
+                        }
+
+                        .all-images-empty-xk91 {
+                            padding: 35px 15px;
+                            color: #777;
+                            text-align: center;
+                        }
+
+                        /* RESPONSIVE */
+
+                        @media (max-width: 1000px) {
+                            .all-images-card-grid-xk91 {
+                                grid-template-columns: repeat(2, minmax(0, 1fr));
+                            }
+                        }
+
+                        @media (max-width: 600px) {
+                            .all-images-admin-section-xk91 {
+                                padding: 20px 15px;
+                            }
+
+                            .all-images-admin-title-xk91 {
+                                font-size: 27px;
+                            }
+
+                            .all-images-card-grid-xk91 {
+                                grid-template-columns: 1fr;
+                                gap: 18px;
+                            }
+
+                            .all-images-add-card-xk91 {
+                                padding: 18px;
+                            }
+                        }
+                    </style>
+
+                    <!-- HEADER -->
+
+                    <div class="all-images-admin-head-xk91">
+                        <h2 class="all-images-admin-title-xk91">All Images</h2>
+                    </div>
+
+                    <!-- ADD IMAGE FORM -->
+
+                    <div id="allImagesAddCardXk91"
+                        class="all-images-add-card-xk91">
+
+                        <form method="POST" enctype="multipart/form-data">
+
+                            <div class="all-images-form-group-xk91">
+                                <label>Image Title</label>
+                                <input
+                                    type="text"
+                                    name="image_title"
+                                    placeholder="Enter image title"
+                                    required>
+                            </div>
+
+                            <div class="all-images-form-group-xk91">
+                                <label>Select Image</label>
+                                <input
+                                    type="file"
+                                    name="image_file"
+                                    accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif"
+                                    required>
+                                <small>JPG, PNG, WEBP or GIF. Maximum 10 MB.</small>
+                            </div>
+
+                            <div class="all-images-form-group-xk91">
+                                <label>Image Description</label>
+                                <textarea
+                                    name="image_description"
+                                    rows="4"
+                                    placeholder="Enter image description"></textarea>
+                            </div>
+
+                            <div class="all-images-form-group-xk91">
+                                <label>Status</label>
+                                <select name="image_status">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+
+                            <div class="all-images-form-buttons-xk91">
+                                <button
+                                    type="submit"
+                                    name="add_all_image_xk91"
+                                    class="all-images-submit-btn-xk91">
+                                    Add Image
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="all-images-cancel-btn-xk91"
+                                    onclick="closeAllImagesAddXk91()">
+                                    Cancel
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- IMAGE GRID -->
+
+                    <div class="all-images-card-grid-xk91">
+
+                        <!-- ADD NEW IMAGE CARD -->
+
+                        <div id="allImagesAddNewCardXk91"
+                            class="all-images-add-new-card-xk91"
+                            onclick="openAllImagesAddXk91()">
+
+                            <div class="all-images-add-new-icon-xk91">+</div>
+
+                            <div class="all-images-add-new-text-xk91">
+                                Add New Image
+                            </div>
+                        </div>
+
+                        <?php
+
+                        if (
+                            isset($all_image_list_query_xk91) &&
+                            $all_image_list_query_xk91 &&
+                            mysqli_num_rows($all_image_list_query_xk91) > 0
+                        ) {
+
+                            while (
+                                $all_image_row_xk91 =
+                                mysqli_fetch_assoc($all_image_list_query_xk91)
+                            ) {
+
+                                $all_image_title_xk91 = htmlspecialchars(
+                                    $all_image_row_xk91['image_title'] ?? '',
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                );
+
+                                $all_image_file_xk91 = htmlspecialchars(
+                                    $all_image_row_xk91['image_file'] ?? '',
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                );
+
+                                $all_image_description_xk91 = htmlspecialchars(
+                                    $all_image_row_xk91['image_description'] ?? '',
+                                    ENT_QUOTES,
+                                    'UTF-8'
+                                );
+
+                                $all_image_status_xk91 =
+                                    ($all_image_row_xk91['image_status'] ?? '') === 'Active';
+
+                                $all_image_id_xk91 =
+                                    (int) ($all_image_row_xk91['image_id'] ?? 0);
+
+                                $all_image_preview_xk91 = $all_image_file_xk91;
+
+                                $all_image_thumbnail_xk91 = trim(
+                                    $all_image_row_xk91['image_thumbnail'] ?? ''
+                                );
+
+                                if ($all_image_thumbnail_xk91 !== '') {
+                                    $all_image_preview_xk91 = htmlspecialchars(
+                                        $all_image_thumbnail_xk91,
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    );
+                                }
+
+                        ?>
+
+                                <div class="all-images-card-xk91">
+
+                                    <div class="all-images-card-preview-xk91">
+                                        <img
+                                            src="<?php echo $all_image_preview_xk91; ?>"
+                                            alt="<?php echo $all_image_title_xk91; ?>"
+                                            loading="lazy">
+                                    </div>
+
+                                    <div class="all-images-card-content-xk91">
+
+                                        <h3 class="all-images-card-title-xk91">
+                                            <?php echo $all_image_title_xk91; ?>
+                                        </h3>
+
+                                        <?php if ($all_image_description_xk91 !== '') { ?>
+                                            <p class="all-images-card-description-xk91">
+                                                <?php echo $all_image_description_xk91; ?>
+                                            </p>
+                                        <?php } ?>
+
+                                        <div class="all-images-card-bottom-xk91">
+
+                                            <?php if ($all_image_status_xk91) { ?>
+                                                <span class="all-images-status-xk91 all-images-status-active-xk91">
+                                                    Active
+                                                </span>
+                                            <?php } else { ?>
+                                                <span class="all-images-status-xk91 all-images-status-inactive-xk91">
+                                                    Inactive
+                                                </span>
+                                            <?php } ?>
+
+                                            <form
+                                                method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this image?');">
+
+                                                <input
+                                                    type="hidden"
+                                                    name="image_id"
+                                                    value="<?php echo $all_image_id_xk91; ?>">
+
+                                                <button
+                                                    type="submit"
+                                                    name="delete_all_image_xk91"
+                                                    class="all-images-delete-btn-xk91">
+                                                    Delete
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php
+                            }
+                        } else {
+                            ?>
+
+                            <div class="all-images-empty-xk91">
+                                No images available.
+                            </div>
+
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+
+
+                    <script>
+                        function openAllImagesAddXk91() {
+                            var allImagesAddBoxXk91 =
+                                document.getElementById('allImagesAddCardXk91');
+
+                            var allImagesAddNewCardXk91 =
+                                document.getElementById('allImagesAddNewCardXk91');
+
+                            allImagesAddBoxXk91.classList.add('show');
+                            allImagesAddNewCardXk91.classList.add('hide');
+
+                            allImagesAddBoxXk91.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+
+                        function closeAllImagesAddXk91() {
+                            document.getElementById('allImagesAddCardXk91')
+                                .classList.remove('show');
+
+                            document.getElementById('allImagesAddNewCardXk91')
+                                .classList.remove('hide');
+                        }
+                    </script>
+
+
+
                 </section>
-
-
-
-
-
 
 
 
@@ -3603,18 +4832,7 @@ foreach ($all_courses as $course_count_row) {
                 <!-- sublink box 3 -->
                 <section id="contect_3_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa course-video-section-xk91">
                     3
-
                 </section>
-
-
-
-
-
-
-
-
-
-
 
                 <!-- sublink box 4 -->
                 <section id="contect_4_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">

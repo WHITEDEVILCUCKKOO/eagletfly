@@ -1,3 +1,8 @@
+<?php
+include_once  "./admin_access/db_config.php";
+
+?>
+
 <!-- section 2 -->
 <style>
     .dgfr-section {
@@ -402,9 +407,9 @@
 
     .dgfr-viewmore-btn {
         padding: 14px 30px;
-            background: linear-gradient(120deg, #30383D, #46545E, #F5820B, #F5A900, #F5820B, #46545E, #30383D);
-    background-size: 300% 300%;
-    animation: brandGradient 6s ease infinite;
+        background: linear-gradient(120deg, #30383D, #46545E, #F5820B, #F5A900, #F5820B, #46545E, #30383D);
+        background-size: 300% 300%;
+        animation: brandGradient 6s ease infinite;
         /* background: #f5a623; */
         color: #1a1a1a;
         border: none;
@@ -466,7 +471,7 @@
 <section class="dgfr-section">
     <div class="dgfr-container">
 
-        <h2 class="dgfr-heading "  style=" font-family: 'Sora', inter;  font-weight:700;font-size:35px;">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
+        <h2 class="dgfr-heading " style=" font-family: 'Sora', inter;  font-weight:700;font-size:35px;">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
         <div class="dgfr-heading-underline"></div>
 
         <div class="dgfr-tabbar">
@@ -481,18 +486,61 @@
         <div class="dgfr-panel dgfr-panel-active" id="dgfr-panel-video">
             <div class="dgfr-grid">
 
-                <div class="dgfr-video-card">
-                    <div class="dgfr-video-thumb sole_3_background">
-                        <span class="img_wn8741"><img src="img/teachers-4.jpg" alt=""></span>
-                        <span class="dgfr-play-btn">&#9658;</span>
-                    </div>
-                    <div class="dgfr-video-info">
-                        <p class="dgfr-video-name">Ali Salih Mohammednajeed Salih</p>
-                        <span class="dgfr-video-course">Course: Python Django</span>
-                    </div>
-                </div>
 
-                <div class="dgfr-video-card">
+
+<?php
+$get_allvideo_6 = "SELECT *
+                   FROM `all_videos`
+                   WHERE LOWER(`video_status`) = 'active'
+                   ORDER BY RAND()
+                   LIMIT 6";
+
+$data_ase = mysqli_query($mydb, $get_allvideo_6);
+
+if ($data_ase) {
+    $a = 1;
+
+    while ($video_2d = mysqli_fetch_assoc($data_ase)) {
+        $videoPath = $video_2d['video_file'];
+?>
+
+    <div class="dgfr-video-card">
+        <div class="dgfr-video-thumb sole_3_background">
+            <video
+                width="100%"
+                height="100%"
+                controls
+                preload="metadata"
+                playsinline
+                style="display:block; object-fit:cover;">
+
+                <source
+                    src="<?php echo htmlspecialchars($videoPath, ENT_QUOTES, 'UTF-8'); ?>"
+                    type="video/mp4">
+
+                Your browser does not support video playback.
+            </video>
+        </div>
+
+        <div class="dgfr-video-info">
+            <p class="dgfr-video-name">
+                <?php echo htmlspecialchars($video_2d['video_title']); ?>
+            </p>
+
+            <span class="dgfr-video-course">
+                <?php echo htmlspecialchars($video_2d['video_description']); ?>
+            </span>
+        </div>
+    </div>
+
+<?php
+        $a++;
+    }
+}
+?>
+
+
+                <!-- <div class="dgfr-video-card">
                     <div class="dgfr-video-thumb sole_3_background">
                         <span class="img_wn8741"><img src="img/teachers-2.jpg" alt=""></span>
                         <span class="dgfr-play-btn">&#9658;</span>
@@ -545,7 +593,7 @@
                         <p class="dgfr-video-name">Harsh Tyagi</p>
                         <span class="dgfr-video-course">Course: SP3D</span>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -558,22 +606,45 @@
         <div class="dgfr-panel" id="dgfr-panel-placements">
             <div class="dgfr-grid dgfr-place-grid">
 
-                <div class="dgfr-place-card">
-                    <div class="dgfr-place-stripe">Congratulations!</div>
-                    <div class="dgfr-place-body">
-                        <p class="dgfr-place-title">Got Placed</p>
-                        <p class="dgfr-place-name">Mohit Udenia</p>
-                        <div class="dgfr-place-photo">
-                            <span class="img_wn8741987">
-                                <img src="img/students-2.jpeg" alt="">
-                            </span>
-                        </div>
-                        <p class="dgfr-place-role">Position: Data Analyst (Trainee) at Glorious Insight Private
-                            Limited</p>
-                    </div>
-                </div>
 
-                <div class="dgfr-place-card">
+
+
+                <?php
+                $get_allImge_6 = "SELECT * FROM `placements` ORDER BY RAND() LIMIT 6";
+
+                $a = 1;
+
+                $data_ase = mysqli_query($mydb, $get_allImge_6);
+
+
+                while ($imagas = mysqli_fetch_assoc($data_ase)) {
+
+                ?>
+
+
+                    <!-- card <?php echo ($a); ?> -->
+                    <div class="dgfr-place-card">
+                        <div class="dgfr-place-stripe">Congratulations!</div>
+                        <div class="dgfr-place-body">
+                            <p class="dgfr-place-title"><?php echo $imagas['placement_status'] ?></p>
+                            <p class="dgfr-place-name"><?php echo $imagas['student_name'] ?></p>
+                            <div class="dgfr-place-photo">
+                                <span class="img_wn8741987">
+                                    <img src=" <?php echo $imagas['student_photo'] ?>" alt="">
+                                </span>
+                            </div>
+                            <p class="dgfr-place-role">Position: <?php echo $imagas['placement_position'] ?> , <?php echo $imagas['company_name'] ?></p>
+                        </div>
+                    </div>
+
+
+                <?php
+                    $a++;
+                }
+                ?>
+
+
+                <!-- <div class="dgfr-place-card">
                     <div class="dgfr-place-stripe">Congratulations!</div>
                     <div class="dgfr-place-body">
                         <p class="dgfr-place-title">Got Placed</p>
@@ -660,7 +731,7 @@
                         <p class="dgfr-place-role">Role: DEC Engineer at Nokia Solutions and Networks India Private
                             Limited</p>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -793,20 +864,20 @@
 
 
 <script>
-    (function () {
+    (function() {
 
         // tab switching
         var dgfrTabButtons = document.querySelectorAll('.dgfr-tab-btn');
         var dgfrPanels = document.querySelectorAll('.dgfr-panel');
 
-        dgfrTabButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                dgfrTabButtons.forEach(function (b) {
+        dgfrTabButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                dgfrTabButtons.forEach(function(b) {
                     b.classList.remove('dgfr-tab-active');
                 });
                 btn.classList.add('dgfr-tab-active');
 
-                dgfrPanels.forEach(function (p) {
+                dgfrPanels.forEach(function(p) {
                     p.classList.remove('dgfr-panel-active');
                 });
                 var target = document.getElementById(btn.getAttribute('data-target'));
@@ -818,8 +889,8 @@
 
         // fake audio play/pause visual toggle
         var dgfrPlayButtons = document.querySelectorAll('.dgfr-player-play');
-        dgfrPlayButtons.forEach(function (playBtn) {
-            playBtn.addEventListener('click', function () {
+        dgfrPlayButtons.forEach(function(playBtn) {
+            playBtn.addEventListener('click', function() {
                 var card = playBtn.closest('.dgfr-player');
                 var fill = card.querySelector('.dgfr-player-fill');
                 var isPlaying = playBtn.getAttribute('data-playing') === 'true';

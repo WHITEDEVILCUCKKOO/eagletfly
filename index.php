@@ -474,53 +474,73 @@
           class="rainbow-animated_without_animtion">Great People</span> </h2>
       <div class="msw-gallery msw-reveal">
 
-        <!-- card 1 -->
+
+      <?php 
+      $get_allImge_6 = "SELECT * FROM `all_images` WHERE image_status='Active' or image_status='active' ORDER BY RAND() LIMIT 6;";
+
+      $a=1;
+
+      $data_ase= mysqli_query($mydb,$get_allImge_6);
+
+
+      while($imagas = mysqli_fetch_assoc($data_ase)){
+      
+      ?>
+
+
+
+        <!-- card <?php echo($a); ?> -->
         <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
-          <img src="assets/students_imgs/img_1.jpeg" alt="">
+          <img src="<?php echo$imagas['image_file']; ?>" alt="<?php echo$imagas['image_title']; ?>">
           <span class="msw-ph-icon974">
-            <h5 class="sole_1">Great minds don’t just teach, they inspire.</h5>
+            <h5 class="sole_1"><?php echo$imagas['image_title']; ?></h5>
           </span>
         </div>
 
+        <?php 
+         $a++; 
+      }
+        ?>
+
         <!-- card 2 -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+        <!-- <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
           <img src="assets/students_imgs/img_2.jpeg" alt="">
           <span class="msw-ph-icon974">
             <h5 class="sole_1">Knowledge becomes powerful when it is shared. </h5>
           </span>
-        </div>
+        </div> -->
 
         <!-- card 3 -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+        <!-- <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
           <img src="assets/students_imgs/img_3.jpeg" alt="">
           <span class="msw-ph-icon974">
             <h5 class="sole_1">Success starts with the courage to keep learning. </h5>
           </span>
-        </div>
+        </div> -->
 
         <!-- card 4 -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+        <!-- <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
           <img src="assets/students_imgs/img_2.jpeg" alt="">
           <span class="msw-ph-icon974">
             <h5 class="sole_1">Learn with purpose. Grow with confidence. </h5>
           </span>
-        </div>
+        </div> -->
 
         <!-- card 5 -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+        <!-- <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
           <img src="assets/students_imgs/img_3.jpeg" alt="">
           <span class="msw-ph-icon974">
             <h5 class="sole_1">Your potential is greater than your current skills. </h5>
           </span>
-        </div>
+        </div> -->
 
         <!-- card 6 -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+        <!-- <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
           <img src="assets/students_imgs/img_1.jpeg" alt="">
           <span class="msw-ph-icon974">
             <h5 class="sole_1">Ideas grow when great minds come together. </h5>
           </span>
-        </div>
+        </div> -->
 
       </div>
     </div>
