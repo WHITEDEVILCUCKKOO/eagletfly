@@ -1,3 +1,9 @@
+<?php
+include_once dirname(__DIR__, 2) . "/admin_access/db_config.php";
+include_once dirname(__DIR__, 2) . "/admin_access/functions/global_info.php";
+
+$global_info = get_global_info($mydb);
+?>
 <!-- section 1 ( hero ) -->
 <style>
     .dgfh-hero {
@@ -396,7 +402,7 @@
             const message = document.getElementById("dgfhMessage").value;
 
             // Apana WhatsApp number yahan dalein (Country code ke sath, bina '+' ke, jaise: 919876543210)
-            const whatsappNumber = "919876543210"; 
+            const whatsappNumber = "<?php echo htmlspecialchars($global_info['globle_whatsapp']); ?>"; 
 
             const whatsappMessage = `*New Counselling Session Booking*%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Message:* ${encodeURIComponent(message)}`;
 

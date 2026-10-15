@@ -1,3 +1,8 @@
+<?php
+include_once  "./admin_access/db_config.php";
+
+?>
+
 <!-- section 3 -->
 <style>
     .dgfs-section {
@@ -286,21 +291,56 @@
 
     <div class="dgfs-slider-viewport">
         <div class="dgfs-slider-track" id="dgfsTrack">
+<?php
+$get_allvideo_6 = "SELECT *
+                   FROM `all_videos`
+                   WHERE LOWER(`video_status`) = 'active'
+                   ORDER BY `video_id` DESC";
 
-            <!-- set 1 -->
+$data_ase = mysqli_query($mydb, $get_allvideo_6);
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Amit Ura</p>
-                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+if ($data_ase) {
+    while ($video_2d = mysqli_fetch_assoc($data_ase)) {
+        $videoPath = $video_2d['video_file'] ?? '';
+?>
 
+    <div class="dgfs-card primary_btns">
+        <div class="dgfs-card-topbar">
+            <span>STUDENT VIDEO</span>
+            <span class="dgfs-nasscom-tag">VIDEO</span>
+        </div>
+
+        <div class="dgfs-card-photo">
+            <video
+                controls
+                preload="metadata"
+                playsinline
+                style="width:100%;height:150px;display:block;object-fit:cover;">
+
+                <source
+                    src="<?php echo htmlspecialchars($videoPath, ENT_QUOTES, 'UTF-8'); ?>"
+                    type="video/mp4">
+
+                Your browser does not support video playback.
+            </video>
+        </div>
+
+        <div class="dgfs-card-footer">
+            <p class="dgfs-card-name">
+                <?php echo htmlspecialchars($video_2d['video_title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
+            </p>
+
+            <p class="dgfs-card-course">
+                <?php echo htmlspecialchars($video_2d['video_description'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
+            </p>
+        </div>
+    </div>
+
+<?php
+    }
+}
+?>
+<!-- 
             <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
@@ -326,11 +366,11 @@
                     <p class="dgfs-card-course">Course: Data Analytics</p>
                     <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- set 2 (duplicate for seamless infinite loop) -->
 
-            <div class="dgfs-card primary_btns">
+            <!-- <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
@@ -352,13 +392,13 @@
                     <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
                     <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
-            </div>
+            </div> -->
 
 
             
             <!-- set 1 -->
 
-            <div class="dgfs-card primary_btns">
+            <!-- <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
@@ -395,11 +435,11 @@
                     <p class="dgfs-card-course">Course: Data Analytics</p>
                     <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- set 2 (duplicate for seamless infinite loop) -->
 
-            <div class="dgfs-card primary_btns">
+            <!-- <div class="dgfs-card primary_btns">
                 <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
                 </div>
                 <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
@@ -422,7 +462,7 @@
                     <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 </div>
             </div>
-        
+         -->
             
 
         </div>

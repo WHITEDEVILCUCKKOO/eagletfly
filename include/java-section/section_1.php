@@ -757,30 +757,7 @@
                     <div class="kd-java-visual">
                         <div class="kd-java-glow"></div>
                         <div class="kd-java-logo-container">
-                            <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
-
-                                <!-- steam: two wavy flame wisps rising above the cup -->
-                                <path class="kd-java-steam kd-java-steam-1" fill="#e2231a"
-                                    d="M 52 46 C 40 38 46 28 40 20 C 34 12 42 4 40 -2
-                                       C 48 2 54 10 50 18 C 46 26 56 32 52 40 C 56 42 56 46 52 46 Z" />
-
-                                <path class="kd-java-steam kd-java-steam-2" fill="#f04a3c"
-                                    d="M 68 46 C 58 40 64 30 58 22 C 52 14 60 6 58 0
-                                       C 66 4 70 12 66 20 C 62 28 70 34 66 40 C 70 42 72 46 68 46 Z" />
-
-                                <!-- ring 3 (top, near rim) -->
-                                <path class="kd-java-ring kd-java-ring-3" fill="#5382a1"
-                                    d="M 30 58 C 30 51 90 51 90 58 C 90 65 30 65 30 58 Z" />
-
-                                <!-- ring 2 (middle) -->
-                                <path class="kd-java-ring kd-java-ring-2" fill="#1c7fbf"
-                                    d="M 22 82 C 22 73 98 73 98 82 C 98 91 22 91 22 82 Z" />
-
-                                <!-- ring 1 (bottom, widest / base) -->
-                                <path class="kd-java-ring kd-java-ring-1" fill="#0e5f96"
-                                    d="M 14 108 C 14 97 106 97 106 108 C 106 119 14 119 14 108 Z" />
-
-                            </svg>
+                           <img src="assets/img/zmgsqu942mvnkvucbmdn.avif" alt="">
                         </div>
                     </div>
                     <div class="kd-podcast-shot-overlay"></div>

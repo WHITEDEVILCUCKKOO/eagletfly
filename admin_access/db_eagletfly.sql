@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2026 at 10:44 AM
+-- Generation Time: Oct 15, 2026 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_eagletfly`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `all_images`
+--
+
+CREATE TABLE `all_images` (
+  `image_id` int(11) NOT NULL,
+  `image_title` varchar(255) NOT NULL,
+  `image_slug` varchar(255) NOT NULL,
+  `image_file` varchar(255) DEFAULT '',
+  `image_thumbnail` varchar(255) DEFAULT '',
+  `image_description` text DEFAULT NULL,
+  `image_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active',
+  `image_created_at` int(11) NOT NULL,
+  `image_updated_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `all_images`
+--
+
+INSERT INTO `all_images` (`image_id`, `image_title`, `image_slug`, `image_file`, `image_thumbnail`, `image_description`, `image_status`, `image_created_at`, `image_updated_at`) VALUES
+(15, '2', '2', 'assets/images/all-images/2-4dd9e5ff8aec.jpg', '', '', 'Active', 1792047962, NULL),
+(16, '3', '3', 'assets/images/all-images/3-f20a0d6b93e5.jpg', '', '', 'Active', 1792047979, NULL),
+(17, '4', '4', 'assets/images/all-images/4-52a974ff4c7b.jpg', '', '', 'Active', 1792047995, NULL),
+(18, 'imge 1', 'imge-1', 'assets/images/all-images/imge-1-81616c558b84.jpg', '', '1', 'Active', 1792048275, NULL);
 
 -- --------------------------------------------------------
 
@@ -44,7 +72,18 @@ CREATE TABLE `all_videos` (
 --
 
 INSERT INTO `all_videos` (`video_id`, `video_title`, `video_slug`, `video_file`, `video_thumbnail`, `video_description`, `video_status`, `video_created_at`, `video_updated_at`) VALUES
-(2, 'Video 2', 'video-2', 'assets/videos/all-videos/video-2-1791362242.mp4', '', 'asdasd', 'Active', 1791362242, NULL);
+(2, 'Video 2', 'video-2', 'assets/videos/all-videos/video-2-1791362242.mp4', '', 'asdasd', 'Active', 1791362242, NULL),
+(3, 'Video 3', 'video-3', 'assets/videos/all-videos/video-3-1792040455.mp4', '', 'jhbj', 'Active', 1792040455, NULL),
+(4, 'Video 4', 'video-4', 'assets/videos/all-videos/video-4-1792040472.mp4', '', 'jn', 'Active', 1792040472, NULL),
+(5, 'Video 1', 'video-1', 'assets/videos/all-videos/video-1-1792040494.mp4', '', 'hk', 'Active', 1792040494, NULL),
+(6, 'Video 5', 'video-5', 'assets/videos/all-videos/video-5-1792040514.mp4', '', 'uj', 'Active', 1792040514, NULL),
+(7, 'Video 6', 'video-6', 'assets/videos/all-videos/video-6-1792040536.mp4', '', '', 'Active', 1792040536, NULL),
+(8, 'Video 7', 'video-7', 'assets/videos/all-videos/video-7-1792040571.mp4', '', '', 'Active', 1792040571, NULL),
+(9, 'Video 8', 'video-8', 'assets/videos/all-videos/video-8-1792040588.mp4', '', '', 'Active', 1792040588, NULL),
+(10, 'Video 9', 'video-9', 'assets/videos/all-videos/video-9-1792040624.mp4', '', '', 'Active', 1792040624, NULL),
+(11, 'Video 10', 'video-10', 'assets/videos/all-videos/video-10-1792040637.mp4', '', '', 'Active', 1792040637, NULL),
+(12, 'Video 11', 'video-11', 'assets/videos/all-videos/video-11-1792040672.mp4', '', '', 'Active', 1792040672, NULL),
+(13, 'Video 12', 'video-12', 'assets/videos/all-videos/video-12-1792040699.mp4', '', '', 'Active', 1792040699, NULL);
 
 -- --------------------------------------------------------
 
@@ -147,7 +186,7 @@ CREATE TABLE `global_info` (
 --
 
 INSERT INTO `global_info` (`globle_info_id`, `facion_icon`, `logo`, `globle_call_phone`, `globle_whatsapp`, `footer_address`, `footer_email_1`, `footer_email_2`, `footer_phone_1`, `footer_phone_2`, `globle_instagram`, `globle_yt`, `globle_linkedin`, `map_link`) VALUES
-(1, 'facion.png', 'lOGO-B-e1561700484623.png', '+919811434638', '918802097241', 'Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008', 'info@eagletflysolutions.com', 'eagletflysolutions@gmail.com', '+919811434634', '+919811434638', 'https://www.instagram.com/', 'https://www.youtube.com/', 'https://in.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d437.67775252896064!2d77.17010613344813!3d28.647079886220727!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e5d2381555%3A0x370e46f5213d8008!2sPrimora%20Kids!5e0!3m2!1sen!2sin!4v1788349705408!5m2!1sen!2sin');
+(1, 'facion_icon_20261011192413_4e5e0a.png', 'logo_20261011192413_2633f4.png', '+919811434638', '918802097241', 'Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008', 'info@eagletflysolutions.com', 'eagletflysolutions@gmail.com', '+919811434634', '+919811434638', 'https://www.instagram.com/', 'https://www.youtube.com/', 'https://in.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d437.67775252896064!2d77.17010613344813!3d28.647079886220727!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e5d2381555%3A0x370e46f5213d8008!2sPrimora%20Kids!5e0!3m2!1sen!2sin!4v1788349705408!5m2!1sen!2sin');
 
 -- --------------------------------------------------------
 
@@ -169,9 +208,44 @@ CREATE TABLE `login_users` (
 INSERT INTO `login_users` (`user_id`, `username`, `user_email`, `user_password`) VALUES
 (1, 'Admin', 'admin1234@gmail.com', 'admin1234');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `placements`
+--
+
+CREATE TABLE `placements` (
+  `placement_id` int(10) UNSIGNED NOT NULL,
+  `student_name` varchar(150) NOT NULL,
+  `student_photo` varchar(255) NOT NULL,
+  `placement_position` varchar(200) NOT NULL,
+  `company_name` varchar(200) NOT NULL,
+  `placement_status` varchar(50) NOT NULL DEFAULT 'Got Placed',
+  `placement_description` text DEFAULT NULL,
+  `placement_sort_order` int(11) NOT NULL DEFAULT 0,
+  `placement_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `placement_updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `placements`
+--
+
+INSERT INTO `placements` (`placement_id`, `student_name`, `student_photo`, `placement_position`, `company_name`, `placement_status`, `placement_description`, `placement_sort_order`, `placement_created_at`, `placement_updated_at`) VALUES
+(1, 'Rani Udenia', 'assets/images/placements/student-0dc477715c401a29.jpg', 'Data Analyst (Trainee)', 'Glorious Insight Private Limited', 'Got Placed', 'happy :)', 1, '2026-10-15 07:59:10', '2026-10-15 08:01:31'),
+(2, 'Rakshit Negi', 'assets/images/placements/student-26cbae7f71110fc3.jpg', 'Data Entry Intern', 'Anil Agencies Private Limited', 'Got Placed', 'happy', 1, '2026-10-15 08:04:30', '2026-10-15 08:04:30'),
+(3, 'Ayush Bansal', 'assets/images/placements/student-1550d3e35095e247.jpg', 'Data Analyst', 'ClickOnik Digital Media Private Limited', 'Got Placed', 'happy', 0, '2026-10-15 08:05:17', '2026-10-15 08:05:17');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `all_images`
+--
+ALTER TABLE `all_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD UNIQUE KEY `unique_image_slug` (`image_slug`);
 
 --
 -- Indexes for table `all_videos`
@@ -206,14 +280,28 @@ ALTER TABLE `login_users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `placements`
+--
+ALTER TABLE `placements`
+  ADD PRIMARY KEY (`placement_id`),
+  ADD KEY `idx_placement_status` (`placement_status`),
+  ADD KEY `idx_placement_sort` (`placement_sort_order`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `all_images`
+--
+ALTER TABLE `all_images`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `all_videos`
 --
 ALTER TABLE `all_videos`
-  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -238,6 +326,12 @@ ALTER TABLE `global_info`
 --
 ALTER TABLE `login_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `placements`
+--
+ALTER TABLE `placements`
+  MODIFY `placement_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
