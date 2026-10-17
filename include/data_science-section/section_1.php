@@ -233,6 +233,22 @@
                 padding: 64px 6vw 56px;
             }
         }
+
+        .hero-line {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: heroLineDraw 3s ease-in-out infinite;
+}
+
+@keyframes heroLineDraw {
+    0% {
+        stroke-dashoffset: 400;
+    }
+
+    70%, 100% {
+        stroke-dashoffset: 0;
+    }
+}
     </style>
 
 
@@ -261,12 +277,21 @@
                     <rect class="hero-bar" x="200" y="120" width="34" height="210" rx="4" fill="#35D0BA" style="animation-delay:0.6s" />
                     <rect class="hero-bar" x="260" y="200" width="34" height="130" rx="4" fill="#4E5AA8" style="animation-delay:0.8s" />
                     <rect class="hero-bar" x="320" y="90" width="34" height="240" rx="4" fill="#FF6F59" style="animation-delay:1s" />
-                    <line class="hero-line" x1="97" y1="220" x2="317" y2="80" stroke="#5B63B7" stroke-width="1.4" />
-                    <circle class="hero-node n1" cx="97" cy="220" r="7" fill="#F6F5FF" />
-                    <circle class="hero-node n2" cx="157" cy="160" r="7" fill="#F6F5FF" />
-                    <circle class="hero-node n3" cx="217" cy="110" r="7" fill="#F6F5FF" />
-                    <circle class="hero-node n4" cx="317" cy="80" r="7" fill="#F6F5FF" />
-                    <circle class="hero-node n4" cx="417" cy="180" r="7" fill="#F6F5FF" />
+                    <polyline
+    class="hero-line"
+    points="97,220 157,160 217,110 277,190 337,80"
+    stroke="#5B63B7"
+    stroke-width="1.4"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+/>
+
+<circle class="hero-node n1" cx="97" cy="220" r="7" fill="#F6F5FF" />
+<circle class="hero-node n2" cx="157" cy="160" r="7" fill="#F6F5FF" />
+<circle class="hero-node n3" cx="217" cy="110" r="7" fill="#F6F5FF" />
+<circle class="hero-node n4" cx="277" cy="190" r="7" fill="#F6F5FF" />
+<circle class="hero-node n5" cx="337" cy="80" r="7" fill="#F6F5FF" />
                 </svg>
             </div>
         </div>
