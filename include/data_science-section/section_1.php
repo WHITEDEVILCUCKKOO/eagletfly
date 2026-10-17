@@ -53,7 +53,7 @@
         .hero-title {
             /* font-family: 'Space Grotesk', sans-serif; */
             font-weight: 600;
-            font-size: clamp(34px, 4.2vw, 56px);
+            font-size: clamp(34px, 4.2vw, 36px);
             line-height: 1.08;
             color: #F6F5FF;
             margin: 0 0 22px;
@@ -235,6 +235,8 @@
         }
     </style>
 
+
+
     <section class="hero-wrap">
         <div class="hero-grid">
             <div>
@@ -264,6 +266,7 @@
                     <circle class="hero-node n2" cx="157" cy="160" r="7" fill="#F6F5FF" />
                     <circle class="hero-node n3" cx="217" cy="110" r="7" fill="#F6F5FF" />
                     <circle class="hero-node n4" cx="317" cy="80" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n4" cx="417" cy="180" r="7" fill="#F6F5FF" />
                 </svg>
             </div>
         </div>

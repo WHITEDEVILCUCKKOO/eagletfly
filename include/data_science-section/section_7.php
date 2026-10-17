@@ -18,9 +18,9 @@
         .roles-title {
             /* font-family: 'Space Grotesk', sans-serif; */
             font-weight: 600;
-            font-size: clamp(24px, 3vw, 32px);
+            font-size: clamp(24px, 3.2vw, 36px);
             color: #14172B;
-            margin: 0 0 10px;
+            margin: 0 0 10px;text-align: center;
         }
 
         .roles-desc {

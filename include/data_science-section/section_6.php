@@ -62,7 +62,7 @@
         }
     </style>
 
-    <section class="tools-wrap">
+    <section class="tools-wrap" style="display: none;">
         <div class="tools-head">
             <h2 class="tools-title">Tools &amp; technologies you'll use</h2>
             <p class="tools-desc">The same stack analysts and ML engineers use in production, not toy substitutes.</p>

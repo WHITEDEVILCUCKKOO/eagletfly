@@ -47,9 +47,28 @@ $shareUrl = urlencode($scheme . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUES
 $page_title = !empty($blog['blog_meta_title']) ? $blog['blog_meta_title'] : $blog['blog_title'];
 $meta_desc  = $blog['blog_meta_desc'];
 
-include 'include/header.php';
+
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EagletFly </title>
+
+
+
+
+  <!-- Add All General Links -->
+  <?php include 'include/all_general_links.php' ?>
+
+</head>
+
+
+<!-- Add Header -->
+<?php include 'include/header.php' ?>
 
 
 <?php

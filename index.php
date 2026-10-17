@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EagletFly </title>
+
+
+
+
+  <!-- Add All General Links -->
+  <?php include 'include/all_general_links.php' ?>
+
+</head>
+
+
+<!-- Add Header -->
 <?php include 'include/header.php' ?>
 
 
@@ -475,31 +493,31 @@
       <div class="msw-gallery msw-reveal">
 
 
-      <?php 
-      $get_allImge_6 = "SELECT * FROM `all_images` WHERE image_status='Active' or image_status='active' ORDER BY RAND() LIMIT 6;";
+        <?php
+        $get_allImge_6 = "SELECT * FROM `all_images` WHERE image_status='Active' or image_status='active' ORDER BY RAND() LIMIT 6;";
 
-      $a=1;
+        $a = 1;
 
-      $data_ase= mysqli_query($mydb,$get_allImge_6);
-
-
-      while($imagas = mysqli_fetch_assoc($data_ase)){
-      
-      ?>
+        $data_ase = mysqli_query($mydb, $get_allImge_6);
 
 
+        while ($imagas = mysqli_fetch_assoc($data_ase)) {
 
-        <!-- card <?php echo($a); ?> -->
-        <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
-          <img src="<?php echo$imagas['image_file']; ?>" alt="<?php echo$imagas['image_title']; ?>">
-          <span class="msw-ph-icon974">
-            <h5 class="sole_1"><?php echo$imagas['image_title']; ?></h5>
-          </span>
-        </div>
+        ?>
 
-        <?php 
-         $a++; 
-      }
+
+
+          <!-- card <?php echo ($a); ?> -->
+          <div class="msw-img-placeholder12 reative_box" style="border-radius:10px ;overflow: hidden;">
+            <img src="<?php echo $imagas['image_file']; ?>" alt="<?php echo $imagas['image_title']; ?>">
+            <span class="msw-ph-icon974">
+              <h5 class="sole_1"><?php echo $imagas['image_title']; ?></h5>
+            </span>
+          </div>
+
+        <?php
+          $a++;
+        }
         ?>
 
         <!-- card 2 -->
