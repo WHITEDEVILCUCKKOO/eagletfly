@@ -1,4 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EagletFly </title>
+
+
+
+
+  <!-- Add All General Links -->
+  <?php include 'include/all_general_links.php' ?>
+
+</head>
+
+
+<!-- Add Header -->
 <?php include 'include/header.php' ?>
+
 
 
 <?php include "admin_access/db_config.php" ?>

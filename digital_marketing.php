@@ -1,4 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EagletFly </title>
+
+
+
+
+  <!-- Add All General Links -->
+  <?php include 'include/all_general_links.php' ?>
+
+</head>
+
+
+<!-- Add Header -->
 <?php include 'include/header.php' ?>
+
 <style>
     .background_css {
         background: linear-gradient(120deg, #30383D, #46545E, #F5820B, #F5A900, #F5820B, #46545E, #30383D);
