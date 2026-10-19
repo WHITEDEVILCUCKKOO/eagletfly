@@ -186,7 +186,7 @@ CREATE TABLE `global_info` (
 --
 
 INSERT INTO `global_info` (`globle_info_id`, `facion_icon`, `logo`, `globle_call_phone`, `globle_whatsapp`, `footer_address`, `footer_email_1`, `footer_email_2`, `footer_phone_1`, `footer_phone_2`, `globle_instagram`, `globle_yt`, `globle_linkedin`, `map_link`) VALUES
-(1, 'facion_icon_20261011192413_4e5e0a.png', 'logo_20261011192413_2633f4.png', '+919811434638', '918802097241', 'Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008', 'info@eagletflysolutions.com', 'eagletflysolutions@gmail.com', '+919811434634', '+919811434638', 'https://www.instagram.com/', 'https://www.youtube.com/', 'https://in.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d437.67775252896064!2d77.17010613344813!3d28.647079886220727!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e5d2381555%3A0x370e46f5213d8008!2sPrimora%20Kids!5e0!3m2!1sen!2sin!4v1788349705408!5m2!1sen!2sin');
+(1, 'facion_icon_20261011192413_4e5e0a.png', 'logo_20261011192413_2633f4.png', '+919811434638', '919811434638', 'Ground Floor, 10A/25-26, Block 10A, East Patel Nagar, Patel Nagar, New Delhi, Delhi, 110008', 'info@eagletflysolutions.com', 'eagletflysolutions@gmail.com', '+919811434634', '+919811434638', 'https://www.instagram.com/', 'https://www.youtube.com/', 'https://in.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d437.67775252896064!2d77.17010613344813!3d28.647079886220727!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e5d2381555%3A0x370e46f5213d8008!2sPrimora%20Kids!5e0!3m2!1sen!2sin!4v1788349705408!5m2!1sen!2sin');
 
 -- --------------------------------------------------------
 
