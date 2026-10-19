@@ -468,7 +468,7 @@ include_once  "./admin_access/db_config.php";
 </style>
 
 
-<section class="dgfr-section">
+<section class="dgfr-section" style="display:none;">
     <div class="dgfr-container">
 
         <h2 class="dgfr-heading " style=" font-family: 'Sora', inter;  font-weight:700;font-size:35px;">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
