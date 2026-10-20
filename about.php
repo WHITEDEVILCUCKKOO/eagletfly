@@ -54,13 +54,14 @@
     <!-- section 4 -->
     <?php require_once __DIR__ . '/include/about_section/section_4.php' ?>
     
-
+    
     <!-- section 5 -->
     <?php require_once __DIR__ . '/include/about_section/section_5.php' ?>
     
-
+    
     <!-- section 6 -->
     <?php require_once __DIR__ . '/include/about_section/section_6.php' ?>
+    <?php require_once __DIR__ . '/include/about_section/section_4_0.php' ?>
     
 
 

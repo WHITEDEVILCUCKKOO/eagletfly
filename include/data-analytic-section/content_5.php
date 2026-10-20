@@ -100,8 +100,8 @@
     }
 
     .ef-pst-title {
-        font-size: 38px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #ffffff;
         margin: 0 0 15px 0;
         line-height: 1.3;
@@ -227,7 +227,7 @@
         }
 
         .ef-pst-title {
-            font-size: 28px;
+            font-size: 26px;
         }
 
         .ef-pst-wrapper {

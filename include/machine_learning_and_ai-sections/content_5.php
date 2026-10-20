@@ -35,8 +35,8 @@
     }
 
     .aic-sec5-title {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #0f172a;
         margin: 0 0 12px;
         line-height: 1.2;
@@ -271,7 +271,7 @@
         }
 
         .aic-sec5-title {
-            font-size: 2rem;
+            font-size: 30px;
         }
 
         .aic-sec5-timeline-wrapper {
@@ -330,7 +330,7 @@
         }
 
         .aic-sec5-title {
-            font-size: 1.6rem;
+            font-size: 26px;
         }
 
         .aic-sec5-subtitle {

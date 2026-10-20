@@ -30,8 +30,8 @@
     }
 
     .aic-sec8-title {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #fdfdfd;
         margin-bottom: 12px;
     }
@@ -86,7 +86,7 @@
     /* Responsive Design */
     @media (max-width: 768px) {
         .aic-sec8-title {
-            font-size: 2rem;
+            font-size: 30px;
         }
 
         .aic-sec8-card {
@@ -100,7 +100,7 @@
         }
 
         .aic-sec8-title {
-            font-size: 1.6rem;
+            font-size: 26px;
         }
 
         .aic-sec8-card {

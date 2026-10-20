@@ -536,9 +536,9 @@
     margin: 25px 0 15px;
 
     color: #ffffff;
-    font-size: 38px;
+    font-size: clamp(26px,3.2vw,36px);
     line-height: 1.12;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -0.6px;
 }
 

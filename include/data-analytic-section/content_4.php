@@ -178,8 +178,8 @@
     }
 
     .ef-acc-main-title {
-        font-size: 38px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #0f172a;
         margin: 0;
         line-height: 1.2;
@@ -321,7 +321,7 @@
     /* Responsive Queries */
     @media (max-width: 768px) {
         .ef-acc-main-title {
-            font-size: 28px;
+            font-size: 26px;
         }
 
         .ef-acc-name {

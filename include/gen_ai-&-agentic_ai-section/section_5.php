@@ -294,8 +294,8 @@
 
 
     .klr-test-title {
-        font-size: 34px;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #111111;
         margin: 0;
         line-height: 1.3;
@@ -304,7 +304,7 @@
 
 
     .klr-test-title strong {
-        font-weight: 800;
+        font-weight: 700;
     }
 
 

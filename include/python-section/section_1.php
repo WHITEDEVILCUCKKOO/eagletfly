@@ -228,7 +228,7 @@
     }
 
 
-    .kd-podcast-hero-copy h1 {
+    .kd-podcast-hero-copy h2 {
 
         max-width: 670px;
 
@@ -246,7 +246,7 @@
     }
 
 
-    .kd-podcast-hero-copy h1 span {
+    .kd-podcast-hero-copy h2 span {
 
         display: inline-block;
 
@@ -1211,7 +1211,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             font-size: 50px;
         }
@@ -1290,7 +1290,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             max-width: 540px;
 
@@ -1455,7 +1455,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             font-size: 31px;
         }
@@ -1629,12 +1629,12 @@
                     PYTHON PROGRAMMING COURSE
                 </div>
 
-                <h1>
+                <h2>
                     Master Python Programming
                     <span> Course In Delhi </span> &
                     get job-ready in 6 Months
 
-                </h1>
+                </h2>
 
                 <p class="kd-podcast-hero-desc">
                     Live Projects ∙ Placement Assistance ∙ Industry Trainers — learn Python from senior developers working at India's top product companies.

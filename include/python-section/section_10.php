@@ -185,9 +185,9 @@
     #kdRcsFaqSection .kd-rcs-faq-header h2 {
         margin: 0;
         color: var(--kd-rcs-heading);
-        font-size: clamp(30px, 3.8vw, 44px);
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.2;
-        font-weight: 700;
+        font-weight: 600;
         letter-spacing: -1.1px;
     }
 

@@ -438,9 +438,9 @@
 
         color: #ffffff;
 
-        font-size: 36px;
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.2;
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .ef-key-heading h2 span {

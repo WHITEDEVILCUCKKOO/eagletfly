@@ -14,8 +14,8 @@ include_once  "./admin_access/db_config.php";
 
     .dgfs-heading {
         text-align: center;
-        font-size: 24px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #1a1a1a;
         margin: 0 0 8px 0;
     }
@@ -246,7 +246,7 @@ include_once  "./admin_access/db_config.php";
 
     @media (max-width: 560px) {
         .dgfs-heading {
-            font-size: 19px;
+            font-size: 26px;
         }
 
         .dgfs-card {
@@ -287,7 +287,7 @@ include_once  "./admin_access/db_config.php";
 </style>
 <section class="dgfs-section">
 
-    <h2 class="dgfs-heading dgfs-subgap"  style=" font-family: 'Sora', inter;  font-weight:800;font-size:35px;">What Our <span style="font-style: normal;" class="rainbow-animated_without_animtion">Students</span> Say</h2>
+    <h2 class="dgfs-heading dgfs-subgap"  style=" font-family: 'Sora', inter;  font-weight:600;font-size:clamp(26px,3.2vw,36px);">What Our <span style="font-style: normal;" class="rainbow-animated_without_animtion">Students</span> Say</h2>
 
     <div class="dgfs-slider-viewport">
         <div class="dgfs-slider-track" id="dgfsTrack">

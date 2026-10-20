@@ -72,10 +72,10 @@
 
     .kd-rcs-head h2 {
         margin: 0;
-        font-size: clamp(27px, 3.1vw, 43px);
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.18;
         letter-spacing: -1.1px;
-        font-weight: 800;
+        font-weight: 600;
         color: #ffffff;
     }
 
@@ -268,7 +268,7 @@
         }
 
         .kd-rcs-head h2 {
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: -.7px
         }
 

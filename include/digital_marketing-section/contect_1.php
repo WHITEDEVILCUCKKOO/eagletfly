@@ -4,7 +4,7 @@
         <!-- Header Content -->
         <div class="eagletfly-dm-header">
             <span class="eagletfly-badge">Industry-Oriented Program</span>
-            <h2 class="eagletfly-title">Digital Marketing Course in Patel Nagar</h2>
+            <h1 class="eagletfly-title">Digital Marketing Course in Patel Nagar</h1>
             <p class="eagletfly-lead">
                 With consumers always connected, mobile-first searching behavior, social commerce, and AI-driven advertisement engines gaining traction, traditional marketing is no longer enough for successful business ventures.
             </p>
@@ -85,7 +85,7 @@
 }
 
 .eagletfly-title {
-    font-size: 32px;
+    font-size: clamp(26px,3.2vw,36px);
     font-weight: 800;
     color: #0f172a;
     margin-bottom: 20px;

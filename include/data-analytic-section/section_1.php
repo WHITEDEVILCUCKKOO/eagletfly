@@ -41,8 +41,8 @@ $global_info = get_global_info($mydb);
     }
 
     .dgfh-heading {
-        font-size: 34px;
-        font-weight: 800;
+        font-size:clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #181717;
         margin: 0 0 16px 0;
         opacity: 0;
@@ -286,7 +286,7 @@ $global_info = get_global_info($mydb);
             padding: 120px 16px 44px;
         }
         .dgfh-heading {
-            font-size: 24px;
+            font-size: 26px;
         }
         .dgfh-subtext {
             font-size: 14px;
@@ -340,7 +340,7 @@ $global_info = get_global_info($mydb);
     <div class="dgfh-container">
         <!-- LEFT -->
         <div class="dgfh-left" style="padding-top:25px ;">
-            <h1 class="dgfh-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:44px;">Data Analytics Course <br> <em style="color: #373ACF; font-style:normal;"> in Delhi </em></h1>
+            <h2 class="dgfh-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">Data Analytics Course <br> <em style="color: #373ACF; font-style:normal;"> in Delhi </em></h2>
             <p class="dgfh-subtext" style="color:#666666;padding:15px 0;">Uncover the methods to extract data for analytical purposes. Join us now and study under a skilled data analyst.</p>
 
             <div class="dgfh-rating-row">

@@ -209,7 +209,7 @@
     }
 
 
-    .kd-podcast-hero-copy h1 {
+    .kd-podcast-hero-copy h2 {
 
         max-width: 670px;
 
@@ -217,17 +217,17 @@
 
         color: #ffffff;
 
-        font-size: 44px;
+        font-size: clamp(26px,3.2vw,36px);
 
         line-height: 1.03;
 
         letter-spacing: -.058em;
 
-        font-weight: 800;
+        font-weight: 700;
     }
 
 
-    .kd-podcast-hero-copy h1 span {
+    .kd-podcast-hero-copy h2 span {
 
         display: inline-block;
 
@@ -1255,7 +1255,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             font-size: 50px;
         }
@@ -1346,7 +1346,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             max-width: 540px;
 
@@ -1546,7 +1546,7 @@
         }
 
 
-        .kd-podcast-hero-copy h1 {
+        .kd-podcast-hero-copy h2 {
 
             font-size: 31px;
         }
@@ -1796,12 +1796,12 @@
                     PROFESSIONAL COURSE
                 </div>
 
-                <h1>
+                <h2>
                     Digital Marketing Course 
                     <span> in Patel Nagar </span> 
                  
 
-                </h1>
+                </h2>
 
                 <p class="kd-podcast-hero-desc">
                     Live Projects ∙ Placement Assistance ∙ Industry Trainers — taught by senior practitioners from India's top product companies.

@@ -48,8 +48,8 @@
     }
 
     .dgfc2-heading {
-        font-size: 38px;
-        font-weight: 900;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         line-height: 1.25;
         margin: 0 0 20px 0;
         color: #fff;
@@ -162,7 +162,7 @@
     /* ---------- responsive ---------- */
     @media (max-width: 620px) {
         .dgfc2-heading {
-            font-size: 27px;
+            font-size: 26px;
         }
 
         .dgfc2-subtext {
@@ -191,7 +191,7 @@
 
     <div class="dgfc2-content">
         <p class="dgfc2-eyebrow">READY TO START?</p>
-        <h2 class="dgfc2-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:35px;">
+        <h2 class="dgfc2-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">
             Start Your Data Career with
             <span class="dgfc2-heading-line2">EagletFly Solutions</span>
         </h2>

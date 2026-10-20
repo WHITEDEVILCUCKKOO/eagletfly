@@ -4,13 +4,14 @@
         <!-- Header Content -->
         <div class="eagletfly-theme-header eagletfly-theme-fade">
             <span class="eagletfly-theme-badge">Location Advantage</span>
-            <h2 class="eagletfly-theme-title">Why Choose Delhi for Digital Marketing Training?</h2>
+            <h2 class="eagletfly-theme-title">Why Choose Eagletfly for Digital Marketing Training?</h2>
             <p class="eagletfly-theme-lead">
                 Located along the Blue Line Metro corridor, Patel Nagar is one of Central Delhi's prime commercial and educational destinations. Choosing a local Digital Marketing Training Institute in Patel Nagar offers strategic accessibility, vibrant commercial exposure, and direct proximity to corporate hubs across Rajendra Place, Karol Bagh, Connaught Place, and West Delhi.
             </p>
         </div>
 
         <!-- Section Subtitle -->
+         
         <div class="eagletfly-theme-subhead eagletfly-theme-fade">
             <h3>Strategic Advantages of Training in Patel Nagar</h3>
         </div>
@@ -114,8 +115,8 @@
 }
 
 .eagletfly-theme-title {
-    font-size: 36px;
-    font-weight: 800;
+    font-size:clamp(26px,3.2vw,36px);
+    font-weight: 600;
     color: #ffffff;
     margin-bottom: 20px;
     line-height: 1.3;

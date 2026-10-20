@@ -69,8 +69,8 @@
 
 .cc-main-heading {
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: clamp(26px,3.2vw,36px);
+  font-weight: 600;
   color: #e2ad3b; /* Updated Color */
   margin: 0 0 45px 0;
   letter-spacing: -0.5px;

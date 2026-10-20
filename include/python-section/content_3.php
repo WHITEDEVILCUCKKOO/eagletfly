@@ -290,9 +290,9 @@
     .py-roadmap-title {
         margin: 0;
         color: #ffffff;
-        font-size: 39px;
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.2;
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .py-roadmap-title span {

@@ -18,8 +18,8 @@ include_once  "./admin_access/db_config.php";
 
     .dgfr-heading {
         text-align: center;
-        font-size: 26px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #10203f;
         letter-spacing: 0.5px;
         margin: 0 0 10px 0;
@@ -447,7 +447,7 @@ include_once  "./admin_access/db_config.php";
         }
 
         .dgfr-heading {
-            font-size: 19px;
+            font-size: 26px;
         }
 
         .dgfr-grid,
@@ -471,7 +471,7 @@ include_once  "./admin_access/db_config.php";
 <section class="dgfr-section" style="display:none;">
     <div class="dgfr-container">
 
-        <h2 class="dgfr-heading " style=" font-family: 'Sora', inter;  font-weight:700;font-size:35px;">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
+        <h2 class="dgfr-heading " style=" font-family: 'Sora', inter;  font-weight:600;font-size:clamp(26px,3.2vw,36px);">STUDENTS <em style="font-style: normal;" class="rainbow-animated_without_animtion"> PLACEMENTS &amp; REVIEWS</em></h2>
         <div class="dgfr-heading-underline"></div>
 
         <div class="dgfr-tabbar">

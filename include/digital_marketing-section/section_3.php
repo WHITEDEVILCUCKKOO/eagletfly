@@ -22,9 +22,9 @@
         }
 
         .kd-cov-heading {
-            font-size: 42px;
+            font-size: clamp(26px, 3.2vw, 36px);
             line-height: 1.15;
-            font-weight: 800;
+            font-weight: 600;
             letter-spacing: -.02em;
             margin: 0 0 26px;
             color: #12121f;
@@ -105,10 +105,10 @@
         }
 
         .kd-cov-body-wrap h2 {
-            font-size: 24px;
-            font-weight: 800;
+            font-size: 16px;
+            font-weight: 600;
             color: #12121f;
-            margin: 30px 0 14px;
+            margin: 10px 0 0px !important;
         }
 
         .kd-cov-body-wrap>*:first-child {
@@ -288,7 +288,7 @@
             }
 
             .kd-cov-heading {
-                font-size: 30px;
+                font-size: 26px;
             }
 
             .kd-cov-form-wrap {
@@ -303,162 +303,163 @@
         <!-- LEFT: COURSE OVERVIEW -->
         <div>
             <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
-            <h1 class="kd-cov-heading">Everything you need to master Digital Marketing Course In Faridabad.</h1>
+            <h2 class="kd-cov-heading">Everything you need to master Digital Marketing Course In Delhi.</h2>
 
 
-           
-<div class="kd-cov-body-wrap" id="kdCovBody">
 
-    <h2>Why EagletFly Solutions Stands Out as a Digital Marketing Training Institute in Patel Nagar</h2>
+            <div class="kd-cov-body-wrap" id="kdCovBody">
 
-    <p>With numerous training options available across Delhi NCR, selecting the right partner determines whether you just learn concepts or master real commercial execution. <strong>EagletFly Solutions</strong> sets a high bar for digital marketing education:</p>
+                <h2>Why EagletFly Solutions Stands Out as a Digital Marketing Training Institute in Patel Nagar</h2>
+                <br>
 
-    <ul>
-        <li>Execution of Live Advertising Budget: Participation in current projects with Google Ads, Meta Ads, and Search Engine Optimization will provide the student with hands-on budgeting experience, conducting A/B testing, and analyzing conversion parameters.</li>
-        <li>Educational Faculty Involved in Actual Work at the Agency: Learning from real practitioners (digital strategists, media buyers, and SEO specialists) who develop and implement marketing campaigns for large companies.</li>
-        <li>Practical Laboratory Training: More than 70% of class hours are devoted to gaining experience in hands-on labs covering website development, tracking pixels installation, and keywords audit.</li>
-        <li>Career and Placement Support: Extensive assistance in obtaining a job in the profession through individual resume refinement, mock interviews and optimization of the LinkedIn profile.</li>
-    </ul>
+                <p>With numerous training options available across Delhi NCR, selecting the right partner determines whether you just learn concepts or master real commercial execution. <strong>EagletFly Solutions</strong> sets a high bar for digital marketing education:</p>
 
-    <h2>Complete Core Curriculum Overview</h2>
+                <ul>
+                    <li>Execution of Live Advertising Budget: Participation in current projects with Google Ads, Meta Ads, and Search Engine Optimization will provide the student with hands-on budgeting experience, conducting A/B testing, and analyzing conversion parameters.</li>
+                    <li>Educational Faculty Involved in Actual Work at the Agency: Learning from real practitioners (digital strategists, media buyers, and SEO specialists) who develop and implement marketing campaigns for large companies.</li>
+                    <li>Practical Laboratory Training: More than 70% of class hours are devoted to gaining experience in hands-on labs covering website development, tracking pixels installation, and keywords audit.</li>
+                    <li>Career and Placement Support: Extensive assistance in obtaining a job in the profession through individual resume refinement, mock interviews and optimization of the LinkedIn profile.</li>
+                </ul>
 
-    <p>Our <strong>Digital Marketing Training in Patel Nagar</strong> builds your skill set step-by-step across 12 modules, covering every aspect of modern organic, paid, and automated marketing channels.</p>
+                <h2>Complete Core Curriculum Overview</h2>
 
-    <h3>Module 1: Marketing Fundamentals, Consumer Psychology &amp; Funnel Strategy</h3>
+                <p>Our <strong>Digital Marketing Training in Patel Nagar</strong> builds your skill set step-by-step across 12 modules, covering every aspect of modern organic, paid, and automated marketing channels.</p>
 
-    <p>Establish a strong strategic baseline before diving into digital software execution.</p>
+                <h3>Module 1: Marketing Fundamentals, Consumer Psychology &amp; Funnel Strategy</h3>
 
-    <ul>
-        <li>Inbound Marketing vs. Outbound Marketing- Learn the differences between pull strategies of organic marketing and the disruptive ads of outbound marketing.</li>
-        <li>Buyer Persona Mapping and Customer Journeys- Determine the characteristics of the audience that has pain points, buyer signals, and customer triggers.</li>
-        <li>Structure of the Marketing Funnel- Understand the stages of awareness, consideration, conversion and retention (TOFU, MOFU, BOFU) in customer acquisition.</li>
-        <li>Competitor Analysis and Market Research- Use platforms such as SimilarWeb, SEMrush, or SpyFu to perform a complete digital audit.</li>
-    </ul>
+                <p>Establish a strong strategic baseline before diving into digital software execution.</p>
 
-    <h3>Module 2: Website Planning, Domain Mapping &amp; WordPress Architecture</h3>
+                <ul>
+                    <li>Inbound Marketing vs. Outbound Marketing- Learn the differences between pull strategies of organic marketing and the disruptive ads of outbound marketing.</li>
+                    <li>Buyer Persona Mapping and Customer Journeys- Determine the characteristics of the audience that has pain points, buyer signals, and customer triggers.</li>
+                    <li>Structure of the Marketing Funnel- Understand the stages of awareness, consideration, conversion and retention (TOFU, MOFU, BOFU) in customer acquisition.</li>
+                    <li>Competitor Analysis and Market Research- Use platforms such as SimilarWeb, SEMrush, or SpyFu to perform a complete digital audit.</li>
+                </ul>
 
-    <p>Find out how you can create, set up and promote websites that focus on increasing conversion rates without having to write complex code.</p>
+                <h3>Module 2: Website Planning, Domain Mapping &amp; WordPress Architecture</h3>
 
-    <ul>
-        <li>Domain and Hosting: Know how to configure DNS, setup SSL certificates, and organize cloud hosting.</li>
-        <li>WordPress CMS Installation: Get WordPress installed, choose a theme, customize the layout without special programming knowledge.</li>
-        <li>Landing Page Creation: Design landing pages optimized for conversion and mobile-capable with lead-generating forms.</li>
-        <li>User Experience (UX) and Speed Related Deployments: Optimize loading speeds and image compression rate, and ensure easy navigation.</li>
-    </ul>
+                <p>Find out how you can create, set up and promote websites that focus on increasing conversion rates without having to write complex code.</p>
 
-    <h3>Module 3: Search Engine Optimization (SEO) &amp; Search Architecture</h3>
+                <ul>
+                    <li>Domain and Hosting: Know how to configure DNS, setup SSL certificates, and organize cloud hosting.</li>
+                    <li>WordPress CMS Installation: Get WordPress installed, choose a theme, customize the layout without special programming knowledge.</li>
+                    <li>Landing Page Creation: Design landing pages optimized for conversion and mobile-capable with lead-generating forms.</li>
+                    <li>User Experience (UX) and Speed Related Deployments: Optimize loading speeds and image compression rate, and ensure easy navigation.</li>
+                </ul>
 
-    <p>Master organic search algorithms to secure top page-one rankings on Google and drive organic web traffic.</p>
+                <h3>Module 3: Search Engine Optimization (SEO) &amp; Search Architecture</h3>
 
-    <p>The following are the steps for improving the search engine optimization (SEO) of a business's website.</p>
+                <p>Master organic search algorithms to secure top page-one rankings on Google and drive organic web traffic.</p>
 
-    <ul>
-        <li>Keyword Research and Search Intent: Find high-intent keywords both for transactional and informational usages by using tools like Google Keyword Planner, Ahrefs, and Ubersuggest.</li>
-        <li>On-Page SEO Optimization: Keep optimizing the title, meta description, and headers (e.g. H1 - H6), URL slugs, alt text for images, and internal links.</li>
-        <li>Technical SEO and Site Audits: Fix crawling and indexing issues, produce XML sitemaps, manage the robots file, fix the Core Web Vitals, and optimize the Schema Markup.</li>
-        <li>Off-Page SEO and Link Building: Conduct all linking efforts ethically and legally.</li>
-        <li>Local SEO and Google My Business Profile (GMB Profile): Help the local businesses obtain high position in local searches through citation and reviews.</li>
-    </ul>
+                <p>The following are the steps for improving the search engine optimization (SEO) of a business's website.</p>
 
-    <h3>Module 4: Google Analytics 4 (GA4) &amp; Google Tag Manager (GTM)</h3>
+                <ul>
+                    <li>Keyword Research and Search Intent: Find high-intent keywords both for transactional and informational usages by using tools like Google Keyword Planner, Ahrefs, and Ubersuggest.</li>
+                    <li>On-Page SEO Optimization: Keep optimizing the title, meta description, and headers (e.g. H1 - H6), URL slugs, alt text for images, and internal links.</li>
+                    <li>Technical SEO and Site Audits: Fix crawling and indexing issues, produce XML sitemaps, manage the robots file, fix the Core Web Vitals, and optimize the Schema Markup.</li>
+                    <li>Off-Page SEO and Link Building: Conduct all linking efforts ethically and legally.</li>
+                    <li>Local SEO and Google My Business Profile (GMB Profile): Help the local businesses obtain high position in local searches through citation and reviews.</li>
+                </ul>
 
-    <p>Convert raw website traffic data into actionable business insights with industry-standard measurement platforms.</p>
+                <h3>Module 4: Google Analytics 4 (GA4) &amp; Google Tag Manager (GTM)</h3>
 
-    <ul>
-        <li>GA4 Property Setup: Configure data flows, measurement IDs, data retention settings, and privacy-related configuration.</li>
-        <li>Event &amp; Conversion Tracking: Prepare customized events, button clicks, form submission, and purchase goals—using Google Tag Manager.</li>
-        <li>Audience Segmentation &amp; Exploration Reports: Create customized conversion paths, path explorations, and demographics to analyze the performance of different channels.</li>
-        <li>Looker Studio Dashboards: Create automated, executive-ready marketing reports for your clients and company's stakeholders.</li>
-    </ul>
+                <p>Convert raw website traffic data into actionable business insights with industry-standard measurement platforms.</p>
 
-    <h3>Module 5: Search Engine Marketing (SEM) &amp; Google Ads</h3>
+                <ul>
+                    <li>GA4 Property Setup: Configure data flows, measurement IDs, data retention settings, and privacy-related configuration.</li>
+                    <li>Event &amp; Conversion Tracking: Prepare customized events, button clicks, form submission, and purchase goals—using Google Tag Manager.</li>
+                    <li>Audience Segmentation &amp; Exploration Reports: Create customized conversion paths, path explorations, and demographics to analyze the performance of different channels.</li>
+                    <li>Looker Studio Dashboards: Create automated, executive-ready marketing reports for your clients and company's stakeholders.</li>
+                </ul>
 
-    <p>Become proficient at Google search ads to drive instant traffic from customers as soon as they need what you're offering.</p>
+                <h3>Module 5: Search Engine Marketing (SEM) &amp; Google Ads</h3>
 
-    <ul>
-        <li>Use a proper structure for your campaigns by organizing your Google Ads account, making separate campaigns, ad groups and choose a bidding option.</li>
-        <li>Select various types of Google Ads using the Search Ads, Display Network Banner Ads, Shopping Ads, YouTube Video Ads, Performance Max (PMax).</li>
-        <li>Adjust your quality score for each of the ads you place in order to achieve higher ad rank and lower your Cost-per-click.</li>
-        <li>Create ads that have everything necessary in order to sell your products making use of all the tools that are available.</li>
-        <li>Determine the bidding options that you would like to apply, such as Target CPA, Target ROAS and Maximize Conversions.</li>
-    </ul>
+                <p>Become proficient at Google search ads to drive instant traffic from customers as soon as they need what you're offering.</p>
 
-    <h3>Module 6: Social Media Optimization (SMO) &amp; Organic Brand Building</h3>
+                <ul>
+                    <li>Use a proper structure for your campaigns by organizing your Google Ads account, making separate campaigns, ad groups and choose a bidding option.</li>
+                    <li>Select various types of Google Ads using the Search Ads, Display Network Banner Ads, Shopping Ads, YouTube Video Ads, Performance Max (PMax).</li>
+                    <li>Adjust your quality score for each of the ads you place in order to achieve higher ad rank and lower your Cost-per-click.</li>
+                    <li>Create ads that have everything necessary in order to sell your products making use of all the tools that are available.</li>
+                    <li>Determine the bidding options that you would like to apply, such as Target CPA, Target ROAS and Maximize Conversions.</li>
+                </ul>
 
-    <p>Develop an organic social media presence on every major platform in order build brand loyalty and engage audiences.</p>
+                <h3>Module 6: Social Media Optimization (SMO) &amp; Organic Brand Building</h3>
 
-    <ul>
-        <li>Platform-Specific Strategies: Different formats of content should be created for Instagram, Facebook, LinkedIn, YouTube, Twitter/X, and Pinterest.</li>
-        <li>Content Calendar &amp; Aesthetic: There should be branding themes created visually and the posting must be scheduled regularly through the usage of tools like Canva, Buffer, and Hootsuite.</li>
-        <li>Short-Form Video Marketing: Instagram Reels and YouTube shorts must be scripted, recorded and edited; good videos should go viral.</li>
-        <li>Community Management: Customer feedback should be handled as well as keeping the engagement of users higher.</li>
-    </ul>
+                <p>Develop an organic social media presence on every major platform in order build brand loyalty and engage audiences.</p>
 
-    <h3>Module 7: Social Media Marketing (SMM) &amp; Meta Ads Management</h3>
+                <ul>
+                    <li>Platform-Specific Strategies: Different formats of content should be created for Instagram, Facebook, LinkedIn, YouTube, Twitter/X, and Pinterest.</li>
+                    <li>Content Calendar &amp; Aesthetic: There should be branding themes created visually and the posting must be scheduled regularly through the usage of tools like Canva, Buffer, and Hootsuite.</li>
+                    <li>Short-Form Video Marketing: Instagram Reels and YouTube shorts must be scripted, recorded and edited; good videos should go viral.</li>
+                    <li>Community Management: Customer feedback should be handled as well as keeping the engagement of users higher.</li>
+                </ul>
 
-    <p>Use precise, profitable paid ads on Facebook and Instagram.</p>
+                <h3>Module 7: Social Media Marketing (SMM) &amp; Meta Ads Management</h3>
 
-    <ul>
-        <li>Meta Business Suite and Ads Manager - take advantage of Business Manager features to set up business assets, provide access rights, and secure ad accounts.</li>
-        <li>Meta Pixel and CAPI - set up pixel tracking, use the Aggregated event measurement feature, and configure server-side conversions.</li>
-        <li>Target Audience Frameworks - dive into the audience targeting techniques to learn how to work with different types of audiences.</li>
-        <li>Creative Strategy and A/B Testing - show great results by applying high-performing video ads, carousel ads, and catalog ads in your campaign.</li>
-        <li>E-commerce Funnel Retargeting - increase the number of paid clients and keep your customers longer by using conversion funnels.</li>
-    </ul>
+                <p>Use precise, profitable paid ads on Facebook and Instagram.</p>
 
-    <h3>Module 8: Content Marketing, Copywriting &amp; Storytelling</h3>
+                <ul>
+                    <li>Meta Business Suite and Ads Manager - take advantage of Business Manager features to set up business assets, provide access rights, and secure ad accounts.</li>
+                    <li>Meta Pixel and CAPI - set up pixel tracking, use the Aggregated event measurement feature, and configure server-side conversions.</li>
+                    <li>Target Audience Frameworks - dive into the audience targeting techniques to learn how to work with different types of audiences.</li>
+                    <li>Creative Strategy and A/B Testing - show great results by applying high-performing video ads, carousel ads, and catalog ads in your campaign.</li>
+                    <li>E-commerce Funnel Retargeting - increase the number of paid clients and keep your customers longer by using conversion funnels.</li>
+                </ul>
 
-    <p>Generate persuasive text and useful assets that guide customers smoothly through their purchase journey.</p>
+                <h3>Module 8: Content Marketing, Copywriting &amp; Storytelling</h3>
 
-    <ul>
-        <li>Theories of copywriting: Implement successful selling methods such as AIDA (Attention, Interest, Desire, Action) and PAS (Problem, Agitate, Solve).</li>
-        <li>Creating Content Strategy: Create a strategy for long publications such as blogs, eBooks, whitepapers, case studies, and email marketing.</li>
-        <li>Writing video scripts: Construct full scripts for advertisements, brand narrative, product description, and videos for YouTube.</li>
-    </ul>
+                <p>Generate persuasive text and useful assets that guide customers smoothly through their purchase journey.</p>
 
-    <h3>Module 9: Email Marketing &amp; Marketing Automation</h3>
+                <ul>
+                    <li>Theories of copywriting: Implement successful selling methods such as AIDA (Attention, Interest, Desire, Action) and PAS (Problem, Agitate, Solve).</li>
+                    <li>Creating Content Strategy: Create a strategy for long publications such as blogs, eBooks, whitepapers, case studies, and email marketing.</li>
+                    <li>Writing video scripts: Construct full scripts for advertisements, brand narrative, product description, and videos for YouTube.</li>
+                </ul>
 
-    <p>Utilize automated customer communication in order to develop the leads, maintain repeat sales, and develop long-term customer relationships.</p>
+                <h3>Module 9: Email Marketing &amp; Marketing Automation</h3>
 
-    <ul>
-        <li>List-building &amp; Opt-in strategies: Create harmless lead capture pop-ups, embedded forms, and landing pages.</li>
-        <li>Email service platforms: Install and run email services like mailchimp, Brevo, ActiveCampaign, and Klaviyo.</li>
-        <li>Automated email sequences: Create welcome series, abandoned cart recovery flows, drip email sequences, and re-engagement campaigns.</li>
-        <li>Deliverability &amp; A/B testing: Improve the rate of opening emails and rate of clicks through management of sender's reputation, subject line testing, as well as SPF/DKIM authentication.</li>
-    </ul>
+                <p>Utilize automated customer communication in order to develop the leads, maintain repeat sales, and develop long-term customer relationships.</p>
 
-    <h3>Module 10: E-Commerce Marketing &amp; Marketplace Optimization</h3>
+                <ul>
+                    <li>List-building &amp; Opt-in strategies: Create harmless lead capture pop-ups, embedded forms, and landing pages.</li>
+                    <li>Email service platforms: Install and run email services like mailchimp, Brevo, ActiveCampaign, and Klaviyo.</li>
+                    <li>Automated email sequences: Create welcome series, abandoned cart recovery flows, drip email sequences, and re-engagement campaigns.</li>
+                    <li>Deliverability &amp; A/B testing: Improve the rate of opening emails and rate of clicks through management of sender's reputation, subject line testing, as well as SPF/DKIM authentication.</li>
+                </ul>
 
-    <p>Boost revenue for e-commerce businesses around the world with unique platforms and conventional e-commerce directories.</p>
+                <h3>Module 10: E-Commerce Marketing &amp; Marketplace Optimization</h3>
 
-    <p>Creating Shopify Stores: Design simple and conversion-driven e-commerce environments that allow for payment processing and stock management.</p>
+                <p>Boost revenue for e-commerce businesses around the world with unique platforms and conventional e-commerce directories.</p>
 
-    <ul>
-        <li>Marketplace Enrichment (Amazon/Flipkart): Improve product descriptions on Amazon (Search Engine Optimization), oversee A+ content, and manage Amazon PPC campaigns.</li>
-        <li>Conversion Optimization (CRO): Minimize issues during checkout, improve product pages, and utilize heatmaps through Hotjar, etc.</li>
-    </ul>
+                <p>Creating Shopify Stores: Design simple and conversion-driven e-commerce environments that allow for payment processing and stock management.</p>
 
-    <h3>Module 11: AI-Driven Digital Marketing &amp; Automation Tools</h3>
+                <ul>
+                    <li>Marketplace Enrichment (Amazon/Flipkart): Improve product descriptions on Amazon (Search Engine Optimization), oversee A+ content, and manage Amazon PPC campaigns.</li>
+                    <li>Conversion Optimization (CRO): Minimize issues during checkout, improve product pages, and utilize heatmaps through Hotjar, etc.</li>
+                </ul>
 
-    <p>Use current platforms in artificial intelligence to speed up the process of making content as well as optimization of campaigns and conducting research.</p>
+                <h3>Module 11: AI-Driven Digital Marketing &amp; Automation Tools</h3>
 
-    <ul>
-        <li>Generative AI for Content and Copy: Use programs like ChatGPT, Claude and Gemini in order to write drafts for blogs, ad properties and emails.</li>
-        <li>Visual and Video Creation through AI: Create videos and marketing pictures by using advanced software such as Midjourney, Canva AI and Runway.</li>
-        <li>Search Engine Optimization through AI: Use artificial intelligence during conducting keyword research and carrying out work on SEO.</li>
-    </ul>
+                <p>Use current platforms in artificial intelligence to speed up the process of making content as well as optimization of campaigns and conducting research.</p>
 
-    <h3>Module 12: Affiliate Marketing, Freelancing &amp; Agency Operations</h3>
+                <ul>
+                    <li>Generative AI for Content and Copy: Use programs like ChatGPT, Claude and Gemini in order to write drafts for blogs, ad properties and emails.</li>
+                    <li>Visual and Video Creation through AI: Create videos and marketing pictures by using advanced software such as Midjourney, Canva AI and Runway.</li>
+                    <li>Search Engine Optimization through AI: Use artificial intelligence during conducting keyword research and carrying out work on SEO.</li>
+                </ul>
 
-    <p>The following are some independent ways to monetize your digital expertise via freelancing, operating your own agency, or leveraging affiliate networks.</p>
+                <h3>Module 12: Affiliate Marketing, Freelancing &amp; Agency Operations</h3>
 
-    <ul>
-        <li>Affiliate Marketing: Sign up and make money on platforms such as Amazon Associates, ClickBank, and Impact Radius.</li>
-        <li>Freelancing: Source clients from online platforms such as Upwork, Fiverr, LinkedIn, and cold emailing.</li>
-        <li>Setting Up an Agency: Package your services and make client proposals, contracts, and reports scalable.</li>
-    </ul>
+                <p>The following are some independent ways to monetize your digital expertise via freelancing, operating your own agency, or leveraging affiliate networks.</p>
 
-</div>
+                <ul>
+                    <li>Affiliate Marketing: Sign up and make money on platforms such as Amazon Associates, ClickBank, and Impact Radius.</li>
+                    <li>Freelancing: Source clients from online platforms such as Upwork, Fiverr, LinkedIn, and cold emailing.</li>
+                    <li>Setting Up an Agency: Package your services and make client proposals, contracts, and reports scalable.</li>
+                </ul>
+
+            </div>
 
 
 

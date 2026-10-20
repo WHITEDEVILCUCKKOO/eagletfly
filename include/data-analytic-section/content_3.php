@@ -35,7 +35,7 @@
             <!-- Card 4 -->
             <div class="ef-why-card ef-why-fade-in ef-why-delay-3">
                 <div class="ef-why-icon-box">💼</div>
-                <h4 class="ef-why-card-title">Placement guarantee</h4>
+                <h4 class="ef-why-card-title">Placement </h4>
                 <p class="ef-why-card-text">Enjoy the services of the company offering help with resumes, GitHub portfolio preparation, practice interviews, and direct employment.</p>
             </div>
         </div>
@@ -86,8 +86,8 @@
     }
 
     .ef-why-title {
-        font-size: 36px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #0f172a;
         margin: 0 0 20px 0;
         line-height: 1.3;

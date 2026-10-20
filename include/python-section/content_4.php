@@ -212,9 +212,9 @@
 .py-jobroles-title {
     margin: 0;
     color: #f8fafc;
-    font-size: clamp(30px, 4vw, 46px);
+    font-size: clamp(26px,3.2vw,36px);
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -1px;
 }
 

@@ -138,7 +138,7 @@
     <div class="aic-main-container">
         <!-- Section Header -->
         <div class="aic-heading-wrap" id="aicScrollHeader">
-            <h2 class="aic-main-title">Artificial Intelligence Course in Delhi</h2>
+            <h1 class="aic-main-title">Artificial Intelligence Course in Delhi</h1>
             <div class="aic-title-glow"></div>
         </div>
 

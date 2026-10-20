@@ -76,8 +76,8 @@
 }
 
 .klr-ks-main-heading {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: clamp(26px,3.2vw,36px);
+    font-weight: 600;
     color: #0b1c3f;
     margin: 0 0 35px 0;
     letter-spacing: -0.5px;

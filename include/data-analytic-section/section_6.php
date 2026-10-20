@@ -36,8 +36,8 @@
 
     .dgfw-heading {
         text-align: center;
-        font-size: 35px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         margin: 0 0 8px 0;
         color: #1a1a1a;
     }
@@ -138,7 +138,7 @@
 
     @media (max-width: 480px) {
         .dgfw-heading {
-            font-size: 19px;
+            font-size: 26px;
         }
         .dgfw-item-text {
             font-size: 12px;
@@ -154,7 +154,7 @@
     <div class="dgfw-glow-right"></div>
 
     <div class="dgfw-container">
-        <h2 class="dgfw-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:35px;">
+        <h2 class="dgfw-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">
             Why Choose <span class="rainbow-animated_without_animtion dgfw-heading-brand">Eagletfly</span> Data Analytics
         </h2>
         <p class="dgfw-subtext">Empowering Careers with Industry-Ready Skills.</p>

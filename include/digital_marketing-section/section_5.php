@@ -97,8 +97,8 @@
     }
 
     .wz-portal-heading {
-        font-size: 26px;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #e2ad3b !important;
         margin-bottom: 30px;
         text-align: center;

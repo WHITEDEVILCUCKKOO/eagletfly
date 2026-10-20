@@ -221,10 +221,10 @@ HEADING
 
         color: black;
 
-        font-size: clamp(30px, 3.8vw, 44px);
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.2;
 
-        font-weight: 700;
+        font-weight: 600;
 
         letter-spacing: -1.1px;
     }
