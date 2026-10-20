@@ -327,8 +327,8 @@
                 <span class="kd-rcs-faq-badge-dot"></span>
                 <span>Frequently Asked Questions</span>
             </div>
-            <h2>
-                Questions About Our 
+            <h2 style="font-size: clamp(26px,3.2vw,36px);">
+                Questions About Our <br>
                 <span>GenAI & Agentic AI Course</span>
             </h2>
             <p>

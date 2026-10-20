@@ -31,8 +31,8 @@
     }
 
     .aic-sec2-title {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         background: linear-gradient(90deg, #f43f5e 0%, #fb7185 50%, #e879f9 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -91,7 +91,7 @@
     /* Responsive Queries */
     @media (max-width: 768px) {
         .aic-sec2-title {
-            font-size: 2rem;
+            font-size: 30px;
         }
         .aic-sec2-card {
             padding: 30px;
@@ -103,7 +103,7 @@
             padding: 50px 15px;
         }
         .aic-sec2-title {
-            font-size: 1.6rem;
+            font-size: 26px;
         }
         .aic-sec2-card {
             padding: 20px;

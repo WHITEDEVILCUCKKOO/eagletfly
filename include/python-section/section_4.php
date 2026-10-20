@@ -280,9 +280,9 @@
 .py-curriculum-title {
     margin: 0;
     color: #092653;
-    font-size: 44px;
+    font-size: clamp(26px,3.2vw,36px);
     line-height: 1;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .py-syllabus-btn {
@@ -450,7 +450,7 @@
     }
 
     .py-curriculum-title {
-        font-size: 36px;
+        font-size: 30px;
     }
 
     .py-syllabus-btn {
@@ -489,7 +489,7 @@
 @media (max-width: 480px) {
 
     .py-curriculum-title {
-        font-size: 32px;
+        font-size: 26px;
     }
 
     .py-module-number {

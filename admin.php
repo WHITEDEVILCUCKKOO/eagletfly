@@ -653,7 +653,7 @@ foreach ($all_courses as $course_count_row) {
                                 <li class="sole78m " id="contect__3" onclick="link_sole_action(this)" data-set="contect-3">All Pages Baners</li>
                                 <li class="sole78m " id="contect__1" onclick="link_sole_action(this)" data-set="contect-1">Add Videos</li>
                                 <li class="sole78m " id="contect__2" onclick="link_sole_action(this)" data-set="contect-2">Add Photos</li>
-                                <li class="sole78m not_show_link" id="contect__4" onclick="link_sole_action(this)" data-set="contect-4">Manage Sender ID</li>
+                                <li class="sole78m " id="contect__4" onclick="link_sole_action(this)" data-set="contect-4">Add Certificates</li>
                                 <li class="sole78m not_show_link" id="contect__5" onclick="link_sole_action(this)" data-set="contect-5">Manage Template</li>
                                 <li class="sole78m not_show_link" id="contect__6" onclick="link_sole_action(this)" data-set="contect-6">My Routes</li>
                                 <li class="sole78m not_show_link" id="contect__7" onclick="link_sole_action(this)" data-set="contect-7">Contact Manager</li>
@@ -2255,97 +2255,97 @@ foreach ($all_courses as $course_count_row) {
                 <!-- section 4 home -->
                 <section id="sms_contect_box" class="section_sub_with all_sejmca8974 ">
 
-                    
+
                     <?php
- 
-                        /* INCLUDE PLACEMENT FUNCTIONS */
-                        include_once "admin_access/functions/Placements/add_placement.php";
-                        include_once "admin_access/functions/Placements/update_placement.php";
-                        include_once "admin_access/functions/Placements/delete_placement.php";
- 
- 
-                        /* ADD PLACEMENT */
-                        if (isset($_POST['add_placement_xk91'])) {
- 
-                            $placement_add_result_xk91 = add_placement($mydb);
- 
-                            echo "<script>
+
+                    /* INCLUDE PLACEMENT FUNCTIONS */
+                    include_once "admin_access/functions/Placements/add_placement.php";
+                    include_once "admin_access/functions/Placements/update_placement.php";
+                    include_once "admin_access/functions/Placements/delete_placement.php";
+
+
+                    /* ADD PLACEMENT */
+                    if (isset($_POST['add_placement_xk91'])) {
+
+                        $placement_add_result_xk91 = add_placement($mydb);
+
+                        echo "<script>
                                 alert(" . json_encode($placement_add_result_xk91['message']) . ");
                                 window.location.href = 'admin.php';
                             </script>";
- 
-                            exit;
-                        }
- 
- 
-                        /* UPDATE PLACEMENT */
-                        if (isset($_POST['update_placement_xk91'])) {
- 
-                            $placement_update_result_xk91 = update_placement($mydb);
- 
-                            echo "<script>
+
+                        exit;
+                    }
+
+
+                    /* UPDATE PLACEMENT */
+                    if (isset($_POST['update_placement_xk91'])) {
+
+                        $placement_update_result_xk91 = update_placement($mydb);
+
+                        echo "<script>
                                 alert(" . json_encode($placement_update_result_xk91['message']) . ");
                                 window.location.href = 'admin.php';
                             </script>";
- 
-                            exit;
-                        }
- 
- 
-                        /* DELETE PLACEMENT */
-                        if (isset($_POST['delete_placement_xk91'])) {
- 
-                            $placement_delete_result_xk91 = delete_placement($mydb);
- 
-                            echo "<script>
+
+                        exit;
+                    }
+
+
+                    /* DELETE PLACEMENT */
+                    if (isset($_POST['delete_placement_xk91'])) {
+
+                        $placement_delete_result_xk91 = delete_placement($mydb);
+
+                        echo "<script>
                                     alert(" . json_encode($placement_delete_result_xk91['message']) . ");
                                     window.location.href = 'admin.php';
                                 </script>";
- 
-                            exit;
-                        }
- 
- 
-                        /* GET ALL PLACEMENTS */
-                        $placement_list_query_xk91 = mysqli_query(
-                            $mydb,
-                            "SELECT *
+
+                        exit;
+                    }
+
+
+                    /* GET ALL PLACEMENTS */
+                    $placement_list_query_xk91 = mysqli_query(
+                        $mydb,
+                        "SELECT *
                             FROM placements
                             ORDER BY placement_sort_order ASC, placement_id DESC"
-                        );
- 
-                        /* PHOTO FOLDER (apne project ke hisaab se badlo) */
-                        $placement_photo_dir_xk91 = 'uploads/placements/';
- 
+                    );
+
+                    /* PHOTO FOLDER (apne project ke hisaab se badlo) */
+                    $placement_photo_dir_xk91 = 'uploads/placements/';
+
                     ?>
- 
- 
+
+
                     <div class="eagletfly-placement-xk91-admin">
- 
+
                         <!-- Header -->
                         <div class="eagletfly-placement-xk91-header">
                             <div>
                                 <h2>Placements Management</h2>
                                 <p>Manage student placements and achievements.</p>
                             </div>
- 
+
                             <button type="button" class="eagletfly-placement-xk91-primary-btn"
                                 onclick="eagletflyPlacementXK91ShowForm('add')">
                                 + Add New Placement
                             </button>
                         </div>
- 
+
                         <!-- Placement List -->
                         <div class="eagletfly-placement-xk91-panel" id="eagletflyPlacementXK91ListPanel">
- 
+
                             <div class="eagletfly-placement-xk91-list-head">
                                 <h3>Placement List</h3>
- 
+
                                 <input type="search"
                                     id="eagletflyPlacementXK91Search"
                                     placeholder="Search student, company or position...">
                             </div>
- 
+
                             <div class="eagletfly-placement-xk91-table-wrap">
                                 <table class="eagletfly-placement-xk91-table">
                                     <thead>
@@ -2360,116 +2360,116 @@ foreach ($all_courses as $course_count_row) {
                                             <th>Action</th>
                                         </tr>
                                     </thead>
- 
+
                                     <tbody id="eagletflyPlacementXK91TableBody">
-                                    <?php if ($placement_list_query_xk91 && mysqli_num_rows($placement_list_query_xk91) > 0): ?>
-                                        <?php while ($row_xk91 = mysqli_fetch_assoc($placement_list_query_xk91)):
- 
-                                            $photo_url_xk91 = !empty($row_xk91['student_photo'])
-                                                ? $placement_photo_dir_xk91 . $row_xk91['student_photo']
-                                                : '';
- 
-                                            $row_data_xk91 = [
-                                                'id'          => $row_xk91['placement_id'],
-                                                'student'     => $row_xk91['student_name'],
-                                                'position'    => $row_xk91['placement_position'],
-                                                'company'     => $row_xk91['company_name'],
-                                                'status'      => $row_xk91['placement_status'],
-                                                'order'       => $row_xk91['placement_sort_order'],
-                                                'description' => $row_xk91['placement_description'] ?? '',
-                                                'photo'       => $photo_url_xk91,
-                                            ];
-                                        ?>
-                                        <tr data-placement-row="true">
-                                            <td><?= (int)$row_xk91['placement_id'] ?></td>
-                                            <td>
-                                                <?php if ($photo_url_xk91): ?>
-                                                    <img src="<?= htmlspecialchars($row_xk91['student_photo'])?>" alt=""
-                                                         style="width:48px;height:48px;object-fit:cover;border-radius:8px">
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?= htmlspecialchars($row_xk91['student_name']) ?></td>
-                                            <td><?= htmlspecialchars($row_xk91['placement_position']) ?></td>
-                                            <td><?= htmlspecialchars($row_xk91['company_name']) ?></td>
-                                            <td><?= htmlspecialchars($row_xk91['placement_status']) ?></td>
-                                            <td><?= (int)$row_xk91['placement_sort_order'] ?></td>
-                                            <td style="white-space:nowrap">
-                                                <button type="button" class="eagletfly-placement-xk91-back-btn"
-                                                    data-placement="<?= htmlspecialchars(json_encode($row_data_xk91), ENT_QUOTES) ?>"
-                                                    onclick="eagletflyPlacementXK91Edit(this)">Edit</button>
- 
-                                                <form method="POST" style="display:inline"
-                                                      onsubmit="return confirm('Delete this placement?')">
-                                                    <input type="hidden" name="placement_id" value="<?= (int)$row_xk91['placement_id'] ?>">
-                                                    <button type="submit" name="delete_placement_xk91" value="1"
-                                                            class="eagletfly-placement-xk91-back-btn">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        <?php endwhile; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="8" class="eagletfly-placement-xk91-empty">
-                                                No placements found.
-                                            </td>
-                                        </tr>
-                                    <?php endif; ?>
+                                        <?php if ($placement_list_query_xk91 && mysqli_num_rows($placement_list_query_xk91) > 0): ?>
+                                            <?php while ($row_xk91 = mysqli_fetch_assoc($placement_list_query_xk91)):
+
+                                                $photo_url_xk91 = !empty($row_xk91['student_photo'])
+                                                    ? $placement_photo_dir_xk91 . $row_xk91['student_photo']
+                                                    : '';
+
+                                                $row_data_xk91 = [
+                                                    'id'          => $row_xk91['placement_id'],
+                                                    'student'     => $row_xk91['student_name'],
+                                                    'position'    => $row_xk91['placement_position'],
+                                                    'company'     => $row_xk91['company_name'],
+                                                    'status'      => $row_xk91['placement_status'],
+                                                    'order'       => $row_xk91['placement_sort_order'],
+                                                    'description' => $row_xk91['placement_description'] ?? '',
+                                                    'photo'       => $photo_url_xk91,
+                                                ];
+                                            ?>
+                                                <tr data-placement-row="true">
+                                                    <td><?= (int)$row_xk91['placement_id'] ?></td>
+                                                    <td>
+                                                        <?php if ($photo_url_xk91): ?>
+                                                            <img src="<?= htmlspecialchars($row_xk91['student_photo']) ?>" alt=""
+                                                                style="width:48px;height:48px;object-fit:cover;border-radius:8px">
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td><?= htmlspecialchars($row_xk91['student_name']) ?></td>
+                                                    <td><?= htmlspecialchars($row_xk91['placement_position']) ?></td>
+                                                    <td><?= htmlspecialchars($row_xk91['company_name']) ?></td>
+                                                    <td><?= htmlspecialchars($row_xk91['placement_status']) ?></td>
+                                                    <td><?= (int)$row_xk91['placement_sort_order'] ?></td>
+                                                    <td style="white-space:nowrap">
+                                                        <button type="button" class="eagletfly-placement-xk91-back-btn"
+                                                            data-placement="<?= htmlspecialchars(json_encode($row_data_xk91), ENT_QUOTES) ?>"
+                                                            onclick="eagletflyPlacementXK91Edit(this)">Edit</button>
+
+                                                        <form method="POST" style="display:inline"
+                                                            onsubmit="return confirm('Delete this placement?')">
+                                                            <input type="hidden" name="placement_id" value="<?= (int)$row_xk91['placement_id'] ?>">
+                                                            <button type="submit" name="delete_placement_xk91" value="1"
+                                                                class="eagletfly-placement-xk91-back-btn">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="8" class="eagletfly-placement-xk91-empty">
+                                                    No placements found.
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
- 
+
                         </div>
- 
+
                         <!-- Add / Update Form -->
                         <div class="eagletfly-placement-xk91-panel eagletfly-placement-xk91-form-panel"
                             id="eagletflyPlacementXK91FormPanel" hidden>
- 
+
                             <div class="eagletfly-placement-xk91-form-heading">
                                 <div>
                                     <h3 id="eagletflyPlacementXK91FormTitle">Add Placement</h3>
                                     <p>Add student details and placement information.</p>
                                 </div>
- 
+
                                 <button type="button" class="eagletfly-placement-xk91-back-btn"
                                     onclick="eagletflyPlacementXK91ShowForm('list')">
                                     ← Back to List
                                 </button>
                             </div>
- 
+
                             <form id="eagletflyPlacementXK91Form"
                                 method="POST"
                                 enctype="multipart/form-data">
- 
+
                                 <input type="hidden" name="placement_id"
                                     id="eagletflyPlacementXK91Id">
- 
+
                                 <!-- Is input ka name JS add/update ke hisaab se badalta hai -->
                                 <input type="hidden" name="add_placement_xk91"
                                     id="eagletflyPlacementXK91Action" value="1">
- 
+
                                 <div class="eagletfly-placement-xk91-form-grid">
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Student">Student Name *</label>
                                         <input type="text" name="student_name"
                                             id="eagletflyPlacementXK91Student"
                                             placeholder="Enter student name" required>
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Position">Placement Position *</label>
                                         <input type="text" name="placement_position"
                                             id="eagletflyPlacementXK91Position"
                                             placeholder="e.g. Software Developer" required>
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Company">Company Name *</label>
                                         <input type="text" name="company_name"
                                             id="eagletflyPlacementXK91Company"
                                             placeholder="Enter company name" required>
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Status">Placement Status *</label>
                                         <select name="placement_status"
@@ -2480,21 +2480,21 @@ foreach ($all_courses as $course_count_row) {
                                             <option value="Inactive">Inactive</option>
                                         </select>
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Order">Sort Order</label>
                                         <input type="number" name="placement_sort_order"
                                             id="eagletflyPlacementXK91Order"
                                             placeholder="0" value="0">
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field">
                                         <label for="eagletflyPlacementXK91Photo">Student Photo *</label>
                                         <input type="file" name="student_photo"
                                             id="eagletflyPlacementXK91Photo"
                                             accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
                                         <small>JPG, PNG or WEBP. Maximum size 5 MB.</small>
- 
+
                                         <div class="epx91-preview-row">
                                             <div id="eagletflyPlacementXK91OldBox" hidden>
                                                 <small>Current photo</small>
@@ -2507,7 +2507,7 @@ foreach ($all_courses as $course_count_row) {
                                             </div>
                                         </div>
                                     </div>
- 
+
                                     <div class="eagletfly-placement-xk91-field eagletfly-placement-xk91-description">
                                         <label for="eagletflyPlacementXK91Description">Description</label>
                                         <textarea name="placement_description"
@@ -2515,28 +2515,28 @@ foreach ($all_courses as $course_count_row) {
                                             rows="4"
                                             placeholder="Optional placement details"></textarea>
                                     </div>
- 
+
                                 </div>
- 
+
                                 <div class="eagletfly-placement-xk91-form-actions">
                                     <button type="button" class="eagletfly-placement-xk91-back-btn"
                                         onclick="eagletflyPlacementXK91ShowForm('list')">
                                         Cancel
                                     </button>
- 
+
                                     <button type="submit"
                                         class="eagletfly-placement-xk91-primary-btn"
                                         id="eagletflyPlacementXK91SubmitBtn">
                                         Save Placement
                                     </button>
                                 </div>
- 
+
                             </form>
                         </div>
- 
+
                     </div>
- 
- 
+
+
                     <style>
                         /* PLACEMENTS UI - isolated styling; overrides legacy admin styles */
                         .eagletfly-placement-xk91-admin {
@@ -2556,11 +2556,11 @@ foreach ($all_courses as $course_count_row) {
                             color: var(--epx91-ink) !important;
                             font-family: Inter, Arial, sans-serif !important;
                         }
- 
+
                         .eagletfly-placement-xk91-admin * {
                             box-sizing: border-box !important
                         }
- 
+
                         .eagletfly-placement-xk91-header,
                         .eagletfly-placement-xk91-list-head,
                         .eagletfly-placement-xk91-form-heading,
@@ -2570,11 +2570,11 @@ foreach ($all_courses as $course_count_row) {
                             justify-content: space-between !important;
                             gap: 18px !important
                         }
- 
+
                         .eagletfly-placement-xk91-header {
                             margin: 0 0 24px !important
                         }
- 
+
                         .eagletfly-placement-xk91-header h2 {
                             margin: 0 0 7px !important;
                             font-size: 27px !important;
@@ -2583,7 +2583,7 @@ foreach ($all_courses as $course_count_row) {
                             letter-spacing: -.5px !important;
                             color: var(--epx91-ink) !important
                         }
- 
+
                         .eagletfly-placement-xk91-header p,
                         .eagletfly-placement-xk91-form-heading p {
                             margin: 0 !important;
@@ -2591,7 +2591,7 @@ foreach ($all_courses as $course_count_row) {
                             line-height: 1.6 !important;
                             color: var(--epx91-muted) !important
                         }
- 
+
                         .eagletfly-placement-xk91-panel {
                             background: #fff !important;
                             border: 1px solid var(--epx91-line) !important;
@@ -2600,11 +2600,11 @@ foreach ($all_courses as $course_count_row) {
                             margin: 0 0 22px !important;
                             box-shadow: 0 8px 28px rgba(26, 45, 84, .055) !important
                         }
- 
+
                         .eagletfly-placement-xk91-list-head {
                             margin: 0 0 20px !important
                         }
- 
+
                         .eagletfly-placement-xk91-list-head h3,
                         .eagletfly-placement-xk91-form-heading h3 {
                             margin: 0 !important;
@@ -2612,17 +2612,17 @@ foreach ($all_courses as $course_count_row) {
                             font-size: 19px !important;
                             font-weight: 750 !important
                         }
- 
+
                         .eagletfly-placement-xk91-list-head input {
                             width: min(100%, 360px) !important;
                             max-width: 100% !important
                         }
- 
+
                         .eagletfly-placement-xk91-table-wrap {
                             width: 100% !important;
                             overflow-x: auto !important
                         }
- 
+
                         .eagletfly-placement-xk91-table {
                             width: 100% !important;
                             min-width: 850px !important;
@@ -2631,7 +2631,7 @@ foreach ($all_courses as $course_count_row) {
                             font-size: 13px !important;
                             background: #fff !important
                         }
- 
+
                         .eagletfly-placement-xk91-table th {
                             background: #f0f4fb !important;
                             color: #4a5c78 !important;
@@ -2641,7 +2641,7 @@ foreach ($all_courses as $course_count_row) {
                             font-weight: 800 !important;
                             white-space: nowrap !important
                         }
- 
+
                         .eagletfly-placement-xk91-table th,
                         .eagletfly-placement-xk91-table td {
                             padding: 15px 13px !important;
@@ -2651,31 +2651,31 @@ foreach ($all_courses as $course_count_row) {
                             border-bottom: 1px solid #edf1f7 !important;
                             color: #34445e !important
                         }
- 
+
                         .eagletfly-placement-xk91-table tbody tr:hover {
                             background: #f8faff !important
                         }
- 
+
                         .eagletfly-placement-xk91-empty {
                             padding: 36px 18px !important;
                             text-align: center !important;
                             color: var(--epx91-muted) !important
                         }
- 
+
                         .eagletfly-placement-xk91-form-grid {
                             display: grid !important;
                             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                             gap: 21px !important;
                             margin-top: 25px !important
                         }
- 
+
                         .eagletfly-placement-xk91-field {
                             display: flex !important;
                             flex-direction: column !important;
                             gap: 8px !important;
                             min-width: 0 !important
                         }
- 
+
                         .eagletfly-placement-xk91-field label {
                             display: block !important;
                             margin: 0 !important;
@@ -2684,7 +2684,7 @@ foreach ($all_courses as $course_count_row) {
                             font-weight: 750 !important;
                             letter-spacing: .15px !important
                         }
- 
+
                         .eagletfly-placement-xk91-field input,
                         .eagletfly-placement-xk91-field select,
                         .eagletfly-placement-xk91-field textarea,
@@ -2705,12 +2705,12 @@ foreach ($all_courses as $course_count_row) {
                             box-shadow: none !important;
                             outline: none !important
                         }
- 
+
                         .eagletfly-placement-xk91-field textarea {
                             min-height: 110px !important;
                             resize: vertical !important
                         }
- 
+
                         .eagletfly-placement-xk91-field input:focus,
                         .eagletfly-placement-xk91-field select:focus,
                         .eagletfly-placement-xk91-field textarea:focus,
@@ -2718,17 +2718,17 @@ foreach ($all_courses as $course_count_row) {
                             border-color: var(--epx91-blue) !important;
                             box-shadow: 0 0 0 3px rgba(36, 87, 214, .12) !important
                         }
- 
+
                         .eagletfly-placement-xk91-field small {
                             color: var(--epx91-muted) !important;
                             font-size: 11px !important;
                             line-height: 1.5 !important
                         }
- 
+
                         .eagletfly-placement-xk91-description {
                             grid-column: 1/-1 !important
                         }
- 
+
                         .eagletfly-placement-xk91-primary-btn,
                         .eagletfly-placement-xk91-back-btn {
                             display: inline-flex !important;
@@ -2747,33 +2747,33 @@ foreach ($all_courses as $course_count_row) {
                             box-shadow: none !important;
                             transition: background .15s ease, border-color .15s ease !important
                         }
- 
+
                         .eagletfly-placement-xk91-primary-btn {
                             border: 1px solid var(--epx91-blue) !important;
                             background: var(--epx91-blue) !important;
                             color: #fff !important
                         }
- 
+
                         .eagletfly-placement-xk91-primary-btn:hover {
                             background: var(--epx91-blue-dark) !important;
                             border-color: var(--epx91-blue-dark) !important
                         }
- 
+
                         .eagletfly-placement-xk91-back-btn {
                             border: 1px solid #d8e1ee !important;
                             background: #fff !important;
                             color: #34445e !important
                         }
- 
+
                         .eagletfly-placement-xk91-back-btn:hover {
                             background: #f2f5fa !important
                         }
- 
+
                         .eagletfly-placement-xk91-form-actions {
                             justify-content: flex-end !important;
                             margin-top: 25px !important
                         }
- 
+
                         /* Photo preview (old / new) */
                         .epx91-preview-row {
                             display: flex !important;
@@ -2781,7 +2781,7 @@ foreach ($all_courses as $course_count_row) {
                             flex-wrap: wrap !important;
                             margin-top: 6px !important
                         }
- 
+
                         .epx91-preview-row img {
                             display: block !important;
                             width: 110px !important;
@@ -2791,58 +2791,58 @@ foreach ($all_courses as $course_count_row) {
                             border: 1px solid #d8e1ee !important;
                             margin: 4px 0 !important
                         }
- 
+
                         [hidden] {
                             display: none !important
                         }
- 
+
                         @media(max-width:700px) {
                             .eagletfly-placement-xk91-admin {
                                 padding: 15px !important;
                                 border-radius: 10px !important
                             }
- 
+
                             .eagletfly-placement-xk91-header,
                             .eagletfly-placement-xk91-list-head,
                             .eagletfly-placement-xk91-form-heading {
                                 align-items: stretch !important;
                                 flex-direction: column !important
                             }
- 
+
                             .eagletfly-placement-xk91-header h2 {
                                 font-size: 22px !important
                             }
- 
+
                             .eagletfly-placement-xk91-panel {
                                 padding: 16px !important
                             }
- 
+
                             .eagletfly-placement-xk91-list-head input {
                                 width: 100% !important
                             }
- 
+
                             .eagletfly-placement-xk91-form-grid {
                                 grid-template-columns: minmax(0, 1fr) !important;
                                 gap: 17px !important
                             }
- 
+
                             .eagletfly-placement-xk91-description {
                                 grid-column: auto !important
                             }
- 
+
                             .eagletfly-placement-xk91-header>button {
                                 align-self: flex-start !important
                             }
- 
+
                             .eagletfly-placement-xk91-form-actions {
                                 flex-wrap: wrap !important
                             }
                         }
                     </style>
- 
+
                     <script>
                         const epx91 = id => document.getElementById('eagletflyPlacementXK91' + id);
- 
+
                         function eagletflyPlacementXK91ResetPreview() {
                             if (epx91('NewImg').src && epx91('NewImg').src.startsWith('blob:')) {
                                 URL.revokeObjectURL(epx91('NewImg').src);
@@ -2853,20 +2853,20 @@ foreach ($all_courses as $course_count_row) {
                             epx91('NewImg').removeAttribute('src');
                             epx91('NewName').textContent = '';
                         }
- 
+
                         function eagletflyPlacementXK91ShowForm(mode) {
                             const listPanel = epx91('ListPanel');
                             const formPanel = epx91('FormPanel');
- 
+
                             if (mode === 'list') {
                                 formPanel.hidden = true;
                                 listPanel.hidden = false;
                                 return;
                             }
- 
+
                             listPanel.hidden = true;
                             formPanel.hidden = false;
- 
+
                             if (mode === 'add') {
                                 epx91('Form').reset();
                                 epx91('Id').value = '';
@@ -2878,7 +2878,7 @@ foreach ($all_courses as $course_count_row) {
                                 epx91('SubmitBtn').textContent = 'Save Placement';
                                 eagletflyPlacementXK91ResetPreview();
                             }
- 
+
                             if (mode === 'update') {
                                 epx91('Action').name = 'update_placement_xk91';
                                 epx91('Photo').required = false;
@@ -2886,60 +2886,60 @@ foreach ($all_courses as $course_count_row) {
                                 epx91('SubmitBtn').textContent = 'Update Placement';
                             }
                         }
- 
+
                         /* Edit button: form me purani values bharo */
                         function eagletflyPlacementXK91Edit(btn) {
                             const d = JSON.parse(btn.dataset.placement);
- 
+
                             eagletflyPlacementXK91ShowForm('update');
                             epx91('Form').reset();
                             eagletflyPlacementXK91ResetPreview();
- 
-                            epx91('Id').value          = d.id;
-                            epx91('Student').value     = d.student;
-                            epx91('Position').value    = d.position;
-                            epx91('Company').value     = d.company;
-                            epx91('Status').value      = d.status;
-                            epx91('Order').value       = d.order;
+
+                            epx91('Id').value = d.id;
+                            epx91('Student').value = d.student;
+                            epx91('Position').value = d.position;
+                            epx91('Company').value = d.company;
+                            epx91('Status').value = d.status;
+                            epx91('Order').value = d.order;
                             epx91('Description').value = d.description;
- 
+
                             if (d.photo) {
                                 epx91('OldImg').src = d.photo;
                                 epx91('OldBox').hidden = false;
                             }
                         }
- 
+
                         /* Photo select hote hi preview */
-                        epx91('Photo').addEventListener('change', function () {
+                        epx91('Photo').addEventListener('change', function() {
                             const file = this.files[0];
                             const isUpdate = epx91('Action').name === 'update_placement_xk91';
- 
+
                             if (!file) {
                                 epx91('NewBox').hidden = true;
                                 return;
                             }
- 
+
                             if (file.size > 5 * 1024 * 1024) {
                                 alert('Image 5 MB se badi hai.');
                                 this.value = '';
                                 epx91('NewBox').hidden = true;
                                 return;
                             }
- 
+
                             epx91('NewImg').src = URL.createObjectURL(file);
                             epx91('NewName').textContent = file.name;
                             epx91('NewLabel').textContent = isUpdate ? 'New photo (save karne par replace hogi)' : 'Selected photo';
                             epx91('NewBox').hidden = false;
                         });
- 
+
                         /* Search */
-                        epx91('Search').addEventListener('input', function () {
+                        epx91('Search').addEventListener('input', function() {
                             const q = this.value.toLowerCase().trim();
                             document.querySelectorAll('#eagletflyPlacementXK91TableBody tr[data-placement-row="true"]')
                                 .forEach(row => row.hidden = !row.textContent.toLowerCase().includes(q));
                         });
                     </script>
- 
+
 
 
                 </section>
@@ -4822,22 +4822,661 @@ foreach ($all_courses as $course_count_row) {
                 </section>
 
 
-
-
-
-
-
-
-
                 <!-- sublink box 3 -->
                 <section id="contect_3_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa course-video-section-xk91">
                     3
                 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- sublink box 4 -->
+
+                <?php
+
+                require_once __DIR__ . '/admin_access/functions/Certificates/add_certificate.php';
+                require_once __DIR__ . '/admin_access/functions/Certificates/update_certificate.php';
+                require_once __DIR__ . '/admin_access/functions/Certificates/delete_certificate.php';
+
+                $certificate_result_xk91 = null;
+
+                if (isset($_POST['add_certificate_xk91'])) {
+                    $certificate_result_xk91 = add_certificate($mydb);
+                } elseif (isset($_POST['update_certificate_xk91'])) {
+                    $certificate_result_xk91 = update_certificate($mydb);
+                } elseif (isset($_POST['delete_certificate_xk91'])) {
+                    $certificate_result_xk91 = delete_certificate($mydb);
+                }
+
+                if ($certificate_result_xk91 !== null) {
+                    echo '<script>alert(' .
+                        json_encode($certificate_result_xk91['message']) .
+                        '); window.location.href = "admin.php";</script>';
+                    exit;
+                }
+
+                ?>
                 <section id="contect_4_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
-                    4
+
+                    <style>
+                        /* Eagletfly Student Certificates & Reviews — XK91 */
+
+                        .eagletfly-certificates-xk91 {
+                            width: 100%;
+                            box-sizing: border-box;
+                            padding: 28px;
+                            color: #172033;
+                            background: #ffffff;
+                            border: 1px solid #e1e6ef;
+                            border-radius: 18px;
+                            font-family: Arial, sans-serif;
+                        }
+
+                        .eagletfly-certificates-xk91 *,
+                        .eagletfly-certificates-xk91 *::before,
+                        .eagletfly-certificates-xk91 *::after {
+                            box-sizing: border-box;
+                        }
+
+                        .eagletfly-certificates-header-xk91 {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            gap: 18px;
+                            margin-bottom: 26px;
+                        }
+
+                        .eagletfly-certificates-header-xk91 h2 {
+                            margin: 0 0 8px;
+                            color: #172554;
+                            font-size: 28px;
+                            font-weight: 700;
+                            line-height: 1.3;
+                        }
+
+                        .eagletfly-certificates-header-xk91 p {
+                            margin: 0;
+                            color: #64748b;
+                            font-size: 14px;
+                            line-height: 1.6;
+                        }
+
+                        .eagletfly-certificates-xk91 button {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+                            min-height: 42px;
+                            padding: 10px 18px;
+                            border: 1px solid transparent;
+                            border-radius: 9px;
+                            background: #1d4ed8;
+                            color: #ffffff;
+                            font-size: 14px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.2s ease;
+                        }
+
+                        .eagletfly-certificates-xk91 button:hover {
+                            background: #1e40af;
+                        }
+
+                        .eagletfly-certificates-xk91 button:focus-visible,
+                        .eagletfly-certificates-xk91 input:focus-visible,
+                        .eagletfly-certificates-xk91 select:focus-visible,
+                        .eagletfly-certificates-xk91 textarea:focus-visible {
+                            outline: 3px solid #93c5fd;
+                            outline-offset: 2px;
+                        }
+
+                        .eagletfly-certificates-table-wrap-xk91 {
+                            width: 100%;
+                            overflow-x: auto;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 12px;
+                        }
+
+                        .eagletfly-certificates-table-xk91 {
+                            width: 100%;
+                            min-width: 760px;
+                            border-collapse: collapse;
+                            background: #ffffff;
+                            text-align: left;
+                        }
+
+                        .eagletfly-certificates-table-xk91 thead {
+                            background: #f1f5f9;
+                        }
+
+                        .eagletfly-certificates-table-xk91 th {
+                            padding: 15px 16px;
+                            color: #475569;
+                            font-size: 12px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            white-space: nowrap;
+                        }
+
+                        .eagletfly-certificates-table-xk91 td {
+                            padding: 14px 16px;
+                            border-top: 1px solid #edf0f5;
+                            color: #334155;
+                            font-size: 14px;
+                            vertical-align: middle;
+                        }
+
+                        .eagletfly-certificates-table-xk91 tbody tr:hover {
+                            background: #f8fafc;
+                        }
+
+                        .eagletfly-certificate-thumb-xk91 {
+                            display: block;
+                            width: 58px;
+                            height: 58px;
+                            object-fit: cover;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                        }
+
+                        .eagletfly-certificates-table-xk91 td[colspan] {
+                            padding: 35px 16px;
+                            color: #64748b;
+                            text-align: center;
+                        }
+
+                        .eagletfly-certificates-xk91 form label,
+                        #eagletflyCertificatesFormXK91>form>label {
+                            display: block;
+                            margin: 18px 0 7px;
+                            color: #334155;
+                            font-size: 13px;
+                            font-weight: 600;
+                        }
+
+                        #eagletflyCertificatesFormXK91 {
+                            max-width: 760px;
+                            margin: 24px auto 0;
+                            padding: 26px;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 14px;
+                            background: #f8fafc;
+                        }
+
+                        #eagletflyCertificatesFormXK91[hidden] {
+                            display: none !important;
+                        }
+
+                        #eagletflyCertificatesFormXK91 h3 {
+                            margin: 0 0 22px;
+                            color: #172554;
+                            font-size: 22px;
+                        }
+
+                        #eagletflyCertificatesFormXK91 input:not([type="hidden"]),
+                        #eagletflyCertificatesFormXK91 select,
+                        #eagletflyCertificatesFormXK91 textarea {
+                            display: block;
+                            width: 100%;
+                            min-height: 44px;
+                            padding: 11px 12px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 8px;
+                            background: #ffffff;
+                            color: #172033;
+                            font: inherit;
+                            font-size: 14px;
+                        }
+
+                        #eagletflyCertificatesFormXK91 textarea {
+                            min-height: 110px;
+                            resize: vertical;
+                        }
+
+                        #eagletflyCertificatesFormXK91 input[type="file"] {
+                            padding: 9px;
+                        }
+
+                        #eagletflyCertificatesFormXK91 input:focus,
+                        #eagletflyCertificatesFormXK91 select:focus,
+                        #eagletflyCertificatesFormXK91 textarea:focus {
+                            border-color: #2563eb;
+                            outline: none;
+                        }
+
+                        @media (max-width: 768px) {
+                            .eagletfly-certificates-xk91 {
+                                padding: 18px 12px;
+                                border-radius: 12px;
+                            }
+
+                            .eagletfly-certificates-header-xk91 {
+                                align-items: flex-start;
+                                flex-direction: column;
+                            }
+
+                            .eagletfly-certificates-header-xk91 h2 {
+                                font-size: 23px;
+                            }
+
+                            #eagletflyCertificatesFormXK91 {
+                                padding: 18px 12px;
+                            }
+                        }
+                    </style>
+                    <!-- SECTION 4: STUDENT CERTIFICATES & REVIEWS -->
+
+                    <?php
+                    include_once "admin_access/functions/Certificates/add_certificate.php";
+                    include_once "admin_access/functions/Certificates/update_certificate.php";
+                    include_once "admin_access/functions/Certificates/delete_certificate.php";
+                    ?>
+
+                    <div class="eagletfly-certificates-xk91">
+
+                        <div class="eagletfly-certificates-header-xk91">
+                            <div>
+                                <h2>Student Certificates & Reviews</h2>
+                                <p>Manage student achievements, photos and reviews.</p>
+                            </div>
+
+                            <button type="button"
+                                onclick="eagletflyCertificatesShowFormXK91('add')">
+                                + Add Certificate
+                            </button>
+                        </div>
+
+                        <div id="eagletflyCertificatesListXK91">
+
+                            <?php
+                            $certificates_query_xk91 = mysqli_query(
+                                $mydb,
+                                "SELECT * FROM student_certificates
+                                    ORDER BY certificate_sort_order ASC,
+                                    certificate_id DESC"
+                            );
+                            ?>
+
+                            <div class="eagletfly-certificates-table-wrap-xk91">
+                                <table class="eagletfly-certificates-table-xk91">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Photo</th>
+                                            <th>Student</th>
+                                            <th>Course</th>
+                                            <th>Rating</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php if (
+                                            $certificates_query_xk91 &&
+                                            mysqli_num_rows($certificates_query_xk91) > 0
+                                        ): ?>
+
+                                            <?php while (
+                                                $certificate_xk91 =
+                                                mysqli_fetch_assoc($certificates_query_xk91)
+                                            ): ?>
+
+                                                <tr>
+                                                    <td>
+                                                        <?= (int)$certificate_xk91['certificate_id'] ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?php if (!empty($certificate_xk91['student_photo'])): ?>
+                                                            <img
+                                                                src="<?= htmlspecialchars($certificate_xk91['student_photo'], ENT_QUOTES, 'UTF-8') ?>"
+                                                                alt="Student certificate"
+                                                                class="eagletfly-certificate-thumb-xk91">
+                                                        <?php endif; ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?= htmlspecialchars($certificate_xk91['student_name']) ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?= htmlspecialchars($certificate_xk91['course_name']) ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?= str_repeat(
+                                                            '★',
+                                                            min(5, (int)$certificate_xk91['review_rating'])
+                                                        ) ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <?= htmlspecialchars($certificate_xk91['certificate_status']) ?>
+                                                    </td>
+
+                                                    <td>
+                                                        <button type="button"
+                                                            onclick="eagletflyCertificatesEditXK91(
+                                                <?= htmlspecialchars(
+                                                    json_encode($certificate_xk91),
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                ) ?>
+                                            )">
+                                                            Edit
+                                                        </button>
+
+                                                        <form method="POST"
+                                                            onsubmit="return confirm('Delete this certificate?')"
+                                                            style="display:inline">
+
+                                                            <input type="hidden"
+                                                                name="certificate_id"
+                                                                value="<?= (int)$certificate_xk91['certificate_id'] ?>">
+
+                                                            <button type="submit"
+                                                                name="delete_certificate_xk91"
+                                                                value="1">
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+
+                                            <?php endwhile; ?>
+
+                                        <?php else: ?>
+
+                                            <tr>
+                                                <td colspan="7">
+                                                    No certificates added yet.
+                                                </td>
+                                            </tr>
+
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="eagletflyCertificatesFormXK91" hidden>
+                            <h3 id="eagletflyCertificatesFormTitleXK91">
+                                Add Student Certificate
+                            </h3>
+
+                            <form method="POST" enctype="multipart/form-data">
+
+                                <input type="hidden"
+                                    name="certificate_id"
+                                    id="eagletflyCertificateIdXK91">
+
+                                <input type="hidden"
+                                    name="add_certificate_xk91"
+                                    id="eagletflyCertificateActionXK91"
+                                    value="1">
+
+                                <label>Student Name *</label>
+                                <input type="text" name="student_name"
+                                    id="eagletflyCertificateStudentXK91" required>
+
+                                <label>Course Name *</label>
+                                <input type="text" name="course_name"
+                                    id="eagletflyCertificateCourseXK91" required>
+
+                                <label>Certificate Title</label>
+                                <input type="text" name="certificate_title"
+                                    id="eagletflyCertificateTitleXK91"
+                                    value="Certificate of Training">
+
+                                <label>Student Photo *</label>
+                                <input type="file" name="student_photo"
+                                    id="eagletflyCertificatePhotoXK91"
+                                    accept=".jpg,.jpeg,.png,.webp"
+                                    required>
+
+                                <input type="hidden" name="existing_photo"
+                                    id="eagletflyCertificateExistingPhotoXK91">
+
+                                <label>Student Review</label>
+                                <textarea name="student_review"
+                                    id="eagletflyCertificateReviewXK91"
+                                    rows="4"></textarea>
+
+                                <label>Rating</label>
+                                <select name="review_rating"
+                                    id="eagletflyCertificateRatingXK91">
+                                    <option value="5">5 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="3">3 Stars</option>
+                                    <option value="2">2 Stars</option>
+                                    <option value="1">1 Star</option>
+                                </select>
+
+                                <label>Certificate Date</label>
+                                <input type="date" name="certificate_date"
+                                    id="eagletflyCertificateDateXK91">
+
+                                <label>Status</label>
+                                <select name="certificate_status"
+                                    id="eagletflyCertificateStatusXK91">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+
+                                <label>Sort Order</label>
+                                <input type="number" name="certificate_sort_order"
+                                    id="eagletflyCertificateOrderXK91" value="0">
+
+                                <div style="margin-top:20px;display:flex;gap:10px">
+                                    <button type="button"
+                                        onclick="eagletflyCertificatesShowFormXK91('list')">
+                                        Cancel
+                                    </button>
+
+                                    <button type="submit"
+                                        id="eagletflyCertificateSubmitXK91">
+                                        Save Certificate
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        function eagletflyCertificatesShowFormXK91(mode) {
+                            const list = document.getElementById('eagletflyCertificatesListXK91');
+                            const form = document.getElementById('eagletflyCertificatesFormXK91');
+                            const title = document.getElementById('eagletflyCertificatesFormTitleXK91');
+                            const action = document.getElementById('eagletflyCertificateActionXK91');
+                            const photo = document.getElementById('eagletflyCertificatePhotoXK91');
+
+                            if (!list || !form) return;
+
+                            if (mode === 'list') {
+                                form.hidden = true;
+                                list.hidden = false;
+                                return;
+                            }
+
+                            list.hidden = true;
+                            form.hidden = false;
+
+                            if (mode === 'add') {
+                                form.querySelector('form').reset();
+
+                                document.getElementById('eagletflyCertificateIdXK91').value = '';
+                                document.getElementById('eagletflyCertificateExistingPhotoXK91').value = '';
+                                document.getElementById('eagletflyCertificateTitleXK91').value =
+                                    'Certificate of Training';
+                                document.getElementById('eagletflyCertificateRatingXK91').value = '5';
+                                document.getElementById('eagletflyCertificateStatusXK91').value = 'Active';
+                                document.getElementById('eagletflyCertificateOrderXK91').value = '0';
+
+                                action.name = 'add_certificate_xk91';
+                                action.value = '1';
+                                photo.required = true;
+
+                                title.textContent = 'Add Student Certificate';
+                                document.getElementById('eagletflyCertificateSubmitXK91').textContent =
+                                    'Save Certificate';
+                            }
+
+                            form.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+
+                        function eagletflyCertificatesEditXK91(certificate) {
+                            if (!certificate) return;
+
+                            eagletflyCertificatesShowFormXK91('edit');
+
+                            document.getElementById('eagletflyCertificateIdXK91').value =
+                                certificate.certificate_id || '';
+
+                            document.getElementById('eagletflyCertificateStudentXK91').value =
+                                certificate.student_name || '';
+
+                            document.getElementById('eagletflyCertificateCourseXK91').value =
+                                certificate.course_name || '';
+
+                            document.getElementById('eagletflyCertificateTitleXK91').value =
+                                certificate.certificate_title || 'Certificate of Training';
+
+                            document.getElementById('eagletflyCertificateExistingPhotoXK91').value =
+                                certificate.student_photo || '';
+
+                            document.getElementById('eagletflyCertificateReviewXK91').value =
+                                certificate.student_review || '';
+
+                            document.getElementById('eagletflyCertificateRatingXK91').value =
+                                certificate.review_rating || '5';
+
+                            document.getElementById('eagletflyCertificateDateXK91').value =
+                                certificate.certificate_date || '';
+
+                            document.getElementById('eagletflyCertificateStatusXK91').value =
+                                certificate.certificate_status || 'Active';
+
+                            document.getElementById('eagletflyCertificateOrderXK91').value =
+                                certificate.certificate_sort_order || '0';
+
+                            document.getElementById('eagletflyCertificateActionXK91').name =
+                                'update_certificate_xk91';
+
+                            document.getElementById('eagletflyCertificateActionXK91').value = '1';
+
+                            document.getElementById('eagletflyCertificatePhotoXK91').required = false;
+
+                            document.getElementById('eagletflyCertificatesFormTitleXK91').textContent =
+                                'Update Student Certificate';
+
+                            document.getElementById('eagletflyCertificateSubmitXK91').textContent =
+                                'Update Certificate';
+                        }
+
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const photoInput = document.getElementById('eagletflyCertificatePhotoXK91');
+
+                            if (!photoInput) return;
+
+                            photoInput.addEventListener('change', function() {
+                                const file = this.files && this.files[0];
+
+                                if (!file) return;
+
+                                if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                                    alert('Please select a JPG, PNG or WEBP image.');
+                                    this.value = '';
+                                    return;
+                                }
+
+                                if (file.size > 5 * 1024 * 1024) {
+                                    alert('Image size must be 5 MB or smaller.');
+                                    this.value = '';
+                                    return;
+                                }
+
+                                let preview = document.getElementById('eagletflyCertificatePreviewXK91');
+
+                                if (!preview) {
+                                    preview = document.createElement('img');
+                                    preview.id = 'eagletflyCertificatePreviewXK91';
+                                    preview.alt = 'Selected student photo';
+                                    preview.style.cssText =
+                                        'display:block;width:120px;height:120px;object-fit:cover;' +
+                                        'margin-top:12px;border-radius:10px;border:1px solid #cbd5e1;';
+
+                                    this.insertAdjacentElement('afterend', preview);
+                                }
+
+                                if (preview.dataset.objectUrl) {
+                                    URL.revokeObjectURL(preview.dataset.objectUrl);
+                                }
+
+                                preview.dataset.objectUrl = URL.createObjectURL(file);
+                                preview.src = preview.dataset.objectUrl;
+                            });
+                        });
+                    </script>
+
                 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <!-- sublink box 5 -->
                 <section id="contect_5_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">

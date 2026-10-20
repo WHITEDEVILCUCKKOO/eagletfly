@@ -435,6 +435,7 @@ $global_info = get_global_info($mydb);
       <!-- 4. Mobile Dropdown Menu -->
       <div class="mobile-menu" id="mobileMenu">
 
+        <a href="index.php">Home</a>
         <a href="about.php">About</a>
 
 

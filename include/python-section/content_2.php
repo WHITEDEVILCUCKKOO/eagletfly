@@ -293,9 +293,9 @@
     .py-tools-title {
         margin: 0;
         color: #ffffff;
-        font-size: 38px;
+        font-size: clamp(26px,3.2vw,36px);
         line-height: 1.2;
-        font-weight: 700;
+        font-weight: 800;
     }
 
     .py-tools-divider {
@@ -440,7 +440,7 @@
         }
 
         .py-tools-title {
-            font-size: 32px;
+            font-size: 30px;
         }
 
         .py-tools-grid {

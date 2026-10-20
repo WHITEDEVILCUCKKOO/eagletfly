@@ -59,8 +59,8 @@
     }
 
     .kdh-heading {
-        font-size: 44px;
-        font-weight: 00;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         line-height: 1.3;
         color: #fff;
         margin: 0 0 18px 0;
@@ -450,7 +450,7 @@
 
         <div>
             <p class="kdh-eyebrow">SMARTER SYSTEMS. INTELLIGENT FUTURE</p>
-            <h1 class="kdh-heading">Machine Learning<br>& <span class="animated-gradient-text">AI Solutions</span></h1>
+            <h2 class="kdh-heading">Machine Learning<br>& <span class="animated-gradient-text" style="font-size: 36px;">AI Solutions</span></h2>
             <p class="kdh-subtext">We build intelligent solutions using Machine Learning and Artificial Intelligence to help businesses automate processes, gain insights and drive innovation</p>
             <br>
 

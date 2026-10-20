@@ -31,8 +31,8 @@
     }
 
     .techUse-mainTitle {
-        font-size: 26px;
-        font-weight: 800;
+        font-size:clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #1f1b3a;
         margin: 0 0 8px 0;
         line-height: 1.3;
@@ -412,7 +412,7 @@
         }
 
         .techUse-mainTitle {
-            font-size: 21px;
+            font-size: 26px;
         }
     }
 

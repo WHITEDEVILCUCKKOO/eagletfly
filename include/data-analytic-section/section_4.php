@@ -247,7 +247,7 @@
             padding: 24px 14px 50px;
         }
         .dgf-heading {
-            font-size: 21px;
+            font-size: 26px;
         }
         .dgf-eyebrow {
             font-size: 13px;
@@ -273,7 +273,7 @@
 <section class="asdhi979">
     <div class="dgf-syllabus-wrapper">
 
-        <h1 class="dgf-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:35px;">
+        <h1 class="dgf-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">
             EagletFly Solutions Data Analytics Course
             <span class="dgf-heading-line2 rainbow-animated_without_animtion" style="font-style: normal;">in Delhi Syllabus</span>
         </h1>

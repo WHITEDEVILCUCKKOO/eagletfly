@@ -16,8 +16,8 @@
     }
 
     .dgfo-heading {
-        font-size: 32px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         line-height: 1.3;
         margin: 0 0 18px 0;
     }
@@ -111,7 +111,7 @@
     /* ---------- responsive ---------- */
     @media (max-width: 640px) {
         .dgfo-heading {
-            font-size: 24px;
+            font-size: 26px;
         }
         .dgfo-subtext {
             font-size: 13.5px;
@@ -131,7 +131,7 @@
 
 <section class="dgfo-section">
     <p class="dgfo-eyebrow sole_3_background">CAREER OUTCOMES</p>
-    <h2 class="dgfo-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:35px;">
+    <h2 class="dgfo-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">
         Roles You Can Apply For <span class="rainbow-animated_without_animtion dgfo-heading-accent sole_3_background">After This Program</span>
     </h2>
     <br><br>

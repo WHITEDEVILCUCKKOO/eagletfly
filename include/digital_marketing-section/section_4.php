@@ -34,8 +34,8 @@
         margin: 0 auto;
         text-align: center;
         color: #ffffff;
-        font-size: clamp(20px, 3.2vw, 27px);
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         line-height: 1.35;
         text-align: center;
     }

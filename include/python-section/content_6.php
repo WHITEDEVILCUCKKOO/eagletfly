@@ -25,18 +25,18 @@
             </div>
 
             <!-- Badge -->
-            <span class="py-career-cta-badge">
+            <span class="py-career-cta-badge" style="text-align: center;margin:auto;">
                 START YOUR JOURNEY
             </span>
 
             <!-- Heading -->
-            <h2 class="py-career-cta-title">
+            <h2 class="py-career-cta-title" style="text-align: center;margin:auto;">
                 Kickstart Your Software Career
                 <span>with EagletFly Solutions</span>
             </h2>
 
             <!-- Content -->
-            <p class="py-career-cta-text">
+            <p class="py-career-cta-text" style="text-align: center;margin:auto;">
                 Take the first step toward a high-growth career in software
                 development. Enroll in the upcoming batch of our
                 <strong>Python Training in Delhi</strong> at EagletFly Solutions
@@ -279,9 +279,9 @@
     max-width: 850px;
     margin: 0 auto;
     color: #0f172a;
-    font-size: clamp(30px, 4vw, 46px);
+    font-size: clamp(26px,3.2vw,36px);
     line-height: 1.15;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -1px;
 }
 

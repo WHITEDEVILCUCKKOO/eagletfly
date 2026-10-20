@@ -29,8 +29,8 @@
     }
 
     .aic-sec3-title {
-        font-size: 2.4rem;
-        font-weight: 700;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #0f172a;
         margin-bottom: 12px;
     }
@@ -112,7 +112,7 @@
         }
 
         .aic-sec3-title {
-            font-size: 1.9rem;
+            font-size: 30px;
         }
 
         .aic-sec3-card {
@@ -126,7 +126,7 @@
         }
 
         .aic-sec3-title {
-            font-size: 1.6rem;
+            font-size: 26px;
         }
     }
 </style>

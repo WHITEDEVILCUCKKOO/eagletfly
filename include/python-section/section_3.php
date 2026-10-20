@@ -22,9 +22,9 @@
         }
 
         .kd-cov-heading {
-            font-size: 42px;
+            font-size: clamp(26px,3.2vw,36px);
             line-height: 1.15;
-            font-weight: 800;
+            font-weight: 600;
             letter-spacing: -.02em;
             margin: 0 0 26px;
             color: #12121f;
@@ -288,7 +288,7 @@
             }
 
             .kd-cov-heading {
-                font-size: 30px;
+                font-size: 26px;
             }
 
             .kd-cov-form-wrap {
@@ -304,9 +304,9 @@
        <div>
     <p class="kd-cov-eyebrow">COURSE OVERVIEW</p>
 
-    <h1 class="kd-cov-heading">
+    <h2 class="kd-cov-heading">
         Why Pursue Python Training in Delhi NCR?
-    </h1>
+    </h2>
 
     <div class="kd-cov-body-wrap" id="kdCovBody">
 

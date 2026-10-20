@@ -939,7 +939,7 @@
           projects. Regular workshops and appropriate evaluations are other trademarks of our course construction.
 
           As the role of our job willingness program, we guide you through a set of Mock interviews accompanied by
-          business veterans. Our purpose is not merely to land our learners in better jobs but to guarantee that
+          business veterans. Our purpose is not merely to land our learners in better jobs but to  that
           they are qualified to become the greatest programmers in the world.</p>
       </div>
     </div>

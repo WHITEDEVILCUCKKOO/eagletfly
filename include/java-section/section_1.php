@@ -705,19 +705,19 @@
             <div class="kd-podcast-hero-copy">
                 <div class="kd-podcast-eyebrow">
                     <span class="kd-podcast-eyebrow-line"></span>
-                    JAVA PROGRAMMING COURSE
+                    JAVA PROGRAMMING COURSE AT EAGLETFLY SOLUTIONS
                 </div>
 
                 <h1>
-                    Master Java Programming
-                    <span> Course In Delhi </span> &
-                    get job-ready in 6 Months
+                    Learn Java Programming
+                    <span> in Patel Nagar, Delhi </span> &
+                    Build Practical Coding Skills
                 </h1>
 
                 <p class="kd-podcast-hero-desc">
-                    Live Projects ∙ Placement Assistance ∙ Industry Trainers — learn Java from senior developers working at India's top product companies.
+                    Learn Java programming with practical training, hands-on projects
+                    and placement assistance at EagletFly Solutions, Patel Nagar, Delhi.
                 </p>
-
                 <div class="kd-podcast-hero-actions">
                     <a href="#contact" class="kd-podcast-hero-btn kd-podcast-primary">
                         Book Demo
@@ -757,7 +757,7 @@
                     <div class="kd-java-visual">
                         <div class="kd-java-glow"></div>
                         <div class="kd-java-logo-container">
-                           <img src="assets/img/zmgsqu942mvnkvucbmdn.avif" alt="">
+                            <img src="assets/img/zmgsqu942mvnkvucbmdn.avif" alt="">
                         </div>
                     </div>
                     <div class="kd-podcast-shot-overlay"></div>

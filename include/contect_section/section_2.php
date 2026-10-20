@@ -265,21 +265,46 @@
                     </p>
                 </div>
 
+
                 <div class="qloc-info-card">
                     <p class="qloc-info-label">Working Hours</p>
+
                     <div class="qloc-hours-row">
-                        <span class="qloc-hours-day">Monday – Friday</span>
+                        <span class="qloc-hours-day">Monday</span>
                         <span class="qloc-hours-time">10:00 AM – 7:00 PM</span>
                     </div>
+
+
+                    <div class="qloc-hours-row">
+                        <span class="qloc-hours-day">Wednesday</span>
+                        <span class="qloc-hours-time">10:00 AM – 7:00 PM</span>
+                    </div>
+
+                    <div class="qloc-hours-row">
+                        <span class="qloc-hours-day">Thursday</span>
+                        <span class="qloc-hours-time">10:00 AM – 7:00 PM</span>
+                    </div>
+
+                    <div class="qloc-hours-row">
+                        <span class="qloc-hours-day">Friday</span>
+                        <span class="qloc-hours-time">10:00 AM – 7:00 PM</span>
+                    </div>
+
                     <div class="qloc-hours-row">
                         <span class="qloc-hours-day">Saturday</span>
                         <span class="qloc-hours-time">10:00 AM – 5:00 PM</span>
+                    </div>
+
+                    <div class="qloc-hours-row">
+                        <span class="qloc-hours-day">Sunday</span>
+                        <span class="qloc-hours-time">10:00 AM – 7:00 PM</span>
                     </div>
                     <div class="qloc-hours-row">
                         <span class="qloc-hours-day">Tuesday</span>
                         <span class="qloc-hours-closed" style="color: red;">Closed</span>
                     </div>
                 </div>
+
             </div>
 
             <!-- Right map panel -->

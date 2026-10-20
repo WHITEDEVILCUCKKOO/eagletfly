@@ -78,8 +78,8 @@
     }
 
     .dgfc-heading {
-        font-size: 44px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         line-height: 1.3;
         margin: 0 0 40px 0;
         max-width: 760px;
@@ -93,7 +93,7 @@
 
     .dgfc-compare-grid {
         display: grid;
-        grid-template-columns: 1.15fr 1fr;
+        grid-template-columns:  1fr;
         gap: 26px;
         align-items: start;
     }
@@ -245,7 +245,7 @@
             padding: 34px 14px 60px;
         }
         .dgfc-heading {
-            font-size: 21px;
+            font-size: 26px;
         }
         .dgfc-row {
             font-size: 13.5px;
@@ -279,7 +279,7 @@
     <div class="dgfc-content">
 
         <div class="dgfc-eyebrow" style="font-family: 'Sora', inter; font-weight:800; font-size:20px;">How Our Program Compares</div>
-        <h2 class="dgfc-heading" style="font-family: 'Sora', inter; font-weight:800; font-size:35px;">
+        <h2 class="dgfc-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">
             Why is EagletFly Solutions's Data Analytics <span class="dgfc-heading-accent">Course the Best?</span>
         </h2>
         <br><br>
@@ -299,7 +299,7 @@
                 <div class="dgfc-row"><span class="dgfc-check">&#10003;</span><span>200+ hours of Intense Course Training</span></div>
             </div>
 
-            <div class="dgfc-col-other">
+            <div class="dgfc-col-other" style="display:none;">
                 <div class="dgfc-col-header dgfc-col-header-other">Other Courses</div>
 
                 <div class="dgfc-row dgfc-row-other">No Placement Assistance</div>

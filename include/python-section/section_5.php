@@ -212,9 +212,9 @@
 .eagletfly-why-heading h2 {
     margin: 0 0 10px;
     color: #050505;
-    font-size: 34px;
+    font-size: clamp(26px,3.2vw,36px);
     line-height: 1.2;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .eagletfly-why-heading h2 span {

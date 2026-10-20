@@ -91,8 +91,8 @@
     }
 
     .ef-pat-title {
-        font-size: 36px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #0f172a;
         margin: 0 0 20px 0;
         line-height: 1.3;

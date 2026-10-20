@@ -474,11 +474,11 @@
 
     margin: 0;
 
-    font-size: 26px;
+    font-size: clamp(26px,3.2vw,36px);
 
     line-height: 1.3;
 
-    font-weight: 800;
+    font-weight: 600;
 
     color: #111111;
 }
@@ -907,7 +907,7 @@
 
     #klrCourseStickySection .klr-course-heading {
 
-        font-size: 23px;
+        font-size: 26px;
     }
 
 

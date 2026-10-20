@@ -7,9 +7,9 @@
                 Python Training in Delhi
             </span>
 
-            <h2>
+            <h1>
                 Python Training in Delhi
-            </h2>
+            </h1>
 
             <div class="python-training-line"></div>
 

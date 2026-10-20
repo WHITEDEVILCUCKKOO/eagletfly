@@ -131,8 +131,8 @@
 }
 
 .klr-ftd-main-title {
-    font-size: 38px;
-    font-weight: 800;
+    font-size: clamp(26px,3.2vw,36px);
+    font-weight: 600;
     color: #111111;
     margin: 0;
     line-height: 1.3;
@@ -251,7 +251,7 @@
         display: none;
     }
     .klr-ftd-main-title {
-        font-size: 30px;
+        font-size: 24px;
     }
 }
 

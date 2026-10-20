@@ -89,8 +89,8 @@
 }
 
 .eagletfly-roadmap-title {
-    font-size: 34px;
-    font-weight: 800;
+    font-size: clamp(26px,3.2vw,36px);
+    font-weight: 600;
     color: #0f172a;
     margin-bottom: 15px;
     line-height: 1.3;

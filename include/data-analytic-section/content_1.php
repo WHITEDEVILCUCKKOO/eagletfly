@@ -4,7 +4,7 @@
         <!-- Section Header -->
         <div class="ef-da-header">
             <span class="ef-da-badge">Professional Training Program</span>
-            <h2 class="ef-da-title">Data Analytics Training Program in Delhi</h2>
+            <h1 class="ef-da-title">Data Analytics Training Program in Delhi</h1>
             <div class="ef-da-title-underline"></div>
         </div>
 
@@ -174,7 +174,7 @@
         }
 
         .ef-da-title {
-            font-size: 28px;
+            font-size: 26px;
         }
 
         .ef-da-wrapper {

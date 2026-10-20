@@ -24,8 +24,8 @@
     }
 
     .kds-heading {
-        font-size: 44px;
-        font-weight: 800;
+        font-size: clamp(26px,3.2vw,36px);
+        font-weight: 600;
         color: #101828;
         margin: 0 0 10px 0;
     }
@@ -187,7 +187,7 @@
         }
 
         .kds-heading {
-            font-size: 21px;
+            font-size: 26px;
         }
 
         .kds-section {
