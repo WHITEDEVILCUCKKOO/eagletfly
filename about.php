@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "About EagletFly - Training Institute in Delhi";
+$seo_description = "Learn about EagletFly, our mission, expert trainers and hands-on approach to building job-ready skills in technology and digital marketing.";
+$seo_keywords    = "about EagletFly, training institute in Delhi, IT training center, skill development institute";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

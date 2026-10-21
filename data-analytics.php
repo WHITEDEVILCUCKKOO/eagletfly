@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Data Analytics Course in Delhi | EagletFly";
+$seo_description = "Join the Data Analytics course at EagletFly in Delhi. Learn Excel, SQL, Power BI and Python with real projects and placement support.";
+$seo_keywords    = "data analytics course in Delhi, data analytics training, Power BI course, SQL course";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

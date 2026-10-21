@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Java Course in Delhi | EagletFly";
+$seo_description = "Learn Core and Advanced Java at EagletFly, Delhi. Concept-based teaching, real coding practice and interview preparation.";
+$seo_keywords    = "java course in Delhi, java training institute, core java, advanced java";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

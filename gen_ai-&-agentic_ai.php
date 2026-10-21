@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Gen AI & Agentic AI Course in Delhi | EagletFly";
+$seo_description = "Learn Generative AI and Agentic AI at EagletFly, Delhi. Build real AI applications with practical, project-based training from experts.";
+$seo_keywords    = "generative AI course, agentic AI course, gen AI training Delhi, AI applications course";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

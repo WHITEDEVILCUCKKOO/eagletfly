@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Contact EagletFly - Course Enquiry in Delhi";
+$seo_description = "Contact EagletFly for course details, fees, batch timings and demo classes. Call, WhatsApp or visit our training center in Delhi.";
+$seo_keywords    = "contact EagletFly, course enquiry Delhi, training institute contact, demo class";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {
