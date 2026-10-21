@@ -15,7 +15,10 @@ if(isset($_SESSION['user_id'])){
 <?php include"admin_access/db_config.php" ?>
 
 <?php
+include "./admin_access/db_config.php";
+include "./admin_access/functions/global_info.php";
 
+$global_info = get_global_info($mydb);
 
 if(isset($_POST['login_main'])){
 
@@ -58,6 +61,7 @@ if(isset($_POST['login_main'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="img/logo/<?php echo htmlspecialchars($global_info['facion_icon']); ?>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

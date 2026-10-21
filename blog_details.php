@@ -48,23 +48,39 @@ $page_title = !empty($blog['blog_meta_title']) ? $blog['blog_meta_title'] : $blo
 $meta_desc  = $blog['blog_meta_desc'];
 
 
+/* =========================================================
+   SEO: Blog Details (sirf ye block naya joda gaya hai)
+========================================================= */
+$seo_title = (stripos($page_title, 'EagletFly') !== false) ? $page_title : $page_title . ' | EagletFly';
+
+$seo_description = !empty($blog['blog_meta_desc'])
+    ? strip_tags($blog['blog_meta_desc'])
+    : mb_substr(trim(preg_replace('/\s+/', ' ', strip_tags($blog['blog_content']))), 0, 155);
+
+$seo_type      = 'article';
+$seo_canonical = $scheme . '://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?') . '?slug=' . urlencode($blog['blog_slug']);
+
+if (!empty($blog['blog_img'])) {
+    $seo_image = 'assets/blog/' . rawurlencode($blog['blog_img']);
+}
+
+$seo_schema = [
+    "@context"         => "https://schema.org",
+    "@type"            => "BlogPosting",
+    "headline"         => $blog['blog_title'],
+    "description"      => $seo_description,
+    "author"           => ["@type" => "Person", "name" => $blog['blog_author']],
+    "publisher"        => ["@type" => "Organization", "name" => "EagletFly"],
+    "datePublished"    => date('c', strtotime($blog['created_at'])),
+    "mainEntityOfPage" => $seo_canonical
+];
+if (!empty($blog['blog_img'])) {
+    $seo_schema["image"] = $scheme . '://' . $_SERVER['HTTP_HOST'] . '/' . $seo_image;
+}
+
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
 
 
 <!-- Add Header -->
@@ -120,7 +136,7 @@ function timeAgo($timestamp)
     .blg7-hero {
         max-width: 880px;
         margin: 0 auto;
-        padding: 70px 22px 46px;
+        padding: 90px 22px 46px;
         text-align: center;
     }
 
@@ -675,7 +691,7 @@ function timeAgo($timestamp)
 </style>
 
 <main>
-    <div class="blg7-progress"></div>
+    <div class="blg7-progress" style="display: none;"></div>
 
     <div class="blg7-page">
 
@@ -686,7 +702,7 @@ function timeAgo($timestamp)
                 <a href="blog.php">Blog</a> /
                 <span><?= htmlspecialchars($blog['blog_title']) ?></span>
             </p>
-            <span class="blg7-badge">Blog</span>
+            <!-- <span class="blg7-badge">Blog</span> -->
             <h1 class="blg7-head"><?= htmlspecialchars($blog['blog_title']) ?></h1>
             <?php if (!empty($blog['blog_meta_desc'])): ?>
                 <p class="blg7-dek"><?= htmlspecialchars($blog['blog_meta_desc']) ?></p>
@@ -791,4 +807,4 @@ function timeAgo($timestamp)
     </script>
 </main>
 
-<?php include 'include/footer.php'; ?>s
+<?php include 'include/footer.php'; ?>

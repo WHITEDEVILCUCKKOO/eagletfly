@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Python Course in Delhi | EagletFly";
+$seo_description = "Learn Python programming from scratch at EagletFly, Delhi. Beginner-friendly classes, practical coding projects and placement guidance.";
+$seo_keywords    = "python course in Delhi, python training institute, learn python, python programming";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

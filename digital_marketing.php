@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Digital Marketing Course in Delhi | EagletFly";
+$seo_description = "Join the Digital Marketing course at EagletFly, Delhi. Learn SEO, social media, Google Ads and analytics with live campaigns.";
+$seo_keywords    = "digital marketing course in Delhi, SEO course, social media marketing, Google Ads training";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

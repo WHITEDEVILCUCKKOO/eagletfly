@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Blog - Career Tips & Learning Guides | EagletFly";
+$seo_description = "Read EagletFly blogs on data analytics, AI, programming, digital marketing and career guidance to grow your skills and get better jobs.";
+$seo_keywords    = "career tips, data analytics blog, python tutorials, digital marketing tips, IT career guide";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
-
+include 'include/header.php';
+?>
 
 
 <?php include "admin_access/db_config.php" ?>

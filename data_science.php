@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "Data Science Course in Delhi | EagletFly";
+$seo_description = "Master Data Science at EagletFly in Delhi. Learn Python, statistics, machine learning and data visualization through live projects.";
+$seo_keywords    = "data science course in Delhi, data science training, machine learning, python for data science";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 <style>
     .background_css {

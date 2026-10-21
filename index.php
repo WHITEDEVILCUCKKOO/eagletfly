@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$seo_title       = "EagletFly - Professional Skill Training Institute in Delhi";
+$seo_description = "EagletFly offers job-oriented courses in Data Analytics, AI, Data Science, Python, Java and Digital Marketing in Delhi. Enroll for expert-led training.";
+$seo_keywords    = "training institute in Delhi, data analytics course, python course, digital marketing course, AI course";
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EagletFly </title>
-
-
-
-
-  <!-- Add All General Links -->
-  <?php include 'include/all_general_links.php' ?>
-
-</head>
-
-
-<!-- Add Header -->
-<?php include 'include/header.php' ?>
+include 'include/header.php';
+?>
 
 
 <main>
