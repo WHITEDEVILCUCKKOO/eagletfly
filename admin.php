@@ -10,8 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 ?>
 
-
-
+<!-- add db -->
 <?php include "admin_access/db_config.php" ?>
 
 
