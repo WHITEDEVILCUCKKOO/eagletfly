@@ -6627,20 +6627,6 @@ foreach ($all_courses as $course_count_row) {
 
                 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- sublink box 6 -->
                 <section id="contect_6_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
                     6
