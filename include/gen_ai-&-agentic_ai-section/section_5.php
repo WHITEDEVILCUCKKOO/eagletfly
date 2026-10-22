@@ -1,168 +1,148 @@
-<div class="klr-test-wrapper">
+<?php include "./admin_access/db_config.php" ?>
 
+<?php
+/*
+|--------------------------------------------------------------------------
+| DATABASE CONNECTION
+|--------------------------------------------------------------------------
+| Assumption: this file is in your website root directory.
+| If db_config.php is already included by your page, remove this require_once.
+*/
+// require_once __DIR__ . './admin_access/db_config.php';
+
+/*
+|--------------------------------------------------------------------------
+| FIND EXISTING MYSQLI CONNECTION
+|--------------------------------------------------------------------------
+*/
+$db = $mydb ?? $conn ?? $con ?? $mysqli ?? null;
+
+$klrStudents = [];
+
+if ($db instanceof mysqli) {
+    $sql = "SELECT
+                certificate_id,
+                student_name,
+                course_name,
+                certificate_title,
+                student_photo,
+                student_review,
+                review_rating,
+                certificate_date
+            FROM student_certificates
+            WHERE certificate_status = 'Active'
+              AND student_review IS NOT NULL
+              AND TRIM(student_review) <> ''
+            ORDER BY certificate_sort_order ASC,
+                     certificate_id DESC";
+
+    try {
+        $result = mysqli_query($db, $sql);
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $klrStudents[] = [
+                    'id' => (int) $row['certificate_id'],
+                    'studentName' => $row['student_name'] ?? '',
+                    'courseName' => $row['course_name'] ?? '',
+                    'certificateTitle' => $row['certificate_title'] ?? '',
+                    'studentImg' => $row['student_photo'] ?? '',
+                    'quote' => $row['student_review'] ?? '',
+                    'rating' => (int) ($row['review_rating'] ?? 5),
+                    'date' => $row['certificate_date'] ?? ''
+                ];
+            }
+
+            mysqli_free_result($result);
+        }
+    } catch (Throwable $e) {
+        // Keep database errors out of the public webpage.
+        error_log('Testimonial section error: ' . $e->getMessage());
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| CONVERT DATABASE DATA TO JAVASCRIPT
+|--------------------------------------------------------------------------
+*/
+$klrStudentsJson = json_encode(
+    $klrStudents,
+    JSON_HEX_TAG |
+    JSON_HEX_APOS |
+    JSON_HEX_QUOT |
+    JSON_HEX_AMP |
+    JSON_INVALID_UTF8_SUBSTITUTE
+);
+
+if ($klrStudentsJson === false) {
+    $klrStudentsJson = '[]';
+}
+?>
+
+<div class="klr-test-wrapper">
     <div class="klr-test-container">
 
-        <!-- Header Section -->
+        <!-- Header -->
         <div class="klr-test-header">
             <span class="klr-test-tagline">TESTIMONIALS</span>
 
             <h2 class="klr-test-title">
-                Professionals from <strong>leading organizations</strong> trust this Generative AI and Agentic AI course to advance their <strong>careers</strong>
+                Professionals from
+                <strong>leading organizations</strong>
+                trust this Generative AI and Agentic AI course
+                to advance their <strong>careers</strong>
             </h2>
         </div>
 
-
-        <!-- Continuous Auto-Scrolling Logo Ticker -->
+        <!-- Company Logo Ticker -->
         <div class="klr-test-marquee-box">
-
             <div class="klr-test-marquee-track">
 
-                <!-- Original Logos -->
+                <?php
+                $klrLogos = [
+                    ['accenture.png', 'Accenture'],
+                    ['Airtel.png', 'Airtel'],
+                    ['amdocs.png', 'Amdocs'],
+                    ['Cognizant.png', 'Cognizant'],
+                    ['DELL.png', 'Dell'],
+                    ['genpact.png', 'Genpact'],
+                    ['Google.png', 'Google'],
+                    ['HCL.png', 'HCL'],
+                    ['hp.png', 'HP'],
+                    ['Indiabulls.png', 'Indiabulls'],
+                    ['INFY_BIG.png', 'Infosys'],
+                    ['Paytm.png', 'Paytm'],
+                    ['RBS.png', 'RBS'],
+                    ['Sapient.png', 'Sapient'],
+                    ['Standard_Chartered.png', 'Standard Chartered'],
+                    ['Wipro-logo.png', 'Wipro']
+                ];
+                ?>
 
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/accenture.png" alt="Accenture">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Airtel.png" alt="Airtel">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/amdocs.png" alt="Amdocs">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Cognizant.png" alt="Cognizant">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/DELL.png" alt="Dell">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/genpact.png" alt="Genpact">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Google.png" alt="Google">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/HCL.png" alt="HCL">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/hp.png" alt="HP">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Indiabulls.png" alt="Indiabulls">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/INFY_BIG.png" alt="Infosys">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Paytm.png" alt="Paytm">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/RBS.png" alt="RBS">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Sapient.png" alt="Sapient">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Standard_Chartered.png" alt="Standard Chartered">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Wipro-logo.png" alt="Wipro">
-                </div>
-
-
-                <!-- Duplicate Logos for Seamless Infinite Loop -->
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/accenture.png" alt="Accenture">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Airtel.png" alt="Airtel">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/amdocs.png" alt="Amdocs">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Cognizant.png" alt="Cognizant">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/DELL.png" alt="Dell">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/genpact.png" alt="Genpact">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Google.png" alt="Google">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/HCL.png" alt="HCL">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/hp.png" alt="HP">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Indiabulls.png" alt="Indiabulls">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/INFY_BIG.png" alt="Infosys">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Paytm.png" alt="Paytm">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/RBS.png" alt="RBS">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Sapient.png" alt="Sapient">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Standard_Chartered.png" alt="Standard Chartered">
-                </div>
-
-                <div class="klr-test-logo-item">
-                    <img src="assets/brands/Wipro-logo.png" alt="Wipro">
-                </div>
+                <?php for ($copy = 0; $copy < 2; $copy++): ?>
+                    <?php foreach ($klrLogos as $logo): ?>
+                        <div class="klr-test-logo-item"
+                             <?php if ($copy === 1): ?>aria-hidden="true"<?php endif; ?>>
+                            <img
+                                src="assets/brands/<?php echo htmlspecialchars($logo[0], ENT_QUOTES, 'UTF-8'); ?>"
+                                alt="<?php echo htmlspecialchars($logo[1], ENT_QUOTES, 'UTF-8'); ?>"
+                                loading="lazy"
+                            >
+                        </div>
+                    <?php endforeach; ?>
+                <?php endfor; ?>
 
             </div>
-
         </div>
 
-
-        <!-- Main Content Grid -->
+        <!-- Main Testimonial Section -->
         <div class="klr-test-grid">
 
-            <!-- Left: Student Video/Image Banner -->
+            <!-- Left: Student Photo -->
             <div class="klr-test-left-card">
 
                 <div class="klr-test-media-box">
-
                     <img
                         id="klrStudentImg"
                         src=""
@@ -170,45 +150,49 @@
                         draggable="false"
                     >
 
-                    <div class="klr-test-play-btn">
-
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5 3l14 9-14 9V3z"/>
-                        </svg>
-
+                    <div class="klr-test-photo-placeholder"
+                         id="klrStudentPlaceholder">
+                        Student photo
                     </div>
-
                 </div>
 
                 <span
                     class="klr-test-student-name"
                     id="klrStudentName"
                 >
-                    Aakriti Puri
+                    Loading testimonials...
                 </span>
+
+                <span
+                    class="klr-test-course-name"
+                    id="klrStudentCourse"
+                ></span>
 
             </div>
 
-
-            <!-- Right: Testimonial Cards & Controls -->
+            <!-- Right: Dynamic Review Cards -->
             <div class="klr-test-right-wrapper">
 
                 <div
                     class="klr-test-right-cards"
                     id="klrTestimonialsBox"
+                    aria-live="polite"
                 >
-                    <!-- Dynamic Testimonial Cards Injected via JS -->
+                    <p class="klr-test-empty">
+                        Loading student reviews...
+                    </p>
                 </div>
 
-
+                <!-- Previous / Next -->
                 <div class="klr-test-controls">
 
                     <button
+                        type="button"
                         class="klr-test-arrow-btn"
                         id="klrPrevBtn"
-                        aria-label="Previous"
+                        aria-label="Previous testimonials"
                     >
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -217,13 +201,13 @@
                         </svg>
                     </button>
 
-
                     <button
+                        type="button"
                         class="klr-test-arrow-btn"
                         id="klrNextBtn"
-                        aria-label="Next"
+                        aria-label="Next testimonials"
                     >
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -233,489 +217,561 @@
                     </button>
 
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
-
 <style>
+.klr-test-wrapper,
+.klr-test-wrapper * {
+    box-sizing: border-box;
+}
 
-    .klr-test-wrapper {
-        font-family: Arial, sans-serif;
-        background-color: #ffffff;
-        color: #111111;
-        padding: 70px 20px;
-        box-sizing: border-box;
-        width: 100%;
-        overflow: hidden;
-    }
+.klr-test-wrapper {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #111;
+    padding: 70px 20px;
+    width: 100%;
+    overflow: hidden;
+}
 
+.klr-test-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
 
-    .klr-test-container {
-        max-width: 1300px;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
+.klr-test-header {
+    margin-bottom: 35px;
+}
 
+.klr-test-tagline {
+    position: relative;
+    display: inline-block;
+    padding-left: 14px;
+    margin-bottom: 15px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #777;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 
-    .klr-test-header {
-        margin-bottom: 35px;
-    }
+.klr-test-tagline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+    background: #9333ea;
+    border-radius: 2px;
+}
 
+.klr-test-title {
+    max-width: 1000px;
+    margin: 0;
+    font-size: clamp(26px, 3.2vw, 36px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111;
+}
 
-    .klr-test-tagline {
-        position: relative;
-        padding-left: 14px;
-        font-size: 11px;
-        font-weight: 700;
-        color: #777777;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        display: inline-block;
-        margin-bottom: 15px;
-    }
+.klr-test-title strong {
+    font-weight: 700;
+}
 
+/* Logo ticker */
+.klr-test-marquee-box {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 45px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    -webkit-mask-image: linear-gradient(
+        to right, transparent, #000 10%, #000 90%, transparent
+    );
+    mask-image: linear-gradient(
+        to right, transparent, #000 10%, #000 90%, transparent
+    );
+}
 
-    .klr-test-tagline::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 2px;
-        bottom: 2px;
-        width: 3px;
-        background-color: #9333ea;
-        border-radius: 2px;
-    }
+.klr-test-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: max-content;
+    animation: klrMarqueeScroll 35s linear infinite;
+}
 
+.klr-test-logo-item {
+    width: 130px;
+    height: 55px;
+    flex: 0 0 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .klr-test-title {
-        font-size: clamp(26px,3.2vw,36px);
-        font-weight: 600;
-        color: #111111;
-        margin: 0;
-        line-height: 1.3;
-        max-width: 1000px;
-    }
+.klr-test-logo-item img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 115px;
+    max-height: 50px;
+    object-fit: contain;
+}
 
+@keyframes klrMarqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
 
-    .klr-test-title strong {
-        font-weight: 700;
-    }
+/* Main layout */
+.klr-test-grid {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
 
+.klr-test-left-card {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-    /* Infinite Marquee Auto-Scroll Ticker */
+.klr-test-media-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.45 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0edf5;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+}
 
-    .klr-test-marquee-box {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 45px;
-        border-bottom: 1px solid #eeeeee;
-        padding-bottom: 25px;
+.klr-test-media-box img {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
-        );
+.klr-test-photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 14px;
+    background: #f0edf5;
+}
 
-        -webkit-mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent
-        );
-    }
+.klr-test-student-name {
+    padding-left: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+}
 
+.klr-test-course-name {
+    padding-left: 4px;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
-    .klr-test-marquee-track {
-        display: flex;
-        gap: 20px;
-        width: max-content;
-        animation: klrMarqueeScroll 25s linear infinite;
-    }
+.klr-test-right-wrapper {
+    flex: 1.2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
+.klr-test-right-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+    transition: opacity .25s ease;
+}
 
-    /* .klr-test-marquee-box:hover .klr-test-marquee-track {
-        animation-play-state: paused;
-    } */
+.klr-test-review-card {
+    min-width: 0;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+    overflow-wrap: anywhere;
+}
 
+.klr-test-review-course {
+    margin: 0 0 10px;
+    color: #9333ea;
+    font-size: 12px;
+    font-weight: 700;
+}
 
-    .klr-test-logo-item {
-        width: 130px;
-        height: 55px;
+.klr-test-quote {
+    margin: 0 0 14px;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-line;
+}
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.klr-test-author {
+    margin: 0;
+    color: #111;
+    font-size: 13px;
+    font-weight: 700;
+}
 
-        flex-shrink: 0;
-    }
+.klr-test-rating {
+    margin-top: 10px;
+    color: #9333ea;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
 
+.klr-test-date {
+    margin-top: 7px;
+    color: #888;
+    font-size: 12px;
+}
 
-    .klr-test-logo-item img {
-        max-width: 115px;
-        max-height: 50px;
+.klr-test-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
 
-        width: auto;
-        height: auto;
+.klr-test-arrow-btn {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #9333ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
 
-        object-fit: contain;
-        display: block;
-    }
+.klr-test-arrow-btn:hover:not(:disabled) {
+    background: #7e22ce;
+    transform: scale(1.08);
+}
 
+.klr-test-arrow-btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
 
-    @keyframes klrMarqueeScroll {
+.klr-test-arrow-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.5;
+}
 
-        from {
-            transform: translateX(0);
-        }
+.klr-test-empty {
+    padding: 24px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
 
-        to {
-            transform: translateX(-50%);
-        }
-
-    }
-
-
+@media (max-width: 1024px) {
     .klr-test-grid {
-        display: flex;
-        gap: 40px;
-        align-items: flex-start;
-    }
-
-
-    .klr-test-left-card {
-        flex: 1;
-        display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 30px;
     }
 
+    .klr-test-left-card,
+    .klr-test-right-wrapper {
+        width: 100%;
+        flex: auto;
+    }
 
     .klr-test-media-box {
-        position: relative;
-        width: 100%;
-        padding-top: 65%;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #eaeaea;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        aspect-ratio: 16 / 9;
     }
 
+    .klr-test-title {
+        font-size: 26px;
+    }
+}
 
-    .klr-test-media-box img {
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
+@media (max-width: 600px) {
+    .klr-test-wrapper {
+        padding: 45px 15px;
     }
 
-
-    .klr-test-play-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        transform: translate(-50%, -50%);
-
-        width: 56px;
-        height: 56px;
-
-        background-color: #9333ea;
-        border-radius: 50%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
-
-        cursor: pointer;
-
-        transition: transform 0.2s ease;
+    .klr-test-header {
+        margin-bottom: 25px;
     }
 
-
-    .klr-test-play-btn:hover {
-        transform: translate(-50%, -50%) scale(1.1);
+    .klr-test-title {
+        font-size: 25px;
+        line-height: 1.35;
     }
 
-
-    .klr-test-play-btn svg {
-        width: 20px;
-        height: 20px;
-
-        fill: #ffffff;
-
-        margin-left: 3px;
+    .klr-test-marquee-box {
+        margin-bottom: 30px;
+        padding-bottom: 18px;
     }
 
-
-    .klr-test-student-name {
-        font-size: 14px;
-        font-weight: 600;
-        color: #222222;
-        padding-left: 4px;
+    .klr-test-logo-item {
+        width: 105px;
+        flex-basis: 105px;
     }
 
-
-    .klr-test-right-wrapper {
-        flex: 1.2;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 20px;
+    .klr-test-logo-item img {
+        max-width: 95px;
+        max-height: 42px;
     }
-
-
-    .klr-test-right-cards {
-        display: flex;
-        flex-direction: column;
-
-        gap: 20px;
-
-        transition: opacity 0.3s ease;
-    }
-
 
     .klr-test-review-card {
-        background-color: #ffffff;
-
-        border: 1px solid #e8e8e8;
-        border-radius: 10px;
-
-        padding: 24px;
-
-        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        padding: 18px;
     }
 
-
-    .klr-test-quote {
-        font-size: 14px;
-        line-height: 1.6;
-
-        color: #333333;
-
-        margin: 0 0 14px 0;
+    .klr-test-grid {
+        gap: 24px;
     }
+}
 
-
-    .klr-test-author {
-        font-size: 13px;
-        font-weight: 700;
-
-        color: #111111;
-
-        margin: 0;
+@media (prefers-reduced-motion: reduce) {
+    .klr-test-marquee-track {
+        animation: none;
     }
-
-
-    .klr-test-controls {
-        display: flex;
-        gap: 10px;
-
-        justify-content: flex-end;
-
-        margin-top: 5px;
-    }
-
 
     .klr-test-arrow-btn {
-        width: 36px;
-        height: 36px;
-
-        border-radius: 50%;
-
-        background-color: #9333ea;
-
-        border: none;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        cursor: pointer;
-
-        transition:
-            background-color 0.2s ease,
-            transform 0.2s ease;
+        transition: none;
     }
-
-
-    .klr-test-arrow-btn:hover {
-        background-color: #7e22ce;
-        transform: scale(1.08);
-    }
-
-
-    .klr-test-arrow-btn svg {
-        width: 16px;
-        height: 16px;
-
-        fill: none;
-        stroke: #ffffff;
-        stroke-width: 2.5;
-    }
-
-
-    @media (max-width: 1024px) {
-
-        .klr-test-grid {
-            flex-direction: column;
-        }
-
-        .klr-test-title {
-            font-size: 26px;
-        }
-
-    }
-
+}
 </style>
 
-
 <script>
+(function () {
+    'use strict';
 
-    const klrSlidesData = [
+    const klrStudents = <?php echo $klrStudentsJson; ?>;
 
-        {
-            studentImg: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+    const klrStudentImg = document.getElementById('klrStudentImg');
+    const klrStudentPlaceholder =
+        document.getElementById('klrStudentPlaceholder');
+    const klrStudentName = document.getElementById('klrStudentName');
+    const klrStudentCourse = document.getElementById('klrStudentCourse');
+    const klrTestimonialsBox =
+        document.getElementById('klrTestimonialsBox');
+    const klrPrevBtn = document.getElementById('klrPrevBtn');
+    const klrNextBtn = document.getElementById('klrNextBtn');
 
-            studentName: "Aakriti Puri",
+    if (
+        !klrStudentImg ||
+        !klrStudentName ||
+        !klrTestimonialsBox ||
+        !klrPrevBtn ||
+        !klrNextBtn
+    ) {
+        return;
+    }
 
-            reviews: [
+    /*
+     * Display two review cards at a time.
+     * The first student in each group supplies the left-side photo.
+     */
+    const klrSlides = [];
 
-                {
-                    quote: '"The course was highly relevant to staying current in the AI space, with strong faculty and meaningful hands-on work."',
-                    author: "Sharaschandra Chennamaraju"
-                },
-
-                {
-                    quote: '"The curriculum was thoughtfully designed and focused on practical learning, which made the concepts easy to understand."',
-                    author: "Ankit Basu"
-                }
-
-            ]
-        },
-
-
-        {
-            studentImg: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
-
-            studentName: "Aakriti Puri",
-
-            reviews: [
-
-                {
-                    quote: '"With timely support and a well-structured curriculum, the program made learning effective despite my limited programming experience."',
-                    author: "Satish Tungala"
-                },
-
-                {
-                    quote: '"A thoughtfully designed GenAI program with an up-to-date curriculum and expert faculty. Challenging, relevant, and worth the time for anyone looking to stay aligned with today\'s tech demands."',
-                    author: "Dilep Kumar"
-                }
-
-            ]
-        }
-
-    ];
-
+    for (let i = 0; i < klrStudents.length; i += 2) {
+        klrSlides.push(klrStudents.slice(i, i + 2));
+    }
 
     let klrCurrentSlide = 0;
 
-
-    const klrStudentImg =
-        document.getElementById('klrStudentImg');
-
-    const klrStudentName =
-        document.getElementById('klrStudentName');
-
-    const klrTestimonialsBox =
-        document.getElementById('klrTestimonialsBox');
-
-    const klrPrevBtn =
-        document.getElementById('klrPrevBtn');
-
-    const klrNextBtn =
-        document.getElementById('klrNextBtn');
-
-
-    function klrRenderSlide(index) {
-
-        const slide = klrSlidesData[index];
-
-        klrStudentImg.src = slide.studentImg;
-
-        klrStudentName.textContent =
-            slide.studentName;
-
-        klrTestimonialsBox.innerHTML = '';
-
-
-        slide.reviews.forEach(rev => {
-
-            const card =
-                document.createElement('div');
-
-            card.className =
-                'klr-test-review-card';
-
-
-            card.innerHTML = `
-                <p class="klr-test-quote">
-                    ${rev.quote}
-                </p>
-
-                <h4 class="klr-test-author">
-                    ${rev.author}
-                </h4>
-            `;
-
-
-            klrTestimonialsBox.appendChild(card);
-
-        });
-
+    function klrAddTextElement(parent, tag, className, text) {
+        const element = document.createElement(tag);
+        element.className = className;
+        element.textContent = text || '';
+        parent.appendChild(element);
+        return element;
     }
 
+    function klrRenderSlide(index) {
+        if (!klrSlides.length) {
+            klrStudentImg.removeAttribute('src');
+            klrStudentImg.hidden = true;
 
-    klrNextBtn.addEventListener('click', () => {
+            if (klrStudentPlaceholder) {
+                klrStudentPlaceholder.hidden = false;
+                klrStudentPlaceholder.textContent =
+                    'No student photo available';
+            }
+
+            klrStudentName.textContent = 'No testimonials available';
+            klrStudentCourse.textContent = '';
+            klrTestimonialsBox.replaceChildren();
+
+            klrAddTextElement(
+                klrTestimonialsBox,
+                'p',
+                'klr-test-empty',
+                'No active student reviews were found in the database.'
+            );
+
+            klrPrevBtn.disabled = true;
+            klrNextBtn.disabled = true;
+            return;
+        }
+
+        const students = klrSlides[index];
+        const firstStudent = students[0];
+
+        klrStudentName.textContent =
+            firstStudent.studentName || 'Student';
+
+        klrStudentCourse.textContent =
+            firstStudent.courseName || '';
+
+        /*
+         * Image path:
+         * Uses the path saved in student_photo.
+         * If your database stores only filenames, add your upload
+         * folder prefix here before assigning the image.
+         */
+        const photo = (firstStudent.studentImg || '').trim();
+
+        if (photo) {
+            klrStudentImg.hidden = false;
+            klrStudentImg.alt =
+                firstStudent.studentName || 'Student';
+
+            if (klrStudentPlaceholder) {
+                klrStudentPlaceholder.hidden = true;
+            }
+
+            klrStudentImg.onerror = function () {
+                klrStudentImg.hidden = true;
+
+                if (klrStudentPlaceholder) {
+                    klrStudentPlaceholder.hidden = false;
+                    klrStudentPlaceholder.textContent =
+                        'Student photo unavailable';
+                }
+            };
+
+            klrStudentImg.src = photo;
+        } else {
+            klrStudentImg.removeAttribute('src');
+            klrStudentImg.hidden = true;
+
+            if (klrStudentPlaceholder) {
+                klrStudentPlaceholder.hidden = false;
+                klrStudentPlaceholder.textContent =
+                    'No student photo available';
+            }
+        }
+
+        klrTestimonialsBox.replaceChildren();
+
+        students.forEach(function (student) {
+            const card = document.createElement('article');
+            card.className = 'klr-test-review-card';
+
+            if (student.courseName) {
+                klrAddTextElement(
+                    card,
+                    'p',
+                    'klr-test-review-course',
+                    student.courseName
+                );
+            }
+
+            if (student.quote) {
+                klrAddTextElement(
+                    card,
+                    'p',
+                    'klr-test-quote',
+                    student.quote
+                );
+            }
+
+            klrAddTextElement(
+                card,
+                'h4',
+                'klr-test-author',
+                student.studentName || 'Student'
+            );
+
+            const rating = Math.max(
+                0,
+                Math.min(5, Number(student.rating) || 0)
+            );
+
+            klrAddTextElement(
+                card,
+                'div',
+                'klr-test-rating',
+                '★'.repeat(rating) + '☆'.repeat(5 - rating)
+            ).setAttribute(
+                'aria-label',
+                'Rating: ' + rating + ' out of 5'
+            );
+
+            if (student.date) {
+                klrAddTextElement(
+                    card,
+                    'div',
+                    'klr-test-date',
+                    student.date
+                );
+            }
+
+            klrTestimonialsBox.appendChild(card);
+        });
+
+        const hasMultipleSlides = klrSlides.length > 1;
+        klrPrevBtn.disabled = !hasMultipleSlides;
+        klrNextBtn.disabled = !hasMultipleSlides;
+    }
+
+    klrNextBtn.addEventListener('click', function () {
+        if (!klrSlides.length) return;
 
         klrCurrentSlide =
-            (klrCurrentSlide + 1) %
-            klrSlidesData.length;
+            (klrCurrentSlide + 1) % klrSlides.length;
 
         klrRenderSlide(klrCurrentSlide);
-
     });
 
-
-    klrPrevBtn.addEventListener('click', () => {
+    klrPrevBtn.addEventListener('click', function () {
+        if (!klrSlides.length) return;
 
         klrCurrentSlide =
-            (klrCurrentSlide - 1 +
-            klrSlidesData.length) %
-            klrSlidesData.length;
+            (klrCurrentSlide - 1 + klrSlides.length) %
+            klrSlides.length;
 
         klrRenderSlide(klrCurrentSlide);
-
     });
-
 
     klrRenderSlide(klrCurrentSlide);
-
+})();
 </script>

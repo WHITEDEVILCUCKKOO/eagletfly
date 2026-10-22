@@ -331,7 +331,7 @@
 
                 <div class="ef-cta-buttons">
 
-                    <a href="tel:+919345045466" class="ef-cta-phone">
+                    <a href="tel:<?php echo htmlspecialchars($global_info['globle_call_phone'] ?? ''); ?>" class="ef-cta-phone">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M6.5 4H9L10.5 8L8.5 10C9.5 12.5 11.5 14.5 14 15.5L16 13.5L20 15V17.5C20 18.9 18.9 20 17.5 20C10 19.5 4.5 14 4 6.5C4 5.1 5.1 4 6.5 4Z"
                                 stroke="currentColor"
@@ -339,10 +339,10 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        +91 93450 45466
+                        <?php echo htmlspecialchars($global_info['globle_call_phone'] ?? ''); ?>
                     </a>
 
-                    <a href="#" class="ef-cta-call">
+                    <a href="contact.php" class="ef-cta-call" style="color: white;">
                         Request A Call Back
                     </a>
 

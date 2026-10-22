@@ -557,10 +557,11 @@ foreach ($all_courses as $course_count_row) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="img/logo/facion.png">
+    <link rel="icon" type="image/x-icon" href="img/logo/<?php echo htmlspecialchars($global_info['facion_icon'] ?? ''); ?>">
     <title>Eagletfly Admin</title>
     <link rel="stylesheet" href="admin_access/admin.css">
     <link rel="stylesheet" href="admin_access/css/courses.css">
+    <link rel="stylesheet" href="assets/css/baners_1.css">
 
     <script src="assets/js/blog.js"></script>
 </head>
@@ -652,9 +653,9 @@ foreach ($all_courses as $course_count_row) {
                             <ul>
                                 <li class="sole78m " id="contect__3" onclick="link_sole_action(this)" data-set="contect-3">All Pages Baners</li>
                                 <li class="sole78m " id="contect__1" onclick="link_sole_action(this)" data-set="contect-1">Add Videos</li>
+                                <li class="sole78m " id="contect__5" onclick="link_sole_action(this)" data-set="contect-5">Add Reels</li>
                                 <li class="sole78m " id="contect__2" onclick="link_sole_action(this)" data-set="contect-2">Add Photos</li>
                                 <li class="sole78m " id="contect__4" onclick="link_sole_action(this)" data-set="contect-4">Add Certificates</li>
-                                <li class="sole78m not_show_link" id="contect__5" onclick="link_sole_action(this)" data-set="contect-5">Manage Template</li>
                                 <li class="sole78m not_show_link" id="contect__6" onclick="link_sole_action(this)" data-set="contect-6">My Routes</li>
                                 <li class="sole78m not_show_link" id="contect__7" onclick="link_sole_action(this)" data-set="contect-7">Contact Manager</li>
                                 <li class="sole78m not_show_link" id="contect__8" onclick="link_sole_action(this)" data-set="contect-8">Manage Group</li>
@@ -4823,11 +4824,275 @@ foreach ($all_courses as $course_count_row) {
 
 
                 <!-- sublink box 3 -->
+
+
                 <section id="contect_3_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa course-video-section-xk91">
-                    3
+
+                    <?php
+                    require_once __DIR__ . '/admin_access/functions/Baners/add_baner.php';
+                    require_once __DIR__ . '/admin_access/functions/Baners/update_baner.php';
+                    require_once __DIR__ . '/admin_access/functions/Baners/delete_baner.php';
+
+                    $bannerMessageX91 = '';
+                    $bannerMessageTypeX91 = 'info';
+
+                    // Handle banner form submissions
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        if (isset($_POST['add_baner_xk91'])) {
+                            $bannerMessageX91 = add_baner($mydb);
+                        } elseif (isset($_POST['update_baner_xk91'])) {
+                            $bannerMessageX91 = update_baner($mydb);
+                        } elseif (isset($_POST['delete_baner_xk91'])) {
+                            $bannerMessageX91 = delete_baner($mydb);
+                        }
+
+                        $bannerMessageTypeX91 = (
+                            stripos($bannerMessageX91, 'successfully') !== false
+                            || stripos($bannerMessageX91, 'success') !== false
+                        ) ? 'success' : 'error';
+                    }
+
+                    // Banner fields and labels
+                    $bannerFieldsX91 = [
+                        'img_index' => 'Home Page Banner',
+                        'img_about' => 'About Page Banner',
+                        'img_applied_generative_ai_agentic_ai' => 'Applied Generative AI and Agentic AI Banner',
+                        'img_artificial_intelligence' => 'Artificial Intelligence Banner',
+                        'img_digital_marketing' => 'Digital Marketing Banner',
+                        'img_java' => 'Java Banner'
+                    ];
+
+                    // Fetch the latest banner record
+                    $bannerRowX91 = null;
+                    $bannerQueryErrorX91 = '';
+
+                    $bannerStmtX91 = $mydb->prepare(
+                        "SELECT baner_id, img_index, img_about,
+                img_applied_generative_ai_agentic_ai,
+                img_artificial_intelligence,
+                img_digital_marketing, img_java
+         FROM baners
+         ORDER BY baner_id DESC
+         LIMIT 1"
+                    );
+
+                    if ($bannerStmtX91) {
+                        if ($bannerStmtX91->execute()) {
+                            $bannerResultX91 = $bannerStmtX91->get_result();
+                            $bannerRowX91 = $bannerResultX91->fetch_assoc() ?: null;
+                        } else {
+                            $bannerQueryErrorX91 = 'Unable to load banners: ' . $bannerStmtX91->error;
+                        }
+
+                        $bannerStmtX91->close();
+                    } else {
+                        $bannerQueryErrorX91 = 'Banner query error: ' . $mydb->error;
+                    }
+
+                    // Image URL/path helper
+                    $bannerImageUrlX91 = static function ($pathX91) {
+                        $pathX91 = trim((string)$pathX91);
+
+                        if ($pathX91 === '') {
+                            return '';
+                        }
+
+                        // Only allow the expected local banner directory
+                        if (strpos($pathX91, 'assets/images/banners/') !== 0) {
+                            return '';
+                        }
+
+                        return $pathX91;
+                    };
+                    ?>
+
+                    <div class="kd-baner-admin-xk91">
+
+                        <div class="kd-baner-header-xk91">
+                            <div>
+                                <h2>Manage Page Banners</h2>
+                                <p>Add, update and manage your website page banners.</p>
+                            </div>
+                        </div>
+
+                        <?php if ($bannerMessageX91 !== ''): ?>
+                            <div class="kd-baner-message-xk91"
+                                role="status"
+                                style="<?php echo $bannerMessageTypeX91 === 'error'
+                                            ? 'color:#b42318;background:#fef3f2;border:1px solid #fecdca;'
+                                            : 'color:#067647;background:#ecfdf3;border:1px solid #abefc6;'; ?>">
+                                <?php echo htmlspecialchars($bannerMessageX91, ENT_QUOTES, 'UTF-8'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($bannerQueryErrorX91 !== ''): ?>
+                            <div class="kd-baner-message-xk91" role="alert">
+                                <?php echo htmlspecialchars($bannerQueryErrorX91, ENT_QUOTES, 'UTF-8'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!$bannerRowX91): ?>
+
+                            <!-- ADD BANNERS -->
+                            <form method="POST"
+                                enctype="multipart/form-data"
+                                class="kd-baner-add-form-xk91">
+
+                                <h3>Add Page Banners</h3>
+
+                                <div class="kd-baner-grid-xk91">
+
+                                    <?php foreach ($bannerFieldsX91 as $fieldX91 => $titleX91): ?>
+
+                                        <div class="kd-baner-card-xk91">
+
+                                            <h3>
+                                                <?php echo htmlspecialchars($titleX91, ENT_QUOTES, 'UTF-8'); ?>
+                                            </h3>
+
+                                            <div class="kd-baner-preview-xk91">
+                                                <span>No banner uploaded</span>
+                                            </div>
+
+                                            <label for="<?php echo $fieldX91; ?>_add_xk91">
+                                                Select Banner Image
+                                            </label>
+
+                                            <input
+                                                type="file"
+                                                id="<?php echo $fieldX91; ?>_add_xk91"
+                                                name="<?php echo $fieldX91; ?>"
+                                                accept=".jpg,.jpeg,.png,.webp,.avif,image/jpeg,image/png,image/webp,image/avif">
+
+                                        </div>
+
+                                    <?php endforeach; ?>
+
+                                </div>
+
+                                <button type="submit"
+                                    name="add_baner_xk91"
+                                    value="1"
+                                    class="kd-baner-btn-xk91 kd-baner-primary-xk91">
+                                    Add Banners
+                                </button>
+
+                            </form>
+
+                        <?php else: ?>
+
+                            <!-- UPDATE BANNERS -->
+                            <div class="kd-baner-grid-xk91">
+
+                                <?php foreach ($bannerFieldsX91 as $fieldX91 => $titleX91): ?>
+
+                                    <?php
+                                    $imagePathX91 = $bannerRowX91[$fieldX91] ?? '';
+                                    $imageUrlX91 = $bannerImageUrlX91($imagePathX91);
+                                    ?>
+
+                                    <div class="kd-baner-card-xk91">
+
+                                        <div class="kd-baner-card-heading-xk91">
+                                            <h3>
+                                                <?php echo htmlspecialchars($titleX91, ENT_QUOTES, 'UTF-8'); ?>
+                                            </h3>
+                                        </div>
+
+                                        <div class="kd-baner-preview-xk91">
+
+                                            <?php if ($imageUrlX91 !== ''): ?>
+
+                                                <img
+                                                    src="<?php echo htmlspecialchars($imageUrlX91, ENT_QUOTES, 'UTF-8'); ?>"
+                                                    alt="<?php echo htmlspecialchars($titleX91, ENT_QUOTES, 'UTF-8'); ?>"
+                                                    loading="lazy"
+                                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+
+                                                <span style="display:none;">
+                                                    Image file nahi mili. Path check karein.
+                                                </span>
+
+                                            <?php else: ?>
+
+                                                <span>No image uploaded</span>
+
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                        <!-- Each image has its own update form -->
+                                        <form method="POST"
+                                            enctype="multipart/form-data"
+                                            class="kd-baner-update-form-xk91">
+
+                                            <input
+                                                type="hidden"
+                                                name="baner_id"
+                                                value="<?php echo (int)$bannerRowX91['baner_id']; ?>">
+
+                                            <label for="<?php echo $fieldX91; ?>_edit_xk91">
+                                                Change Banner Image
+                                            </label>
+
+                                            <input
+                                                type="file"
+                                                id="<?php echo $fieldX91; ?>_edit_xk91"
+                                                name="<?php echo $fieldX91; ?>"
+                                                accept=".jpg,.jpeg,.png,.webp,.avif,image/jpeg,image/png,image/webp,image/avif">
+
+                                            <small>Leave empty to keep the existing image.</small>
+
+                                            <button
+                                                type="submit"
+                                                name="update_baner_xk91"
+                                                value="1"
+                                                class="kd-baner-btn-xk91 kd-baner-primary-xk91">
+                                                Update Banner
+                                            </button>
+
+                                        </form>
+
+                                        <!-- Delete only the selected image -->
+                                        <?php if ($imageUrlX91 !== ''): ?>
+
+                                            <form method="POST"
+                                                class="kd-baner-delete-form-xk91"
+                                                onsubmit="return confirm('Are you sure you want to delete this banner image?');">
+
+                                                <input
+                                                    type="hidden"
+                                                    name="baner_id"
+                                                    value="<?php echo (int)$bannerRowX91['baner_id']; ?>">
+
+                                                <input
+                                                    type="hidden"
+                                                    name="image_field"
+                                                    value="<?php echo htmlspecialchars($fieldX91, ENT_QUOTES, 'UTF-8'); ?>">
+
+                                                <button
+                                                    type="submit"
+                                                    name="delete_baner_xk91"
+                                                    value="1"
+                                                    class="kd-baner-btn-xk91 kd-baner-danger-xk91">
+                                                    Delete Image
+                                                </button>
+
+                                            </form>
+
+                                        <?php endif; ?>
+
+                                    </div>
+
+                                <?php endforeach; ?>
+
+                            </div>
+
+                        <?php endif; ?>
+
+                    </div>
+
                 </section>
-
-
 
 
 
@@ -5480,8 +5745,901 @@ foreach ($all_courses as $course_count_row) {
 
                 <!-- sublink box 5 -->
                 <section id="contect_5_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">
-                    5
+
+                    <?php
+                    /* =========================================================
+       REELS MANAGEMENT - SECTION 5
+       Saara kaam admin_access/functions/AllReels/ ke functions karte hain:
+       add_reel(), update_reel(), delete_reel(), reels_get_all()
+       Koi bhi error aaye to website nahi tutegi, sirf reels section message dikhayega.
+       ========================================================= */
+
+                    $reels_ready_xk91 = false;
+                    $reel_message_xk91 = null;
+                    $reel_message_type_xk91 = 'error';
+                    $reels_xk91 = [];
+                    $h_xk91 = fn($v) => htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
+
+                    /* ---- 1. Function files safely load karo (missing/broken file se page nahi tutega) ---- */
+                    try {
+                        if (session_status() === PHP_SESSION_NONE) {
+                            @session_start();
+                        }
+
+                        $reelFnDir_xk91 = null;
+
+                        foreach ([__DIR__, dirname(__DIR__)] as $base_xk91) {
+                            if (is_file($base_xk91 . '/admin_access/functions/AllReels/reels_helpers.php')) {
+                                $reelFnDir_xk91 = $base_xk91 . '/admin_access/functions/AllReels/';
+                                break;
+                            }
+                        }
+
+                        if ($reelFnDir_xk91 === null) {
+                            throw new RuntimeException('AllReels function folder not found.');
+                        }
+
+                        foreach (['reels_helpers.php', 'add_reels.php', 'update_reels.php', 'delete_reels.php'] as $fn_xk91) {
+                            if (!is_file($reelFnDir_xk91 . $fn_xk91)) {
+                                throw new RuntimeException('Missing file: ' . $fn_xk91);
+                            }
+                            require_once $reelFnDir_xk91 . $fn_xk91;
+                        }
+
+                        $reels_ready_xk91 = function_exists('add_reel')
+                            && function_exists('update_reel')
+                            && function_exists('delete_reel')
+                            && function_exists('reels_get_all');
+                    } catch (Throwable $e) {
+                        $reels_ready_xk91 = false;
+                        error_log('Reels loader fallback: ' . $e->getMessage());
+                    }
+
+                    /* ---- 2. Add / Update / Delete handle karo ---- */
+                    $reel_post_too_big_xk91 = (
+                        $_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && empty($_FILES) &&
+                        (int)($_SERVER['CONTENT_LENGTH'] ?? 0) > 0
+                    );
+
+                    if (
+                        $_SERVER['REQUEST_METHOD'] === 'POST' &&
+                        (isset($_POST['reel_action_xk91']) || $reel_post_too_big_xk91)
+                    ) {
+                        try {
+                            if ($reel_post_too_big_xk91) {
+                                throw new RuntimeException('Upload failed: file is too large for server limits. Increase upload_max_filesize and post_max_size in php.ini.');
+                            }
+
+                            if (!$reels_ready_xk91) {
+                                throw new RuntimeException('Reels module is temporarily unavailable.');
+                            }
+
+                            if (!isset($mydb) || !($mydb instanceof mysqli)) {
+                                throw new RuntimeException('Database connection is unavailable.');
+                            }
+
+                            $action_xk91 = (string)$_POST['reel_action_xk91'];
+                            $reelId_xk91 = (int)($_POST['reel_id'] ?? 0);
+
+                            if ($action_xk91 === 'add') {
+                                $result_xk91 = add_reel($mydb, $_POST, $_FILES);
+                            } elseif ($action_xk91 === 'update') {
+                                $result_xk91 = update_reel($mydb, $reelId_xk91, $_POST, $_FILES);
+                            } elseif ($action_xk91 === 'delete') {
+                                $result_xk91 = delete_reel($mydb, $reelId_xk91);
+                            } else {
+                                throw new RuntimeException('Invalid reel action.');
+                            }
+
+                            $reel_message_xk91 = $result_xk91['message'] ?? 'Done.';
+                            $reel_message_type_xk91 = !empty($result_xk91['success']) ? 'success' : 'error';
+                        } catch (Throwable $e) {
+                            error_log('Reels section fallback: ' . $e->getMessage());
+                            $reel_message_xk91 = ($e instanceof RuntimeException)
+                                ? $e->getMessage()
+                                : 'Something went wrong. Please try again.';
+                            $reel_message_type_xk91 = 'error';
+                        }
+
+                        /* Post/Redirect/Get. Agar headers pehle hi chale gaye to redirect nahi, seedha message dikhao */
+                        if (!headers_sent()) {
+                            $_SESSION['reel_flash_xk91'] = [
+                                'message' => $reel_message_xk91,
+                                'type'    => $reel_message_type_xk91
+                            ];
+                            header('Location: admin.php#contect_5_contect_box');
+                            exit;
+                        }
+                    }
+
+                    /* ---- 3. Flash message ---- */
+                    if (isset($_SESSION['reel_flash_xk91'])) {
+                        $reel_message_xk91 = $_SESSION['reel_flash_xk91']['message'] ?? '';
+                        $reel_message_type_xk91 = $_SESSION['reel_flash_xk91']['type'] ?? 'error';
+                        unset($_SESSION['reel_flash_xk91']);
+                    }
+
+                    /* ---- 4. Reels load karo ---- */
+                    try {
+                        if ($reels_ready_xk91 && isset($mydb) && $mydb instanceof mysqli) {
+                            $reels_xk91 = reels_get_all($mydb);
+                        }
+                    } catch (Throwable $e) {
+                        error_log('Reels listing fallback: ' . $e->getMessage());
+                        $reels_xk91 = [];
+                    }
+                    ?>
+
+                    <style>
+                        .reels-admin-xk91 {
+                            width: 100%;
+                            padding: 26px;
+                            background: #fff;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 16px;
+                            color: #172033;
+                            font-family: Arial, sans-serif;
+                            box-sizing: border-box;
+                        }
+
+                        .reels-admin-xk91 *,
+                        .reels-admin-xk91 *::before,
+                        .reels-admin-xk91 *::after {
+                            box-sizing: border-box;
+                        }
+
+                        .reels-head-xk91 {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            gap: 16px;
+                            margin-bottom: 24px;
+                        }
+
+                        .reels-head-xk91 h2 {
+                            margin: 0 0 7px;
+                            color: #172554;
+                            font-size: 27px;
+                        }
+
+                        .reels-head-xk91 p {
+                            margin: 0;
+                            color: #64748b;
+                            font-size: 14px;
+                            line-height: 1.6;
+                        }
+
+                        .reels-admin-xk91 button {
+                            border: 0;
+                            border-radius: 8px;
+                            padding: 10px 16px;
+                            min-height: 40px;
+                            background: #1d4ed8;
+                            color: #fff;
+                            font-size: 13px;
+                            font-weight: 700;
+                            cursor: pointer;
+                        }
+
+                        .reels-admin-xk91 button:hover {
+                            background: #1e40af;
+                        }
+
+                        .reels-btn-secondary-xk91 {
+                            background: #475569 !important;
+                        }
+
+                        .reels-btn-danger-xk91 {
+                            background: #dc2626 !important;
+                        }
+
+                        .reels-btn-danger-xk91:hover {
+                            background: #b91c1c !important;
+                        }
+
+                        .reels-btn-play-xk91 {
+                            background: #0f766e !important;
+                        }
+
+                        .reels-alert-xk91 {
+                            margin-bottom: 20px;
+                            padding: 13px 15px;
+                            border-radius: 8px;
+                            font-size: 14px;
+                            line-height: 1.5;
+                        }
+
+                        .reels-alert-success-xk91 {
+                            background: #dcfce7;
+                            border: 1px solid #86efac;
+                            color: #166534;
+                        }
+
+                        .reels-alert-error-xk91 {
+                            background: #fee2e2;
+                            border: 1px solid #fecaca;
+                            color: #991b1b;
+                        }
+
+                        /* ===== Licence-card grid ===== */
+                        .reels-grid-xk91 {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+                            gap: 22px;
+                        }
+
+                        .reels-card-xk91 {
+                            display: flex;
+                            flex-direction: column;
+                            overflow: hidden;
+                            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+                            border: 1px solid #c7d2fe;
+                            border-radius: 16px;
+                            box-shadow: 0 6px 18px rgba(30, 64, 175, .12);
+                            transition: transform .2s, box-shadow .2s;
+                        }
+
+                        .reels-card-xk91:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 12px 26px rgba(30, 64, 175, .2);
+                        }
+
+                        .reels-card-top-xk91 {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 10px;
+                            padding: 10px 16px;
+                            background: linear-gradient(90deg, #1e3a8a, #1d4ed8);
+                            color: #fff;
+                            font-size: 12px;
+                            font-weight: 700;
+                            letter-spacing: 1.2px;
+                            text-transform: uppercase;
+                        }
+
+                        .reels-status-xk91 {
+                            padding: 4px 10px;
+                            border-radius: 20px;
+                            font-size: 11px;
+                            font-weight: 700;
+                            letter-spacing: .5px;
+                        }
+
+                        .reels-status-active-xk91 {
+                            background: #dcfce7;
+                            color: #166534;
+                        }
+
+                        .reels-status-inactive-xk91 {
+                            background: #fee2e2;
+                            color: #991b1b;
+                        }
+
+                        .reels-card-body-xk91 {
+                            display: flex;
+                            gap: 16px;
+                            padding: 16px;
+                        }
+
+                        .reels-photo-xk91 {
+                            position: relative;
+                            flex: 0 0 112px;
+                            width: 112px;
+                            height: 140px;
+                            border: 3px solid #fff;
+                            border-radius: 10px;
+                            overflow: hidden;
+                            background: #0f172a;
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+                        }
+
+                        .reels-photo-xk91 img,
+                        .reels-photo-xk91 video {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        .reels-info-xk91 {
+                            flex: 1;
+                            min-width: 0;
+                        }
+
+                        .reels-field-xk91 {
+                            margin-bottom: 8px;
+                        }
+
+                        .reels-field-xk91 span {
+                            display: block;
+                            color: #64748b;
+                            font-size: 10px;
+                            font-weight: 700;
+                            letter-spacing: .8px;
+                            text-transform: uppercase;
+                        }
+
+                        .reels-field-xk91 strong {
+                            display: block;
+                            color: #0f172a;
+                            font-size: 14px;
+                            word-break: break-word;
+                        }
+
+                        .reels-row-xk91 {
+                            display: flex;
+                            gap: 18px;
+                            flex-wrap: wrap;
+                        }
+
+                        .reels-desc-xk91 {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            color: #475569;
+                            font-size: 12px;
+                            line-height: 1.5;
+                        }
+
+                        .reels-card-actions-xk91 {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                            margin-top: auto;
+                            padding: 12px 16px;
+                            background: rgba(255, 255, 255, .7);
+                            border-top: 1px dashed #a5b4fc;
+                        }
+
+                        .reels-card-actions-xk91 form {
+                            margin: 0;
+                        }
+
+                        .reels-card-actions-xk91 button {
+                            padding: 8px 14px !important;
+                            min-height: 36px !important;
+                        }
+
+                        .reels-empty-xk91 {
+                            grid-column: 1 / -1;
+                            padding: 40px 20px;
+                            text-align: center;
+                            color: #64748b;
+                            border: 2px dashed #cbd5e1;
+                            border-radius: 12px;
+                        }
+
+                        /* ===== Form ===== */
+                        #reelsFormWrapXK91 {
+                            max-width: 780px;
+                            margin: 24px auto 0;
+                            padding: 24px;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 12px;
+                            background: #f8fafc;
+                        }
+
+                        #reelsFormWrapXK91[hidden],
+                        #reelsListXK91[hidden] {
+                            display: none !important;
+                        }
+
+                        #reelsFormWrapXK91 h3 {
+                            margin: 0 0 20px;
+                            color: #172554;
+                            font-size: 21px;
+                        }
+
+                        #reelsFormWrapXK91 label {
+                            display: block;
+                            margin: 16px 0 7px;
+                            color: #334155;
+                            font-size: 13px;
+                            font-weight: 700;
+                        }
+
+                        #reelsFormWrapXK91 input:not([type="hidden"]),
+                        #reelsFormWrapXK91 select,
+                        #reelsFormWrapXK91 textarea {
+                            display: block;
+                            width: 100%;
+                            min-height: 43px;
+                            padding: 10px 12px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 7px;
+                            background: #fff;
+                            color: #172033;
+                            font: inherit;
+                            font-size: 14px;
+                        }
+
+                        #reelsFormWrapXK91 textarea {
+                            min-height: 100px;
+                            resize: vertical;
+                        }
+
+                        #reelsFormWrapXK91 input[type="file"] {
+                            padding: 8px;
+                        }
+
+                        #reelsFormWrapXK91 small {
+                            display: block;
+                            margin-top: 5px;
+                            color: #64748b;
+                            font-size: 12px;
+                        }
+
+                        .reels-form-grid-xk91 {
+                            display: grid;
+                            grid-template-columns: repeat(2, minmax(0, 1fr));
+                            gap: 0 16px;
+                        }
+
+                        .reels-form-actions-xk91 {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            margin-top: 22px;
+                        }
+
+                        .reels-preview-xk91 {
+                            display: none;
+                            width: 110px;
+                            height: 140px;
+                            object-fit: cover;
+                            margin-top: 12px;
+                            border-radius: 8px;
+                            background: #e2e8f0;
+                        }
+
+                        /* ===== Video modal ===== */
+                        #reelsModalXK91 {
+                            position: fixed;
+                            inset: 0;
+                            z-index: 99999;
+                            display: none;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 16px;
+                            background: rgba(15, 23, 42, .85);
+                        }
+
+                        #reelsModalXK91.open {
+                            display: flex;
+                        }
+
+                        #reelsModalXK91 .box {
+                            position: relative;
+                            width: 100%;
+                            max-width: 380px;
+                        }
+
+                        #reelsModalXK91 video {
+                            display: block;
+                            width: 100%;
+                            max-height: 80vh;
+                            border-radius: 12px;
+                            background: #000;
+                        }
+
+                        #reelsModalXK91 .close {
+                            position: absolute;
+                            top: -14px;
+                            right: -6px;
+                            width: 34px;
+                            height: 34px;
+                            min-height: 34px;
+                            padding: 0 !important;
+                            border-radius: 50% !important;
+                            background: #dc2626 !important;
+                            font-size: 18px !important;
+                            line-height: 1;
+                        }
+
+                        /* ===== Responsive ===== */
+                        @media (max-width: 768px) {
+                            .reels-admin-xk91 {
+                                padding: 17px 12px;
+                            }
+
+                            .reels-head-xk91 {
+                                align-items: flex-start;
+                                flex-direction: column;
+                            }
+
+                            .reels-head-xk91 h2 {
+                                font-size: 23px;
+                            }
+
+                            #reelsFormWrapXK91 {
+                                padding: 17px 12px;
+                            }
+
+                            .reels-form-grid-xk91 {
+                                grid-template-columns: 1fr;
+                            }
+
+                            .reels-grid-xk91 {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+
+                        @media (max-width: 400px) {
+                            .reels-card-body-xk91 {
+                                flex-direction: column;
+                                align-items: center;
+                            }
+
+                            .reels-info-xk91 {
+                                width: 100%;
+                            }
+
+                            .reels-photo-xk91 {
+                                flex: none;
+                            }
+                        }
+                    </style>
+
+                    <div class="reels-admin-xk91">
+
+                        <div class="reels-head-xk91">
+                            <div>
+                                <h2>Reels Management</h2>
+                                <p>Upload videos, manage thumbnails and control reel visibility.</p>
+                            </div>
+                            <?php if ($reels_ready_xk91): ?>
+                                <button type="button" onclick="reelsShowFormXK91('add')">+ Add Reel</button>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ($reel_message_xk91 !== null && $reel_message_xk91 !== ''): ?>
+                            <div class="reels-alert-xk91 <?= $reel_message_type_xk91 === 'success' ? 'reels-alert-success-xk91' : 'reels-alert-error-xk91' ?>">
+                                <?= $h_xk91($reel_message_xk91) ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!$reels_ready_xk91): ?>
+                            <div class="reels-alert-xk91 reels-alert-error-xk91">
+                                Reels module is temporarily unavailable. The rest of the website is not affected.
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- ================= CARD LIST ================= -->
+                        <div id="reelsListXK91">
+                            <div class="reels-grid-xk91">
+
+                                <?php if (!empty($reels_xk91)): ?>
+                                    <?php foreach ($reels_xk91 as $reel_xk91): ?>
+                                        <?php $isActive_xk91 = ($reel_xk91['reel_status'] ?? '') === 'Active'; ?>
+
+                                        <div class="reels-card-xk91">
+
+                                            <div class="reels-card-top-xk91">
+                                                <span>Reel Card &bull; #<?= (int)$reel_xk91['reel_id'] ?></span>
+                                                <span class="reels-status-xk91 <?= $isActive_xk91 ? 'reels-status-active-xk91' : 'reels-status-inactive-xk91' ?>">
+                                                    <?= $h_xk91($reel_xk91['reel_status'] ?? '') ?>
+                                                </span>
+                                            </div>
+
+                                            <div class="reels-card-body-xk91">
+                                                <div class="reels-photo-xk91">
+                                                    <?php if (!empty($reel_xk91['reel_thumbnail'])): ?>
+                                                        <img src="<?= $h_xk91($reel_xk91['reel_thumbnail']) ?>" alt="Reel thumbnail" loading="lazy">
+                                                    <?php else: ?>
+                                                        <video muted preload="metadata" playsinline>
+                                                            <source src="<?= $h_xk91($reel_xk91['reel_file']) ?>#t=0.5">
+                                                        </video>
+                                                    <?php endif; ?>
+                                                </div>
+
+                                                <div class="reels-info-xk91">
+                                                    <div class="reels-field-xk91">
+                                                        <span>Title</span>
+                                                        <strong><?= $h_xk91($reel_xk91['reel_title'] ?? '') ?></strong>
+                                                    </div>
+
+                                                    <div class="reels-field-xk91">
+                                                        <span>Slug</span>
+                                                        <strong><?= $h_xk91($reel_xk91['reel_slug'] ?? '') ?></strong>
+                                                    </div>
+
+                                                    <div class="reels-row-xk91">
+                                                        <div class="reels-field-xk91">
+                                                            <span>Order</span>
+                                                            <strong><?= (int)($reel_xk91['reel_sort_order'] ?? 0) ?></strong>
+                                                        </div>
+                                                        <div class="reels-field-xk91">
+                                                            <span>Added</span>
+                                                            <strong><?= $h_xk91(!empty($reel_xk91['reel_created_at']) ? date('d M Y', strtotime($reel_xk91['reel_created_at'])) : '-') ?></strong>
+                                                        </div>
+                                                    </div>
+
+                                                    <?php if (!empty($reel_xk91['reel_description'])): ?>
+                                                        <div class="reels-desc-xk91"><?= $h_xk91($reel_xk91['reel_description']) ?></div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="reels-card-actions-xk91">
+                                                <button type="button" class="reels-btn-play-xk91"
+                                                    data-video="<?= $h_xk91($reel_xk91['reel_file']) ?>"
+                                                    onclick="reelsPlayXK91(this.dataset.video)">
+                                                    &#9658; Play
+                                                </button>
+
+                                                <button type="button"
+                                                    data-reel="<?= $h_xk91(json_encode($reel_xk91, JSON_UNESCAPED_UNICODE)) ?>"
+                                                    onclick="reelsEditXK91(JSON.parse(this.dataset.reel))">
+                                                    Edit
+                                                </button>
+
+                                                <form method="POST" onsubmit="return confirm('Delete this reel permanently?')">
+                                                    <input type="hidden" name="reel_id" value="<?= (int)$reel_xk91['reel_id'] ?>">
+                                                    <input type="hidden" name="reel_action_xk91" value="delete">
+                                                    <button type="submit" class="reels-btn-danger-xk91">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="reels-empty-xk91">No reels added yet. Click "+ Add Reel" to create one.</div>
+                                <?php endif; ?>
+
+                            </div>
+                        </div>
+
+                        <!-- ================= ADD / UPDATE FORM ================= -->
+                        <div id="reelsFormWrapXK91" hidden>
+                            <h3 id="reelsFormTitleXK91">Add Reel</h3>
+
+                            <form method="POST" enctype="multipart/form-data" id="reelsFormXK91">
+
+                                <input type="hidden" name="reel_id" id="reelsIdXK91">
+                                <input type="hidden" name="reel_action_xk91" id="reelsActionXK91" value="add">
+
+                                <div class="reels-form-grid-xk91">
+                                    <div>
+                                        <label for="reelsTitleXK91">Reel Title *</label>
+                                        <input type="text" name="reel_title" id="reelsTitleXK91" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="reelsSlugXK91">Reel Slug (auto)</label>
+                                        <input type="text" name="reel_slug" id="reelsSlugXK91" readonly
+                                            placeholder="Auto-generated from title" style="background:#e2e8f0;cursor:not-allowed">
+                                    </div>
+
+                                    <div>
+                                        <label for="reelsVideoXK91">Video File <span id="reelsVideoRequiredXK91">*</span></label>
+                                        <input type="file" name="reel_file" id="reelsVideoXK91"
+                                            accept="video/mp4,video/webm,video/ogg,.mp4,.webm,.ogv,.ogg">
+                                        <small>MP4, WebM or OGG. Maximum 100 MB.</small>
+                                        <video id="reelsVideoPreviewXK91" class="reels-preview-xk91" controls playsinline></video>
+                                    </div>
+
+                                    <div>
+                                        <label for="reelsThumbnailXK91">Thumbnail (Optional)</label>
+                                        <input type="file" name="reel_thumbnail" id="reelsThumbnailXK91"
+                                            accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+                                        <small>JPG, PNG or WEBP. Maximum 5 MB.</small>
+                                        <img id="reelsImagePreviewXK91" class="reels-preview-xk91" alt="Thumbnail preview">
+                                    </div>
+
+                                    <div>
+                                        <label for="reelsStatusXK91">Status</label>
+                                        <select name="reel_status" id="reelsStatusXK91">
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label for="reelsOrderXK91">Sort Order</label>
+                                        <input type="number" name="reel_sort_order" id="reelsOrderXK91" value="0">
+                                    </div>
+                                </div>
+
+                                <label for="reelsDescriptionXK91">Description</label>
+                                <textarea name="reel_description" id="reelsDescriptionXK91" rows="4"></textarea>
+
+                                <div class="reels-form-actions-xk91">
+                                    <button type="button" class="reels-btn-secondary-xk91" onclick="reelsShowFormXK91('list')">Cancel</button>
+                                    <button type="submit" id="reelsSubmitXK91">Save Reel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- ================= VIDEO MODAL ================= -->
+                        <div id="reelsModalXK91">
+                            <div class="box">
+                                <button type="button" class="close" onclick="reelsCloseXK91()">&times;</button>
+                                <video id="reelsModalVideoXK91" controls playsinline></video>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        (function() {
+                            const formWrap = document.getElementById('reelsFormWrapXK91');
+                            const list = document.getElementById('reelsListXK91');
+                            const form = document.getElementById('reelsFormXK91');
+                            if (!formWrap || !list || !form) return;
+
+                            const idInput = document.getElementById('reelsIdXK91');
+                            const actionInput = document.getElementById('reelsActionXK91');
+                            const videoInput = document.getElementById('reelsVideoXK91');
+                            const thumbInput = document.getElementById('reelsThumbnailXK91');
+                            const videoPreview = document.getElementById('reelsVideoPreviewXK91');
+                            const imagePreview = document.getElementById('reelsImagePreviewXK91');
+                            const modal = document.getElementById('reelsModalXK91');
+                            const modalVideo = document.getElementById('reelsModalVideoXK91');
+
+                            const titleInput = document.getElementById('reelsTitleXK91');
+                            const slugInput = document.getElementById('reelsSlugXK91');
+
+                            function makeSlug(text) {
+                                return (text || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+                            }
+
+                            titleInput.addEventListener('input', function() {
+                                slugInput.value = makeSlug(this.value);
+                            });
+
+                            let videoObjectUrl = null;
+                            let imageObjectUrl = null;
+
+                            function clearPreviews() {
+                                if (videoObjectUrl) URL.revokeObjectURL(videoObjectUrl);
+                                if (imageObjectUrl) URL.revokeObjectURL(imageObjectUrl);
+                                videoObjectUrl = null;
+                                imageObjectUrl = null;
+
+                                videoPreview.removeAttribute('src');
+                                videoPreview.load();
+                                videoPreview.style.display = 'none';
+
+                                imagePreview.removeAttribute('src');
+                                imagePreview.style.display = 'none';
+                            }
+
+                            window.reelsShowFormXK91 = function(mode) {
+                                if (mode === 'list') {
+                                    formWrap.hidden = true;
+                                    list.hidden = false;
+                                    return;
+                                }
+
+                                list.hidden = true;
+                                formWrap.hidden = false;
+
+                                if (mode === 'add') {
+                                    form.reset();
+                                    clearPreviews();
+                                    idInput.value = '';
+                                    actionInput.value = 'add';
+                                    videoInput.required = true;
+                                    document.getElementById('reelsFormTitleXK91').textContent = 'Add Reel';
+                                    document.getElementById('reelsSubmitXK91').textContent = 'Save Reel';
+                                    document.getElementById('reelsVideoRequiredXK91').textContent = '*';
+                                }
+
+                                formWrap.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            };
+
+                            window.reelsEditXK91 = function(reel) {
+                                if (!reel) return;
+
+                                form.reset();
+                                clearPreviews();
+
+                                idInput.value = reel.reel_id || '';
+                                document.getElementById('reelsTitleXK91').value = reel.reel_title || '';
+                                slugInput.value = reel.reel_slug || '';
+                                document.getElementById('reelsDescriptionXK91').value = reel.reel_description || '';
+                                document.getElementById('reelsStatusXK91').value = reel.reel_status || 'Active';
+                                document.getElementById('reelsOrderXK91').value = reel.reel_sort_order ?? 0;
+
+                                actionInput.value = 'update';
+                                videoInput.required = false;
+
+                                document.getElementById('reelsFormTitleXK91').textContent = 'Update Reel';
+                                document.getElementById('reelsSubmitXK91').textContent = 'Update Reel';
+                                document.getElementById('reelsVideoRequiredXK91').textContent = '(leave blank to keep current video)';
+
+                                formWrap.hidden = false;
+                                list.hidden = true;
+
+                                formWrap.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            };
+
+                            window.reelsPlayXK91 = function(src) {
+                                if (!src) return;
+                                modalVideo.src = src;
+                                modal.classList.add('open');
+                                modalVideo.play().catch(function() {});
+                            };
+
+                            window.reelsCloseXK91 = function() {
+                                modalVideo.pause();
+                                modalVideo.removeAttribute('src');
+                                modalVideo.load();
+                                modal.classList.remove('open');
+                            };
+
+                            modal.addEventListener('click', function(e) {
+                                if (e.target === modal) window.reelsCloseXK91();
+                            });
+
+                            videoInput.addEventListener('change', function() {
+                                const file = this.files && this.files[0];
+                                if (!file) return;
+
+                                if (!['video/mp4', 'video/webm', 'video/ogg'].includes(file.type)) {
+                                    alert('Please select an MP4, WebM or OGG video.');
+                                    this.value = '';
+                                    return;
+                                }
+                                if (file.size > 100 * 1024 * 1024) {
+                                    alert('Video size must be 100 MB or smaller.');
+                                    this.value = '';
+                                    return;
+                                }
+
+                                if (videoObjectUrl) URL.revokeObjectURL(videoObjectUrl);
+                                videoObjectUrl = URL.createObjectURL(file);
+                                videoPreview.src = videoObjectUrl;
+                                videoPreview.style.display = 'block';
+                            });
+
+                            thumbInput.addEventListener('change', function() {
+                                const file = this.files && this.files[0];
+                                if (!file) return;
+
+                                if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                                    alert('Please select a JPG, PNG or WEBP thumbnail.');
+                                    this.value = '';
+                                    return;
+                                }
+                                if (file.size > 5 * 1024 * 1024) {
+                                    alert('Thumbnail size must be 5 MB or smaller.');
+                                    this.value = '';
+                                    return;
+                                }
+
+                                if (imageObjectUrl) URL.revokeObjectURL(imageObjectUrl);
+                                imageObjectUrl = URL.createObjectURL(file);
+                                imagePreview.src = imageObjectUrl;
+                                imagePreview.style.display = 'block';
+                            });
+                        })();
+                    </script>
+
                 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <!-- sublink box 6 -->
                 <section id="contect_6_contect_box" class="section_sub_with all_sejmca8974 auto_margin_notwa">

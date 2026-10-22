@@ -719,7 +719,7 @@
                     and placement assistance at EagletFly Solutions, Patel Nagar, Delhi.
                 </p>
                 <div class="kd-podcast-hero-actions">
-                    <a href="#contact" class="kd-podcast-hero-btn kd-podcast-primary">
+                    <a href="contact.php" class="kd-podcast-hero-btn kd-podcast-primary">
                         Book Demo
                         <span class="kd-podcast-btn-arrow">
                             <svg viewBox="0 0 24 24" fill="none">
@@ -727,7 +727,7 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="#java-curriculum" class="kd-podcast-hero-btn kd-podcast-secondary">View Curriculum</a>
+                    <a href="contact.php" class="kd-podcast-hero-btn kd-podcast-secondary">View Curriculum</a>
                 </div>
 
                 <div class="kd-podcast-hero-meta">
@@ -757,7 +757,23 @@
                     <div class="kd-java-visual">
                         <div class="kd-java-glow"></div>
                         <div class="kd-java-logo-container">
-                            <img src="assets/img/zmgsqu942mvnkvucbmdn.avif" alt="">
+
+
+                            <?php
+                            $aboutBannerX91 = '';
+
+                            $aboutBannerQueryX91 = $mydb->query(
+                                "SELECT img_java FROM baners ORDER BY baner_id DESC LIMIT 1"
+                            );
+
+                            if ($aboutBannerQueryX91 && $aboutBannerQueryX91->num_rows > 0) {
+                                $aboutBannerDataX91 = $aboutBannerQueryX91->fetch_assoc();
+                                $aboutBannerX91 = $aboutBannerDataX91['img_java'] ?? '';
+                            }
+                            ?><?php if (!empty($aboutBannerX91)): ?>
+                            <img src="<?= htmlspecialchars($aboutBannerX91, ENT_QUOTES, 'UTF-8') ?>" alt="">
+                        <?php endif; ?>
+
                         </div>
                     </div>
                     <div class="kd-podcast-shot-overlay"></div>

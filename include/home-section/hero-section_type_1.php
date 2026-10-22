@@ -566,6 +566,7 @@
     }
 </style>
 
+
 <section class="hero-sec-container">
 
     <!-- Existing decorative elements -->
@@ -607,7 +608,7 @@
             <!-- Features -->
             <div class="hero-sec-features">
 
-                <div class="hero-sec-feature-row">
+                <div class="hero-sec-feature-row" style="padding-top: 10px;">
 
                     <div class="hero-sec-feature-item">
                         <span class="hero-sec-check-icon">✓</span>
@@ -628,16 +629,16 @@
 
 
                 <div class="hero-sec-feature-row">
-
+                    <!-- 
                     <div class="hero-sec-feature-item">
                         <span class="hero-sec-check-icon">✓</span>
                         <span>Prior Math/Coding Experience Needed</span>
-                    </div>
-
+                    </div> -->
+                    <!-- 
                     <div class="hero-sec-feature-item">
                         <span class="hero-sec-check-icon">✓</span>
                         <span>10+ Years of Experience</span>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -647,7 +648,7 @@
             <!-- Buttons -->
             <div class="hero-sec-actions">
 
-                <button class="hero-sec-btn-primary">
+                <button class="hero-sec-btn-primary" onclick="window.location.href='contact.php'">
                     <span>SEND INQUIRY</span>
 
                     <svg class="hero-sec-btn-icon"
@@ -663,7 +664,7 @@
                 </button>
 
 
-                <button class="hero-sec-btn-secondary">
+                <button class="hero-sec-btn-secondary" onclick="window.location.href='contact.php'">
 
                     <span>BOOK A FREE DEMO CLASS</span>
 
@@ -700,9 +701,31 @@
 
         <div class="hero-sec-right">
 
+            <?php
+            $homeBannerX91 = 'assets/extara_imgs/edqw.png';
+
+            $homeBannerQueryX91 = $mydb->query(
+                "SELECT img_index
+                        FROM baners
+                        ORDER BY baner_id DESC
+                        LIMIT 1"
+            );
+
+            if ($homeBannerQueryX91 && $homeBannerQueryX91->num_rows > 0) {
+                $homeBannerDataX91 = $homeBannerQueryX91->fetch_assoc();
+
+                if (!empty($homeBannerDataX91['img_index'])) {
+                    $homeBannerX91 = $homeBannerDataX91['img_index'];
+                }
+            }
+            ?>
+
             <span>
-                <img src="assets/extara_imgs/edqw.png" alt="">
+                <img
+                    src="<?= htmlspecialchars($homeBannerX91, ENT_QUOTES, 'UTF-8') ?>"
+                    alt="Eagletfly Home Banner">
             </span>
+
 
             <span style="display: none;">
                 <div class="loader">

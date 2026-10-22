@@ -457,7 +457,7 @@
             </div>
 
 
-            <a href="#" class="ef-cta-button">
+            <a href="contact.php" class="ef-cta-button">
                 Start Your Python Journey
                 <span>→</span>
             </a>

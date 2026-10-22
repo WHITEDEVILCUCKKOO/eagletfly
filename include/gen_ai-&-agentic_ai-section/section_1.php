@@ -1,6 +1,6 @@
 <div class="klr-ai-wrapper">
     <div class="klr-ai-container">
-        
+
         <!-- Left Content Area -->
         <div class="klr-ai-content-box">
             <div class="klr-ai-tagline">
@@ -22,16 +22,20 @@
             </p>
 
             <div class="klr-ai-action-row">
-                <button class="klr-ai-apply-btn">
+                <button class="klr-ai-apply-btn" onclick="window.location.href='contact.php'">
                     <span>Apply Now</span>
                     <span class="klr-ai-btn-icon">
-                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+                        <svg viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
                     </span>
                 </button>
 
                 <div class="klr-ai-batch-badge">
-                    <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-                    <span>Batch 8</span>
+                    <svg viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+                    <span>Batch </span>
                 </div>
             </div>
         </div>
@@ -39,7 +43,27 @@
         <!-- Right Image Placeholder Area (Aap yahan apni image laga sakte hain) -->
         <div class="klr-ai-image-box">
             <!-- <div class="klr-ai-img-placeholder">/ -->
-                <span class="klr-ai-placeholder-text"><img src="assets/img/adap54186.png" alt=""></span>
+
+            <?php
+            $aboutBannerX91 = '';
+
+            $aboutBannerQueryX91 = $mydb->query(
+                "SELECT img_applied_generative_ai_agentic_ai FROM baners ORDER BY baner_id DESC LIMIT 1"
+            );
+
+            if ($aboutBannerQueryX91 && $aboutBannerQueryX91->num_rows > 0) {
+                $aboutBannerDataX91 = $aboutBannerQueryX91->fetch_assoc();
+                $aboutBannerX91 = $aboutBannerDataX91['img_applied_generative_ai_agentic_ai'] ?? '';
+            }
+            ?>
+
+            <?php if (!empty($aboutBannerX91)): ?>
+                <span class="klr-ai-placeholder-text">
+                    <img src="<?= htmlspecialchars($aboutBannerX91, ENT_QUOTES, 'UTF-8') ?>" alt="Eagletfly About Banner">
+                </span>
+            <?php endif; ?>
+
+
             <!-- </div> -->
         </div>
 
@@ -163,7 +187,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         transition: all 0.3s ease;
     }
 
@@ -205,7 +229,7 @@
         border-radius: 8px;
         font-size: 13px;
         font-weight: 600;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     }
 
     .klr-ai-batch-badge svg {
@@ -250,13 +274,27 @@
     }
 
     @keyframes klrAiFadeInLeft {
-        from { opacity: 0; transform: translateX(-30px); }
-        to { opacity: 1; transform: translateX(0); }
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     @keyframes klrAiFadeInRight {
-        from { opacity: 0; transform: translateX(30px); }
-        to { opacity: 1; transform: translateX(0); }
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     @media (max-width: 1024px) {
@@ -264,18 +302,23 @@
             flex-direction: column;
             text-align: center;
         }
+
         .klr-ai-content-box {
             align-items: center;
         }
+
         .klr-ai-tagline {
             padding-left: 0;
         }
+
         .klr-ai-tagline::before {
             display: none;
         }
+
         .klr-ai-main-heading {
             font-size: 32px;
         }
+
         .klr-ai-img-placeholder {
             height: 300px;
         }

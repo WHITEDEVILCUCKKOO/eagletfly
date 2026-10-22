@@ -200,8 +200,8 @@
         </p>
 
         <div class="dgfc2-btn-row">
-            <button class="dgfc2-btn dgfc2-btn-solid">Enroll Now — Limited Seats</button>
-            <button class="dgfc2-btn dgfc2-btn-outline"><span class="dgfc2-whatsapp-icon">&#9742;</span>Connect on Whatsapp</button>
+            <button class="dgfc2-btn dgfc2-btn-solid" onclick="window.location.href='contact.php'">Enroll Now — Limited Seats</button>
+            <button class="dgfc2-btn dgfc2-btn-outline" onclick="window.location.href='contact.php'"><span class="dgfc2-whatsapp-icon">&#9742;</span>Connect on Whatsapp</button>
         </div>
     </div>
 </section>

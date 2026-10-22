@@ -410,8 +410,8 @@
                 <button class="dgfm-submit-btn brand-gradient-animated">Enquire Now</button>
 
                 <p class="dgfm-consent">
-                    By submitting the form, you agree to our <a href="#">Terms and Conditions</a> and our <a
-                        href="#">Privacy
+                    By submitting the form, you agree to our <a href="contact.php">Terms and Conditions</a> and our <a
+                        href="contact.php">Privacy
                         Policy</a>.
                 </p>
             </div>

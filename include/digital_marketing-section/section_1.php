@@ -217,7 +217,7 @@
 
         color: #ffffff;
 
-        font-size: clamp(26px,3.2vw,36px);
+        font-size: clamp(26px, 3.2vw, 36px);
 
         line-height: 1.03;
 
@@ -1324,7 +1324,7 @@
         .kd-podcast-hero-copy {
 
             text-align: center;
-            padding:80px 30px 30px;
+            padding: 80px 30px 30px;
         }
 
 
@@ -1797,9 +1797,9 @@
                 </div>
 
                 <h2>
-                    Digital Marketing Course 
-                    <span> in Patel Nagar </span> 
-                 
+                    Digital Marketing Course
+                    <span> in Patel Nagar </span>
+
 
                 </h2>
 
@@ -1810,7 +1810,7 @@
                 <!-- CTA -->
                 <div class="kd-podcast-hero-actions">
 
-                    <a href="#contact"
+                    <a href="contact.php"
                         class="kd-podcast-hero-btn kd-podcast-primary">
 
                         Book Demo
@@ -1830,7 +1830,7 @@
 
                     </a>
 
-                    <a href="#podcast-work"
+                    <a href="contact.php"
                         class="kd-podcast-hero-btn kd-podcast-secondary">
 
 
@@ -1909,9 +1909,26 @@
                 <!-- MAIN PODCAST IMAGE -->
                 <div class="kd-podcast-main-shot">
 
-                    <img
-                        src="img/extra/digital_img_1.webp"
-                        alt="Professional podcast recording studio">
+
+                    <?php
+                    $aboutBannerX91 = '';
+
+                    $aboutBannerQueryX91 = $mydb->query(
+                        "SELECT img_digital_marketing FROM baners ORDER BY baner_id DESC LIMIT 1"
+                    );
+
+                    if ($aboutBannerQueryX91 && $aboutBannerQueryX91->num_rows > 0) {
+                        $aboutBannerDataX91 = $aboutBannerQueryX91->fetch_assoc();
+                        $aboutBannerX91 = $aboutBannerDataX91['img_digital_marketing'] ?? '';
+                    }
+                    ?><?php if (!empty($aboutBannerX91)): ?>
+                     <img
+                    src="<?= htmlspecialchars($aboutBannerX91, ENT_QUOTES, 'UTF-8') ?>"
+                    alt="Professional podcast recording studio">
+                <?php endif; ?>
+
+
+               
 
 
                 </div>

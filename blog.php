@@ -651,7 +651,7 @@ $data_set = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
                         </section>
                         <br>
 
-                        <a href="#" class="blogIn-readLink">
+                        <a href="contact.php" class="blogIn-readLink">
                             Read Article
                         </a>
 
@@ -823,7 +823,7 @@ $data_set = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
                     '<h3 class="blogIn-cardTitle">' + p.title + '</h3>' +
                     '<p class="blogIn-cardDesc">' + p.desc + '</p>' +
                     '<div class="blogIn-tagsRow">' + blogTagsHtml + '</div>' +
-                    '<a href="#" class="blogIn-readLink">Read Article ' +
+                    '<a href="contact.php" class="blogIn-readLink">Read Article ' +
                     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' +
                     '</a>' +
                     '</div>';

@@ -221,8 +221,8 @@
     <div class="ftrsec-col">
       <h3 class="ftrsec-heading">Legal</h3>
       <ul class="ftrsec-links-list">
-        <li><a href="#" class="ftrsec-link">Terms & Conditions</a></li>
-        <li><a href="#" class="ftrsec-link">Privacy Policy</a></li>
+        <li><a href="contact.php" class="ftrsec-link">Terms & Conditions</a></li>
+        <li><a href="contact.php" class="ftrsec-link">Privacy Policy</a></li>
       </ul>
     </div>
 
@@ -316,8 +316,8 @@
 
 <!-- FLOATING BUTTONS
 <div class="msw-float-btns">
-  <a class="msw-float-btn msw-cal brand-gradient-animated" style="color: white;" href="#">📞 Call Us</a>
-  <a class="msw-float-btn msw-whatsapp" style="color: white;" href="#">💬 WhatsApp Us</a>
+  <a class="msw-float-btn msw-cal brand-gradient-animated" style="color: white;" href="contact.php">📞 Call Us</a>
+  <a class="msw-float-btn msw-whatsapp" style="color: white;" href="contact.php">💬 WhatsApp Us</a>
 </div> -->
 
 </div>

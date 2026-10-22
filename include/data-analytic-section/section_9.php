@@ -316,8 +316,8 @@
         </div>
 
         <div class="dgfc-cta-row">
-            <button class="dgfc-btn dgfc-btn-outline">Download Syllabus</button>
-            <button class="dgfc-btn dgfc-btn-solid brand-gradient-animated">Apply Now</button>
+            <!-- <button class="dgfc-btn dgfc-btn-outline" >Download Syllabus</button> -->
+            <button class="dgfc-btn dgfc-btn-solid brand-gradient-animated" onclick="window.location.href='contact.php'">Apply Now</button>
         </div>
 
     </div>

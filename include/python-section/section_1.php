@@ -1643,7 +1643,7 @@
                 <!-- CTA -->
                 <div class="kd-podcast-hero-actions">
 
-                    <a href="#contact"
+                    <a href="contact.php"
                         class="kd-podcast-hero-btn kd-podcast-primary">
 
                         Book Demo
@@ -1663,7 +1663,7 @@
 
                     </a>
 
-                    <a href="#python-curriculum"
+                    <a href="contact.php"
                         class="kd-podcast-hero-btn kd-podcast-secondary">
 
 

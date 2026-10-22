@@ -8,7 +8,7 @@
                 Take the definitive step toward a high-growth career in digital marketing. Enroll in the upcoming batch of our Digital Marketing Course in Patel Nagar at EagletFly Solutions to build practical campaign skills, manage real ad budgets, and secure top marketing roles.
             </p>
             <div class="eagletfly-cta-btn-wrap">
-                <a href="#contact" class="eagletfly-cta-btn">Book Your Free Demo Class Now</a>
+                <a href="contact.php" class="eagletfly-cta-btn">Book Your Free Demo Class Now</a>
             </div>
         </div>
     </div>

@@ -28,8 +28,15 @@
   }
 
   @keyframes qtiFadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .qti-welcome-visual {
@@ -53,7 +60,7 @@
     width: 100%;
     aspect-ratio: 4 / 4.6;
     border-radius: 22px;
-    background: linear-gradient(150deg, #f5a95f, #e88a4a);
+    background: linear-gradient(150deg,  #e88a4a ,#5f94f5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,7 +70,7 @@
   .qti-welcome-photo svg {
     width: 46%;
     height: 46%;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
   }
 
   .qti-badge-videos {
@@ -77,7 +84,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 14px 30px rgba(20,20,50,0.14);
+    box-shadow: 0 14px 30px rgba(20, 20, 50, 0.14);
   }
 
   .qti-badge-videos-icon {
@@ -119,7 +126,7 @@
     background: #ffffff;
     border-radius: 14px;
     padding: 16px 20px;
-    box-shadow: 0 14px 30px rgba(20,20,50,0.14);
+    box-shadow: 0 14px 30px rgba(20, 20, 50, 0.14);
     min-width: 190px;
   }
 
@@ -207,7 +214,7 @@
   .qti-feature-item:hover {
     transform: translateY(-4px);
     background: #ffffff;
-    box-shadow: 0 14px 28px rgba(20,20,50,0.08);
+    box-shadow: 0 14px 28px rgba(20, 20, 50, 0.08);
   }
 
   .qti-feature-icon {
@@ -257,7 +264,7 @@
   .qti-btn-primary:hover {
     transform: translateY(-3px);
     background: #d96a1f;
-    box-shadow: 0 14px 28px rgba(238,122,43,0.3);
+    box-shadow: 0 14px 28px rgba(238, 122, 43, 0.3);
   }
 
   .qti-btn-primary .qti-arrow {
@@ -270,16 +277,40 @@
   }
 
   @media (max-width: 980px) {
-    .qti-welcome-inner { grid-template-columns: 1fr; gap: 70px; }
-    .qti-welcome-visual { max-width: 420px; margin: 0 auto; }
+    .qti-welcome-inner {
+      grid-template-columns: 1fr;
+      gap: 70px;
+    }
+
+    .qti-welcome-visual {
+      max-width: 420px;
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 620px) {
-    .qti-welcome { padding: 60px 18px; }
-    .qti-welcome-title { font-size: 27px; }
-    .qti-feature-grid { grid-template-columns: 1fr; }
-    .qti-badge-tutor { right: 0; bottom: -20px; min-width: 160px; padding: 12px 16px; }
-    .qti-badge-videos { left: 0; }
+    .qti-welcome {
+      padding: 60px 18px;
+    }
+
+    .qti-welcome-title {
+      font-size: 27px;
+    }
+
+    .qti-feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .qti-badge-tutor {
+      right: 0;
+      bottom: -20px;
+      min-width: 160px;
+      padding: 12px 16px;
+    }
+
+    .qti-badge-videos {
+      left: 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -288,8 +319,35 @@
       opacity: 1 !important;
       transform: none !important;
     }
-    .qti-feature-item:hover, .qti-btn-primary:hover { transform: none; }
+
+    .qti-feature-item:hover,
+    .qti-btn-primary:hover {
+      transform: none;
+    }
   }
+
+
+  .eagletfly-about-banner-wrap-xk91 {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.eagletfly-about-banner-img-xk91 {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 767px) {
+    .eagletfly-about-banner-img-xk91 {
+        width: 100%;
+        height: auto;
+    }
+}
 </style>
 
 <section class="qti-welcome">
@@ -298,31 +356,63 @@
     <div class="qti-welcome-visual qti-fadeup" id="qtiWelcomeVisual">
       <div class="qti-welcome-frame"></div>
       <div class="qti-welcome-photo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg> -->
+        <?php
+        $aboutBannerX91 = '';
+
+        $aboutBannerQueryX91 = $mydb->query(
+          "SELECT img_about FROM baners ORDER BY baner_id DESC LIMIT 1"
+        );
+
+        if ($aboutBannerQueryX91 && $aboutBannerQueryX91->num_rows > 0) {
+          $aboutBannerDataX91 = $aboutBannerQueryX91->fetch_assoc();
+          $aboutBannerX91 = $aboutBannerDataX91['img_about'] ?? '';
+        }
+        ?>
+
+        <?php if (!empty($aboutBannerX91)): ?>
+          <span class="eagletfly-about-banner-wrap-xk91">
+            <img
+              src="<?= htmlspecialchars($aboutBannerX91, ENT_QUOTES, 'UTF-8') ?>"
+              alt="Eagletfly About Banner"
+              class="eagletfly-about-banner-img-xk91">
+          </span>
+        <?php endif; ?>
+
       </div>
 
-      <div class="qti-badge-videos">
+      <!-- <div class="qti-badge-videos">
         <div class="qti-badge-videos-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 4 20 12 6 20 6 4" />
+          </svg>
         </div>
         <div>
-          <p class="qti-badge-videos-num">200+</p>
+          <p class="qti-badge-videos-num" style="height: max-content;">200+</p>
           <p class="qti-badge-videos-label">Video Courses</p>
         </div>
-      </div>
-
+      </div> -->
+<!-- 
       <div class="qti-badge-tutor">
         <div class="qti-badge-tutor-icon">🏅</div>
         <p class="qti-badge-tutor-name">Tim A. Wilson</p>
         <p class="qti-badge-tutor-role">Java Batch</p>
         <div class="qti-badge-tutor-stars">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
           <span class="qti-badge-tutor-score">4.0</span>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="qti-welcome-content qti-fadeup" id="qtiWelcomeContent">
@@ -361,7 +451,7 @@
         </div>
       </div>
 
-      <a href="#" class="qti-btn-primary">Read More <span class="qti-arrow">→</span></a>
+      <a href="contact.php" class="qti-btn-primary" style="color: white;">Read More <span class="qti-arrow">→</span></a>
     </div>
 
   </div>
@@ -370,15 +460,18 @@
 <script>
   (function qtiWelcomeInit() {
     var qtiEls = document.querySelectorAll('#qtiWelcomeVisual, #qtiWelcomeContent');
-    var qtiObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
+    var qtiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('qti-in-view');
           qtiObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
-    qtiEls.forEach(function (el) { qtiObserver.observe(el); });
+    }, {
+      threshold: 0.15
+    });
+    qtiEls.forEach(function(el) {
+      qtiObserver.observe(el);
+    });
   })();
 </script>
-

@@ -1,12 +1,97 @@
 <?php
-include_once  "./admin_access/db_config.php";
+include_once "./admin_access/db_config.php";
 
+/* =========================================================
+   SECTION 3 - STUDENT REELS MARQUEE
+   - reels table se random 10 Active reels
+   - Marquee: cards duplicate hokar infinite chalte hain
+   - PC/Laptop: hover par video chalta hai
+   - Tablet/Phone: click/tap par video chalta hai
+   - Thumbnail ho to wahi dikhta hai, nahi to video ka first frame
+   - Koi error ho ya reels na hon to section chup-chap hide ho jata hai
+   ========================================================= */
+
+$dgfs_reels = [];
+
+try {
+    if (isset($mydb) && $mydb instanceof mysqli) {
+        $dgfs_query = mysqli_query(
+            $mydb,
+            "SELECT reel_title, reel_file, reel_thumbnail, reel_description
+             FROM reels
+             WHERE reel_status = 'Active' AND reel_file <> ''
+             ORDER BY RAND()
+             LIMIT 10"
+        );
+
+        if ($dgfs_query) {
+            while ($dgfs_row = mysqli_fetch_assoc($dgfs_query)) {
+                $dgfs_reels[] = $dgfs_row;
+            }
+        }
+    }
+} catch (Throwable $e) {
+    error_log('Reels marquee fallback: ' . $e->getMessage());
+    $dgfs_reels = [];
+}
+
+$dgfs_count = count($dgfs_reels);
+
+/* Kam reels hon to bhi marquee bhara dikhe: ek half me kam se kam 8 cards */
+$dgfs_repeat   = $dgfs_count > 0 ? (int)ceil(8 / $dgfs_count) : 1;
+$dgfs_per_half = $dgfs_count * $dgfs_repeat;
+$dgfs_duration = max(24, $dgfs_per_half * 4); /* seconds, jitne zyada card utna slow */
+
+if (!function_exists('dgfs_render_reel')) {
+    function dgfs_render_reel(array $r, bool $clone): void
+    {
+        $h = fn($v) => htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
+
+        $video = $h($r['reel_file'] ?? '');
+        $thumb = trim((string)($r['reel_thumbnail'] ?? ''));
+        $title = $h($r['reel_title'] ?? '');
+        $desc  = $h($r['reel_description'] ?? '');
+        ?>
+        <div class="dgfs-reel<?= $thumb !== '' ? ' has-poster' : '' ?>"
+            <?= $clone ? 'aria-hidden="true" tabindex="-1"' : 'tabindex="0" role="button" aria-label="Play reel: ' . $title . '"' ?>>
+
+            <div class="dgfs-reel-media">
+                <?php if ($thumb !== ''): ?>
+                    <video class="dgfs-reel-video" muted loop playsinline preload="none"
+                        data-src="<?= $video ?>"></video>
+                    <img class="dgfs-reel-poster" src="<?= $h($thumb) ?>" alt="<?= $title ?>" loading="lazy">
+                <?php else: ?>
+                    <video class="dgfs-reel-video" muted loop playsinline preload="metadata"
+                        src="<?= $video ?>#t=0.1" data-start="0.1"></video>
+                <?php endif; ?>
+            </div>
+
+            <span class="dgfs-reel-badge">REEL</span>
+
+            <button type="button" class="dgfs-reel-mute" aria-label="Toggle sound" tabindex="-1">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path class="i-off" d="M16.5 12A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM3 9v6h4l5 5V4L7 9H3zm13.6-3.4-1.4 1.4A6.99 6.99 0 0 1 19 12a7 7 0 0 1-3.8 6.2l1.4 1.4A9 9 0 0 0 21 12a9 9 0 0 0-4.4-6.4z" />
+                    <path class="i-on" d="M3 9v6h4l5 5V4L7 9H3zm13.6 1.2L15.2 11.6 16.6 13l-1.4 1.4 1.4 1.4 1.4-1.4 1.4 1.4 1.4-1.4L19.4 13l1.4-1.4-1.4-1.4-1.4 1.4-1.4-1.4z" />
+                </svg>
+            </button>
+
+            <span class="dgfs-reel-play" aria-hidden="true">&#9658;</span>
+
+            <div class="dgfs-reel-info">
+                <p class="dgfs-reel-title"><?= $title ?></p>
+                <?php if ($desc !== ''): ?>
+                    <p class="dgfs-reel-desc"><?= $desc ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php
+    }
+}
 ?>
 
 <!-- section 3 -->
 <style>
     .dgfs-section {
-        /* font-family: 'Segoe UI', Arial, sans-serif; */
         background: #fff;
         padding: 44px 0 60px;
         overflow: hidden;
@@ -14,42 +99,41 @@ include_once  "./admin_access/db_config.php";
 
     .dgfs-heading {
         text-align: center;
-        font-size: clamp(26px,3.2vw,36px);
-        font-weight: 600;
-        color: #1a1a1a;
         margin: 0 0 8px 0;
-    }
-
-    .dgfs-heading span {
-        border-bottom: 3px solid #f5a623;
-        padding-bottom: 2px;
+        color: #1a1a1a;
     }
 
     .dgfs-subgap {
-        margin-bottom: 36px;
+        margin-bottom: 20px;
     }
 
-    /* ---------- slider viewport ---------- */
-
+    /* ---------- marquee ---------- */
     .dgfs-slider-viewport {
         position: relative;
-        width: 65%;
+        width: 100%;
+        max-width: 1240px;
         margin: 0 auto;
         overflow: hidden;
-        padding: 40px 0;
-        mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+        padding: 30px 0;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
     }
 
     .dgfs-slider-track {
         display: flex;
-        gap: 20px;
         width: max-content;
-        animation: dgfs-scroll-left 28s linear infinite;
+        animation: dgfs-scroll-left var(--dgfs-dur, 40s) linear infinite;
+        will-change: transform;
     }
 
-    .dgfs-slider-viewport:hover .dgfs-slider-track {
-        /* animation-play-state: paused; */
+    .dgfs-slider-track.is-paused {
+        animation-play-state: paused;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+        .dgfs-slider-track:hover {
+            animation-play-state: paused;
+        }
     }
 
     @keyframes dgfs-scroll-left {
@@ -62,414 +146,417 @@ include_once  "./admin_access/db_config.php";
         }
     }
 
-    /* ---------- card ---------- */
-
-    .dgfs-card {
+    /* ---------- reel card (9:16) ---------- */
+    .dgfs-reel {
         position: relative;
         flex: 0 0 auto;
-        width: 220px;
-        height: 275px;
-        border-radius: 12px;
+        width: 210px;
+        aspect-ratio: 9 / 16;
+        margin-right: 18px;
+        border-radius: 16px;
         overflow: hidden;
-        /* background: linear-gradient(160deg, #123a9c, #06132f); */
-        box-shadow: 0 14px 30px rgba(10, 20, 60, 0.22);
+        background: #0b1226;
         color: #fff;
-        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        cursor: pointer;
+        box-shadow: 0 14px 30px rgba(10, 20, 60, .22);
+        transition: transform .3s ease, box-shadow .3s ease;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
     }
 
-    .dgfs-card:hover {
+    .dgfs-reel:hover,
+    .dgfs-reel.is-playing,
+    .dgfs-reel:focus-visible {
         transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(10, 20, 60, 0.3);
+        box-shadow: 0 22px 42px rgba(10, 20, 60, .34);
     }
 
-    .dgfs-card-topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 12px;
-        font-size: 10px;
-        font-weight: 700;
-        color: #dfe6f7;
+    .dgfs-reel-media,
+    .dgfs-reel-video,
+    .dgfs-reel-poster {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
     }
 
-    .dgfs-nasscom-tag {
-        background: #fff;
-        color: #cc092f;
+    .dgfs-reel-video,
+    .dgfs-reel-poster {
+        object-fit: cover;
+        display: block;
+    }
+
+    .dgfs-reel-poster {
+        transition: opacity .25s ease;
+    }
+
+    .dgfs-reel.is-playing .dgfs-reel-poster {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* bottom gradient + text */
+    .dgfs-reel::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 55%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, .8), transparent);
+        pointer-events: none;
+    }
+
+    .dgfs-reel-info {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 14px;
+        pointer-events: none;
+    }
+
+    .dgfs-reel-title {
+        margin: 0 0 3px;
+        font-size: 14px;
         font-weight: 800;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-size: 9px;
+        line-height: 1.25;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
-    .dgfs-card-photo {
-        margin: 4px 16px;
-        /* height: 170px; */
-        border-radius: 10px;
-        /* border: 1.5px dashed rgba(255, 255, 255, 0.4); */
-        /* background: rgba(255, 255, 255, 0.06); */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
+    .dgfs-reel-desc {
+        margin: 0;
         font-size: 11px;
+        line-height: 1.4;
         color: #d7e0f7;
-        /* padding: 10px; */
-        overflow: hidden
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
-    .dgfs-play-btn {
+    .dgfs-reel-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, .95);
+        color: #cc092f;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .8px;
+        height: max-content;
+    }
+
+    .dgfs-reel-play {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -100%);
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.94);
-        color: #e0491f;
+        z-index: 2;
+        width: 46px;
+        height: 46px;
+        transform: translate(-50%, -50%);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 15px;
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-        transition: transform 0.25s ease;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .94);
+        color: #e0491f;
+        font-size: 16px;
+        padding-left: 3px;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, .3);
+        transition: transform .25s ease, opacity .2s ease;
+        pointer-events: none;
     }
 
-    .dgfs-card:hover .dgfs-play-btn {
+    .dgfs-reel:hover .dgfs-reel-play {
         transform: translate(-50%, -50%) scale(1.12);
     }
 
-    .dgfs-card-caption {
-        padding: 10px 16px 4px;
-        font-size: 13px;
-        font-weight: 800;
-        line-height: 1.3;
+    .dgfs-reel.is-playing .dgfs-reel-play {
+        opacity: 0;
     }
 
-    .dgfs-card-sub {
-        padding: 0 16px;
-        font-size: 11px;
-        color: #cdd8f2;
-        margin-bottom: 8px;
-    }
-
-    .dgfs-card-footer {
+    /* mute button (sirf playing time par) */
+    .dgfs-reel-mute {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 10px 16px 12px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent);
-    }
-
-    .dgfs-card-name {
-        font-size: 13px;
-        font-weight: 800;
-        margin: 0 0 2px 0;
-    }
-
-    .dgfs-card-course {
-        font-size: 10.5px;
-        color: #d7e0f7;
-        margin: 0 0 6px 0;
-    }
-
-    .dgfs-card-stars {
-        color: #f5c33e;
-        font-size: 12px;
-        letter-spacing: 1px;
-    }
-
-    .dgfs-card-url {
-        position: absolute;
-        bottom: 4px;
-        right: 10px;
-        font-size: 8px;
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    /* special: pathfinder collage card */
-
-    .dgfs-collage-card .dgfs-card-caption {
-        font-size: 11.5px;
-        color: #f5c33e;
-        padding-bottom: 0;
-    }
-
-    .dgfs-collage-title {
-        padding: 0 16px;
-        font-size: 17px;
-        font-weight: 900;
-        color: #ffcf3f;
-        line-height: 1.15;
-        margin-bottom: 8px;
-    }
-
-    .dgfs-collage-tag {
-        margin: 0 16px 8px;
-        display: inline-block;
-        background: #14b866;
+        top: 8px;
+        right: 8px;
+        z-index: 3;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, .55);
         color: #fff;
-        font-size: 9px;
-        font-weight: 700;
-        padding: 2px 8px;
-        border-radius: 3px;
+        cursor: pointer;
     }
 
-    /* ---------- CTA button ---------- */
+    .dgfs-reel.is-playing .dgfs-reel-mute {
+        display: flex;
+    }
 
+    .dgfs-reel-mute .i-on {
+        display: none;
+    }
+
+    .dgfs-reel.is-muted .dgfs-reel-mute .i-off {
+        display: none;
+    }
+
+    .dgfs-reel.is-muted .dgfs-reel-mute .i-on {
+        display: inline;
+    }
+
+    /* ---------- CTA ---------- */
     .dgfs-cta-row {
         display: flex;
         justify-content: center;
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
     .dgfs-cta-btn {
         padding: 14px 32px;
-        /* background: #123a9c; */
         color: #fff;
         border: none;
         border-radius: 8px;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
-        transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        transition: background .25s ease, transform .2s ease, box-shadow .25s ease;
     }
 
     .dgfs-cta-btn:hover {
         background: #2d2e2e;
         transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(18, 58, 156, 0.30);
+        box-shadow: 0 12px 26px rgba(18, 58, 156, .3);
     }
 
     /* ---------- responsive ---------- */
-
-    @media (max-width: 560px) {
-        .dgfs-heading {
-            font-size: 26px;
-        }
-
-        .dgfs-card {
-            width: 175px;
-            height: 320px;
-        }
-
-        .dgfs-card-photo {
-            height: 130px;
-        }
-
-        .dgfs-play-btn {
-            width: 34px;
-            height: 34px;
-            font-size: 12px;
-        }
-
-        .dgfs-card-name {
-            font-size: 12px;
-        }
-
-        .dgfs-collage-title {
-            font-size: 14px;
+    @media (max-width: 900px) {
+        .dgfs-reel {
+            width: 185px;
+            margin-right: 14px;
         }
     }
 
-    .img_wn874178 {
-        width: 100%;
-        height: 150px;
+    @media (max-width: 560px) {
+        .dgfs-section {
+            padding: 30px 0 44px;
+        }
 
+        .dgfs-reel {
+            width: 150px;
+            margin-right: 12px;
+            border-radius: 14px;
+        }
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .dgfs-reel-title {
+            font-size: 12px;
+        }
+
+        .dgfs-reel-desc {
+            font-size: 10px;
+        }
+
+        .dgfs-reel-play {
+            width: 38px;
+            height: 38px;
+            font-size: 13px;
+        }
+
+        .dgfs-slider-viewport {
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+    }
+
+    /* Motion kam chahne wale users: marquee band, haath se scroll */
+    @media (prefers-reduced-motion: reduce) {
+        .dgfs-slider-viewport {
+            overflow-x: auto;
+        }
+
+        .dgfs-slider-track {
+            animation: none;
         }
     }
 </style>
-<section class="dgfs-section">
 
-    <h2 class="dgfs-heading dgfs-subgap"  style=" font-family: 'Sora', inter;  font-weight:600;font-size:clamp(26px,3.2vw,36px);">What Our <span style="font-style: normal;" class="rainbow-animated_without_animtion">Students</span> Say</h2>
+<?php if ($dgfs_count > 0): ?>
+    <section class="dgfs-section">
 
-    <div class="dgfs-slider-viewport">
-        <div class="dgfs-slider-track" id="dgfsTrack">
-<?php
-$get_allvideo_6 = "SELECT *
-                   FROM `all_videos`
-                   WHERE LOWER(`video_status`) = 'active'
-                   ORDER BY `video_id` DESC";
+        <h2 class="dgfs-heading dgfs-subgap" style="font-family:'Sora',inter;font-weight:600;font-size:clamp(26px,3.2vw,36px);">
+            What Our <span style="font-style:normal;" class="rainbow-animated_without_animtion">Students</span> Say
+        </h2>
 
-$data_ase = mysqli_query($mydb, $get_allvideo_6);
+        <div class="dgfs-slider-viewport" id="dgfsViewport">
+            <div class="dgfs-slider-track" id="dgfsTrack" style="--dgfs-dur: <?= (int)$dgfs_duration ?>s;">
 
-if ($data_ase) {
-    while ($video_2d = mysqli_fetch_assoc($data_ase)) {
-        $videoPath = $video_2d['video_file'] ?? '';
-?>
+                <?php
+                /* Half 1 (asli cards) */
+                for ($i = 0; $i < $dgfs_repeat; $i++) {
+                    foreach ($dgfs_reels as $dgfs_r) {
+                        dgfs_render_reel($dgfs_r, $i > 0);
+                    }
+                }
 
-    <div class="dgfs-card primary_btns">
-        <div class="dgfs-card-topbar">
-            <span>STUDENT VIDEO</span>
-            <span class="dgfs-nasscom-tag">VIDEO</span>
+                /* Half 2 (seamless infinite loop ke liye duplicate) */
+                for ($i = 0; $i < $dgfs_repeat; $i++) {
+                    foreach ($dgfs_reels as $dgfs_r) {
+                        dgfs_render_reel($dgfs_r, true);
+                    }
+                }
+                ?>
+
+            </div>
         </div>
 
-        <div class="dgfs-card-photo">
-            <video
-                controls
-                preload="metadata"
-                playsinline
-                style="width:100%;height:150px;display:block;object-fit:cover;">
-
-                <source
-                    src="<?php echo htmlspecialchars($videoPath, ENT_QUOTES, 'UTF-8'); ?>"
-                    type="video/mp4">
-
-                Your browser does not support video playback.
-            </video>
+        <div class="dgfs-cta-row">
+            <button class="dgfs-cta-btn dark-gradient-animated">Hear More Stories</button>
         </div>
 
-        <div class="dgfs-card-footer">
-            <p class="dgfs-card-name">
-                <?php echo htmlspecialchars($video_2d['video_title'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
-            </p>
+    </section>
 
-            <p class="dgfs-card-course">
-                <?php echo htmlspecialchars($video_2d['video_description'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
-            </p>
-        </div>
-    </div>
+    <script>
+        (function() {
+            var viewport = document.getElementById('dgfsViewport');
+            var track = document.getElementById('dgfsTrack');
+            if (!viewport || !track) return;
 
-<?php
-    }
-}
-?>
-<!-- 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-5.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Prince Kumar Singh</p>
-                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+            var cards = track.querySelectorAll('.dgfs-reel');
+            var current = null;
 
+            /* PC/Laptop = hover + mouse. Tablet/Phone = touch */
+            function isDesktop() {
+                return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            }
 
+            function setMuteClass(card, muted) {
+                card.classList.toggle('is-muted', muted);
+            }
 
+            function stop(card) {
+                if (!card) return;
+                var v = card.querySelector('video');
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Anushka Srivastava</p>
-                    <p class="dgfs-card-course">Course: Data Analytics</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div> -->
+                try {
+                    v.pause();
+                    v.currentTime = parseFloat(v.getAttribute('data-start')) || 0;
+                } catch (e) {}
 
-            <!-- set 2 (duplicate for seamless infinite loop) -->
+                card.classList.remove('is-playing');
 
-            <!-- <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Amit Ura</p>
-                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+                if (current === card) {
+                    current = null;
+                    track.classList.remove('is-paused');
+                }
+            }
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Prince Kumar Singh</p>
-                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div> -->
+            function play(card, withSound) {
+                if (current && current !== card) stop(current);
 
+                var v = card.querySelector('video');
 
-            
-            <!-- set 1 -->
+                /* Poster wale card me video tabhi load hota hai jab pehli baar chalta hai */
+                if (!v.getAttribute('src') && v.getAttribute('data-src')) {
+                    v.src = v.getAttribute('data-src');
+                }
 
-            <!-- <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Amit Ura</p>
-                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+                v.muted = !withSound;
+                setMuteClass(card, v.muted);
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-5.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Prince Kumar Singh</p>
-                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+                card.classList.add('is-playing');
+                track.classList.add('is-paused');
+                current = card;
 
+                var p = v.play();
 
+                if (p && p.catch) {
+                    p.catch(function() {
+                        /* Sound ke saath block hua to muted chalane ki koshish */
+                        if (!v.muted) {
+                            v.muted = true;
+                            setMuteClass(card, true);
+                            v.play().catch(function() {
+                                stop(card);
+                            });
+                        } else {
+                            stop(card);
+                        }
+                    });
+                }
+            }
 
+            Array.prototype.forEach.call(cards, function(card) {
+                var v = card.querySelector('video');
+                var muteBtn = card.querySelector('.dgfs-reel-mute');
+                setMuteClass(card, true);
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Anushka Srivastava</p>
-                    <p class="dgfs-card-course">Course: Data Analytics</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div> -->
+                /* Desktop: hover par play (muted) */
+                card.addEventListener('mouseenter', function() {
+                    if (isDesktop()) play(card, false);
+                });
 
-            <!-- set 2 (duplicate for seamless infinite loop) -->
+                card.addEventListener('mouseleave', function() {
+                    if (isDesktop()) stop(card);
+                });
 
-            <!-- <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-1.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Amit Ura</p>
-                    <p class="dgfs-card-course">Course: Digital Marketing With AI</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
+                /* Click: desktop par sound on/off, touch par play/stop */
+                card.addEventListener('click', function() {
+                    if (isDesktop()) {
+                        if (card.classList.contains('is-playing')) {
+                            v.muted = !v.muted;
+                            setMuteClass(card, v.muted);
+                        }
+                        return;
+                    }
 
-            <div class="dgfs-card primary_btns">
-                <div class="dgfs-card-topbar"><span>CROMA CAMPUS</span><span class="dgfs-nasscom-tag">NASSCOM</span>
-                </div>
-                <div class="dgfs-card-photo"><span class="img_wn874178"><img src="img/teachers-4.jpg" alt=""></span></div>
-                <span class="dgfs-play-btn">&#9658;</span>
-                <div class="dgfs-card-footer">
-                    <p class="dgfs-card-name">Prince Kumar Singh</p>
-                    <p class="dgfs-card-course">Course: SAP SuccessFactors</p>
-                    <span class="dgfs-card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
-            </div>
-         -->
-            
+                    if (card.classList.contains('is-playing')) {
+                        stop(card);
+                    } else {
+                        play(card, true);
+                    }
+                });
 
-        </div>
-    </div>
+                /* Keyboard: Enter / Space */
+                card.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.classList.contains('is-playing') ? stop(card) : play(card, true);
+                    }
+                });
 
-    <div class="dgfs-cta-row ">
-        <button class="dgfs-cta-btn dark-gradient-animated" >Hear More Stories</button>
-    </div>
+                if (muteBtn) {
+                    muteBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        v.muted = !v.muted;
+                        setMuteClass(card, v.muted);
+                    });
+                }
+            });
 
-</section>
+            /* Section screen se bahar jaye to video band */
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function(entries) {
+                    if (!entries[0].isIntersecting && current) stop(current);
+                }, {
+                    threshold: 0.05
+                }).observe(viewport);
+            }
+
+            /* Tab change par video band */
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && current) stop(current);
+            });
+        })();
+    </script>
+<?php endif; ?>

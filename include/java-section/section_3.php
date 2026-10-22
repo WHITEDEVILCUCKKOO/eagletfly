@@ -8,7 +8,7 @@
             <h2 class="py-curriculum-title">4 modules</h2>
         </div>
 
-        <a href="#" class="py-syllabus-btn">
+        <a href="contact.php" class="py-syllabus-btn">
             Download Full Syllabus
         </a>
     </div>

@@ -576,7 +576,7 @@ if(isset($_POST['login_main'])){
                     </div>
                     <span class="text-sm text-gray-600">Remember me</span>
                 </label>
-                <a href="#" class="link text-sm">Forgot password?</a>
+                <a href="contact.php" class="link text-sm">Forgot password?</a>
             </div>
 
             <!-- Submit -->
@@ -613,7 +613,7 @@ if(isset($_POST['login_main'])){
         <!-- Sign up link -->
         <!-- <p class="text-center mt-8 text-gray-600 fade-in-up delay-6">
             Don't have an account? 
-            <a href="#" class="link">Create one</a>
+            <a href="contact.php" class="link">Create one</a>
         </p> -->
     </div>
 

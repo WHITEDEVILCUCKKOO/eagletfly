@@ -338,7 +338,7 @@ include 'include/header.php';
       ?>
 
         <div class="msw-pill-heading msw-reveal" <?php echo $heading_style; ?>>
-          <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="#"><?php echo htmlspecialchars($group_name); ?></a>
+          <a class="msw-btn-pill dark-gradient-animated sole_riper_1" style="color: white;" href="contact.php"><?php echo htmlspecialchars($group_name); ?></a>
 
           <?php if ($group_sub !== '') { ?>
             <p class="msw-section-sub curase_topse" style="margin-top:30px;"><?php echo htmlspecialchars($group_sub); ?></p>

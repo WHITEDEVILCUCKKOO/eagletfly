@@ -1427,7 +1427,7 @@ require_once __DIR__ . '/seo_helper.php';
             <li><a href="about.php">About</a></li>
             <li class="our_drop_hover">
 
-              <a href="#">Our Programs</a>
+              <a href="contact.php">Our Programs</a>
 
               <!-- MAIN DROPDOWN -->
               <div class="program-dropdown">
@@ -1595,8 +1595,8 @@ require_once __DIR__ . '/seo_helper.php';
 
               <!-- <div class="mobile-course-dropdown">
 
-                <a href="#">UI/UX Design Course</a>
-                <a href="#">Graphic Design Course</a>
+                <a href="contact.php">UI/UX Design Course</a>
+                <a href="contact.php">Graphic Design Course</a>
 
               </div> -->
 
@@ -1664,8 +1664,8 @@ require_once __DIR__ . '/seo_helper.php';
 
               <!-- <div class="mobile-course-dropdown">
 
-                <a href="#">Product Management</a>
-                <a href="#">Digital Marketing</a>
+                <a href="contact.php">Product Management</a>
+                <a href="contact.php">Digital Marketing</a>
 
               </div> -->
 
@@ -1697,8 +1697,8 @@ require_once __DIR__ . '/seo_helper.php';
 
               <!-- <div class="mobile-course-dropdown">
 
-                <a href="#">Data Analytics with Generative AI</a>
-                <a href="#">Data Science with Generative AI</a>
+                <a href="contact.php">Data Analytics with Generative AI</a>
+                <a href="contact.php">Data Science with Generative AI</a>
 
               </div> -->
 
@@ -1720,7 +1720,7 @@ require_once __DIR__ . '/seo_helper.php';
         </div>
 
 
-        <a href="#">Testimonials</a>
+        <a href="contact.php">Testimonials</a>
         <a href="blog.php">Blog</a>
         <a href="contact.php">Contact</a>
 

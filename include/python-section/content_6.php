@@ -101,8 +101,8 @@
             <!-- CTA Buttons -->
             <div class="py-career-cta-actions">
 
-                <a href="#"
-                   class="py-career-cta-primary">
+                <a href="contact.php"
+                   class="py-career-cta-primary" style="color: white;">
                     Enroll in Python Training
                     <svg viewBox="0 0 24 24" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +118,7 @@
                     </svg>
                 </a>
 
-                <a href="#"
+                <a href="contact.php"
                    class="py-career-cta-secondary">
                     Explore Course
                 </a>

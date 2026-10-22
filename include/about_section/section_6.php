@@ -132,17 +132,17 @@
       <div class="qti-step">
         <div class="qti-step-icon">📚</div>
         <h3 class="qti-step-title">Find Course</h3>
-        <p class="qti-step-desc">Browse our catalog and find the course that matches your career goals and interests.</p>
+        <p class="qti-step-desc" style="margin: auto;">Browse our catalog and find the course that matches your career goals and interests.</p>
       </div>
       <div class="qti-step">
         <div class="qti-step-icon">🪑</div>
         <h3 class="qti-step-title">Book Your Seat</h3>
-        <p class="qti-step-desc">Secure your spot instantly with simple enrollment and flexible batch timings.</p>
+        <p class="qti-step-desc" style="margin: auto;">Secure your spot instantly with simple enrollment and flexible batch timings.</p>
       </div>
       <div class="qti-step">
         <div class="qti-step-icon">🎓</div>
         <h3 class="qti-step-title">Get Certificate</h3>
-        <p class="qti-step-desc">Complete the course and receive your industry-recognized certification.</p>
+        <p class="qti-step-desc" style="margin: auto;">Complete the course and receive your industry-recognized certification.</p>
       </div>
     </div>
   </div>

@@ -583,7 +583,7 @@
                         Send Inquiry
                     </button>
 
-                    <p class="qcontact-terms">By submitting, you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a></p>
+                    <p class="qcontact-terms">By submitting, you agree to our <a href="contact.php">Terms</a> &amp; <a href="contact.php">Privacy Policy</a></p>
 
                 </form>
             </div>

@@ -1,0 +1,178 @@
+
+/* Eagletfly Banner Management */
+.kd-baner-admin-xk91 {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #172033;
+    box-sizing: border-box;
+}
+
+.kd-baner-admin-xk91 * {
+    box-sizing: border-box;
+}
+
+.kd-baner-header-xk91 {
+    margin-bottom: 24px;
+}
+
+.kd-baner-header-xk91 h2 {
+    margin: 0 0 8px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.kd-baner-header-xk91 p {
+    margin: 0;
+    color: #687386;
+    font-size: 14px;
+}
+
+.kd-baner-grid-xk91 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.kd-baner-card-xk91,
+.kd-baner-add-form-xk91 {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #e1e6ee;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(20, 35, 60, 0.04);
+}
+
+.kd-baner-add-form-xk91 {
+    margin-bottom: 24px;
+}
+
+.kd-baner-add-form-xk91 > h3 {
+    margin: 0 0 20px;
+}
+
+.kd-baner-card-heading-xk91 h3,
+.kd-baner-card-xk91 h3 {
+    margin: 0 0 14px;
+    font-size: 17px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.kd-baner-preview-xk91 {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #e3e7ef;
+    border-radius: 10px;
+    background: #f7f9fc;
+    color: #7a8495;
+    font-size: 14px;
+}
+
+.kd-baner-preview-xk91 img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.kd-baner-update-form-xk91 label,
+.kd-baner-add-form-xk91 label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.kd-baner-update-form-xk91 input[type="file"],
+.kd-baner-add-form-xk91 input[type="file"] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid #dce2eb;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 13px;
+}
+
+.kd-baner-update-form-xk91 small {
+    display: block;
+    margin-bottom: 16px;
+    color: #727c8e;
+    font-size: 12px;
+}
+
+.kd-baner-btn-xk91 {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.kd-baner-primary-xk91 {
+    color: #fff;
+    background: #1b3d7b;
+}
+
+.kd-baner-danger-xk91 {
+    color: #b42318;
+    background: #fff0ef;
+    border: 1px solid #ffd5d1;
+}
+
+.kd-baner-delete-form-xk91 {
+    margin-top: 10px;
+}
+
+.kd-baner-message-xk91 {
+    margin-bottom: 20px;
+    padding: 13px 16px;
+    border: 1px solid #d7e4f8;
+    border-radius: 8px;
+    background: #f3f7ff;
+    color: #1b3d7b;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+    .kd-baner-admin-xk91 {
+        padding: 16px;
+    }
+
+    .kd-baner-grid-xk91 {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .kd-baner-preview-xk91 {
+        height: 190px;
+    }
+}
+
+@media (max-width: 420px) {
+    .kd-baner-admin-xk91 {
+        padding: 10px;
+    }
+
+    .kd-baner-card-xk91,
+    .kd-baner-add-form-xk91 {
+        padding: 14px;
+    }
+
+    .kd-baner-preview-xk91 {
+        height: 155px;
+    }
+}

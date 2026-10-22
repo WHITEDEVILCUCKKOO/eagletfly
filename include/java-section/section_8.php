@@ -36,7 +36,7 @@
 
             </div>
 
-            <a href="#" class="ef-training-btn ef-classroom-btn">
+            <a href="contact.php" class="ef-training-btn ef-classroom-btn">
                 ENQUIRE NOW
             </a>
 
@@ -80,7 +80,7 @@
 
             </div>
 
-            <a href="#" class="ef-training-btn ef-online-btn">
+            <a href="contact.php" class="ef-training-btn ef-online-btn">
                 ENQUIRE NOW
             </a>
 

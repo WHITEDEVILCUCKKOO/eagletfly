@@ -502,8 +502,8 @@
                 Transform your business into a powerful online brand with data-driven marketing strategies, creative campaigns, and high-converting digital experiences.
             </p>
             <div class="home-hero_content--cta">
-                <a href="#" class="home-hero_content--cta1">Get Free Consultation</a>
-                <a href="#" class="home-hero_content--cta2">Start Your Project</a>
+                <a href="contact.php" class="home-hero_content--cta1">Get Free Consultation</a>
+                <a href="contact.php" class="home-hero_content--cta2">Start Your Project</a>
             </div>
             <div class="home-hero_content--features">
                 <div class="home-hero_content--features-items">

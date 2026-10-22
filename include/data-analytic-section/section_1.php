@@ -348,9 +348,9 @@ $global_info = get_global_info($mydb);
             </div>
 
             <div class="dgfh-btn-row">
-                <button class="dgfh-btn dgfh-btn-solid">Placement Report  &#10140;</button>
-                <button class="dgfh-btn dgfh-btn-outline dark-gradient-animated">Download Curriculum  &#10140;</button>
-                <button class="dgfh-btn dgfh-btn-outline dark-gradient-animated">Interview Questions  &#10140;</button>
+                <button class="dgfh-btn dgfh-btn-solid" onclick="window.location.href='contact.php'">Placement Report  &#10140;</button>
+                <button class="dgfh-btn dgfh-btn-outline dark-gradient-animated" onclick="window.location.href='contact.php'">Download Curriculum  &#10140;</button>
+                <button class="dgfh-btn dgfh-btn-outline dark-gradient-animated" onclick="window.location.href='contact.php'">Interview Questions  &#10140;</button>
             </div>
         </div>
 

@@ -260,8 +260,8 @@
                 <h1 class="hero-title">Learn to ask data the right questions.</h1>
                 <p class="hero-sub">A 6-month, project-first Data Science program from Eaglefly Solutions — Python, SQL, Machine Learning and a portfolio built on real datasets, taught by people who ship models for a living.</p>
                 <div class="hero-actions">
-                    <button class="hero-btn-primary">Book a Free Demo</button>
-                    <button class="hero-btn-secondary">Download Curriculum</button>
+                    <button class="hero-btn-primary" onclick="window.location.href='contact.php'">Book a Free Demo</button>
+                    <button class="hero-btn-secondary" onclick="window.location.href='contact.php'">Download Curriculum</button>
                 </div>
                 <div class="hero-trust">
                     <div class="hero-trust-item"><b>20,000+</b>&nbsp;learners trained</div>
