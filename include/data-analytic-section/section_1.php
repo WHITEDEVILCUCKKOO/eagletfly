@@ -341,7 +341,7 @@ $global_info = get_global_info($mydb);
         <!-- LEFT -->
         <div class="dgfh-left" style="padding-top:25px ;">
             <h2 class="dgfh-heading" style="font-family: 'Sora', inter; font-weight:600; font-size:clamp(26px,3.2vw,36px);">Data Analytics Course <br> <em style="color: #373ACF; font-style:normal;"> in Delhi </em></h2>
-            <p class="dgfh-subtext" style="color:#666666;padding:15px 0;">Uncover the methods to extract data for analytical purposes. Join us now and study under a skilled data analyst.</p>
+            <p class="dgfh-subtext" style="color:#666666;padding:15px 0;">Learn industry-relevant skills in Digital Marketing, Data Analytics, Python & AI with practical training and real-world projects.</p>
 
             <div class="dgfh-rating-row">
                 <span class="dgfh-rating-main" style="font-size: 15.5px; font-weight: 700;">⭐ 4.9 out of 5 based on 45479 votes</span>

@@ -417,8 +417,10 @@
 
     <div class="qti-welcome-content qti-fadeup" id="qtiWelcomeContent">
       <span class="qti-eyebrow">About</span>
-      <h2 class="qti-welcome-title">Welcome To The Online Learning Center</h2>
-      <p class="qti-welcome-desc">Get latest news in your inbox. Consectetur adipiscing elitadipiscing elitse ddo eiusmod tempor incididunt ut labore et dolore magnased doeiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspend isse ultrices gravida.</p>
+      <h2 class="qti-welcome-title">Eagletfly Solutions </h2>
+      <p class="qti-welcome-desc">Eagletfly Solutions is a career-oriented training institute in Patel Nagar, dedicated to shaping learners for relevant digital and technology skills.</p>
+      <p class="qti-welcome-desc">For the past eight years we have been working to make learning practical, approachable and relevant to the changing needs of the digital world. Whether you’re launching your career or adding new skills, we want to help you move ahead with more confidence.</p>
+      <p class="qti-welcome-desc">Our learning paths include Digital Marketing, Data Analytics, Python and Artificial Intelligence with a focus on learning the concepts and applying them in real-life situations.</p>
 
       <div class="qti-feature-grid">
         <div class="qti-feature-item">

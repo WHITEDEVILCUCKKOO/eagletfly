@@ -54,10 +54,11 @@
             /* font-family: 'Space Grotesk', sans-serif; */
             font-weight: 600;
             font-size: clamp(34px, 4.2vw, 36px);
-            line-height: 1.08;
+            line-height: 1.2;
             color: #F6F5FF;
             margin: 0 0 22px;
-            max-width: 15ch;
+            letter-spacing: -0.02em !important;
+            /* max-width: 15ch;  */
             opacity: 0;
             transform: translateY(18px);
             animation: heroFade 0.75s ease forwards 0.22s;
@@ -235,20 +236,31 @@
         }
 
         .hero-line {
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: heroLineDraw 3s ease-in-out infinite;
-}
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: heroLineDraw 3s ease-in-out infinite;
+        }
 
-@keyframes heroLineDraw {
-    0% {
-        stroke-dashoffset: 400;
-    }
+        @keyframes heroLineDraw {
+            0% {
+                stroke-dashoffset: 400;
+            }
 
-    70%, 100% {
-        stroke-dashoffset: 0;
-    }
-}
+            70%,
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .qwer123 {
+            display: inline-block;
+            padding-bottom: 5px;
+            background: linear-gradient(90deg, #ff7a3d, #f04f61 42%, #a578ef 72%, #6f9dff 100%);
+            
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 
 
@@ -257,16 +269,16 @@
         <div class="hero-grid">
             <div>
                 <p class="hero-kicker"><span class="dot"></span>DATA SCIENCE COURSE · DELHI</p>
-                <h1 class="hero-title">Learn to ask data the right questions.</h1>
-                <p class="hero-sub">A 6-month, project-first Data Science program from Eaglefly Solutions — Python, SQL, Machine Learning and a portfolio built on real datasets, taught by people who ship models for a living.</p>
+                <h1 class="hero-title">Turn Data Into Insights. <span class="qwer123">Build Your Future.</span></h1>
+                <p class="hero-sub">Master Python, SQL, Data Analytics and Machine Learning through hands-on projects, real-world datasets and industry-relevant training at Eagletfly Solutions.</p>
                 <div class="hero-actions">
                     <button class="hero-btn-primary" onclick="window.location.href='contact.php'">Book a Free Demo</button>
                     <button class="hero-btn-secondary" onclick="window.location.href='contact.php'">Download Curriculum</button>
                 </div>
                 <div class="hero-trust">
                     <div class="hero-trust-item"><b>20,000+</b>&nbsp;learners trained</div>
-                    <div class="hero-trust-item"><b>₹5–12L</b>&nbsp;average package</div>
-                    <div class="hero-trust-item"><b>90%</b>&nbsp;placement rate</div>
+                    <div class="hero-trust-item"><b>₹4–5L</b>&nbsp;average package</div>
+                    <div class="hero-trust-item"><b>70%-80%</b>&nbsp;placement rate</div>
                 </div>
             </div>
             <div class="hero-visual">
@@ -278,20 +290,19 @@
                     <rect class="hero-bar" x="260" y="200" width="34" height="130" rx="4" fill="#4E5AA8" style="animation-delay:0.8s" />
                     <rect class="hero-bar" x="320" y="90" width="34" height="240" rx="4" fill="#FF6F59" style="animation-delay:1s" />
                     <polyline
-    class="hero-line"
-    points="97,220 157,160 217,110 277,190 337,80"
-    stroke="#5B63B7"
-    stroke-width="1.4"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-/>
+                        class="hero-line"
+                        points="97,220 157,160 217,110 277,190 337,80"
+                        stroke="#5B63B7"
+                        stroke-width="1.4"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
 
-<circle class="hero-node n1" cx="97" cy="220" r="7" fill="#F6F5FF" />
-<circle class="hero-node n2" cx="157" cy="160" r="7" fill="#F6F5FF" />
-<circle class="hero-node n3" cx="217" cy="110" r="7" fill="#F6F5FF" />
-<circle class="hero-node n4" cx="277" cy="190" r="7" fill="#F6F5FF" />
-<circle class="hero-node n5" cx="337" cy="80" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n1" cx="97" cy="220" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n2" cx="157" cy="160" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n3" cx="217" cy="110" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n4" cx="277" cy="190" r="7" fill="#F6F5FF" />
+                    <circle class="hero-node n5" cx="337" cy="80" r="7" fill="#F6F5FF" />
                 </svg>
             </div>
         </div>
