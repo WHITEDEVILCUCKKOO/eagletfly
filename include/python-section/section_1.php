@@ -1630,14 +1630,14 @@
                 </div>
 
                 <h2>
-                    Master Python Programming
-                    <span> Course In Delhi </span> &
-                    get job-ready in 6 Months
+                    <span>Python Training </span> 
+                    Certificate Course in Delhi 
+                    
 
                 </h2>
 
                 <p class="kd-podcast-hero-desc">
-                    Live Projects ∙ Placement Assistance ∙ Industry Trainers — learn Python from senior developers working at India's top product companies.
+                    EagletFly, best rated python training Institute in Patel Nagar, Delhi, provide job oriented python certification course. Our Python programming certification Training empowers you to master Python from scratch. 
                 </p>
 
                 <!-- CTA -->
